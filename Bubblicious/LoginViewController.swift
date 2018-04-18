@@ -16,21 +16,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        mailTextField.delegate = self
+        mailTextField.delegate = self
 //        mailTextField.returnKeyType = .next
 //        mailTextField.keyboardType = .emailAddress
 //        mailTextField.enablesReturnKeyAutomatically = true
 //        mailTextField.autocapitalizationType = .none
 //        mailTextField.autocorrectionType = .no
-//        
-//        passwordTextField.delegate = self
+//
+        passwordTextField.delegate = self
 //        passwordTextField.returnKeyType = .go
 //        passwordTextField.keyboardType = .asciiCapable
 //        passwordTextField.isSecureTextEntry = true
 //        passwordTextField.enablesReturnKeyAutomatically = true
 //        passwordTextField.autocapitalizationType = .none
 //        passwordTextField.autocorrectionType = .no
-//        
+//
 //        mailTextField.text = ""
 //        passwordTextField.text = ""
 
@@ -40,6 +40,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func attemptLogin() {
+        print("login")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.isEqual(mailTextField) {
+            passwordTextField.becomeFirstResponder()
+        } else if textField.isEqual(passwordTextField) {
+            attemptLogin()
+        }
+        return true
     }
     
 
