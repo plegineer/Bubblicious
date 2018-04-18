@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3838F170199B5A56FD747EC8 /* Pods_Bubblicious.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */; };
+		550C156D8DB0009DF220051E /* Pods_BubbliciousUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E57788E6C00DD652E192CE8 /* Pods_BubbliciousUITests.framework */; };
+		910460E81CE19C6741261481 /* Pods_BubbliciousTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */; };
 		D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */; };
 		D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */; };
 		D251A1632086F1DC00DFC4F6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1622086F1DC00DFC4F6 /* SecondViewController.swift */; };
@@ -16,6 +19,8 @@
 		D251A1762086F1DD00DFC4F6 /* BubbliciousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1752086F1DD00DFC4F6 /* BubbliciousTests.swift */; };
 		D251A1812086F1DD00DFC4F6 /* BubbliciousUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1802086F1DD00DFC4F6 /* BubbliciousUITests.swift */; };
 		D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */; };
+		D251A1932087201B00DFC4F6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1922087201B00DFC4F6 /* UserModel.swift */; };
+		D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1942087219400DFC4F6 /* WebApiManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D7BF2353DF68770AAE1C95F /* Pods-Bubblicious.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubblicious.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious.release.xcconfig"; sourceTree = "<group>"; };
+		6291F87572713D7EF10CC97F /* Pods-BubbliciousTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousTests/Pods-BubbliciousTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7553DCE7CDBA9341F0666305 /* Pods-BubbliciousTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousTests/Pods-BubbliciousTests.release.xcconfig"; sourceTree = "<group>"; };
+		78C1B995B6C19067475C8119 /* Pods-BubbliciousUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.release.xcconfig"; sourceTree = "<group>"; };
+		79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BubbliciousTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E57788E6C00DD652E192CE8 /* Pods_BubbliciousUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BubbliciousUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC49250A5A255F87CEB676AA /* Pods-Bubblicious.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubblicious.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious.debug.xcconfig"; sourceTree = "<group>"; };
 		D251A15B2086F1DC00DFC4F6 /* Bubblicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bubblicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +63,10 @@
 		D251A1802086F1DD00DFC4F6 /* BubbliciousUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbliciousUITests.swift; sourceTree = "<group>"; };
 		D251A1822086F1DD00DFC4F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D251A1922087201B00DFC4F6 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		D251A1942087219400DFC4F6 /* WebApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApiManager.swift; sourceTree = "<group>"; };
+		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3838F170199B5A56FD747EC8 /* Pods_Bubblicious.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				910460E81CE19C6741261481 /* Pods_BubbliciousTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +90,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550C156D8DB0009DF220051E /* Pods_BubbliciousUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ACC570DB08910759B92AC6DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */,
+				79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */,
+				7E57788E6C00DD652E192CE8 /* Pods_BubbliciousUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D251A1522086F1DC00DFC4F6 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +114,8 @@
 				D251A1742086F1DD00DFC4F6 /* BubbliciousTests */,
 				D251A17F2086F1DD00DFC4F6 /* BubbliciousUITests */,
 				D251A15C2086F1DC00DFC4F6 /* Products */,
+				F8CC18909AFBEE674DA378D9 /* Pods */,
+				ACC570DB08910759B92AC6DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,11 +133,13 @@
 			isa = PBXGroup;
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
+				D251A1922087201B00DFC4F6 /* UserModel.swift */,
+				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A1622086F1DC00DFC4F6 /* SecondViewController.swift */,
-				D251A1642086F1DC00DFC4F6 /* Main.storyboard */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
 				D251A1672086F1DC00DFC4F6 /* Assets.xcassets */,
+				D251A1642086F1DC00DFC4F6 /* Main.storyboard */,
 				D251A1692086F1DC00DFC4F6 /* LaunchScreen.storyboard */,
 				D251A16C2086F1DC00DFC4F6 /* Info.plist */,
 			);
@@ -131,6 +164,19 @@
 			path = BubbliciousUITests;
 			sourceTree = "<group>";
 		};
+		F8CC18909AFBEE674DA378D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC49250A5A255F87CEB676AA /* Pods-Bubblicious.debug.xcconfig */,
+				0D7BF2353DF68770AAE1C95F /* Pods-Bubblicious.release.xcconfig */,
+				6291F87572713D7EF10CC97F /* Pods-BubbliciousTests.debug.xcconfig */,
+				7553DCE7CDBA9341F0666305 /* Pods-BubbliciousTests.release.xcconfig */,
+				D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */,
+				78C1B995B6C19067475C8119 /* Pods-BubbliciousUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D251A1852086F1DD00DFC4F6 /* Build configuration list for PBXNativeTarget "Bubblicious" */;
 			buildPhases = (
+				40766849F044B4FE4C42C353 /* [CP] Check Pods Manifest.lock */,
 				D251A1572086F1DC00DFC4F6 /* Sources */,
 				D251A1582086F1DC00DFC4F6 /* Frameworks */,
 				D251A1592086F1DC00DFC4F6 /* Resources */,
+				9F29B8EB80C0D3F1FA4BE7D0 /* [CP] Embed Pods Frameworks */,
+				09E3250622D1BB69C9F2E89B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D251A1882086F1DD00DFC4F6 /* Build configuration list for PBXNativeTarget "BubbliciousTests" */;
 			buildPhases = (
+				73E3FCA78D3339A11A036744 /* [CP] Check Pods Manifest.lock */,
 				D251A16D2086F1DD00DFC4F6 /* Sources */,
 				D251A16E2086F1DD00DFC4F6 /* Frameworks */,
 				D251A16F2086F1DD00DFC4F6 /* Resources */,
+				FC58425CF76F246069B13E79 /* [CP] Embed Pods Frameworks */,
+				4962043273799FF04094E188 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,9 +225,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D251A18B2086F1DD00DFC4F6 /* Build configuration list for PBXNativeTarget "BubbliciousUITests" */;
 			buildPhases = (
+				1231EA4B714A2B3471D9EE01 /* [CP] Check Pods Manifest.lock */,
 				D251A1782086F1DD00DFC4F6 /* Sources */,
 				D251A1792086F1DD00DFC4F6 /* Frameworks */,
 				D251A17A2086F1DD00DFC4F6 /* Resources */,
+				879EE6B1D63A204347677F21 /* [CP] Embed Pods Frameworks */,
+				0F6BC6485EE802667F35A985 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,6 +312,158 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09E3250622D1BB69C9F2E89B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0F6BC6485EE802667F35A985 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1231EA4B714A2B3471D9EE01 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BubbliciousUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40766849F044B4FE4C42C353 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bubblicious-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4962043273799FF04094E188 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BubbliciousTests/Pods-BubbliciousTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73E3FCA78D3339A11A036744 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BubbliciousTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		879EE6B1D63A204347677F21 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F29B8EB80C0D3F1FA4BE7D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC58425CF76F246069B13E79 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BubbliciousTests/Pods-BubbliciousTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D251A1572086F1DC00DFC4F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -265,6 +472,8 @@
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
 				D251A1632086F1DC00DFC4F6 /* SecondViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
+				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
+				D251A1932087201B00DFC4F6 /* UserModel.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,15 +645,13 @@
 		};
 		D251A1862086F1DD00DFC4F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC49250A5A255F87CEB676AA /* Pods-Bubblicious.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = Bubblicious/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.Bubblicious;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -454,15 +661,13 @@
 		};
 		D251A1872086F1DD00DFC4F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D7BF2353DF68770AAE1C95F /* Pods-Bubblicious.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = Bubblicious/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.Bubblicious;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -472,17 +677,14 @@
 		};
 		D251A1892086F1DD00DFC4F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6291F87572713D7EF10CC97F /* Pods-BubbliciousTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -493,17 +695,14 @@
 		};
 		D251A18A2086F1DD00DFC4F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7553DCE7CDBA9341F0666305 /* Pods-BubbliciousTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -514,16 +713,13 @@
 		};
 		D251A18C2086F1DD00DFC4F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -534,16 +730,13 @@
 		};
 		D251A18D2086F1DD00DFC4F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78C1B995B6C19067475C8119 /* Pods-BubbliciousUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
