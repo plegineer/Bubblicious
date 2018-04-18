@@ -17,20 +17,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         mailTextField.delegate = self
-//        mailTextField.returnKeyType = .next
-//        mailTextField.keyboardType = .emailAddress
-//        mailTextField.enablesReturnKeyAutomatically = true
-//        mailTextField.autocapitalizationType = .none
-//        mailTextField.autocorrectionType = .no
-//
+        mailTextField.returnKeyType = .next // returnキーの表示をnextに
+        mailTextField.keyboardType = .emailAddress //キーボードに@と,を表示
+        mailTextField.enablesReturnKeyAutomatically = true // 入力エリアが空の場合、returnキーを非活性にする
+        mailTextField.autocapitalizationType = .none // 自動補完OFF
+        mailTextField.autocorrectionType = .no // キーボード上の予測候補OFF
+        
         passwordTextField.delegate = self
-//        passwordTextField.returnKeyType = .go
-//        passwordTextField.keyboardType = .asciiCapable
-//        passwordTextField.isSecureTextEntry = true
-//        passwordTextField.enablesReturnKeyAutomatically = true
-//        passwordTextField.autocapitalizationType = .none
-//        passwordTextField.autocorrectionType = .no
-//
+        passwordTextField.returnKeyType = .go // returnキーの表示をgoに
+        passwordTextField.keyboardType = .asciiCapable // スタンダードキーボードを表示
+        passwordTextField.isSecureTextEntry = true //入力した文字列を伏字に
+        passwordTextField.enablesReturnKeyAutomatically = true
+        passwordTextField.autocapitalizationType = .none
+        passwordTextField.autocorrectionType = .no
+        
 //        mailTextField.text = ""
 //        passwordTextField.text = ""
 
