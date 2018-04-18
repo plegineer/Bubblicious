@@ -15,6 +15,7 @@
 		D251A16B2086F1DC00DFC4F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D251A1692086F1DC00DFC4F6 /* LaunchScreen.storyboard */; };
 		D251A1762086F1DD00DFC4F6 /* BubbliciousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1752086F1DD00DFC4F6 /* BubbliciousTests.swift */; };
 		D251A1812086F1DD00DFC4F6 /* BubbliciousUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1802086F1DD00DFC4F6 /* BubbliciousUITests.swift */; };
+		D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D251A17C2086F1DD00DFC4F6 /* BubbliciousUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubbliciousUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D251A1802086F1DD00DFC4F6 /* BubbliciousUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbliciousUITests.swift; sourceTree = "<group>"; };
 		D251A1822086F1DD00DFC4F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A1622086F1DC00DFC4F6 /* SecondViewController.swift */,
 				D251A1642086F1DC00DFC4F6 /* Main.storyboard */,
+				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
 				D251A1672086F1DC00DFC4F6 /* Assets.xcassets */,
 				D251A1692086F1DC00DFC4F6 /* LaunchScreen.storyboard */,
 				D251A16C2086F1DC00DFC4F6 /* Info.plist */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
 				D251A1632086F1DC00DFC4F6 /* SecondViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
