@@ -139,6 +139,7 @@
                     <connections>
                         <outlet property="mailTextField" destination="oaI-En-Ovs" id="0YF-Ne-KT4"/>
                         <outlet property="passwordTextField" destination="wsb-VF-8kv" id="emI-rI-7vz"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="OpenFirstView" id="Gzb-eq-28U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xar-ml-Ecy" userLabel="First Responder" sceneMemberID="firstResponder"/>

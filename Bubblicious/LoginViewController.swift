@@ -44,6 +44,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func attemptLogin() {
         print("login")
+//        let params = ["email": self.mailTextField.text,
+//                      "password": self.passwordTextField.text]
+        
+        self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
+    }
+    
+    func jumpToFirstView() {
+        self.performSegue(withIdentifier: "OpenFirstView", sender: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let tab = storyboard.instantiateViewController(withIdentifier: "tab") as! FirstViewController
+//        self.navigationController?.pushViewController(tab, animated: true)
+        print("FirstView")
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -55,15 +67,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func jumpToNextView(iconRegistered: Bool, isFirstLogin: Bool) {
+        if isFirstLogin {
+            self.jumpToFirstView()
+        }
     }
-    */
-
 }
