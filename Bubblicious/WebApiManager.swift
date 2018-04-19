@@ -12,37 +12,27 @@ import SwiftyJSON
 class WebApiManager {
     static let sharedManager = WebApiManager()
     
+    var result: [User] = []
+    
     private let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
     private let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
     
     func post(callback: @escaping (_ error: Error?) -> Void) {
         print("WebApiManager")
-        var request = urlSuccess
+        let request = urlSuccess
         
         Alamofire.request(request)
-            .responseJSON(completionHandler: {(response: DataResponse<Any>) in
+            .responseJSON { response in
+//                print(response)
+//                print(response.result.value) // Optional
+//                print(response.result) // SUCCESS
                 
-                switch response.result {
-                case .failure(let error):
-                    print(response)
-                    return
-                case .success(let responseObject):
-                    print("success")
-                    let json = JSON(responseObject)
-                    if let errorObj = json["error"].dictionary {
-                        
-                        }
-                    callback(nil)
+                let object = response.result.value
+                let json = JSON(object)
+                print(json)
+                print(json["result"]["auth"]["accessToken"])
+                callback(nil)
                 }
-                
-            }
-        
-        
-        
-        
-        
-        
-        )
     }
     
     func isAvailableAccessToken() -> Bool {
