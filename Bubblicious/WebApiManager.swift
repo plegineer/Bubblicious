@@ -19,20 +19,19 @@ class WebApiManager {
     
     func post(callback: @escaping (_ error: Error?) -> Void) {
         print("WebApiManager")
-        let request = urlSuccess
+        let url = urlSuccess
         
-        Alamofire.request(request)
+        Alamofire.request(url)
             .responseJSON { response in
-//                print(response)
 //                print(response.result.value) // Optional
 //                print(response.result) // SUCCESS
                 
-                let object = response.result.value
-                let json = JSON(object)
-                print(json)
-                print(json["result"]["auth"]["accessToken"])
-                callback(nil)
+                if let object = response.result.value {
+                    let json = JSON(object)
+                    let accessToken = json["result"]["auth"]["accessToken"].string
+                    callback(nil)
                 }
+        }
     }
     
     func isAvailableAccessToken() -> Bool {
