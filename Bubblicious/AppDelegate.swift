@@ -15,18 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if WebApiManager.sharedManager.isAvailableAccessToken() {
+            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "tab") as! TabBarController
+        } else {
+            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
+        }
         
-//        var ud = UserDefaults.standard
-//        var isLogin: Bool? = ud.object(forKey: "isLogin") as? Bool
-//
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//        if isLogin != nil && isLogin! {
-//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "tab") as! TabBarController
-//        } else {
-//            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
-//        }
+        self.window?.makeKeyAndVisible()
 
         return true
     }

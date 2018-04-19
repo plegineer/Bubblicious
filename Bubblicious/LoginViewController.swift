@@ -38,6 +38,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             Util.saveObject(self.mailTextField.text, forKey: "KeyEmailForLogin")
         }
         
+        // ログイン情報が無い場合の処理
+//        if !Util.loadBool("kLoggedInOnThisDevice") {
+//            Util.saveBool(true, forKey: "kLoggedInOnThisDevice")
+//            
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let pushNotificationGuideVc =
+//        }
+    
         webApiManager.post(params, callback: {(error) in
             if let error = error {
                 print("Error", error)

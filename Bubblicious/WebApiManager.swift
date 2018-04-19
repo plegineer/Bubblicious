@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class WebApiManager {
     
+    static let sharedManager = WebApiManager()
+    
     private let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
     private let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
     
@@ -28,8 +30,9 @@ class WebApiManager {
                     callback(error)
                 case .success(let responseObject):
                     let json = JSON(responseObject)
-                    let loginResult: LoginResult = LoginResult(json: json)
-                    print(loginResult)
+//                    let loginResult: LoginResult = LoginResult(json: json)
+                    
+                    self.saveTokenIfNeeded(json["result"])
                     callback(nil)
                 }
         }
@@ -38,5 +41,16 @@ class WebApiManager {
     func isAvailableAccessToken() -> Bool {
         let accessToken = UserDefaults.standard.object(forKey: "accessToken")
         return accessToken != nil
+    }
+    
+    private func saveTokenIfNeeded(_ result: JSON?) {
+        guard let result = result else {
+            return
+        }
+        
+        if let accessToken = result["auth"]["accessToken"].string {
+            Util.saveObject(accessToken, forKey: "accessToken")
+            print("accessToken Saved!")
+        }
     }
 }
