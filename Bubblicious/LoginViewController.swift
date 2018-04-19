@@ -44,7 +44,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func jumpToFirstView() {
-        self.performSegue(withIdentifier: "OpenFirstView", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tab = storyboard.instantiateViewController(withIdentifier: "tab")
+        self.navigationController?.pushViewController(tab, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
