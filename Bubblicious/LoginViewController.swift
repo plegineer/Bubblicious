@@ -12,6 +12,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailKeepSwitch: UISwitch!
     
     let webApiManager = WebApiManager()
     
@@ -31,8 +32,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                       "password": self.passwordTextField.text!]
         
         print("login")
-        var userDefault = UserDefaults.standard
-        userDefault.set(true, forKey: "isLogin")
+        
+        Util.saveBool(self.emailKeepSwitch.isOn, forKey: "KeyKeepEmail")
+        if self.emailKeepSwitch.isOn {
+            Util.saveObject(self.mailTextField.text, forKey: "KeyEmailForLogin")
+        }
         
         webApiManager.post(params, callback: {(error) in
             if let error = error {

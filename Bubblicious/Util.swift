@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class Util {
+    
+    class func saveObject(_ obj:Any?, forKey key: String){
+        UserDefaults.standard.set(obj, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func saveBool(_ val:Bool, forKey key:String){
+        UserDefaults.standard.set(val, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+}
