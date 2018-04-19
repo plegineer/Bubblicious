@@ -50,7 +50,15 @@ class WebApiManager {
         
         if let accessToken = result["auth"]["accessToken"].string {
             Util.saveObject(accessToken, forKey: "accessToken")
-            print("accessToken Saved!")
+            print("accessToken Saved!", accessToken)
+        }
+        
+        if let refreshToken = result["auth"]["refreshToken"].string {
+            Util.saveObject(refreshToken, forKey: "KeyRefreshToken")
+        }
+        
+        if let expireDate = result["auth"]["expireDate"].string {
+            Util.saveObject(expireDate, forKey: "KeyAccessTokenExpire")
         }
     }
 }
