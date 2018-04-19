@@ -12,7 +12,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailKeepSwitch: UISwitch!
     
     let webApiManager = WebApiManager()
     

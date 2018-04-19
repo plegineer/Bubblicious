@@ -13,9 +13,9 @@ class SettingViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "設定"
+        self.title = "Setting"
         self.navigationController?.navigationBar.isTranslucent = false
-        let rightButton = UIBarButtonItem(title: "ログアウト", style: .plain,
+        let rightButton = UIBarButtonItem(title: "Logout", style: .plain,
                                           target: self, action: #selector(logout))
         
         self.navigationItem.rightBarButtonItem = rightButton
@@ -29,9 +29,7 @@ class SettingViewController: UITableViewController {
     }
     
     @objc func logout() {
-        print("ログアウト")
-        let email = Util.loadObject("KeyEmailForLogin")
-        let shouldKeep = Util.loadBool("KeyKeepEmail")
+        print("Logout")
         
         Util.clearAllSavedData()
         
