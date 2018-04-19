@@ -13,6 +13,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let webApiManager = WebApiManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,11 +32,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.enablesReturnKeyAutomatically = true
         passwordTextField.autocapitalizationType = .none
         passwordTextField.autocorrectionType = .no
-        
-//        mailTextField.text = ""
-//        passwordTextField.text = ""
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,23 +41,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func attemptLogin() {
         print("login")
-//        let params = ["email": self.mailTextField.text,
-//                      "password": self.passwordTextField.text]
-        let webApiManager = WebApiManager()
         
         webApiManager.post(callback: {(error) in
+            if let error = error {
+                print("Error", error)
+                return
+            }
             self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
         })
-        
-//        self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
     }
     
     func jumpToFirstView() {
         self.performSegue(withIdentifier: "OpenFirstView", sender: nil)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let tab = storyboard.instantiateViewController(withIdentifier: "tab") as! FirstViewController
-//        self.navigationController?.pushViewController(tab, animated: true)
-        print("FirstView")
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

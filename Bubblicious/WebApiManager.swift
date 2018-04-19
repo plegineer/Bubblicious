@@ -10,9 +10,6 @@ import Alamofire
 import SwiftyJSON
 
 class WebApiManager {
-    static let sharedManager = WebApiManager()
-    
-    var result: [User] = []
     
     private let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
     private let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
@@ -26,9 +23,13 @@ class WebApiManager {
 //                print(response.result.value) // Optional
 //                print(response.result) // SUCCESS
                 
-                if let object = response.result.value {
-                    let json = JSON(object)
-                    let accessToken = json["result"]["auth"]["accessToken"].string
+                switch response.result {
+                case .failure(let error):
+                    callback(error)
+                case .success(let responseObject):
+                    let json = JSON(responseObject)
+                    let accessToken = json["result"]["auth"]["accessToken"]
+                    print("success",accessToken)
                     callback(nil)
                 }
         }
