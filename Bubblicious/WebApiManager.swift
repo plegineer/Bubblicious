@@ -15,8 +15,8 @@ class WebApiManager {
     private let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
     private let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
     
-    func post() {
-            print("WebApiManager")
+    func post(callback: @escaping (_ error: Error?) -> Void) {
+        print("WebApiManager")
         var request = urlSuccess
         
         Alamofire.request(request)
@@ -24,16 +24,15 @@ class WebApiManager {
                 
                 switch response.result {
                 case .failure(let error):
-                    print("error")
+                    print(response)
                     return
                 case .success(let responseObject):
                     print("success")
-                    print(response)
                     let json = JSON(responseObject)
                     if let errorObj = json["error"].dictionary {
                         
                         }
-                    return
+                    callback(nil)
                 }
                 
             }

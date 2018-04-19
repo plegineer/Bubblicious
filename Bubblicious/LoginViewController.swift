@@ -47,9 +47,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        let params = ["email": self.mailTextField.text,
 //                      "password": self.passwordTextField.text]
         let webApiManager = WebApiManager()
-        webApiManager.post()
         
-        self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
+        webApiManager.post(callback: {(error) in
+            self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
+        })
+        
+//        self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
     }
     
     func jumpToFirstView() {
