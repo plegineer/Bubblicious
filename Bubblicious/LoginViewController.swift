@@ -32,19 +32,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                       "password": self.passwordTextField.text!]
         
         print("login")
-        
-        Util.saveBool(self.emailKeepSwitch.isOn, forKey: "KeyKeepEmail")
-        if self.emailKeepSwitch.isOn {
-            Util.saveObject(self.mailTextField.text, forKey: "KeyEmailForLogin")
-        }
-        
-        // ログイン情報が無い場合の処理
-//        if !Util.loadBool("kLoggedInOnThisDevice") {
-//            Util.saveBool(true, forKey: "kLoggedInOnThisDevice")
-//            
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let pushNotificationGuideVc =
-//        }
     
         webApiManager.post(params, callback: {(error) in
             if let error = error {
@@ -68,6 +55,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             attemptLogin()
         }
         return true
+    }
+    
+    @IBAction func pushedLoginButton(_ sender: Any) {
+        
+        attemptLogin()
     }
     
     private func jumpToNextView(iconRegistered: Bool, isFirstLogin: Bool) {
