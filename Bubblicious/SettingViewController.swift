@@ -30,8 +30,10 @@ class SettingViewController: UITableViewController {
     
     @objc func logout() {
         print("ログアウト")
-        var userDefault = UserDefaults.standard
-        userDefault.removeObject(forKey: "isLogin")
+        let email = Util.loadObject("KeyEmailForLogin")
+        let shouldKeep = Util.loadBool("KeyKeepEmail")
+        
+        Util.clearAllSavedData()
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController

@@ -15,8 +15,21 @@ class Util {
         UserDefaults.standard.synchronize()
     }
     
+    class func loadObject(_ key: String) -> Any? {
+        return UserDefaults.standard.object(forKey: key)
+    }
+    
     class func saveBool(_ val:Bool, forKey key:String){
         UserDefaults.standard.set(val, forKey: key)
         UserDefaults.standard.synchronize()
+    }
+    
+    class func loadBool(_ key: String) -> Bool {
+        return UserDefaults.standard.bool(forKey: key)
+    }
+    
+    class func clearAllSavedData() {
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
     }
 }
