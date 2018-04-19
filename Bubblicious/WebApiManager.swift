@@ -28,8 +28,8 @@ class WebApiManager {
                     callback(error)
                 case .success(let responseObject):
                     let json = JSON(responseObject)
-                    let accessToken = json["result"]["auth"]["accessToken"]
-                    print("success",accessToken)
+                    let loginResult: LoginResult = LoginResult(json: json)
+                    print(loginResult)
                     callback(nil)
                 }
         }

@@ -19,8 +19,9 @@
 		D251A1762086F1DD00DFC4F6 /* BubbliciousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1752086F1DD00DFC4F6 /* BubbliciousTests.swift */; };
 		D251A1812086F1DD00DFC4F6 /* BubbliciousUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1802086F1DD00DFC4F6 /* BubbliciousUITests.swift */; };
 		D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */; };
-		D251A1932087201B00DFC4F6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1922087201B00DFC4F6 /* UserModel.swift */; };
 		D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1942087219400DFC4F6 /* WebApiManager.swift */; };
+		D251A1992088353D00DFC4F6 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1982088353D00DFC4F6 /* LoginResult.swift */; };
+		D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19A2088624B00DFC4F6 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +64,9 @@
 		D251A1802086F1DD00DFC4F6 /* BubbliciousUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbliciousUITests.swift; sourceTree = "<group>"; };
 		D251A1822086F1DD00DFC4F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D251A1922087201B00DFC4F6 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D251A1942087219400DFC4F6 /* WebApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApiManager.swift; sourceTree = "<group>"; };
+		D251A1982088353D00DFC4F6 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
+		D251A19A2088624B00DFC4F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,7 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
-				D251A1922087201B00DFC4F6 /* UserModel.swift */,
+				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
+				D251A1982088353D00DFC4F6 /* LoginResult.swift */,
 				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A1622086F1DC00DFC4F6 /* SecondViewController.swift */,
@@ -471,9 +474,10 @@
 			files = (
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
 				D251A1632086F1DC00DFC4F6 /* SecondViewController.swift in Sources */,
+				D251A1992088353D00DFC4F6 /* LoginResult.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
+				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
-				D251A1932087201B00DFC4F6 /* UserModel.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,7 +655,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = Bubblicious/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.Bubblicious;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -667,7 +674,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = Bubblicious/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.Bubblicious;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -684,7 +694,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -702,7 +716,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -719,7 +737,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -736,7 +758,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
