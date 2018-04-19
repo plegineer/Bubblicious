@@ -14,7 +14,7 @@ class WebApiManager {
     private let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
     private let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
     
-    func post(callback: @escaping (_ error: Error?) -> Void) {
+    func post(_ params: [String: String], callback: @escaping (_ error: Error?) -> Void) {
         print("WebApiManager")
         let url = urlSuccess
         

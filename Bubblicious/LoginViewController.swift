@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         mailTextField.delegate = self
         mailTextField.returnKeyType = .next // returnキーの表示をnextに
         mailTextField.keyboardType = .emailAddress //キーボードに@と,を表示
@@ -40,9 +41,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func attemptLogin() {
-        print("login")
+        let params = ["email": self.mailTextField.text!,
+                      "password": self.passwordTextField.text!]
         
-        webApiManager.post(callback: {(error) in
+        print("login")
+        var userDefault = UserDefaults.standard
+        userDefault.set(true, forKey: "isLogin")
+        
+        webApiManager.post(params, callback: {(error) in
             if let error = error {
                 print("Error", error)
                 return
@@ -69,4 +75,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.jumpToFirstView()
         }
     }
+    
+    
 }
