@@ -13,7 +13,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    let webApiManager = WebApiManager()
+    // TODO: privateつけて
+    let webApiManager = WebApiManager.sharedManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         print("Login Success!!")
     
-        webApiManager.post(params, callback: {(error) in
+        // TODO: ---直して
+        WebApiManager.sharedManager.post(callback: {(error) in
             if let error = error {
                 print("Error", error)
                 return
@@ -50,9 +52,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        if mailTextField.isFirstResponder || passwordTextField.isFirstResponder {
+            mailTextField.resignFirstResponder()
+            passwordTextField.resignFirstResponder()
+        }
+    }
+    
     @IBAction func pushedLoginButton(_ sender: Any) {
         
-        attemptLogin()
+//        attemptLogin()
     }
     
     private func jumpToFirstView() {
@@ -76,5 +86,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.enablesReturnKeyAutomatically = true
         passwordTextField.autocapitalizationType = .none
         passwordTextField.autocorrectionType = .no
+        
+        mailTextField.text = ""
+        passwordTextField.text = ""
     }
 }
