@@ -17,6 +17,12 @@ class UserModel {
                 Log.d("Error\(error)")
                 return
             }
+            
+            let result = WebApiManager.sharedManager.loginResult[0]
+            Util.saveObject(result.accessToken, forKey: Const.Key.accessToken)
+            Util.saveObject(result.refreshToken, forKey: Const.Key.refreshToken)
+            Util.saveObject(result.expireDate, forKey: Const.Key.acesssTokenExpire)
+            
             callback(nil)
         })
     }

@@ -12,6 +12,7 @@ import SwiftyJSON
 class WebApiManager {
     
     static let sharedManager = WebApiManager()
+    private(set) var loginResult:[LoginResult] = []
     
     func post(params: [String: String], callback: @escaping (_ error: Error?) -> Void) {
         let url = Const.Api.urlSuccess
@@ -32,8 +33,8 @@ class WebApiManager {
                         Log.p("Resonse of \(url):")
                         Log.p(responseObject)
                         let json = JSON(responseObject)
+                        self.loginResult.append(LoginResult(json: json["result"]))
                         
-                        _ = LoginResult(json: json["result"])
                         callback(nil)
                 }
         }

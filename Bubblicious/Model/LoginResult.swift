@@ -11,8 +11,9 @@ import SwiftyJSON
 
 class LoginResult {
 
-    let accessToken = ""
-    let refreshToken = ""
+    var accessToken = ""
+    var refreshToken = ""
+    var expireDate = ""
 
     init(json: JSON) {
         setProperties(result: json)
@@ -20,16 +21,15 @@ class LoginResult {
 
     private func setProperties(result: JSON) {
         if let accessToken = result["auth"]["accessToken"].string {
-            Util.saveObject(accessToken, forKey: Const.Key.accessToken)
-            print("accessToken Saved!", accessToken)
+            self.accessToken = accessToken
         }
 
         if let refreshToken = result["auth"]["refreshToken"].string {
-            Util.saveObject(refreshToken, forKey: Const.Key.refreshToken)
+            self.refreshToken = refreshToken
         }
 
         if let expireDate = result["auth"]["expireDate"].string {
-            Util.saveObject(expireDate, forKey: Const.Key.acesssTokenExpire)
+            self.expireDate = expireDate
         }
     }
 }

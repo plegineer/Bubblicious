@@ -178,8 +178,8 @@
 				D251A1A02088AB9600DFC4F6 /* Util.swift */,
 				D29309FD208984DB00C6663F /* Const.swift */,
 				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
-				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
+				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

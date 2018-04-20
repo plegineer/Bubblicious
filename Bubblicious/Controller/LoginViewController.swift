@@ -30,7 +30,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         ]
         Log.d("Login Success!!")
         
-        WebApiManager.sharedManager.post(params: params, callback: {(error) in
+        let userModel = UserModel()
+        userModel.login(params, callback: {(error) in
 
             if let error = error {
                 Log.d("Error\(error)")
