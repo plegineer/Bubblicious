@@ -27,17 +27,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func attemptLogin() {
-//         let params = ["email": self.mailTextField.text!,
-//                      "password": self.passwordTextField.text!]
+        let params = ["email": self.mailTextField.text!,
+                      "password": self.passwordTextField.text!]
         
-        Log.d("Login Success!!")
-    
-        // TODO: ---直して
-        WebApiManager.sharedManager.post(callback: {(error) in
+        let userModel = UserModel()
+        userModel.login(params, callback: {(error) in
+            
             if let error = error {
                 Log.d("Error\(error)")
                 return
             }
+            
+            Log.d("Login Success!!")
             self.jumpToFirstView()
         })
     }

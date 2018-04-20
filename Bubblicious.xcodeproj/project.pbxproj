@@ -25,6 +25,7 @@
 		D29309FE208984DC00C6663F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29309FD208984DB00C6663F /* Const.swift */; };
 		D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DD2089C557001DA0B4 /* Log.swift */; };
 		D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */; };
+		D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E12089D951001DA0B4 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D29309FD208984DB00C6663F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		D2FCC6DD2089C557001DA0B4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
+		D2FCC6E12089D951001DA0B4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 			children = (
 				D251A1A02088AB9600DFC4F6 /* Util.swift */,
 				D29309FD208984DB00C6663F /* Const.swift */,
+				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
 				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
 			);
@@ -507,6 +510,7 @@
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
 				D29309FE208984DC00C6663F /* Const.swift in Sources */,
+				D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

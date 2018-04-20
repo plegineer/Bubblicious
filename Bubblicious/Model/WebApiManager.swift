@@ -13,7 +13,7 @@ class WebApiManager {
     
     static let sharedManager = WebApiManager()
     
-    func post(callback: @escaping (_ error: Error?) -> Void) {
+    func post(params: [String: String], callback: @escaping (_ error: Error?) -> Void) {
         let url = Const.Api.urlSuccess
         Log.d(url)
     
