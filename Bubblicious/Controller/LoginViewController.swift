@@ -28,13 +28,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             "email": self.mailTextField.text!,
             "password": self.passwordTextField.text!
         ]
-        Log.d("Login Success!!")
         
         let userModel = UserModel()
         userModel.login(params, callback: {(error) in
 
             if let error = error {
                 Log.d("Error\(error)")
+                self.showAlert("エラー", message: error.localizedDescription)
+                
                 return
             }
             

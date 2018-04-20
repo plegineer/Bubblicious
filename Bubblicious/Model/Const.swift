@@ -13,6 +13,7 @@ struct Const {
     struct Api {
         static let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
         static let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
+        static let Domain = "Bubblicious"
     }
     
     struct Key {

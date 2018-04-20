@@ -15,6 +15,7 @@ class UserModel {
         WebApiManager.sharedManager.post(params: params, callback: {(error) in
             if let error = error {
                 Log.d("Error\(error)")
+                callback(error)
                 return
             }
             
