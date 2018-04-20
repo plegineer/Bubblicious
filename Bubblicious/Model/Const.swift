@@ -10,9 +10,11 @@ import Foundation
 
 struct Const {
     
+    static let apiBaseUrl = "http://xxxxx" // 例
+    static let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
+    static let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
+    
     struct Api {
-        static let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
-        static let urlError = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
         static let Domain = "Bubblicious"
     }
     

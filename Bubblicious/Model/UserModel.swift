@@ -10,21 +10,50 @@ import SwiftyJSON
 
 class UserModel {
     
-    func login(_ params: [String: String], callback:@escaping (_ error: Error?) -> Void) {
+    fileprivate(set) var loginResult: LoginResult?
+    
+    func login(_ params: [String: String], _ path: String, callback:@escaping (_ error: Error?) -> Void) {
         
-        WebApiManager.sharedManager.post(params: params, callback: {(error) in
+        // 本来ならばここでURLを組み立てる
+//        let postUrl = Const.apiBaseUrl + path
+        
+        let email = params["email"]
+        let password = params["password"]
+        
+        let answerEmail = "hoge@email.com"
+        let answerPassword = "hoge"
+        
+        // 本来はログイン判定はサーバ側で行うが、サーバー側の実装はないため、アプリ側で行う
+        let isLogined = email == answerEmail && password == answerPassword
+        let urlString = isLogined ? Const.urlSuccess : Const.urlError
+        let url = URL(string: urlString)
+        
+        WebApiManager.sharedManager.post(params: params, url: url!, callback: {(json, error) in
             if let error = error {
+                // ログインエラーの場合
                 Log.d("Error\(error)")
                 callback(error)
                 return
             }
             
-            let result = WebApiManager.sharedManager.loginResult[0]
-            Util.saveObject(result.accessToken, forKey: Const.Key.accessToken)
-            Util.saveObject(result.refreshToken, forKey: Const.Key.refreshToken)
-            Util.saveObject(result.expireDate, forKey: Const.Key.acesssTokenExpire)
-            
-            callback(nil)
+            if let json = json {
+                if isLogined {
+                    // ログインに成功している場合
+                    self.loginResult = LoginResult(json: json)
+                    callback(nil)
+                } else {
+                    // ログインに失敗している場合
+                    if let errorObject = json["error"].dictionary {
+                        if let code = errorObject["code"], let msg = errorObject["message"] {
+                            let error = NSError(
+                                domain: Const.Api.Domain, code: code.intValue,
+                                userInfo: [NSLocalizedFailureReasonErrorKey: msg.stringValue]
+                            )
+                            callback(error)
+                        }
+                    }
+                }
+            }
         })
     }
 }

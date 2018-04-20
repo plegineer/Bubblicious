@@ -13,6 +13,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    private let userModel = UserModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setTextFieldProperties()
@@ -20,37 +22,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func attemptLogin() {
-
-        let params = [
-            "email": self.mailTextField.text!,
-            "password": self.passwordTextField.text!
-        ]
-        
-        let userModel = UserModel()
-        userModel.login(params, callback: {(error) in
-
-            if let error = error {
-                Log.d("Error\(error)")
-                self.showAlert("エラー", message: error.localizedDescription)
-                
-                return
-            }
-            
-            Log.d("Login Success!!")
-            self.jumpToFirstView()
-        })
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.isEqual(mailTextField) {
-            passwordTextField.becomeFirstResponder()
-        } else if textField.isEqual(passwordTextField) {
-            attemptLogin()
-        }
-        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,8 +32,48 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.isEqual(mailTextField) {
+            passwordTextField.becomeFirstResponder()
+        } else if textField.isEqual(passwordTextField) {
+            attemptLogin()
+        }
+        return true
+    }
+    
     @IBAction func pushedLoginButton(_ sender: Any) {
         attemptLogin()
+    }
+    
+    private func attemptLogin() {
+        
+        let params = [
+            "email": self.mailTextField.text!,
+            "password": self.passwordTextField.text!
+        ]
+        
+        let path = "login"
+        
+        self.userModel.login(params, path, callback: {(error) in
+            if let error = error {
+                // ログイン失敗時
+                Log.d("Error\(error)")
+                self.showAlert("エラー", message: error.localizedDescription)
+                return
+            }
+            
+            if let loginResult = self.userModel.loginResult {
+                // ログイン成功時
+                Log.d("Login Success!!")
+                
+                Util.saveObject(loginResult.accessToken, forKey: Const.Key.accessToken)
+                Util.saveObject(loginResult.refreshToken, forKey: Const.Key.refreshToken)
+                Util.saveObject(loginResult.expireDate, forKey: Const.Key.acesssTokenExpire)
+                
+                self.jumpToFirstView()
+            }
+        })
     }
     
     private func jumpToFirstView() {
