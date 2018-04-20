@@ -13,26 +13,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    private let webApiManager = WebApiManager.sharedManager
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setTextFieldProperties()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func attemptLogin() {
-        let params = ["email": self.mailTextField.text!,
-                      "password": self.passwordTextField.text!]
+
+        let params = [
+            "email": self.mailTextField.text!,
+            "password": self.passwordTextField.text!
+        ]
+        Log.d("Login Success!!")
         
-        let userModel = UserModel()
-        userModel.login(params, callback: {(error) in
-            
+        WebApiManager.sharedManager.post(params: params, callback: {(error) in
+
             if let error = error {
                 Log.d("Error\(error)")
                 return
@@ -61,8 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func pushedLoginButton(_ sender: Any) {
-        
-//        attemptLogin()
+        attemptLogin()
     }
     
     private func jumpToFirstView() {
@@ -73,16 +71,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private func setTextFieldProperties() {
         mailTextField.delegate = self
-        mailTextField.returnKeyType = .next // returnキーの表示をnextに
-        mailTextField.keyboardType = .emailAddress //キーボードに@と,を表示
-        mailTextField.enablesReturnKeyAutomatically = true // 入力エリアが空の場合、returnキーを非活性にする
-        mailTextField.autocapitalizationType = .none // 自動補完OFF
-        mailTextField.autocorrectionType = .no // キーボード上の予測候補OFF
+        mailTextField.returnKeyType = .next
+        mailTextField.keyboardType = .emailAddress
+        mailTextField.enablesReturnKeyAutomatically = true
+        mailTextField.autocapitalizationType = .none
+        mailTextField.autocorrectionType = .no
         
         passwordTextField.delegate = self
-        passwordTextField.returnKeyType = .go // returnキーの表示をgoに
-        passwordTextField.keyboardType = .asciiCapable // スタンダードキーボードを表示
-        passwordTextField.isSecureTextEntry = true //入力した文字列を伏字に
+        passwordTextField.returnKeyType = .go
+        passwordTextField.keyboardType = .asciiCapable
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.enablesReturnKeyAutomatically = true
         passwordTextField.autocapitalizationType = .none
         passwordTextField.autocorrectionType = .no
