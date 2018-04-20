@@ -26,22 +26,7 @@ class WebApiManager {
                         Log.p("Resonse of \(url):")
                         Log.p(responseObject)
                         let json = JSON(responseObject)
-                        callback(json["result"], nil)
-                        
-
-                            
-                        
-//                        if let errorObject = json["error"].dictionary {
-//                            if let code = errorObject["code"], let msg = errorObject["message"] {
-//                                let error = NSError(domain: Const.Api.Domain, code: code.intValue,
-//                                                    userInfo: [NSLocalizedFailureReasonErrorKey: msg.stringValue])
-//                                callback(error)
-//                            }
-//                            return
-//                        } else {
-//                             self.loginResult.append(LoginResult(json: json["result"]))
-//                        }
-//                        callback(nil)
+                        callback(json, nil)
                 }
         }
     }

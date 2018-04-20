@@ -145,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
-				D2FCC6E32089F203001DA0B4 /* ViewController.swift */,
-				D2FCC6DD2089C557001DA0B4 /* Log.swift */,
 				D29309FF20898C8B00C6663F /* Model */,
 				D2930A0020898CA400C6663F /* Controller */,
 				D251A1672086F1DC00DFC4F6 /* Assets.xcassets */,
@@ -178,8 +176,10 @@
 		D29309FF20898C8B00C6663F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D2FCC6E5208A1834001DA0B4 /* Extention */,
 				D251A1A02088AB9600DFC4F6 /* Util.swift */,
 				D29309FD208984DB00C6663F /* Const.swift */,
+				D2FCC6DD2089C557001DA0B4 /* Log.swift */,
 				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
 				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
 				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
@@ -196,6 +196,14 @@
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D2FCC6E5208A1834001DA0B4 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				D2FCC6E32089F203001DA0B4 /* ViewController.swift */,
+			);
+			path = Extention;
 			sourceTree = "<group>";
 		};
 		F8CC18909AFBEE674DA378D9 /* Pods */ = {

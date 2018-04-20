@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Touch Event
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if mailTextField.isFirstResponder || passwordTextField.isFirstResponder {
@@ -42,10 +43,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // MARK: - Action
     @IBAction func pushedLoginButton(_ sender: Any) {
         attemptLogin()
     }
     
+    // MARK: - Private Method
     private func attemptLogin() {
         
         let params = [

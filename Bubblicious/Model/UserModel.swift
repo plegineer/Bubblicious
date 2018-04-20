@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class UserModel {
     
-    fileprivate(set) var loginResult: LoginResult?
+    private(set) var loginResult: LoginResult?
     
     func login(_ params: [String: String], _ path: String, callback:@escaping (_ error: Error?) -> Void) {
         
@@ -39,7 +39,7 @@ class UserModel {
             if let json = json {
                 if isLogined {
                     // ログインに成功している場合
-                    self.loginResult = LoginResult(json: json)
+                    self.loginResult = LoginResult(json: json["result"])
                     callback(nil)
                 } else {
                     // ログインに失敗している場合
