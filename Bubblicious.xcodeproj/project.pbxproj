@@ -23,6 +23,7 @@
 		D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19C208881B100DFC4F6 /* SettingViewController.swift */; };
 		D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1A02088AB9600DFC4F6 /* Util.swift */; };
 		D29309FE208984DC00C6663F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29309FD208984DB00C6663F /* Const.swift */; };
+		D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DD2089C557001DA0B4 /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		D251A19C208881B100DFC4F6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D251A1A02088AB9600DFC4F6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D29309FD208984DB00C6663F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		D2FCC6DD2089C557001DA0B4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
+				D2FCC6DD2089C557001DA0B4 /* Log.swift */,
 				D29309FF20898C8B00C6663F /* Model */,
 				D2930A0020898CA400C6663F /* Controller */,
 				D251A1672086F1DC00DFC4F6 /* Assets.xcassets */,
@@ -493,6 +496,7 @@
 			files = (
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
 				D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */,
+				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
 				D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,

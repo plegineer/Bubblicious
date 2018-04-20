@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        print(NSHomeDirectory())
-        print("launchOptions:", String(describing: launchOptions))
+        Log.p(NSHomeDirectory())
+        Log.d("launchOptions:\(String(describing: launchOptions))")
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

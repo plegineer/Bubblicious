@@ -14,7 +14,6 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("FirstView")
     }
 
     override func didReceiveMemoryWarning() {

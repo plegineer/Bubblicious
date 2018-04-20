@@ -27,7 +27,6 @@ class SettingViewController: UITableViewController {
     }
     
     @objc func logout() {
-        print("Logout")
         
         Util.clearAllSavedData()
         

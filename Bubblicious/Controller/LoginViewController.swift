@@ -13,8 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    // TODO: privateつけて
-    let webApiManager = WebApiManager.sharedManager
+    private let webApiManager = WebApiManager.sharedManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +30,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let params = ["email": self.mailTextField.text!,
                       "password": self.passwordTextField.text!]
         
-        print("Login Success!!")
+        Log.d("Login Success!!")
     
         // TODO: ---直して
         WebApiManager.sharedManager.post(callback: {(error) in
             if let error = error {
-                print("Error", error)
+                Log.d("Error\(error)")
                 return
             }
             self.jumpToFirstView()
