@@ -14,18 +14,20 @@ class WebApiManager {
     static let sharedManager = WebApiManager()
     
     func post(_ params: [String: String], callback: @escaping (_ error: Error?) -> Void) {
-        print("WebApiManager")
         let url = Const.Api.urlSuccess
+        print(url)
         
         Alamofire.request(url)
             .responseJSON { response in
                 
                 switch response.result {
                 case .failure(let error):
+                    print(error)
                     callback(error)
                 case .success(let responseObject):
+                    print("Resonse of ",url)
+                    print(responseObject)
                     let json = JSON(responseObject)
-                    
                     self.saveTokenIfNeeded(json["result"])
                     callback(nil)
                 }

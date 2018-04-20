@@ -30,21 +30,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let params = ["email": self.mailTextField.text!,
                       "password": self.passwordTextField.text!]
         
-        print("login")
+        print("Login Success!!")
     
         webApiManager.post(params, callback: {(error) in
             if let error = error {
                 print("Error", error)
                 return
             }
-            self.jumpToNextView(iconRegistered: true, isFirstLogin: true)
+            self.jumpToFirstView()
         })
-    }
-    
-    func jumpToFirstView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tab = storyboard.instantiateViewController(withIdentifier: "tab")
-        self.navigationController?.pushViewController(tab, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -61,10 +55,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         attemptLogin()
     }
     
-    private func jumpToNextView(iconRegistered: Bool, isFirstLogin: Bool) {
-        if isFirstLogin {
-            self.jumpToFirstView()
-        }
+    private func jumpToFirstView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tab = storyboard.instantiateViewController(withIdentifier: "tab")
+        self.navigationController?.pushViewController(tab, animated: true)
     }
     
     private func setTextFieldProperties() {
@@ -83,6 +77,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.autocapitalizationType = .none
         passwordTextField.autocorrectionType = .no
     }
-    
-    
 }
