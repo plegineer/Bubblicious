@@ -24,6 +24,7 @@
 		D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19A2088624B00DFC4F6 /* TabBarController.swift */; };
 		D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19C208881B100DFC4F6 /* SettingViewController.swift */; };
 		D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1A02088AB9600DFC4F6 /* Util.swift */; };
+		D29309FE208984DC00C6663F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29309FD208984DB00C6663F /* Const.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		D251A19A2088624B00DFC4F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D251A19C208881B100DFC4F6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D251A1A02088AB9600DFC4F6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		D29309FD208984DB00C6663F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
 				D251A1A02088AB9600DFC4F6 /* Util.swift */,
+				D29309FD208984DB00C6663F /* Const.swift */,
 				D251A1982088353D00DFC4F6 /* LoginResult.swift */,
 				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
@@ -487,6 +490,7 @@
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
+				D29309FE208984DC00C6663F /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
