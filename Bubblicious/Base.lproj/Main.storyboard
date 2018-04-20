@@ -214,9 +214,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="mailTextField:" destination="8OB-OM-A0G" eventType="editingDidEnd" id="Gpk-Uu-XZW"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wsb-VF-8kv">
                                 <rect key="frame" x="20" y="268" width="335" height="40"/>
@@ -226,9 +223,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="pushedLoginButton:" destination="jNb-Vp-gQ7" eventType="editingDidEnd" id="BwD-O8-qFj"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fr-eM-zVw">
                                 <rect key="frame" x="156.5" y="328" width="62" height="44"/>
@@ -237,7 +231,7 @@
                                 </constraints>
                                 <state key="normal" title="ログイン"/>
                                 <connections>
-                                    <action selector="pushedLoginButton:" destination="jNb-Vp-gQ7" eventType="touchUpInside" id="pT3-yK-5Rs"/>
+                                    <action selector="pushedLoginButton:" destination="jNb-Vp-gQ7" eventType="touchUpInside" id="Pam-cC-4ZY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -261,7 +255,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xar-ml-Ecy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="8OB-OM-A0G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1198" y="0.0"/>
         </scene>
