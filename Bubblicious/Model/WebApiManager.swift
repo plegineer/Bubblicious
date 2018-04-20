@@ -35,7 +35,7 @@ class WebApiManager {
     }
     
     func isAvailableAccessToken() -> Bool {
-        let accessToken = UserDefaults.standard.object(forKey: Const.Key.kAccessToken)
+        let accessToken = UserDefaults.standard.object(forKey: Const.Key.AccessToken)
         return accessToken != nil
     }
     
@@ -45,16 +45,16 @@ class WebApiManager {
         }
         
         if let accessToken = result["auth"]["accessToken"].string {
-            Util.saveObject(accessToken, forKey: Const.Key.kAccessToken)
+            Util.saveObject(accessToken, forKey: Const.Key.AccessToken)
             print("accessToken Saved!", accessToken)
         }
         
         if let refreshToken = result["auth"]["refreshToken"].string {
-            Util.saveObject(refreshToken, forKey: Const.Key.kRefreshToken)
+            Util.saveObject(refreshToken, forKey: Const.Key.RefreshToken)
         }
         
         if let expireDate = result["auth"]["expireDate"].string {
-            Util.saveObject(expireDate, forKey: Const.Key.kAcesssTokenExpire)
+            Util.saveObject(expireDate, forKey: Const.Key.AcesssTokenExpire)
         }
     }
 }
