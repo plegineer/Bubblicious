@@ -24,7 +24,7 @@ class Log {
         #if DEBUG
         var filename = file
         if let match = filename.range(of: "[^/]*$", options: .regularExpression) {
-            filename = filename.substring(with: match)
+            filename = String(filename[match])
         }
         NSLog("[DEBUG] %@ %@ [Line %d] %@", filename, function, line, message)
         #endif
