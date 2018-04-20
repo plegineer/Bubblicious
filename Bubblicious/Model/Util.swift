@@ -28,6 +28,7 @@ class Util {
         return UserDefaults.standard.bool(forKey: key)
     }
     
+    // アプリ内の全てのKeyとValueを削除
     class func clearAllSavedData() {
         let appDomain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)

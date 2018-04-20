@@ -20,16 +20,16 @@ class LoginResult {
 
     private func setProperties(result: JSON) {
         if let accessToken = result["auth"]["accessToken"].string {
-            Util.saveObject(accessToken, forKey: Const.Key.AccessToken)
+            Util.saveObject(accessToken, forKey: Const.Key.accessToken)
             print("accessToken Saved!", accessToken)
         }
 
         if let refreshToken = result["auth"]["refreshToken"].string {
-            Util.saveObject(refreshToken, forKey: Const.Key.RefreshToken)
+            Util.saveObject(refreshToken, forKey: Const.Key.refreshToken)
         }
 
         if let expireDate = result["auth"]["expireDate"].string {
-            Util.saveObject(expireDate, forKey: Const.Key.AcesssTokenExpire)
+            Util.saveObject(expireDate, forKey: Const.Key.acesssTokenExpire)
         }
     }
 }

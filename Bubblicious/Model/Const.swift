@@ -16,8 +16,8 @@ struct Const {
     }
     
     struct Key {
-        static let AccessToken       = "KeyAccessToken"
-        static let AcesssTokenExpire = "KeyAccessTokenExpire"
-        static let RefreshToken      = "KeyRefreshToken"
+        static let accessToken       = "KeyAccessToken"
+        static let acesssTokenExpire = "KeyAccessTokenExpire"
+        static let refreshToken      = "KeyRefreshToken"
     }
 }

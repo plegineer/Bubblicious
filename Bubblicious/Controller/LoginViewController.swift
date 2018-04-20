@@ -27,8 +27,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func attemptLogin() {
-        let params = ["email": self.mailTextField.text!,
-                      "password": self.passwordTextField.text!]
+//         let params = ["email": self.mailTextField.text!,
+//                      "password": self.passwordTextField.text!]
         
         Log.d("Login Success!!")
     

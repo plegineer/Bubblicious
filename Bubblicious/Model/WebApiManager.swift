@@ -13,48 +13,34 @@ class WebApiManager {
     
     static let sharedManager = WebApiManager()
     
-    func post(_ params: [String: String], callback: @escaping (_ error: Error?) -> Void) {
+    func post(callback: @escaping (_ error: Error?) -> Void) {
         let url = Const.Api.urlSuccess
-        print(url)
-        
+        Log.d(url)
+    
+        // TODO: 本来は、リクエストの際にパラメーターに詰めるが、今回サーバー側の実装はないため、何もしない
+//        let email = params["email"]
+//        let password = params["password"]
+
         Alamofire.request(url)
             .responseJSON { response in
                 
                 switch response.result {
-                case .failure(let error):
-                    print(error)
-                    callback(error)
-                case .success(let responseObject):
-                    print("Resonse of ",url)
-                    print(responseObject)
-                    let json = JSON(responseObject)
-                    self.saveTokenIfNeeded(json["result"])
-                    callback(nil)
+                    case .failure(let error):
+                        Log.p(error)
+                        callback(error)
+                    case .success(let responseObject):
+                        Log.p("Resonse of \(url):")
+                        Log.p(responseObject)
+                        let json = JSON(responseObject)
+                        
+                        _ = LoginResult(json: json["result"])
+                        callback(nil)
                 }
         }
     }
     
     func isAvailableAccessToken() -> Bool {
-        let accessToken = UserDefaults.standard.object(forKey: Const.Key.AccessToken)
+        let accessToken = UserDefaults.standard.object(forKey: Const.Key.accessToken)
         return accessToken != nil
-    }
-    
-    private func saveTokenIfNeeded(_ result: JSON?) {
-        guard let result = result else {
-            return
-        }
-        
-        if let accessToken = result["auth"]["accessToken"].string {
-            Util.saveObject(accessToken, forKey: Const.Key.AccessToken)
-            print("accessToken Saved!", accessToken)
-        }
-        
-        if let refreshToken = result["auth"]["refreshToken"].string {
-            Util.saveObject(refreshToken, forKey: Const.Key.RefreshToken)
-        }
-        
-        if let expireDate = result["auth"]["expireDate"].string {
-            Util.saveObject(expireDate, forKey: Const.Key.AcesssTokenExpire)
-        }
     }
 }
