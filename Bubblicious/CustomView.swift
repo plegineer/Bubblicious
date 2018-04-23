@@ -12,6 +12,7 @@ class CustomView: UIView {
     
     let titleLabel1: UILabel
     let textField1: UITextField
+    let switchControl: UISwitch
     
     override init(frame: CGRect) {
 
@@ -22,11 +23,14 @@ class CustomView: UIView {
         self.textField1 = UITextField()
         self.textField1.textAlignment = .center
         
+        self.switchControl = UISwitch()
+        
         super.init(frame: frame)
         
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
         self.addSubview(textField1)
+        self.addSubview(switchControl)
 //        self.commonInit
     }
     
@@ -44,13 +48,13 @@ class CustomView: UIView {
         
         self.titleLabel1.frame = CGRect(origin: CGPoint(x: x, y: y),
                                         size: labelSize)
-        self.textField1.frame = CGRect(origin: CGPoint(x: x, y: y + 50.0), size: labelSize)
+        self.textField1.frame = CGRect(origin: CGPoint(x: x, y: y + 50.0),
+                                       size: labelSize)
         self.textField1.borderStyle = .roundedRect
+        self.switchControl.frame = CGRect(origin: CGPoint(x: x, y: y + 100.0),
+                                          size: labelSize)
     }
     
-    private func commonInit() {
-        
-    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
