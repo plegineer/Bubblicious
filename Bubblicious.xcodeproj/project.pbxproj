@@ -22,6 +22,7 @@
 		D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19A2088624B00DFC4F6 /* TabBarController.swift */; };
 		D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19C208881B100DFC4F6 /* SettingViewController.swift */; };
 		D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1A02088AB9600DFC4F6 /* Util.swift */; };
+		D2835159208D780E00CEB67D /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2835158208D780E00CEB67D /* CustomView.swift */; };
 		D29309FE208984DC00C6663F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29309FD208984DB00C6663F /* Const.swift */; };
 		D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DD2089C557001DA0B4 /* Log.swift */; };
 		D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */; };
@@ -72,6 +73,7 @@
 		D251A19A2088624B00DFC4F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D251A19C208881B100DFC4F6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D251A1A02088AB9600DFC4F6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		D2835158208D780E00CEB67D /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		D29309FD208984DB00C6663F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		D2FCC6DD2089C557001DA0B4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
+				D2835158208D780E00CEB67D /* CustomView.swift */,
 				D29309FF20898C8B00C6663F /* Model */,
 				D2930A0020898CA400C6663F /* Controller */,
 				D251A1672086F1DC00DFC4F6 /* Assets.xcassets */,
@@ -517,6 +520,7 @@
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
 				D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
+				D2835159208D780E00CEB67D /* CustomView.swift in Sources */,
 				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,

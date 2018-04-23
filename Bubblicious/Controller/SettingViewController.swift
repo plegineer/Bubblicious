@@ -19,6 +19,12 @@ class SettingViewController: UITableViewController {
                                           target: self, action: #selector(logout))
         
         self.navigationItem.rightBarButtonItem = rightButton
+        
+        let customView = CustomView(frame: self.view.bounds)
+        
+        customView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.view.addSubview(customView)
     }
 
     override func didReceiveMemoryWarning() {
