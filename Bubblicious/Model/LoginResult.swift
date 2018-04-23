@@ -11,9 +11,9 @@ import SwiftyJSON
 
 class LoginResult {
 
-    var accessToken = ""
-    var refreshToken = ""
-    var expireDate = ""
+    private(set) var accessToken = ""
+    private(set) var refreshToken = ""
+    private(set) var expireDate = ""
 
     init(json: JSON) {
         setProperties(result: json)
