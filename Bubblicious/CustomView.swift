@@ -13,6 +13,7 @@ class CustomView: UIView {
     let titleLabel1: UILabel
     let textField1: UITextField
     let switchControl: UISwitch
+    let button: UIButton
     
     override init(frame: CGRect) {
 
@@ -25,13 +26,20 @@ class CustomView: UIView {
         
         self.switchControl = UISwitch()
         
+        self.button = UIButton()
+        self.button.setTitle("保存する", for: UIControlState.normal)
+        self.button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        
         super.init(frame: frame)
         
+        self.button.addTarget(self,
+                              action: #selector(buttonTapped),
+                              for: .touchUpInside)
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
         self.addSubview(textField1)
         self.addSubview(switchControl)
-//        self.commonInit
+        self.addSubview(button)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,6 +61,12 @@ class CustomView: UIView {
         self.textField1.borderStyle = .roundedRect
         self.switchControl.frame = CGRect(origin: CGPoint(x: x, y: y + 100.0),
                                           size: labelSize)
+        self.button.frame = CGRect(origin: CGPoint(x: x, y: y + 150.0),
+                                   size: labelSize)
+    }
+    
+    @objc func buttonTapped(sender: Any) {
+        print("保存しました")
     }
     
     /*
