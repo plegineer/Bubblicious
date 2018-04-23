@@ -62,11 +62,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let path = "login"
         
         self.userModel.login(params, path, callback: {(error) in
+            self.loginButton.isEnabled = true
+            
             if let error = error {
                 // ログイン失敗時
                 Log.d("Error\(error)")
                 self.showAlert("エラー", message: error.localizedDescription)
-                self.loginButton.isEnabled = true
                 return
             }
             
@@ -77,8 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 Util.saveObject(loginResult.accessToken, forKey: Const.Key.accessToken)
                 Util.saveObject(loginResult.refreshToken, forKey: Const.Key.refreshToken)
                 Util.saveObject(loginResult.expireDate, forKey: Const.Key.acesssTokenExpire)
-                
-                self.loginButton.isEnabled = true
+
                 self.jumpToFirstView()
             }
         })
