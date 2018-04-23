@@ -11,6 +11,7 @@ import UIKit
 class CustomView: UIView {
     
     let titleLabel1: UILabel
+    let textField1: UITextField
     
     override init(frame: CGRect) {
 
@@ -18,10 +19,14 @@ class CustomView: UIView {
         self.titleLabel1.text = "Hello World!"
         self.titleLabel1.textAlignment = .center
         
+        self.textField1 = UITextField()
+        self.textField1.textAlignment = .center
+        
         super.init(frame: frame)
         
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
+        self.addSubview(textField1)
 //        self.commonInit
     }
     
@@ -37,9 +42,10 @@ class CustomView: UIView {
         let x = (self.bounds.width - labelSize.width) / 2
         let y = (self.bounds.height - labelSize.height) / 2
         
-        let labelOrigin = CGPoint(x: x, y: y)
-        
-        self.titleLabel1.frame = CGRect(origin: labelOrigin, size: labelSize)
+        self.titleLabel1.frame = CGRect(origin: CGPoint(x: x, y: y),
+                                        size: labelSize)
+        self.textField1.frame = CGRect(origin: CGPoint(x: x, y: y + 50.0), size: labelSize)
+        self.textField1.borderStyle = .roundedRect
     }
     
     private func commonInit() {
