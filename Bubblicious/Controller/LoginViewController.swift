@@ -12,6 +12,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     private let userModel = UserModel()
     
@@ -39,13 +40,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         } else if textField.isEqual(passwordTextField) {
             attemptLogin()
+            passwordTextField.resignFirstResponder()
         }
         return true
     }
     
     // MARK: - Action
-    @IBAction func pushedLoginButton(_ sender: Any) {
+    @IBAction func pushedLoginButton(_ sender: UIButton) {
         attemptLogin()
+        sender.isEnabled = false
     }
     
     // MARK: - Private Method
@@ -59,6 +62,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let path = "login"
         
         self.userModel.login(params, path, callback: {(error) in
+            self.loginButton.isEnabled = true
+            
             if let error = error {
                 // ログイン失敗時
                 Log.d("Error\(error)")
@@ -73,7 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 Util.saveObject(loginResult.accessToken, forKey: Const.Key.accessToken)
                 Util.saveObject(loginResult.refreshToken, forKey: Const.Key.refreshToken)
                 Util.saveObject(loginResult.expireDate, forKey: Const.Key.acesssTokenExpire)
-                
+
                 self.jumpToFirstView()
             }
         })

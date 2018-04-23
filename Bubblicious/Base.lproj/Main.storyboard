@@ -250,6 +250,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="NWf-Hs-L3q"/>
                     <connections>
+                        <outlet property="loginButton" destination="8fr-eM-zVw" id="Lps-nf-bMZ"/>
                         <outlet property="mailTextField" destination="oaI-En-Ovs" id="0YF-Ne-KT4"/>
                         <outlet property="passwordTextField" destination="wsb-VF-8kv" id="emI-rI-7vz"/>
                     </connections>
