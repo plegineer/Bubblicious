@@ -8,12 +8,14 @@
 
 import UIKit
 
-class CustomView: UIView {
+class CustomView: UIView, UIPickerViewDelegate {
     
     let titleLabel1: UILabel
-    let textField1: UITextField
+    var textField1: UITextField
     let switchControl: UISwitch
     let button: UIButton
+    let picker: UIPickerView
+    let dataList: [String] = ["hogehoge", "fugafuga", "fobar"]
     
     override init(frame: CGRect) {
 
@@ -29,6 +31,9 @@ class CustomView: UIView {
         self.button = UIButton()
         self.button.setTitle("保存する", for: UIControlState.normal)
         self.button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        
+        self.picker = UIPickerView()
+        self.picker.showsSelectionIndicator = true
         
         super.init(frame: frame)
         
@@ -69,6 +74,22 @@ class CustomView: UIView {
         print("保存しました")
     }
     
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataList.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        print("titleRorRow")
+        return dataList[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.textField1.text = dataList[row]
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

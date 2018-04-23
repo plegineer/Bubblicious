@@ -9,6 +9,9 @@
 import UIKit
 
 class SettingViewController: UITableViewController {
+    
+    let dataList: [String] = ["hogehoge", "fugafuga", "fobar"]
+//    let customView: UIView
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,5 +41,22 @@ class SettingViewController: UITableViewController {
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataList.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        print("titleRorRow")
+        return dataList[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        customView.textField1.text = dataList[row]
     }
 }
