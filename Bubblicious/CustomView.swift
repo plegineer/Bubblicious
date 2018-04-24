@@ -25,6 +25,12 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     let dataList1 = ["hogehoge", "fugafuga", "fobar"]
     let dataList2 = ["content1", "content2", "content3", "content4"]
     
+    var doneButton: UIBarButtonItem
+    var PickerAccessoryView: UIToolbar
+    
+    private var pickerToolbar:UIToolbar!
+    private let toolbarHeight:CGFloat = 40.0
+    
     override init(frame: CGRect) {
 
         self.titleLabel1 = UILabel()
@@ -53,21 +59,31 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         self.pickerView1 = UIPickerView()
         self.pickerView2 = UIPickerView()
+        self.doneButton = UIBarButtonItem()
+        self.PickerAccessoryView = UIToolbar()
         
         super.init(frame: frame)
         
         self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
+        self.doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneTapped(_:)))
+        self.PickerAccessoryView = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
+        PickerAccessoryView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        PickerAccessoryView.backgroundColor = .groupTableViewBackground
+        PickerAccessoryView.setItems([doneButton], animated: false)
+        
         pickerView1.tag = 1
         pickerView1.delegate = self
         pickerView1.dataSource = self
         self.textField1.inputView = pickerView1
+        self.textField1.inputAccessoryView = PickerAccessoryView
         
         pickerView2.tag = 2
         pickerView2.delegate = self
         pickerView2.dataSource = self
         self.textField2.inputView = pickerView2
-    
+        self.textField2.inputAccessoryView = PickerAccessoryView
+
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
         self.addSubview(titleLabel2)
@@ -85,7 +101,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let labelSize = CGSize(width: 80, height: 30)
+        let labelSize = CGSize(width: 100, height: 30)
         let labelXPoint = self.bounds.size.width / 2 - (30 + labelSize.width)
 
         self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
@@ -111,6 +127,13 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         print("保存しました")
         print(textField1.text!)
         print(textField2.text!)
+    }
+    
+    // MARK: - Touch Event
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        textField1.resignFirstResponder()
+        textField2.resignFirstResponder()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -142,5 +165,10 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             self.textField2.text = dataList2[row]
         }
+    }
+    
+    @objc func doneTapped(_ sender: UIButton){
+        textField2.resignFirstResponder()
+        textField1.resignFirstResponder()
     }
 }
