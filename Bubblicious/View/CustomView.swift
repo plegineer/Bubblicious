@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
+class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     private var titleLabel1: UILabel!
     private var titleLabel2: UILabel!
@@ -21,14 +21,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     private var saveButton: UIButton!
     private var switchText: String!
     
-    private let dataList1 = ["hogehoge", "fugafuga", "fobar"]
-    private let dataList2 = ["content1", "content2", "content3", "content4"]
+    private let dataList = ["hogehoge", "fugafuga", "fobar"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupItems()
         addPickerView()
+        setTextFieldProperties()
         self.backgroundColor = .white
     }
     
@@ -40,8 +40,8 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let labelSize = CGSize(width: 100, height: 30)
-        let labelXPoint = self.frame.size.width / 2 - (30 + labelSize.width)
+        let labelSize = CGSize(width: 75, height: 30)
+        let labelXPoint = CGFloat(15)
         self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
         self.titleLabel2.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize)
         self.titleLabel3.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize)
@@ -49,14 +49,16 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         self.addSubview(titleLabel2!)
         self.addSubview(titleLabel3!)
         
-        let textFieldXPoint = self.frame.size.width / 2 + 30
-        self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: labelSize)
-        self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: labelSize)
+        let textFieldSize = CGSize(width: 150, height: 30)
+        let textFieldXPoint = self.frame.size.width - textFieldSize.width - labelXPoint
+        self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
+        self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
         self.addSubview(textField1)
         self.addSubview(textField2)
         
         let switchControlSize = switchControl.sizeThatFits(self.frame.size)
-        self.switchControl.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 130), size: switchControlSize)
+        let switchControlXPoint = textFieldXPoint + (textFieldSize.width / 2) - (switchControlSize.width / 2)
+        self.switchControl.frame = CGRect(origin: CGPoint(x: switchControlXPoint, y: 130), size: switchControlSize)
         self.addSubview(switchControl)
         
         let buttonSize = saveButton.sizeThatFits(self.frame.size)
@@ -73,37 +75,29 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         textField2.resignFirstResponder()
     }
     
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("shouldreturn")
+        textField2.resignFirstResponder()
+        return true
+    }
+    
     // MARK: - UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        if pickerView.tag == 1 {
-            return dataList1.count
-        } else {
-            return dataList2.count
-        }
+        return dataList.count
     }
     
     // MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if pickerView.tag == 1 {
-            return dataList1[row]
-        } else {
-            return dataList2[row]
-        }
+        return dataList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,inComponent component: Int) {
-        
-        if pickerView.tag == 1 {
-            self.textField1.text = dataList1[row]
-        } else {
-            self.textField2.text = dataList2[row]
-        }
+        self.textField1.text = dataList[row]
     }
     
     // MARK: - Action
@@ -176,7 +170,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     private func addPickerView() {
         let pickerView = UIPickerView()
-        pickerView.tag = 1
         pickerView.delegate = self
         pickerView.dataSource = self
         
@@ -188,5 +181,10 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         self.textField1.inputView = pickerView
         self.textField1.inputAccessoryView = pickerToolBar
+    }
+    
+    private func setTextFieldProperties() {
+        textField2.delegate = self
+        textField2.enablesReturnKeyAutomatically = true
     }
 }
