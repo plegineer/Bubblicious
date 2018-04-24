@@ -20,8 +20,10 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     let switchControl: UISwitch
     let button: UIButton
     
-    let pickerView: UIPickerView
-    let dataList = ["hogehoge", "fugafuga", "fobar"]
+    let pickerView1: UIPickerView
+    let pickerView2: UIPickerView
+    let dataList1 = ["hogehoge", "fugafuga", "fobar"]
+    let dataList2 = ["content1", "content2", "content3", "content4"]
     
     override init(frame: CGRect) {
 
@@ -49,15 +51,22 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         self.button.setTitle("保存する", for: UIControlState.normal)
         self.button.setTitleColor(UIColor.blue, for: UIControlState.normal)
         
-        self.pickerView = UIPickerView()
+        self.pickerView1 = UIPickerView()
+        self.pickerView2 = UIPickerView()
         
         super.init(frame: frame)
         
         self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        self.backgroundColor = UIColor.lightGray
+        pickerView1.tag = 1
+        pickerView1.delegate = self
+        pickerView1.dataSource = self
+        self.textField1.inputView = pickerView1
+        
+        pickerView2.tag = 2
+        pickerView2.delegate = self
+        pickerView2.dataSource = self
+        self.textField2.inputView = pickerView2
     
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
@@ -67,7 +76,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         self.addSubview(textField2)
         self.addSubview(switchControl)
         self.addSubview(button)
-        self.addSubview(pickerView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -100,9 +108,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         let buttonSize = self.button.sizeThatFits(self.bounds.size)
         let buttonXPoint = (self.bounds.width - buttonSize.width) / 2
         self.button.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
-        
-        let pickerViewSize = self.button.sizeThatFits(self.bounds.size)
-        self.pickerView.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 210), size: pickerViewSize)
     }
     
     @objc func buttonTapped(sender: Any) {
@@ -115,18 +120,30 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         return 1
     }
     
-    // UIPickerViewの行数、リストの数
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataList.count
+        
+        if pickerView.tag == 1 {
+            return dataList1.count
+        } else {
+            return dataList2.count
+        }
     }
     
-    // UIPickerViewの最初の表示
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dataList[row]
+        
+        if pickerView.tag == 1 {
+            return dataList1[row]
+        } else {
+            return dataList2[row]
+        }
     }
     
-    // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,inComponent component: Int) {
-        self.textField1.text = dataList[row]
+        
+        if pickerView.tag == 1 {
+            self.textField1.text = dataList1[row]
+        } else {
+            self.textField2.text = dataList2[row]
+        }
     }
 }
