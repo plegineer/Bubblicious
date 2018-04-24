@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController {
+class SettingViewController: UIViewController, CustomViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class SettingViewController: UIViewController {
         let customViewXPoint = (viewSize.width - customViewSize.width) / 2
         let customView = CustomView(frame: CGRect(x: customViewXPoint, y: 30,
                                                   width: customViewSize.width, height: customViewSize.height))
-
+        customView.delegate = self
         self.view.addSubview(customView)
     }
     
@@ -35,5 +35,9 @@ class SettingViewController: UIViewController {
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
+    }
+    
+    func showMessagePopUp(_ messageTitle: String, _ message: String) {
+        self.showAlert(messageTitle, message: message)
     }
 }

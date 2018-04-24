@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol CustomViewDelegate {
+    func showMessagePopUp(_ messageTitle: String, _ message: String)
+}
+
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     private var titleLabel1: UILabel!
@@ -22,6 +26,8 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     private var switchText: String!
     
     private let dataList = ["hogehoge", "fugafuga", "fobar"]
+    
+    weak var delegate: CustomViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -77,7 +83,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("shouldreturn")
+        
         textField2.resignFirstResponder()
         return true
     }
@@ -103,10 +109,8 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     // MARK: - Action
     @objc func buttonTapped(_ sender: UIButton) {
         
-        print("保存しました")
-        print("\(titleLabel1.text!) is \(textField1.text!)")
-        print("\(titleLabel2.text!) is \(textField2.text!)")
-        print(switchText)
+        let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
+        self.delegate?.showMessagePopUp("保存完了", message)
     }
     
     @objc func doneTapped(_ sender: UIButton){
@@ -125,6 +129,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func setupItems() {
+        
         self.titleLabel1 = createLabel(textLabel: "タイトル1")
         self.titleLabel2 = createLabel(textLabel: "タイトル2")
         self.titleLabel3 = createLabel(textLabel: "タイトル3")
@@ -135,6 +140,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func createLabel(textLabel: String) -> UILabel {
+        
         let titleLabel = UILabel()
         titleLabel.text = textLabel
         titleLabel.textAlignment = .center
@@ -143,6 +149,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func createTextField(placeHolder: String) -> UITextField {
+        
         let textField = UITextField()
         textField.placeholder = placeHolder
         textField.textAlignment = .center
@@ -152,6 +159,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func createSwitchControl() -> UISwitch {
+        
         let switchControl = UISwitch()
         switchControl.addTarget(self, action: #selector(switchControlTapped(_:)), for: UIControlEvents.valueChanged)
         
@@ -159,6 +167,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func createButton(setTitle: String) -> UIButton {
+        
         let saveButton = UIButton()
         saveButton.setTitle(setTitle, for: UIControlState.normal)
         saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
@@ -169,6 +178,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func addPickerView() {
+        
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -184,6 +194,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func setTextFieldProperties() {
+        
         textField2.delegate = self
         textField2.enablesReturnKeyAutomatically = true
     }
