@@ -20,7 +20,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     let switchControl: UISwitch
     let button: UIButton
     
-    var pickerView: UIPickerView
+    let pickerView: UIPickerView
     let dataList = ["hogehoge", "fugafuga", "fobar"]
     
     override init(frame: CGRect) {
@@ -57,6 +57,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         pickerView.delegate = self
         pickerView.dataSource = self
+        self.backgroundColor = UIColor.lightGray
     
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
@@ -66,6 +67,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         self.addSubview(textField2)
         self.addSubview(switchControl)
         self.addSubview(button)
+        self.addSubview(pickerView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -98,6 +100,9 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         let buttonSize = self.button.sizeThatFits(self.bounds.size)
         let buttonXPoint = (self.bounds.width - buttonSize.width) / 2
         self.button.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
+        
+        let pickerViewSize = self.button.sizeThatFits(self.bounds.size)
+        self.pickerView.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 210), size: pickerViewSize)
     }
     
     @objc func buttonTapped(sender: Any) {
