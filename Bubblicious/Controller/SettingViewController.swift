@@ -20,9 +20,9 @@ class SettingViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = rightButton
         
-        let viewBoundsSize = self.view.frame.size
+        let viewSize = self.view.frame.size
         let customViewSize = CGSize(width: 300, height: 250)
-        let customViewXPoint = (viewBoundsSize.width - customViewSize.width) / 2
+        let customViewXPoint = (viewSize.width - customViewSize.width) / 2
         let customView = CustomView(frame: CGRect(x: customViewXPoint, y: 30,
                                                   width: customViewSize.width, height: customViewSize.height))
 

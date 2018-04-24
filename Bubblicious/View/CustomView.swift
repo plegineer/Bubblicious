@@ -24,9 +24,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     private let dataList1 = ["hogehoge", "fugafuga", "fobar"]
     private let dataList2 = ["content1", "content2", "content3", "content4"]
     
-//    private var doneButton: UIBarButtonItem!
-//    private var pickerToolBar: UIToolbar!
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -44,7 +41,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         super.layoutSubviews()
         
         let labelSize = CGSize(width: 100, height: 30)
-        let labelXPoint = self.bounds.size.width / 2 - (30 + labelSize.width)
+        let labelXPoint = self.frame.size.width / 2 - (30 + labelSize.width)
         self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
         self.titleLabel2.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize)
         self.titleLabel3.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize)
@@ -52,18 +49,18 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         self.addSubview(titleLabel2!)
         self.addSubview(titleLabel3!)
         
-        let textFieldXPoint = self.bounds.size.width / 2 + 30
+        let textFieldXPoint = self.frame.size.width / 2 + 30
         self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: labelSize)
         self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: labelSize)
         self.addSubview(textField1)
         self.addSubview(textField2)
         
-        let switchControlSize = switchControl.sizeThatFits(self.bounds.size)
+        let switchControlSize = switchControl.sizeThatFits(self.frame.size)
         self.switchControl.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 130), size: switchControlSize)
         self.addSubview(switchControl)
         
-        let buttonSize = saveButton.sizeThatFits(self.bounds.size)
-        let buttonXPoint = (self.bounds.width - buttonSize.width) / 2
+        let buttonSize = saveButton.sizeThatFits(self.frame.size)
+        let buttonXPoint = (self.frame.width - buttonSize.width) / 2
         self.saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
         self.addSubview(saveButton)
     }
@@ -184,7 +181,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         pickerView.dataSource = self
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneTapped(_:)))
-        let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
+        let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
         pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         pickerToolBar.backgroundColor = .groupTableViewBackground
         pickerToolBar.setItems([doneButton], animated: false)
