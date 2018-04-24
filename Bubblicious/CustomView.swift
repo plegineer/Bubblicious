@@ -10,26 +10,24 @@ import UIKit
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let titleLabel1: UILabel
-    let titleLabel2: UILabel
-    let titleLabel3: UILabel
+    private let titleLabel1: UILabel
+    private let titleLabel2: UILabel
+    private let titleLabel3: UILabel
     
-    let textField1: UITextField
-    let textField2: UITextField
+    private let textField1: UITextField
+    private let textField2: UITextField
     
-    let switchControl: UISwitch
-    let button: UIButton
+    private let switchControl: UISwitch
+    private let saveButton: UIButton
+    private var switchText: String
     
-    let pickerView1: UIPickerView
-    let pickerView2: UIPickerView
-    let dataList1 = ["hogehoge", "fugafuga", "fobar"]
-    let dataList2 = ["content1", "content2", "content3", "content4"]
+    private let pickerView1: UIPickerView
+    private let pickerView2: UIPickerView
+    private let dataList1 = ["hogehoge", "fugafuga", "fobar"]
+    private let dataList2 = ["content1", "content2", "content3", "content4"]
     
-    var doneButton: UIBarButtonItem
-    var PickerAccessoryView: UIToolbar
-    
-    private var pickerToolbar:UIToolbar!
-    private let toolbarHeight:CGFloat = 40.0
+    private var doneButton: UIBarButtonItem
+    private var pickerToolBar: UIToolbar
     
     override init(frame: CGRect) {
 
@@ -53,37 +51,38 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         self.switchControl = UISwitch()
 
-        self.button = UIButton()
-        self.button.setTitle("保存する", for: UIControlState.normal)
-        self.button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        self.saveButton = UIButton()
+        self.saveButton.setTitle("保存する", for: UIControlState.normal)
+        self.saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        self.switchText = "\(titleLabel3.text!) is On"
         
         self.pickerView1 = UIPickerView()
         self.pickerView2 = UIPickerView()
         self.doneButton = UIBarButtonItem()
-        self.PickerAccessoryView = UIToolbar()
+        self.pickerToolBar = UIToolbar()
         
         super.init(frame: frame)
         
-        self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        self.saveButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         self.switchControl.addTarget(self, action: #selector(switchControlTapped(_:)), for: UIControlEvents.valueChanged)
         
         self.doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneTapped(_:)))
-        self.PickerAccessoryView = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
-        PickerAccessoryView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        PickerAccessoryView.backgroundColor = .groupTableViewBackground
-        PickerAccessoryView.setItems([doneButton], animated: false)
+        self.pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
+        pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        pickerToolBar.backgroundColor = .groupTableViewBackground
+        pickerToolBar.setItems([doneButton], animated: false)
         
         pickerView1.tag = 1
         pickerView1.delegate = self
         pickerView1.dataSource = self
         self.textField1.inputView = pickerView1
-        self.textField1.inputAccessoryView = PickerAccessoryView
+        self.textField1.inputAccessoryView = pickerToolBar
         
         pickerView2.tag = 2
         pickerView2.delegate = self
         pickerView2.dataSource = self
         self.textField2.inputView = pickerView2
-        self.textField2.inputAccessoryView = PickerAccessoryView
+        self.textField2.inputAccessoryView = pickerToolBar
 
         self.backgroundColor = .white
         self.addSubview(titleLabel1)
@@ -92,13 +91,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         self.addSubview(textField1)
         self.addSubview(textField2)
         self.addSubview(switchControl)
-        self.addSubview(button)
+        self.addSubview(saveButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UIView
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -119,24 +119,20 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         let switchControlSize = self.switchControl.sizeThatFits(self.bounds.size)
         self.switchControl.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 130), size: switchControlSize)
         
-        let buttonSize = self.button.sizeThatFits(self.bounds.size)
+        let buttonSize = self.saveButton.sizeThatFits(self.bounds.size)
         let buttonXPoint = (self.bounds.width - buttonSize.width) / 2
-        self.button.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
+        self.saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
     }
-    
-    @objc func buttonTapped(sender: Any) {
-        print("保存しました")
-        print(textField1.text!)
-        print(textField2.text!)
-    }
-    
+
     // MARK: - Touch Event
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
     }
     
+    // MARK: - UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -150,6 +146,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
+    // MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView.tag == 1 {
@@ -168,7 +165,17 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
+    // MARK: - Action
+    @objc func buttonTapped(_ sender: UIButton) {
+        
+        print("保存しました")
+        print("\(titleLabel1.text!) is \(textField1.text!)")
+        print("\(titleLabel2.text!) is \(textField2.text!)")
+        print(switchText)
+    }
+    
     @objc func doneTapped(_ sender: UIButton){
+        
         textField2.resignFirstResponder()
         textField1.resignFirstResponder()
     }
@@ -176,9 +183,9 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     @objc func switchControlTapped(_ sender: UISwitch) {
         
         if sender.isOn {
-            print("on")
+            switchText = "\(titleLabel3.text!) is On"
         } else {
-            print("off")
+            switchText = "\(titleLabel3.text!) is Off"
         }
     }
 }
