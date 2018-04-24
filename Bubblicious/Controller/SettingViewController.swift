@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UITableViewController {
+class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +20,11 @@ class SettingViewController: UITableViewController {
         
         self.navigationItem.rightBarButtonItem = rightButton
         
-        let customView = CustomView(frame: self.view.bounds)
-//        customView.translatesAutoresizingMaskIntoConstraints = false
 
-        customView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        let viewBoundsSize = self.view.bounds.size
+        let customViewXPoint = (viewBoundsSize.width - 350) / 2
+        
+        let customView = CustomView(frame: CGRect(x:customViewXPoint,y:30,width:350,height:350))
 
         self.view.addSubview(customView)
     }
