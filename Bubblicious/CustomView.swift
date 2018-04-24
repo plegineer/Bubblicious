@@ -65,6 +65,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         super.init(frame: frame)
         
         self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        self.switchControl.addTarget(self, action: #selector(switchControlTapped(_:)), for: UIControlEvents.valueChanged)
         
         self.doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneTapped(_:)))
         self.PickerAccessoryView = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
@@ -170,5 +171,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     @objc func doneTapped(_ sender: UIButton){
         textField2.resignFirstResponder()
         textField1.resignFirstResponder()
+    }
+    
+    @objc func switchControlTapped(_ sender: UISwitch) {
+        
+        if sender.isOn {
+            print("on")
+        } else {
+            print("off")
+        }
     }
 }
