@@ -78,29 +78,24 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         let labelSize1 = self.titleLabel1.sizeThatFits(self.bounds.size)
         let labelSize2 = self.titleLabel2.sizeThatFits(self.bounds.size)
         let labelSize3 = self.titleLabel3.sizeThatFits(self.bounds.size)
-        
-        let x = (self.bounds.width - labelSize1.width) / 2
-        let y = (self.bounds.height - labelSize1.height) / 2
-        
-        self.titleLabel1.frame = CGRect(origin: CGPoint(x: 100, y: y), size: labelSize1)
-        self.titleLabel2.frame = CGRect(origin: CGPoint(x: 100, y: y + 50), size: labelSize2)
-        self.titleLabel3.frame = CGRect(origin: CGPoint(x: 100, y: y + 100), size: labelSize3)
+
+        self.titleLabel1.frame = CGRect(origin: CGPoint(x: 30, y: 30), size: labelSize1)
+        self.titleLabel2.frame = CGRect(origin: CGPoint(x: 30, y: 80), size: labelSize2)
+        self.titleLabel3.frame = CGRect(origin: CGPoint(x: 30, y: 130), size: labelSize3)
         
         let textFieldSize1 = self.textField1.sizeThatFits(self.bounds.size)
         let textFieldSize2 = self.textField2.sizeThatFits(self.bounds.size)
+        let switchControlSize = self.switchControl.sizeThatFits(self.bounds.size)
         
-        self.textField1.frame = CGRect(origin: CGPoint(x: 150 + labelSize1.width, y: y),
-                                       size: textFieldSize1)
-        self.textField2.frame = CGRect(origin: CGPoint(x: 150 + labelSize2.width, y: y + 50),
-                                       size: textFieldSize2)
-    
-        self.switchControl.frame = CGRect(origin: CGPoint(x: 150 + labelSize3.width, y: y + 100.0),
-                                          size: textFieldSize1)
+        let textFieldXPoint = self.titleLabel1.frame.origin.x + 150
         
+        self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize1)
+        self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize2)
+        self.switchControl.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 130), size: switchControlSize)
         
         let buttonSize = self.button.sizeThatFits(self.bounds.size)
-        self.button.frame = CGRect(origin: CGPoint(x: x, y: y + 150.0),
-                                   size: buttonSize)
+        let buttonXPoint = (self.bounds.width - buttonSize.width) / 2
+        self.button.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
     }
     
     @objc func buttonTapped(sender: Any) {
