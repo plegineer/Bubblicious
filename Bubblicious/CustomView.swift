@@ -78,16 +78,18 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         let labelSize1 = self.titleLabel1.sizeThatFits(self.bounds.size)
         let labelSize2 = self.titleLabel2.sizeThatFits(self.bounds.size)
         let labelSize3 = self.titleLabel3.sizeThatFits(self.bounds.size)
+        
+        let labelXPoint = self.bounds.size.width / 2 - (30 + labelSize1.width)
 
-        self.titleLabel1.frame = CGRect(origin: CGPoint(x: 30, y: 30), size: labelSize1)
-        self.titleLabel2.frame = CGRect(origin: CGPoint(x: 30, y: 80), size: labelSize2)
-        self.titleLabel3.frame = CGRect(origin: CGPoint(x: 30, y: 130), size: labelSize3)
+        self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize1)
+        self.titleLabel2.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize2)
+        self.titleLabel3.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize3)
         
         let textFieldSize1 = self.textField1.sizeThatFits(self.bounds.size)
         let textFieldSize2 = self.textField2.sizeThatFits(self.bounds.size)
         let switchControlSize = self.switchControl.sizeThatFits(self.bounds.size)
         
-        let textFieldXPoint = self.titleLabel1.frame.origin.x + 150
+        let textFieldXPoint = self.bounds.size.width / 2 + 30
         
         self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize1)
         self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize2)
