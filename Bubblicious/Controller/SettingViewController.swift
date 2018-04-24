@@ -20,17 +20,13 @@ class SettingViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = rightButton
         
-        let viewBoundsSize = self.view.bounds.size
-        let customViewSize = CGSize(width: 300, height: 300)
+        let viewBoundsSize = self.view.frame.size
+        let customViewSize = CGSize(width: 300, height: 250)
         let customViewXPoint = (viewBoundsSize.width - customViewSize.width) / 2
         let customView = CustomView(frame: CGRect(x: customViewXPoint, y: 30,
                                                   width: customViewSize.width, height: customViewSize.height))
 
         self.view.addSubview(customView)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @objc func logout() {
