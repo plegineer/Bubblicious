@@ -14,6 +14,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     private var movedModalDisplayYPoint: CGFloat = 0
     private var viewFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
     private let customBackGroundView = CustomBackGroundView()
+    private var keyboardShowModalDisplayYPoint: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +63,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.customBackGroundView.frame = self.viewFrame
         customBackGroundView.delegate = self
         self.view.addSubview(self.customBackGroundView)
-        
         self.view.addSubview(self.modalDisplay)
     }
     
@@ -77,10 +77,22 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         let modalDisplayBotomMargine = self.view.frame.size.height - (self.modalDisplay.frame.origin.y + self.modalDisplay.frame.height)
         if modalDisplayBotomMargine < keyboardRect.height {
+            print(self.modalDisplay.center.y)
+            self.keyboardShowModalDisplayYPoint = keyboardRect.height - self.modalDisplay.frame.origin.y
             UIView.animate(withDuration: 0.2,
                            animations: {self.modalDisplay.center.y -= keyboardRect.height - self.modalDisplay.frame.origin.y},
                            completion: nil)
         }
+    }
+    
+    func CustomViewKeyboardWillHide(_ keyboardRect: CGRect , _ view: CustomView) {
+        
+        let modalDisplayBotomMargine = self.view.frame.size.height - (self.modalDisplay.frame.origin.y + self.modalDisplay.frame.height)
+        print(self.modalDisplay.center.y)
+        UIView.animate(withDuration: 0.2,
+                       animations: {self.modalDisplay.center.y += self.keyboardShowModalDisplayYPoint},
+                       completion: nil)
+        print(self.modalDisplay.center.y)
     }
     
     

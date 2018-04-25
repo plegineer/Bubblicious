@@ -11,6 +11,7 @@ import UIKit
 protocol CustomViewDelegate: class {
     func CustomViewTappedSaveButton(_ message: String , _ view: CustomView)
     func CustomViewKeyboardWillShow(_ keyboardRect: CGRect, _ view: CustomView)
+    func CustomViewKeyboardWillHide(_ keyboardRect: CGRect, _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -27,6 +28,8 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     private var switchText: String!
     
     private let dataList = ["hogehoge", "fugafuga", "fobar"]
+    
+    private var keyboardRect: CGRect!
     
     weak var delegate: CustomViewDelegate?
     
@@ -80,12 +83,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
 
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
+        self.delegate?.CustomViewKeyboardWillHide(self.keyboardRect, self)
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField2.resignFirstResponder()
+        self.delegate?.CustomViewKeyboardWillHide(self.keyboardRect, self)
         return true
     }
     
@@ -198,17 +203,19 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         
         textField2.delegate = self
         textField2.enablesReturnKeyAutomatically = true
+        textField2.autocapitalizationType = .none
+        textField2.autocorrectionType = .no
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 
     }
     
-    @objc func keyboardWillBeShown(notification:NSNotification) {
-        //キーボードのフレームを取得する。
+    @objc func keyboardWillShow(notification:NSNotification) {
         if let userInfo = notification.userInfo {
             if let keyboard = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardRect = keyboard.cgRectValue
-                self.delegate?.CustomViewKeyboardWillShow(keyboardRect ,self)
+                self.keyboardRect = keyboardRect
+                self.delegate?.CustomViewKeyboardWillShow(self.keyboardRect ,self)
             }
         }
     }
