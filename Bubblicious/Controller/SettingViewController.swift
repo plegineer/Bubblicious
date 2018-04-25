@@ -64,7 +64,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         UIView.animate(withDuration: 0.3, animations: {self.modalDisplay.center.y -= self.movedModalDisplayYPoint}, completion: nil)
         
         // TODO: --
-//        let view = (frame: self.viewFrame)
         self.customBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.customBackGroundView.frame = self.viewFrame
         customBackGroundView.delegate = self
@@ -77,30 +76,12 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     func CustomViewTappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
         UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += self.movedModalDisplayYPoint}, completion: nil)
+        self.modalDisplay.removeFromSuperview()
     }
     
     func touchedCustomBackGroundView(_ view: CustomBackGroundView) {
         UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += 700.0}, completion: nil)
         self.customBackGroundView.removeFromSuperview()
+        self.modalDisplay.endEditing(true)
     }
 }
-
-//protocol TempViewDelegate {
-//    func tempViewTouched(_ view: TempView)
-//}
-//class TempView: UIView {
-//    var delegate: TempViewDelegate?
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        self.delegate?.tempViewTouched(self)
-//    }
-//}
