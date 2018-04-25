@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, CustomViewDelegate, TempViewDelegate {
+class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate {
     
     private let modalDisplay = CustomView()
     private var movedModalDisplayYPoint: CGFloat = 0
+    private var viewFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
-    private var tempView: TempView!
+    private let customBackGroundView = CustomBackGroundView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, TempViewDeleg
         self.navigationController?.navigationBar.isTranslucent = false
         let rightButton = UIBarButtonItem(title: "Logout", style: .plain,
                                           target: self, action: #selector(logout))
-        
+        print(self.view.frame.size)
+        self.viewFrame = self.view.frame
         self.navigationItem.rightBarButtonItem = rightButton
         
 //        self.view.isUserInteractionEnabled = true
@@ -48,6 +50,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, TempViewDeleg
     @objc func TappedModalButton(_ sender: UIButton) {
         
         let viewSize = self.view.frame.size
+        print(viewSize)
+        
         let modalDisplatSize = CGSize(width: 300, height: 250)
         let modalDisplayXPoint = (viewSize.width - modalDisplatSize.width) / 2
         let modalDisplayYPoint = viewSize.height
@@ -60,21 +64,14 @@ class SettingViewController: UIViewController, CustomViewDelegate, TempViewDeleg
         UIView.animate(withDuration: 0.3, animations: {self.modalDisplay.center.y -= self.movedModalDisplayYPoint}, completion: nil)
         
         // TODO: --
-        let view = TempView(frame: self.view.frame)
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        view.delegate = self
-        self.tempView = view
-        self.view.addSubview(view)
-        
-        
+//        let view = (frame: self.viewFrame)
+        self.customBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        self.customBackGroundView.frame = self.viewFrame
+        customBackGroundView.delegate = self
+        self.view.addSubview(self.customBackGroundView)
         
         self.view.addSubview(self.modalDisplay)
     }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += 700.0}, completion: nil)
-////        self.modalDisplay.removeFromSuperview()
-//    }
     
     // MARK: - CustomViewDelegate
     func CustomViewTappedSaveButton(_ message: String, _ view: CustomView) {
@@ -82,29 +79,28 @@ class SettingViewController: UIViewController, CustomViewDelegate, TempViewDeleg
         UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += self.movedModalDisplayYPoint}, completion: nil)
     }
     
-    func tempViewTouched(_ view: TempView) {
+    func touchedCustomBackGroundView(_ view: CustomBackGroundView) {
         UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += 700.0}, completion: nil)
-        self.tempView.removeFromSuperview()
+        self.customBackGroundView.removeFromSuperview()
     }
-    
 }
 
-protocol TempViewDelegate {
-    func tempViewTouched(_ view: TempView)
-}
-class TempView: UIView {
-    var delegate: TempViewDelegate?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        self.delegate?.tempViewTouched(self)
-    }
-}
+//protocol TempViewDelegate {
+//    func tempViewTouched(_ view: TempView)
+//}
+//class TempView: UIView {
+//    var delegate: TempViewDelegate?
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        self.delegate?.tempViewTouched(self)
+//    }
+//}
