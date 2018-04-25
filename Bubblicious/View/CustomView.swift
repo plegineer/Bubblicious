@@ -128,6 +128,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         }
     }
     
+    // MARK: - Private Method
     private func setupItems() {
         
         self.titleLabel1 = createLabel(textLabel: "タイトル1")
