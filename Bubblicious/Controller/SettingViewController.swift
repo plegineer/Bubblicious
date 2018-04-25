@@ -37,7 +37,7 @@ class SettingViewController: UIViewController, CustomViewDelegate {
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
-    func showMessagePopUp(_ messageTitle: String, _ message: String) {
-        self.showAlert(messageTitle, message: message)
+    func saveButtonTapped(_ message: String, _ view: CustomView) {
+        self.showAlert("保存完了", message: message)
     }
 }

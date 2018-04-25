@@ -8,8 +8,8 @@
 
 import UIKit
 
-@objc protocol CustomViewDelegate {
-    func showMessagePopUp(_ messageTitle: String, _ message: String)
+protocol CustomViewDelegate: class {
+    func saveButtonTapped(_ message: String , _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -110,7 +110,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     @objc func buttonTapped(_ sender: UIButton) {
         
         let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
-        self.delegate?.showMessagePopUp("保存完了", message)
+        self.delegate?.saveButtonTapped(message, self)
     }
     
     @objc func doneTapped(_ sender: UIButton){
