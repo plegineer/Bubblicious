@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomViewDelegate: class {
-    func saveButtonTapped(_ message: String , _ view: CustomView)
+    func tappedSaveButton(_ message: String , _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -51,9 +51,9 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
         self.titleLabel2.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize)
         self.titleLabel3.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize)
-        self.addSubview(titleLabel1!)
-        self.addSubview(titleLabel2!)
-        self.addSubview(titleLabel3!)
+        self.addSubview(titleLabel1)
+        self.addSubview(titleLabel2)
+        self.addSubview(titleLabel3)
         
         let textFieldSize = CGSize(width: 150, height: 30)
         let textFieldXPoint = self.frame.size.width - textFieldSize.width - labelXPoint
@@ -107,13 +107,13 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - Action
-    @objc func buttonTapped(_ sender: UIButton) {
+    @objc func tappedButton(_ sender: UIButton) {
         
         let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
-        self.delegate?.saveButtonTapped(message, self)
+        self.delegate?.tappedSaveButton(message, self)
     }
     
-    @objc func doneTapped(_ sender: UIButton){
+    @objc func tappedPickerViewButton(_ sender: UIButton){
         
         textField2.resignFirstResponder()
         textField1.resignFirstResponder()
@@ -131,25 +131,25 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     // MARK: - Private Method
     private func setupItems() {
         
-        self.titleLabel1 = createLabel(textLabel: "タイトル1")
-        self.titleLabel2 = createLabel(textLabel: "タイトル2")
-        self.titleLabel3 = createLabel(textLabel: "タイトル3")
-        self.textField1 = createTextField(placeHolder: "hogehoge")
-        self.textField2 = createTextField(placeHolder: "content")
+        self.titleLabel1 = createLabel("タイトル1")
+        self.titleLabel2 = createLabel("タイトル2")
+        self.titleLabel3 = createLabel("タイトル3")
+        self.textField1 = createTextField("hogehoge")
+        self.textField2 = createTextField("content")
         self.switchControl = createSwitchControl()
-        self.saveButton = createButton(setTitle: "保存する")
+        self.saveButton = createButton("保存する")
     }
     
-    private func createLabel(textLabel: String) -> UILabel {
+    private func createLabel(_ text: String) -> UILabel {
         
         let titleLabel = UILabel()
-        titleLabel.text = textLabel
+        titleLabel.text = text
         titleLabel.textAlignment = .center
         
         return titleLabel
     }
     
-    private func createTextField(placeHolder: String) -> UITextField {
+    private func createTextField(_ placeHolder: String) -> UITextField {
         
         let textField = UITextField()
         textField.placeholder = placeHolder
@@ -167,12 +167,12 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         return switchControl
     }
     
-    private func createButton(setTitle: String) -> UIButton {
+    private func createButton(_ title: String) -> UIButton {
         
         let saveButton = UIButton()
-        saveButton.setTitle(setTitle, for: UIControlState.normal)
+        saveButton.setTitle(title, for: UIControlState.normal)
         saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        saveButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(tappedButton(_:)), for: .touchUpInside)
         self.switchText = "\(titleLabel3.text!) is Off"
         
         return saveButton
@@ -184,7 +184,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneTapped(_:)))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.tappedPickerViewButton(_:)))
         let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
         pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         pickerToolBar.backgroundColor = .groupTableViewBackground

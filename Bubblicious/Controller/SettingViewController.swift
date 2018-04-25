@@ -37,7 +37,8 @@ class SettingViewController: UIViewController, CustomViewDelegate {
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
-    func saveButtonTapped(_ message: String, _ view: CustomView) {
+    // MARK: - CustomViewDelegate
+    func tappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
     }
 }
