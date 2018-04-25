@@ -45,8 +45,6 @@ class SettingViewController: UIViewController, CustomViewDelegate {
         let customViewSize = CGSize(width: 300, height: 250)
         let customViewXPoint = (viewSize.width - customViewSize.width) / 2
         
-//        let customView = CustomView(frame: CGRect(x: customViewXPoint, y: 800,
-//                                                  width: customViewSize.width, height: customViewSize.height))
         self.modalDisplay.frame = CGRect(x: customViewXPoint, y: 800,
                                          width: customViewSize.width, height: customViewSize.height)
 
@@ -57,12 +55,13 @@ class SettingViewController: UIViewController, CustomViewDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.modalDisplay.removeFromSuperview()
+        UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += 700.0}, completion: nil)
+//        self.modalDisplay.removeFromSuperview()
     }
     
     // MARK: - CustomViewDelegate
     func CustomViewTappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
-        self.modalDisplay.removeFromSuperview()
+        UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += 700.0}, completion: nil)
     }
 }
