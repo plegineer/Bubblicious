@@ -9,6 +9,8 @@
 import UIKit
 
 class SettingViewController: UIViewController, CustomViewDelegate {
+    
+    private let ModalDisplay: CustomView = CustomView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +25,11 @@ class SettingViewController: UIViewController, CustomViewDelegate {
         let viewSize = self.view.frame.size
         let customViewSize = CGSize(width: 300, height: 250)
         let customViewXPoint = (viewSize.width - customViewSize.width) / 2
-        let customView = CustomView(frame: CGRect(x: customViewXPoint, y: 30,
+        let customView = CustomView(frame: CGRect(x: customViewXPoint, y: 800,
                                                   width: customViewSize.width, height: customViewSize.height))
         customView.delegate = self
+        
+        UIView.animate(withDuration: 1.0, animations: {customView.center.y -= 700.0}, completion: nil)
         self.view.addSubview(customView)
     }
     
