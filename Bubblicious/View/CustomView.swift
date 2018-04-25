@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomViewDelegate: class {
-    func tappedSaveButton(_ message: String , _ view: CustomView)
+    func CustomViewTappedSaveButton(_ message: String , _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -110,7 +110,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     @objc func tappedButton(_ sender: UIButton) {
         
         let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
-        self.delegate?.tappedSaveButton(message, self)
+        self.delegate?.CustomViewTappedSaveButton(message, self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){

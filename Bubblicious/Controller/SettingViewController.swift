@@ -38,7 +38,7 @@ class SettingViewController: UIViewController, CustomViewDelegate {
     }
     
     // MARK: - CustomViewDelegate
-    func tappedSaveButton(_ message: String, _ view: CustomView) {
+    func CustomViewTappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
     }
 }
