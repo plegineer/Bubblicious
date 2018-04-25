@@ -22,6 +22,25 @@ class SettingViewController: UIViewController, CustomViewDelegate {
         
         self.navigationItem.rightBarButtonItem = rightButton
         
+        let showModalButton = UIButton(frame: CGRect(x:0, y:0, width: 100, height: 30))
+        showModalButton.center = self.view.center
+        showModalButton.setTitle("show modal", for: .normal)
+        showModalButton.setTitleColor(UIColor.blue, for: .normal)
+        showModalButton.backgroundColor = UIColor.white
+        showModalButton.addTarget(self, action: #selector(TappedModalButton(_:)), for: .touchUpInside)
+        self.view.addSubview(showModalButton)
+    }
+    
+    @objc func logout() {
+        
+        Util.clearAllSavedData()
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
+    }
+    
+    @objc func TappedModalButton(_ sender: UIButton) {
+        
         let viewSize = self.view.frame.size
         let customViewSize = CGSize(width: 300, height: 250)
         let customViewXPoint = (viewSize.width - customViewSize.width) / 2
@@ -31,14 +50,6 @@ class SettingViewController: UIViewController, CustomViewDelegate {
         
         UIView.animate(withDuration: 1.0, animations: {customView.center.y -= 700.0}, completion: nil)
         self.view.addSubview(customView)
-    }
-    
-    @objc func logout() {
-        
-        Util.clearAllSavedData()
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
     // MARK: - CustomViewDelegate
