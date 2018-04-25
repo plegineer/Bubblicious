@@ -114,8 +114,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
-        
-        textField2.resignFirstResponder()
         textField1.resignFirstResponder()
     }
     
@@ -192,6 +190,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         
         self.textField1.inputView = pickerView
         self.textField1.inputAccessoryView = pickerToolBar
+        self.textField1.text = dataList[0]
     }
     
     private func setTextFieldProperties() {
