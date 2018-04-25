@@ -10,6 +10,7 @@ import UIKit
 
 protocol CustomViewDelegate: class {
     func CustomViewTappedSaveButton(_ message: String , _ view: CustomView)
+    func CustomViewKeyboardWillShow(_ keyboardRect: CGRect, _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -197,5 +198,18 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         
         textField2.delegate = self
         textField2.enablesReturnKeyAutomatically = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+
+    }
+    
+    @objc func keyboardWillBeShown(notification:NSNotification) {
+        //キーボードのフレームを取得する。
+        if let userInfo = notification.userInfo {
+            if let keyboard = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardRect = keyboard.cgRectValue
+                self.delegate?.CustomViewKeyboardWillShow(keyboardRect ,self)
+            }
+        }
     }
 }

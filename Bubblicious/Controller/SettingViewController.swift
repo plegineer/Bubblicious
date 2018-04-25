@@ -13,7 +13,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     private let modalDisplay = CustomView()
     private var movedModalDisplayYPoint: CGFloat = 0
     private var viewFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
-    
     private let customBackGroundView = CustomBackGroundView()
 
     override func viewDidLoad() {
@@ -23,12 +22,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.navigationController?.navigationBar.isTranslucent = false
         let rightButton = UIBarButtonItem(title: "Logout", style: .plain,
                                           target: self, action: #selector(logout))
-        print(self.view.frame.size)
         self.viewFrame = self.view.frame
         self.navigationItem.rightBarButtonItem = rightButton
-        
-//        self.view.isUserInteractionEnabled = true
-//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewEnd(sender:))))
         
         let showModalButton = UIButton(frame: CGRect(x:0, y:0, width: 100, height: 30))
         showModalButton.center = self.view.center
@@ -50,7 +45,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     @objc func TappedModalButton(_ sender: UIButton) {
         
         let viewSize = self.view.frame.size
-        print(viewSize)
         
         let modalDisplatSize = CGSize(width: 300, height: 250)
         let modalDisplayXPoint = (viewSize.width - modalDisplatSize.width) / 2
@@ -79,6 +73,18 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.modalDisplay.removeFromSuperview()
     }
     
+    func CustomViewKeyboardWillShow(_ keyboardRect: CGRect , _ view: CustomView) {
+        
+        let modalDisplayBotomMargine = self.view.frame.size.height - (self.modalDisplay.frame.origin.y + self.modalDisplay.frame.height)
+        if modalDisplayBotomMargine < keyboardRect.height {
+            UIView.animate(withDuration: 0.2,
+                           animations: {self.modalDisplay.center.y -= keyboardRect.height - self.modalDisplay.frame.origin.y},
+                           completion: nil)
+        }
+    }
+    
+    
+    // MARK: - CustomBackGroundViewDlegate
     func touchedCustomBackGroundView(_ view: CustomBackGroundView) {
         UIView.animate(withDuration: 1.0, animations: {self.modalDisplay.center.y += 700.0}, completion: nil)
         self.customBackGroundView.removeFromSuperview()
