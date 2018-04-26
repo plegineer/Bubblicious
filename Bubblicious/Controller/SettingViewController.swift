@@ -101,6 +101,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         animationCustomView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
         animationCustomView.layer.shadowOpacity = 0.5
         animationCustomView.layer.shadowRadius = 5
+        
         animationCustomView.delegate = self
         self.animationCustomView = animationCustomView
         self.moveDistanceCustomView = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2
@@ -109,15 +110,13 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.view.addSubview(self.animationCustomView)
     }
     
-    // MARK: - TODO
-    
     private func addCustomView() {
 
         let customViewSize = CGSize(width: self.view.frame.width, height: 250)
         let customViewXPoint = (self.view.frame.size.width - customViewSize.width) / 2
         let customViewYPoint: CGFloat = 0
         let customView = CustomView(frame: CGRect(x: customViewXPoint, y: customViewYPoint,
-                                                           width: customViewSize.width, height: customViewSize.height))
+                                                  width: customViewSize.width, height: customViewSize.height))
         customView.delegate = self
         self.customView = customView
         self.moveDistanceCustomView = (self.view.frame.size.height + customViewSize.height) / 2

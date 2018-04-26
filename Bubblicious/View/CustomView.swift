@@ -235,7 +235,8 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         }
     }
     
-    func customViewKeyboardWillShow(_ keyboardRect: CGRect) {
+    // MARK: - Private Method
+    private func customViewKeyboardWillShow(_ keyboardRect: CGRect) {
 
         if self.frame.maxY > self.keyboardRect.minY - self.navigationHeight{
             self.keyboardOverlapCustomView = (self.frame.maxY - (self.keyboardRect.minY - self.navigationHeight))
@@ -245,7 +246,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         }
     }
     
-    func customViewKeyboardWillHide(_ keyboardRect: CGRect) {
+    private func customViewKeyboardWillHide(_ keyboardRect: CGRect) {
         
         if self.frame.maxY == self.keyboardRect.minY - self.navigationHeight {
             UIView.animate(withDuration: 0.3,
