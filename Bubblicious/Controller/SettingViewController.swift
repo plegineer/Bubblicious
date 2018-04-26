@@ -48,7 +48,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     @objc func TappedModalButton(_ sender: UIButton) {
         
         let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
-        customBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        customBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         customBackGroundView.delegate = self
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
@@ -58,6 +58,10 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         let modalDisplayYPoint = self.customBackGroundView.frame.size.height
         let modalDisplay = CustomView(frame: CGRect(x: modalDisplayXPoint, y: modalDisplayYPoint,
                                                     width: modalDisplaySize.width, height: modalDisplaySize.height))
+        modalDisplay.layer.shadowColor = UIColor.black.cgColor
+        modalDisplay.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        modalDisplay.layer.shadowOpacity = 0.5
+        modalDisplay.layer.shadowRadius = 5
         modalDisplay.delegate = self
         self.modalDisplay = modalDisplay
         self.didWillMoveModalDisplayYPoint = (self.customBackGroundView.frame.size.height + modalDisplaySize.height) / 2 + (self.navigationController?.navigationBar.frame.size.height)!
@@ -68,7 +72,9 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     // MARK: - CustomViewDelegate
     func CustomViewTappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
-        UIView.animate(withDuration: 0.3, animations: {self.modalDisplay.center.y += self.didWillMoveModalDisplayYPoint}, completion: nil)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.modalDisplay.center.y += self.didWillMoveModalDisplayYPoint
+        }, completion: nil)
         self.modalDisplay.removeFromSuperview()
     }
     
