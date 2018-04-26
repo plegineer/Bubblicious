@@ -74,8 +74,10 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.showAlert("保存完了", message: message)
         UIView.animate(withDuration: 0.3, animations: {
             self.modalDisplay.center.y += self.didWillMoveModalDisplayYPoint
-        }, completion: nil)
-        self.modalDisplay.removeFromSuperview()
+        }, completion: { finished in
+            self.modalDisplay.removeFromSuperview()
+            self.customBackGroundView.removeFromSuperview()
+        })
     }
     
     func CustomViewKeyboardWillShow(_ keyboardRect: CGRect , _ view: CustomView) {
