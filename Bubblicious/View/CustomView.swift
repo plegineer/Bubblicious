@@ -10,8 +10,6 @@ import UIKit
 
 protocol CustomViewDelegate: class {
     func customViewTappedSaveButton(_ message: String , _ view: CustomView)
-    func customViewKeyboardWillShow(_ keyboardRect: CGRect, _ view: CustomView)
-    func customViewKeyboardWillHide(_ keyboardRect: CGRect, _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -30,12 +28,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     private let dataList = ["hogehoge", "fugafuga", "fobar"]
     
     private var keyboardRect: CGRect!
+    private var keyboardOverlapCustomView: CGFloat = 0
+    private let navigationHeight: CGFloat = 64.0
     
     weak var delegate: CustomViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setupItems()
         addPickerView()
         setTextFieldProperties()
@@ -83,13 +83,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
 
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
+        self.customViewKeyboardWillHide(self.keyboardRect)
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField2.resignFirstResponder()
-        self.delegate?.customViewKeyboardWillHide(self.keyboardRect, self)
+        self.customViewKeyboardWillHide(self.keyboardRect)
         return true
     }
     
@@ -122,6 +123,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
         textField1.resignFirstResponder()
+        self.customViewKeyboardWillHide(self.keyboardRect)
     }
     
     @objc func switchControlTapped(_ sender: UISwitch) {
@@ -189,7 +191,10 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.tappedPickerViewButton(_:)))
+        let doneButton = UIBarButtonItem(
+            title: "Done", style: UIBarButtonItemStyle.done,
+            target: self, action: #selector(self.tappedPickerViewButton(_:))
+        )
         let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
         pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         pickerToolBar.backgroundColor = .groupTableViewBackground
@@ -207,17 +212,42 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         textField2.autocapitalizationType = .none
         textField2.autocorrectionType = .no
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardWillShow(notification:)),
+            name: NSNotification.Name.UIKeyboardWillShow, object: nil
+        )
 
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
+        
         if let userInfo = notification.userInfo {
             if let keyboard = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardRect = keyboard.cgRectValue
                 self.keyboardRect = keyboardRect
-                self.delegate?.customViewKeyboardWillShow(self.keyboardRect ,self)
+                
+                self.customViewKeyboardWillShow(self.keyboardRect)
             }
+        }
+    }
+    
+    func customViewKeyboardWillShow(_ keyboardRect: CGRect) {
+
+        if self.frame.maxY > self.keyboardRect.minY - self.navigationHeight{
+            self.keyboardOverlapCustomView = (self.frame.maxY - (self.keyboardRect.minY - self.navigationHeight))
+            UIView.animate(withDuration: 0.3,
+                           animations: {self.frame.origin.y -= self.keyboardOverlapCustomView},
+                           completion: nil)
+        }
+    }
+    
+    func customViewKeyboardWillHide(_ keyboardRect: CGRect) {
+        
+        if self.frame.maxY == self.keyboardRect.minY - self.navigationHeight {
+            UIView.animate(withDuration: 0.3,
+                           animations: {self.frame.origin.y += self.keyboardOverlapCustomView},
+                           completion: nil)
         }
     }
 }
