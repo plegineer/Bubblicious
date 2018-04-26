@@ -12,8 +12,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     private var animationCustomView: CustomView!
     private var customBackGroundView: CustomBackGroundView!
-    private var didWillMoveModalDisplayYPoint: CGFloat = 0
-    private var overlapModalDisplay: CGFloat = 0
+    private var moveDistanceCustomView: CGFloat = 0
+    private var overlapAnimationCustomView: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,19 +41,19 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
         
-        let modalDisplaySize = CGSize(width: 300, height: 250)
-        let modalDisplayXPoint = (self.customBackGroundView.frame.size.width - modalDisplaySize.width) / 2
-        let modalDisplayYPoint = self.customBackGroundView.frame.size.height
-        let modalDisplay = CustomView(frame: CGRect(x: modalDisplayXPoint, y: modalDisplayYPoint,
-                                                    width: modalDisplaySize.width, height: modalDisplaySize.height))
-        modalDisplay.layer.shadowColor = UIColor.black.cgColor
-        modalDisplay.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        modalDisplay.layer.shadowOpacity = 0.5
-        modalDisplay.layer.shadowRadius = 5
-        modalDisplay.delegate = self
-        self.animationCustomView = modalDisplay
-        self.didWillMoveModalDisplayYPoint = (self.customBackGroundView.frame.size.height + modalDisplaySize.height) / 2 + (self.navigationController?.navigationBar.frame.size.height)!
-        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.didWillMoveModalDisplayYPoint}, completion: nil)
+        let animationCustomViewSize = CGSize(width: 300, height: 250)
+        let animationCustomViewXPoint = (self.customBackGroundView.frame.size.width - animationCustomViewSize.width) / 2
+        let animationCustomViewYPoint = self.customBackGroundView.frame.size.height
+        let animationCustomView = CustomView(frame: CGRect(x: animationCustomViewXPoint, y: animationCustomViewYPoint,
+                                                    width: animationCustomViewSize.width, height: animationCustomViewSize.height))
+        animationCustomView.layer.shadowColor = UIColor.black.cgColor
+        animationCustomView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        animationCustomView.layer.shadowOpacity = 0.5
+        animationCustomView.layer.shadowRadius = 5
+        animationCustomView.delegate = self
+        self.animationCustomView = animationCustomView
+        self.moveDistanceCustomView = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2 + (self.navigationController?.navigationBar.frame.size.height)!
+        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.moveDistanceCustomView}, completion: nil)
         self.view.addSubview(self.animationCustomView)
     }
     
@@ -61,7 +61,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
         UIView.animate(withDuration: 0.3, animations: {
-            self.animationCustomView.center.y += self.didWillMoveModalDisplayYPoint
+            self.animationCustomView.center.y += self.moveDistanceCustomView
         }, completion: { finished in
             self.animationCustomView.removeFromSuperview()
             self.customBackGroundView.removeFromSuperview()
@@ -70,27 +70,28 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     func customViewKeyboardWillShow(_ keyboardRect: CGRect , _ view: CustomView) {
         
-        self.overlapModalDisplay = (self.customBackGroundView.frame.size.height - self.animationCustomView.frame.origin.y) - (self.animationCustomView.frame.size.height + keyboardRect.height)
-        if overlapModalDisplay < 0 {
+        self.overlapAnimationCustomView = (self.customBackGroundView.frame.size.height - self.animationCustomView.frame.origin.y) - (self.animationCustomView.frame.size.height + keyboardRect.height)
+        if overlapAnimationCustomView < 0 {
             UIView.animate(withDuration: 0.3,
-                           animations: {self.animationCustomView.frame.origin.y -= abs(self.overlapModalDisplay)},
+                           animations: {self.animationCustomView.frame.origin.y -= abs(self.overlapAnimationCustomView)},
                            completion: nil)
         }
     }
     
     func customViewKeyboardWillHide(_ keyboardRect: CGRect , _ view: CustomView) {
         UIView.animate(withDuration: 0.3,
-                       animations: {self.animationCustomView.center.y += abs(self.overlapModalDisplay)},
+                       animations: {self.animationCustomView.center.y += abs(self.overlapAnimationCustomView)},
                        completion: nil)
     }
     
     // MARK: - CustomBackGroundViewDlegate
     func touchedCustomBackGroundView(_ view: CustomBackGroundView) {
-        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.center.y += self.didWillMoveModalDisplayYPoint}, completion: nil)
+        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.center.y += self.moveDistanceCustomView}, completion: nil)
         self.customBackGroundView.removeFromSuperview()
         self.animationCustomView.endEditing(true)
     }
     
+    // MARK: - Private Method
     private func addShowCustomViewButton() {
         
         let showCustomViewButtonSize = CGSize(width: 200, height: 30)
@@ -98,7 +99,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         let showCustomViewButtonYPoint = (self.view.frame.size.height - showCustomViewButtonSize.height) / 2 - (self.navigationController?.navigationBar.frame.size.height)!
         let showCustomViewButton = UIButton(frame: CGRect(x: showCustomViewButtonXPoint , y: showCustomViewButtonYPoint,
                                                           width: showCustomViewButtonSize.width, height: showCustomViewButtonSize.height))
-        
         showCustomViewButton.setTitle("カスタムビューを表示", for: .normal)
         showCustomViewButton.setTitleColor(UIColor.blue, for: .normal)
         showCustomViewButton.backgroundColor = UIColor.white
