@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomBackGroundViewDelegate: class {
-    func touchedCustomBackGroundView(_ view: CustomBackGroundView)
+    func customBackGroundViewTouched(_ view: CustomBackGroundView)
 }
 
 class CustomBackGroundView: UIView {
@@ -27,6 +27,6 @@ class CustomBackGroundView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        self.delegate?.touchedCustomBackGroundView(self)
+        self.delegate?.customBackGroundViewTouched(self)
     }
 }

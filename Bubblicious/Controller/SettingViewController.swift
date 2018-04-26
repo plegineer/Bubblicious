@@ -8,8 +8,11 @@
 
 import UIKit
 
+var nagigationBarHeight: CGFloat = 0
+
 class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate {
     
+    private var customView: CustomView!
     private var animationCustomView: CustomView!
     private var customBackGroundView: CustomBackGroundView!
     private var moveDistanceCustomView: CGFloat = 0
@@ -17,6 +20,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("親view",self.view.frame.size.height)
         
         self.title = "Setting"
         self.navigationController?.navigationBar.isTranslucent = false
@@ -24,6 +28,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
                                           target: self, action: #selector(logout))
         self.navigationItem.rightBarButtonItem = rightButton
         
+        self.addCustomView()
         self.addShowCustomViewButton()
     }
     
@@ -41,20 +46,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
         
-        let animationCustomViewSize = CGSize(width: 300, height: 250)
-        let animationCustomViewXPoint = (self.customBackGroundView.frame.size.width - animationCustomViewSize.width) / 2
-        let animationCustomViewYPoint = self.customBackGroundView.frame.size.height
-        let animationCustomView = CustomView(frame: CGRect(x: animationCustomViewXPoint, y: animationCustomViewYPoint,
-                                                    width: animationCustomViewSize.width, height: animationCustomViewSize.height))
-        animationCustomView.layer.shadowColor = UIColor.black.cgColor
-        animationCustomView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        animationCustomView.layer.shadowOpacity = 0.5
-        animationCustomView.layer.shadowRadius = 5
-        animationCustomView.delegate = self
-        self.animationCustomView = animationCustomView
-        self.moveDistanceCustomView = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2 + (self.navigationController?.navigationBar.frame.size.height)!
-        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.moveDistanceCustomView}, completion: nil)
-        self.view.addSubview(self.animationCustomView)
+        self.addAnimationCustomView()
     }
     
     // MARK: - CustomViewDelegate
@@ -68,27 +60,15 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         })
     }
     
-    func customViewKeyboardWillShow(_ keyboardRect: CGRect , _ view: CustomView) {
-        
-        self.overlapAnimationCustomView = (self.customBackGroundView.frame.size.height - self.animationCustomView.frame.origin.y) - (self.animationCustomView.frame.size.height + keyboardRect.height)
-        if overlapAnimationCustomView < 0 {
-            UIView.animate(withDuration: 0.3,
-                           animations: {self.animationCustomView.frame.origin.y -= abs(self.overlapAnimationCustomView)},
-                           completion: nil)
-        }
-    }
-    
-    func customViewKeyboardWillHide(_ keyboardRect: CGRect , _ view: CustomView) {
-        UIView.animate(withDuration: 0.3,
-                       animations: {self.animationCustomView.center.y += abs(self.overlapAnimationCustomView)},
-                       completion: nil)
-    }
-    
     // MARK: - CustomBackGroundViewDlegate
-    func touchedCustomBackGroundView(_ view: CustomBackGroundView) {
-        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.center.y += self.moveDistanceCustomView}, completion: nil)
-        self.customBackGroundView.removeFromSuperview()
-        self.animationCustomView.endEditing(true)
+    func customBackGroundViewTouched(_ view: CustomBackGroundView) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.animationCustomView.center.y += self.moveDistanceCustomView
+            
+        },completion: {
+            finished in self.customBackGroundView.removeFromSuperview()
+                        self.animationCustomView.removeFromSuperview()
+        })
     }
     
     // MARK: - Private Method
@@ -96,7 +76,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         let showCustomViewButtonSize = CGSize(width: 200, height: 30)
         let showCustomViewButtonXPoint = (self.view.frame.size.width - showCustomViewButtonSize.width) / 2
-        let showCustomViewButtonYPoint = (self.view.frame.size.height - showCustomViewButtonSize.height) / 2 - (self.navigationController?.navigationBar.frame.size.height)!
+        let showCustomViewButtonYPoint = (self.view.frame.size.height - showCustomViewButtonSize.height) / 2
+            - (self.navigationController?.navigationBar.frame.size.height)!
         let showCustomViewButton = UIButton(frame: CGRect(x: showCustomViewButtonXPoint , y: showCustomViewButtonYPoint,
                                                           width: showCustomViewButtonSize.width, height: showCustomViewButtonSize.height))
         showCustomViewButton.setTitle("カスタムビューを表示", for: .normal)
@@ -105,4 +86,39 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         showCustomViewButton.addTarget(self, action: #selector(TappedShowCustomViewButton(_:)), for: .touchUpInside)
         self.view.addSubview(showCustomViewButton)
     }
+    
+    private func addAnimationCustomView() {
+        
+        let animationCustomViewSize = CGSize(width: 300, height: 250)
+        let animationCustomViewXPoint = (self.customBackGroundView.frame.size.width - animationCustomViewSize.width) / 2
+        let animationCustomViewYPoint = self.customBackGroundView.frame.size.height
+        let animationCustomView = CustomView(frame: CGRect(x: animationCustomViewXPoint, y: animationCustomViewYPoint,
+                                                           width: animationCustomViewSize.width, height: animationCustomViewSize.height))
+        animationCustomView.layer.shadowColor = UIColor.black.cgColor
+        animationCustomView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        animationCustomView.layer.shadowOpacity = 0.5
+        animationCustomView.layer.shadowRadius = 5
+        animationCustomView.delegate = self
+        self.animationCustomView = animationCustomView
+        self.moveDistanceCustomView = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2
+            + (self.navigationController?.navigationBar.frame.size.height)!
+        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.moveDistanceCustomView}, completion: nil)
+        print("tapped",self.view.frame.size.height)
+        self.view.addSubview(self.animationCustomView)
+    }
+    
+    // MARK - TODO
+    
+//    private func addCustomView() {
+//
+//        let customViewSize = CGSize(width: 300, height: 250)
+//        let customViewXPoint = (self.view.frame.size.width - customViewSize.width) / 2
+//        let customViewYPoint: CGFloat = 0
+//        let customView = CustomView(frame: CGRect(x: customViewXPoint, y: customViewYPoint,
+//                                                           width: customViewSize.width, height: customViewSize.height))
+//        self.customView = customView
+//        self.moveDistanceCustomView = (self.view.frame.size.height + customViewSize.height) / 2
+//            + (self.navigationController?.navigationBar.frame.size.height)!
+//        self.view.addSubview(self.customView)
+//    }
 }
