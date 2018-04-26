@@ -9,9 +9,9 @@
 import UIKit
 
 protocol CustomViewDelegate: class {
-    func CustomViewTappedSaveButton(_ message: String , _ view: CustomView)
-    func CustomViewKeyboardWillShow(_ keyboardRect: CGRect, _ view: CustomView)
-    func CustomViewKeyboardWillHide(_ keyboardRect: CGRect, _ view: CustomView)
+    func customViewTappedSaveButton(_ message: String , _ view: CustomView)
+    func customViewKeyboardWillShow(_ keyboardRect: CGRect, _ view: CustomView)
+    func customViewKeyboardWillHide(_ keyboardRect: CGRect, _ view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -89,7 +89,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField2.resignFirstResponder()
-        self.delegate?.CustomViewKeyboardWillHide(self.keyboardRect, self)
+        self.delegate?.customViewKeyboardWillHide(self.keyboardRect, self)
         return true
     }
     
@@ -117,7 +117,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
         let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
-        self.delegate?.CustomViewTappedSaveButton(message, self)
+        self.delegate?.customViewTappedSaveButton(message, self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
@@ -216,7 +216,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
             if let keyboard = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardRect = keyboard.cgRectValue
                 self.keyboardRect = keyboardRect
-                self.delegate?.CustomViewKeyboardWillShow(self.keyboardRect ,self)
+                self.delegate?.customViewKeyboardWillShow(self.keyboardRect ,self)
             }
         }
     }
