@@ -17,6 +17,8 @@ class CustomBackGroundView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     
     required init?(coder aDecoder: NSCoder) {

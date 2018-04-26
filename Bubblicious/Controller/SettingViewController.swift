@@ -24,18 +24,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
                                           target: self, action: #selector(logout))
         self.navigationItem.rightBarButtonItem = rightButton
         
-        let showCustomViewButtonSize = CGSize(width: 100, height: 30)
-        let showCustomViewButtonXPoint = (self.view.frame.size.width - showCustomViewButtonSize.width) / 2
-        let showCustomViewButtonYPoint = (self.view.frame.size.height - showCustomViewButtonSize.height) / 2 - (self.navigationController?.navigationBar.frame.size.height)!
-        let showCustomViewButton = UIButton(frame: CGRect(x: showCustomViewButtonXPoint , y: showCustomViewButtonYPoint,
-                                                     width: showCustomViewButtonSize.width, height: showCustomViewButtonSize.height))
-        
-        showCustomViewButton.setTitle("カスタムビューを表示", for: .normal)
-        showCustomViewButton.setTitleColor(UIColor.blue, for: .normal)
-        showCustomViewButton.backgroundColor = UIColor.white
-        showCustomViewButton.addTarget(self, action: #selector(TappedShowCustomViewButton(_:)), for: .touchUpInside)
-        
-        self.view.addSubview(showCustomViewButton)
+        self.addShowCustomViewButton()
     }
     
     @objc func logout() {
@@ -48,7 +37,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     @objc func TappedShowCustomViewButton(_ sender: UIButton) {
         
         let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
-        customBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         customBackGroundView.delegate = self
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
@@ -101,5 +89,20 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.center.y += self.didWillMoveModalDisplayYPoint}, completion: nil)
         self.customBackGroundView.removeFromSuperview()
         self.animationCustomView.endEditing(true)
+    }
+    
+    private func addShowCustomViewButton() {
+        
+        let showCustomViewButtonSize = CGSize(width: 200, height: 30)
+        let showCustomViewButtonXPoint = (self.view.frame.size.width - showCustomViewButtonSize.width) / 2
+        let showCustomViewButtonYPoint = (self.view.frame.size.height - showCustomViewButtonSize.height) / 2 - (self.navigationController?.navigationBar.frame.size.height)!
+        let showCustomViewButton = UIButton(frame: CGRect(x: showCustomViewButtonXPoint , y: showCustomViewButtonYPoint,
+                                                          width: showCustomViewButtonSize.width, height: showCustomViewButtonSize.height))
+        
+        showCustomViewButton.setTitle("カスタムビューを表示", for: .normal)
+        showCustomViewButton.setTitleColor(UIColor.blue, for: .normal)
+        showCustomViewButton.backgroundColor = UIColor.white
+        showCustomViewButton.addTarget(self, action: #selector(TappedShowCustomViewButton(_:)), for: .touchUpInside)
+        self.view.addSubview(showCustomViewButton)
     }
 }

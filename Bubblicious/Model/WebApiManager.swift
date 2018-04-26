@@ -38,7 +38,7 @@ class WebApiManager {
         }
     }
     
-        func isAvailableAccessToken() -> Bool {
+    func isAvailableAccessToken() -> Bool {
         let accessToken = UserDefaults.standard.object(forKey: Const.Key.accessToken)
         return accessToken != nil
     }
