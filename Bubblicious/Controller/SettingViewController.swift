@@ -20,7 +20,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("親view",self.view.frame.size.height)
         
         self.title = "Setting"
         self.navigationController?.navigationBar.isTranslucent = false
@@ -51,13 +50,17 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     // MARK: - CustomViewDelegate
     func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
+        
         self.showAlert("保存完了", message: message)
-        UIView.animate(withDuration: 0.3, animations: {
-            self.animationCustomView.center.y += self.moveDistanceCustomView
-        }, completion: { finished in
-            self.animationCustomView.removeFromSuperview()
-            self.customBackGroundView.removeFromSuperview()
-        })
+        
+        if view == animationCustomView {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.animationCustomView.center.y += self.moveDistanceCustomView
+            }, completion: { finished in
+                self.animationCustomView.removeFromSuperview()
+                self.customBackGroundView.removeFromSuperview()
+            })
+        }
     }
     
     // MARK: - CustomBackGroundViewDlegate
@@ -103,22 +106,22 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.moveDistanceCustomView = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2
             + (self.navigationController?.navigationBar.frame.size.height)!
         UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.moveDistanceCustomView}, completion: nil)
-        print("tapped",self.view.frame.size.height)
         self.view.addSubview(self.animationCustomView)
     }
     
-    // MARK - TODO
+    // MARK: - TODO
     
-//    private func addCustomView() {
-//
-//        let customViewSize = CGSize(width: 300, height: 250)
-//        let customViewXPoint = (self.view.frame.size.width - customViewSize.width) / 2
-//        let customViewYPoint: CGFloat = 0
-//        let customView = CustomView(frame: CGRect(x: customViewXPoint, y: customViewYPoint,
-//                                                           width: customViewSize.width, height: customViewSize.height))
-//        self.customView = customView
-//        self.moveDistanceCustomView = (self.view.frame.size.height + customViewSize.height) / 2
-//            + (self.navigationController?.navigationBar.frame.size.height)!
-//        self.view.addSubview(self.customView)
-//    }
+    private func addCustomView() {
+
+        let customViewSize = CGSize(width: self.view.frame.width, height: 250)
+        let customViewXPoint = (self.view.frame.size.width - customViewSize.width) / 2
+        let customViewYPoint: CGFloat = 0
+        let customView = CustomView(frame: CGRect(x: customViewXPoint, y: customViewYPoint,
+                                                           width: customViewSize.width, height: customViewSize.height))
+        customView.delegate = self
+        self.customView = customView
+        self.moveDistanceCustomView = (self.view.frame.size.height + customViewSize.height) / 2
+            + (self.navigationController?.navigationBar.frame.size.height)!
+        self.view.addSubview(self.customView)
+    }
 }

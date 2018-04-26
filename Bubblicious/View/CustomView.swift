@@ -83,7 +83,10 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
 
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
-        self.customViewKeyboardWillHide(self.keyboardRect)
+        
+        if let keyboardRect = self.keyboardRect {
+            self.customViewKeyboardWillHide(keyboardRect)
+        }
     }
     
     // MARK: - UITextFieldDelegate
