@@ -115,6 +115,8 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     // MARK: - Action
     @objc func tappedButton(_ sender: UIButton) {
         
+        textField1.resignFirstResponder()
+        textField2.resignFirstResponder()
         let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
         self.delegate?.CustomViewTappedSaveButton(message, self)
     }
