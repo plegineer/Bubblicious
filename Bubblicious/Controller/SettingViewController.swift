@@ -75,13 +75,12 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         let showCustomViewButtonSize = CGSize(width: 200, height: 30)
         let showCustomViewButtonXPoint = (self.view.frame.size.width - showCustomViewButtonSize.width) / 2
-        let showCustomViewButtonYPoint = (self.view.frame.size.height - showCustomViewButtonSize.height) / 2
+        let showCustomViewButtonYPoint = 450
             - (self.navigationController?.navigationBar.frame.size.height)!
         let showCustomViewButton = UIButton(frame: CGRect(x: showCustomViewButtonXPoint , y: showCustomViewButtonYPoint,
                                                           width: showCustomViewButtonSize.width, height: showCustomViewButtonSize.height))
         showCustomViewButton.setTitle("カスタムビューを表示", for: .normal)
         showCustomViewButton.setTitleColor(UIColor.blue, for: .normal)
-        showCustomViewButton.backgroundColor = UIColor.white
         showCustomViewButton.addTarget(self, action: #selector(TappedShowCustomViewButton(_:)), for: .touchUpInside)
         self.view.addSubview(showCustomViewButton)
     }
@@ -108,15 +107,13 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     private func addCustomView() {
 
-        let customViewSize = CGSize(width: self.view.frame.width, height: 250)
+        let customViewSize = CGSize(width: 300, height: 250)
         let customViewXPoint = (self.view.frame.size.width - customViewSize.width) / 2
-        let customViewYPoint: CGFloat = 0
+        let customViewYPoint:CGFloat = 100
         let customView = CustomView(frame: CGRect(x: customViewXPoint, y: customViewYPoint,
                                                   width: customViewSize.width, height: customViewSize.height))
         customView.delegate = self
         self.customView = customView
-        self.animationCustomViewMoveDistance = (self.view.frame.size.height + customViewSize.height) / 2
-            + (self.navigationController?.navigationBar.frame.size.height)!
         self.view.addSubview(self.customView)
     }
 }
