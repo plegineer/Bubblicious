@@ -10,10 +10,13 @@ import UIKit
 
 class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate {
     
-    @IBOutlet var customView: CustomView!
+    @IBOutlet weak var defaultView: CustomView!
+    @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
+    @IBOutlet weak var showCustomViewButton: UIButton!
     
     private var animationCustomView: CustomView!
     private var customBackGroundView: CustomBackGroundView!
+    
     private var animationCustomViewMoveDistance: CGFloat = 0
 
     override func viewDidLoad() {
@@ -24,35 +27,43 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         let rightButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         self.navigationItem.rightBarButtonItem = rightButton
         
-        self.customView.delegate = self
+        self.defaultView.delegate = self
+        self.defaultBackGroundView.delegate = self
+        self.defaultBackGroundView.backgroundColor = UIColor.clear
     }
     
     @objc func logout() {
-        
         Util.clearAllSavedData()
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
     // MARK: - Action
-    @IBAction func pushedShowCustomButton(_ sender: Any) {
+    
+    @IBAction func pushedShowCustomViewButton(_ sender: Any) {
         let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
         customBackGroundView.delegate = self
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
         self.addAnimationCustomView()
-    }
-    
-    // MARK: - Touch Event
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        self.view.endEditing(true)
+        self.showCustomViewButton.isEnabled = false
     }
     
     // MARK: - CustomViewDelegate
+    
+    func customViewWillShowKeyboard(view: CustomView) {
+        if view == animationCustomView {
+            self.customBackGroundView.isUserInteractionEnabled = false
+        }
+    }
+    
+    func customViewWillHideKeyboard(view: CustomView) {
+        if view == animationCustomView {
+            self.customBackGroundView.isUserInteractionEnabled = true
+        }
+    }
+    
     func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
-        
         self.showAlert("保存完了", message: message)
         
         if view == animationCustomView {
@@ -61,21 +72,29 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
             }, completion: { _ in
                 self.animationCustomView.removeFromSuperview()
                 self.customBackGroundView.removeFromSuperview()
+                self.showCustomViewButton.isEnabled = true
             })
         }
     }
     
     // MARK: - CustomBackGroundViewDlegate
+    
     func customBackGroundViewTouched(_ view: CustomBackGroundView) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.animationCustomView.center.y += self.animationCustomViewMoveDistance
-        }, completion: { _ in
-            self.customBackGroundView.removeFromSuperview()
-            self.animationCustomView.removeFromSuperview()
-        })
+        self.view.endEditing(true)
+        
+        if view == self.customBackGroundView {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.animationCustomView.center.y += self.animationCustomViewMoveDistance
+            }, completion: { _ in
+                self.customBackGroundView.removeFromSuperview()
+                self.animationCustomView.removeFromSuperview()
+                self.showCustomViewButton.isEnabled = true
+            })
+        }
     }
 
     // MARK: - Private Method
+    
     private func addAnimationCustomView() {
         
         let animationCustomViewSize = CGSize(width: 300, height: 250)

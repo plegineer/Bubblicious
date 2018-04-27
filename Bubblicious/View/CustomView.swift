@@ -10,6 +10,8 @@ import UIKit
 
 protocol CustomViewDelegate: class {
     func customViewTappedSaveButton(_ message: String , _ view: CustomView)
+    func customViewWillShowKeyboard(view: CustomView)
+    func customViewWillHideKeyboard(view: CustomView)
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -130,17 +132,19 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.backgroundColor = .white
         self.createItems()
         self.addPickerView()
-        self.setTextFieldProperties()
+        self.setupNotification()
     }
     
     private func createItems() {
         self.titleLabel1 = createLabel("タイトル1")
         self.titleLabel2 = createLabel("タイトル2")
         self.titleLabel3 = createLabel("タイトル3")
-        self.textField1 = createTextField("hogehoge")
-        self.textField2 = createTextField("content")
         self.switchControl = createSwitchControl()
         self.saveButton = createButton("保存する")
+        
+        self.textField1 = createTextField("hogehoge")
+        self.textField2 = createTextField("content")
+        self.setTextFieldProperties()
     }
     
     private func createLabel(_ text: String) -> UILabel {
@@ -148,6 +152,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         let titleLabel = UILabel()
         titleLabel.text = text
         titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
         
         return titleLabel
     }
@@ -182,7 +187,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func addPickerView() {
-        
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -202,10 +206,23 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func setTextFieldProperties() {
-        
         textField2.delegate = self
         textField2.enablesReturnKeyAutomatically = true
         textField2.autocapitalizationType = .none
         textField2.autocorrectionType = .no
+    }
+    
+    private func setupNotification() {
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification?) {
+        self.delegate?.customViewWillShowKeyboard(view: self)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification?) {
+        self.delegate?.customViewWillHideKeyboard(view: self)
     }
 }
