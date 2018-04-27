@@ -24,6 +24,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
                                           target: self, action: #selector(logout))
         self.navigationItem.rightBarButtonItem = rightButton
         
+        self.animationCustomView = CustomView()
         self.addCustomView()
         self.addShowCustomViewButton()
     }
