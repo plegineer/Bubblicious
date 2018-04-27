@@ -35,15 +35,12 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        setupItems()
-        addPickerView()
-        setTextFieldProperties()
-        self.backgroundColor = .white
+        self.setupItems()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        self.setupItems()
     }
     
     // MARK: - UIView
@@ -139,8 +136,15 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - Private Method
+    
     private func setupItems() {
-        
+        self.backgroundColor = .white
+        self.createItems()
+        self.addPickerView()
+        self.setTextFieldProperties()
+    }
+    
+    private func createItems() {
         self.titleLabel1 = createLabel("タイトル1")
         self.titleLabel2 = createLabel("タイトル2")
         self.titleLabel3 = createLabel("タイトル3")
