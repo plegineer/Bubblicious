@@ -15,7 +15,9 @@ protocol CustomViewDelegate: class {
 }
 
 class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
+
+    weak var delegate: CustomViewDelegate?
+
     private var titleLabel1: UILabel!
     private var titleLabel2: UILabel!
     private var titleLabel3: UILabel!
@@ -29,8 +31,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     private let dataList = ["hogehoge", "fugafuga", "fobar"]
     
-    weak var delegate: CustomViewDelegate?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupItems()
@@ -41,7 +41,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.setupItems()
     }
     
-    // MARK: - UIView
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -50,44 +49,44 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
         self.titleLabel2.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize)
         self.titleLabel3.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize)
-        self.addSubview(titleLabel1)
-        self.addSubview(titleLabel2)
-        self.addSubview(titleLabel3)
         
         let textFieldSize = CGSize(width: 150, height: 30)
         let textFieldXPoint = self.frame.size.width - textFieldSize.width - labelXPoint
         self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
         self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
-        self.addSubview(textField1)
-        self.addSubview(textField2)
         
         let switchControlSize = switchControl.sizeThatFits(self.frame.size)
         let switchControlXPoint = textFieldXPoint + (textFieldSize.width / 2) - (switchControlSize.width / 2)
         self.switchControl.frame = CGRect(origin: CGPoint(x: switchControlXPoint, y: 130), size: switchControlSize)
-        self.addSubview(switchControl)
         
         let buttonSize = saveButton.sizeThatFits(self.frame.size)
         let buttonXPoint = (self.frame.width - buttonSize.width) / 2
         self.saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
-        self.addSubview(saveButton)
+        
+        self.addSubview(self.titleLabel1)
+        self.addSubview(self.titleLabel2)
+        self.addSubview(self.titleLabel3)
+        self.addSubview(self.textField1)
+        self.addSubview(self.textField2)
+        self.addSubview(self.switchControl)
+        self.addSubview(self.saveButton)
     }
 
-    // MARK: - Touch Event
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
     }
     
     // MARK: - UITextFieldDelegate
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField2.resignFirstResponder()
         return true
     }
     
     // MARK: - UIPickerViewDataSource
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -97,6 +96,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - UIPickerViewDelegate
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return dataList[row]
     }
@@ -106,8 +106,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - Action
-    @objc func tappedButton(_ sender: UIButton) {
-        
+    @objc func tappedSaveButton(_ sender: UIButton) {
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
         let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
@@ -118,8 +117,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         textField1.resignFirstResponder()
     }
     
-    @objc func switchControlTapped(_ sender: UISwitch) {
-        
+    @objc func tappedSwitchControl(_ sender: UISwitch) {
         if sender.isOn {
             switchText = "\(titleLabel3.text!) is On"
         } else {
@@ -131,7 +129,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     private func setupItems() {
         self.backgroundColor = .white
         self.createItems()
-        self.addPickerView()
         self.setupNotification()
     }
     
@@ -139,83 +136,72 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.titleLabel1 = createLabel("タイトル1")
         self.titleLabel2 = createLabel("タイトル2")
         self.titleLabel3 = createLabel("タイトル3")
-        self.switchControl = createSwitchControl()
         self.saveButton = createButton("保存する")
-        
-        self.textField1 = createTextField("hogehoge")
-        self.textField2 = createTextField("content")
-        self.setTextFieldProperties()
-    }
-    
-    private func createLabel(_ text: String) -> UILabel {
-        
-        let titleLabel = UILabel()
-        titleLabel.text = text
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
-        
-        return titleLabel
-    }
-    
-    private func createTextField(_ placeHolder: String) -> UITextField {
-        
-        let textField = UITextField()
-        textField.placeholder = placeHolder
-        textField.textAlignment = .center
-        textField.borderStyle = UITextBorderStyle.roundedRect
-        
-        return textField
-    }
-    
-    private func createSwitchControl() -> UISwitch {
-        
-        let switchControl = UISwitch()
-        switchControl.addTarget(self, action: #selector(switchControlTapped(_:)), for: UIControlEvents.valueChanged)
-        
-        return switchControl
-    }
-    
-    private func createButton(_ title: String) -> UIButton {
-        
-        let saveButton = UIButton()
-        saveButton.setTitle(title, for: UIControlState.normal)
-        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        saveButton.addTarget(self, action: #selector(tappedButton(_:)), for: .touchUpInside)
-        self.switchText = "\(titleLabel3.text!) is Off"
-        
-        return saveButton
-    }
-    
-    private func addPickerView() {
+        self.switchControl = createSwitchControl()
+
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-        
         let doneButton = UIBarButtonItem(
-            title: "Done", style: UIBarButtonItemStyle.done,
-            target: self, action: #selector(self.tappedPickerViewButton(_:))
+            title: "Done",
+            style: UIBarButtonItemStyle.done,
+            target: self,
+            action: #selector(self.tappedPickerViewButton(_:))
         )
         let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
         pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         pickerToolBar.backgroundColor = .groupTableViewBackground
         pickerToolBar.setItems([doneButton], animated: false)
         
-        self.textField1.inputView = pickerView
-        self.textField1.inputAccessoryView = pickerToolBar
-        self.textField1.text = dataList[0]
-    }
-    
-    private func setTextFieldProperties() {
+        let textField1 = createTextField("▼選択して下さい")
+        textField1.inputView = pickerView
+        textField1.inputAccessoryView = pickerToolBar
+        self.textField1 = textField1
+        
+        let textField2 = createTextField("入力して下さい")
         textField2.delegate = self
         textField2.enablesReturnKeyAutomatically = true
         textField2.autocapitalizationType = .none
         textField2.autocorrectionType = .no
+        self.textField2 = textField2
+    }
+    
+    private func createLabel(_ text: String) -> UILabel {
+        let titleLabel = UILabel()
+        titleLabel.text = text
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        return titleLabel
+    }
+    
+    private func createTextField(_ placeHolder: String) -> UITextField {
+        let textField = UITextField()
+        textField.placeholder = placeHolder
+        textField.textAlignment = .center
+        textField.borderStyle = UITextBorderStyle.roundedRect
+        return textField
+    }
+    
+    private func createSwitchControl() -> UISwitch {
+        let switchControl = UISwitch()
+        switchControl.addTarget(self, action: #selector(self.tappedSwitchControl(_:)), for: UIControlEvents.valueChanged)
+        return switchControl
+    }
+    
+    private func createButton(_ title: String) -> UIButton {
+        let saveButton = UIButton()
+        saveButton.setTitle(title, for: UIControlState.normal)
+        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        saveButton.addTarget(self, action: #selector(tappedSaveButton(_:)), for: .touchUpInside)
+        self.switchText = "\(titleLabel3.text!) is Off"
+        return saveButton
     }
     
     private func setupNotification() {
-        let notification = NotificationCenter.default
-        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
