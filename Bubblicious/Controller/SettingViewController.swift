@@ -8,15 +8,12 @@
 
 import UIKit
 
-var nagigationBarHeight: CGFloat = 0
-
 class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate {
     
     private var customView: CustomView!
     private var animationCustomView: CustomView!
     private var customBackGroundView: CustomBackGroundView!
-    private var moveDistanceCustomView: CGFloat = 0
-    private var overlapAnimationCustomView: CGFloat = 0
+    private var animationCustomViewMoveDistance: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +41,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         customBackGroundView.delegate = self
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
-        
         self.addAnimationCustomView()
     }
     
@@ -55,8 +51,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         if view == animationCustomView {
             UIView.animate(withDuration: 0.3, animations: {
-                self.animationCustomView.center.y += self.moveDistanceCustomView
-            }, completion: { finished in
+                self.animationCustomView.center.y += self.animationCustomViewMoveDistance
+            }, completion: { _ in
                 self.animationCustomView.removeFromSuperview()
                 self.customBackGroundView.removeFromSuperview()
             })
@@ -66,11 +62,10 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     // MARK: - CustomBackGroundViewDlegate
     func customBackGroundViewTouched(_ view: CustomBackGroundView) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.animationCustomView.center.y += self.moveDistanceCustomView
-            
-        },completion: {
-            finished in self.customBackGroundView.removeFromSuperview()
-                        self.animationCustomView.removeFromSuperview()
+            self.animationCustomView.center.y += self.animationCustomViewMoveDistance
+        }, completion: { _ in
+            self.customBackGroundView.removeFromSuperview()
+            self.animationCustomView.removeFromSuperview()
         })
     }
     
@@ -104,9 +99,9 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         animationCustomView.delegate = self
         self.animationCustomView = animationCustomView
-        self.moveDistanceCustomView = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2
+        self.animationCustomViewMoveDistance = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2
             + (self.navigationController?.navigationBar.frame.size.height)!
-        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.moveDistanceCustomView}, completion: nil)
+        UIView.animate(withDuration: 0.3, animations: {self.animationCustomView.frame.origin.y -= self.animationCustomViewMoveDistance}, completion: nil)
         self.view.addSubview(self.animationCustomView)
     }
     
@@ -119,7 +114,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
                                                   width: customViewSize.width, height: customViewSize.height))
         customView.delegate = self
         self.customView = customView
-        self.moveDistanceCustomView = (self.view.frame.size.height + customViewSize.height) / 2
+        self.animationCustomViewMoveDistance = (self.view.frame.size.height + customViewSize.height) / 2
             + (self.navigationController?.navigationBar.frame.size.height)!
         self.view.addSubview(self.customView)
     }
