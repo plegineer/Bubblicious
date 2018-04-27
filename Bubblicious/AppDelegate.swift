@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if WebApiManager.sharedManager.isAvailableAccessToken() {
+        if WebApiManager.shared.isAvailableAccessToken() {
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "tab") as! TabBarController
         } else {
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController

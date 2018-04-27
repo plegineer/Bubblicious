@@ -8,29 +8,98 @@
 
 import UIKit
 
-class SettingViewController: UITableViewController {
+class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate {
+    
+    @IBOutlet var customView: CustomView!
+    
+    private var animationCustomView: CustomView!
+    private var customBackGroundView: CustomBackGroundView!
+    private var animationCustomViewMoveDistance: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Setting"
         self.navigationController?.navigationBar.isTranslucent = false
-        let rightButton = UIBarButtonItem(title: "Logout", style: .plain,
-                                          target: self, action: #selector(logout))
-        
+        let rightButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         self.navigationItem.rightBarButtonItem = rightButton
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        self.customView.delegate = self
     }
     
     @objc func logout() {
         
         Util.clearAllSavedData()
-        
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
+    }
+    
+    // MARK: - Action
+    @IBAction func pushedShowCustomButton(_ sender: Any) {
+        let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
+        customBackGroundView.delegate = self
+        self.customBackGroundView = customBackGroundView
+        self.view.addSubview(self.customBackGroundView)
+        self.addAnimationCustomView()
+    }
+    
+    // MARK: - Touch Event
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
+    }
+    
+    // MARK: - CustomViewDelegate
+    func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
+        
+        self.showAlert("保存完了", message: message)
+        
+        if view == animationCustomView {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.animationCustomView.center.y += self.animationCustomViewMoveDistance
+            }, completion: { _ in
+                self.animationCustomView.removeFromSuperview()
+                self.customBackGroundView.removeFromSuperview()
+            })
+        }
+    }
+    
+    // MARK: - CustomBackGroundViewDlegate
+    func customBackGroundViewTouched(_ view: CustomBackGroundView) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.animationCustomView.center.y += self.animationCustomViewMoveDistance
+        }, completion: { _ in
+            self.customBackGroundView.removeFromSuperview()
+            self.animationCustomView.removeFromSuperview()
+        })
+    }
+
+    // MARK: - Private Method
+    private func addAnimationCustomView() {
+        
+        let animationCustomViewSize = CGSize(width: 300, height: 250)
+        let animationCustomViewXPoint = (self.customBackGroundView.frame.size.width - animationCustomViewSize.width) / 2
+        let animationCustomViewYPoint = self.customBackGroundView.frame.size.height
+        let animationCustomView = CustomView(frame: CGRect(
+            x: animationCustomViewXPoint,
+            y: animationCustomViewYPoint,
+            width: animationCustomViewSize.width,
+            height: animationCustomViewSize.height)
+        )
+        animationCustomView.layer.shadowColor = UIColor.black.cgColor
+        animationCustomView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        animationCustomView.layer.shadowOpacity = 0.5
+        animationCustomView.layer.shadowRadius = 5
+        
+        animationCustomView.delegate = self
+        self.animationCustomView = animationCustomView
+        self.animationCustomViewMoveDistance = (self.customBackGroundView.frame.size.height / 2) + self.animationCustomView.frame.size.height
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.animationCustomView.frame.origin.y -= self.animationCustomViewMoveDistance
+        }, completion: nil)
+        
+        self.view.addSubview(self.animationCustomView)
     }
 }

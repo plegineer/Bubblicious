@@ -28,32 +28,23 @@ class UserModel {
         let urlString = isLogined ? Const.urlSuccess : Const.urlError
         let url = URL(string: urlString)
         
-        WebApiManager.sharedManager.post(params: params, url: url!, callback: {(json, error) in
+        WebApiManager.shared.post(params: params, url: url!, callback: {(json, error) in
+            
             if let error = error {
-                // ログインエラーの場合
-                Log.d("Error\(error)")
                 callback(error)
                 return
             }
             
-            if let json = json {
-                if isLogined {
-                    // ログインに成功している場合
-                    self.loginResult = LoginResult(json: json["result"])
-                    callback(nil)
-                } else {
-                    // ログインに失敗している場合
-                    if let errorObject = json["error"].dictionary {
-                        if let code = errorObject["code"], let msg = errorObject["message"] {
-                            let error = NSError(
-                                domain: Const.Api.Domain, code: code.intValue,
-                                userInfo: [NSLocalizedFailureReasonErrorKey: msg.stringValue]
-                            )
-                            callback(error)
-                        }
-                    }
-                }
+            guard let json = json else {
+                callback(NSError(
+                    domain: Const.Api.Domain, code: -90000,
+                    userInfo: [NSLocalizedFailureReasonErrorKey: "データ取得に失敗しました"]
+                ))
+                return
             }
+            
+            self.loginResult = LoginResult(json: json["result"])
+            callback(nil)
         })
     }
 }
