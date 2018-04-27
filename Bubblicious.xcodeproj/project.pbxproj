@@ -10,6 +10,9 @@
 		3838F170199B5A56FD747EC8 /* Pods_Bubblicious.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */; };
 		550C156D8DB0009DF220051E /* Pods_BubbliciousUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E57788E6C00DD652E192CE8 /* Pods_BubbliciousUITests.framework */; };
 		910460E81CE19C6741261481 /* Pods_BubbliciousTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */; };
+		D22C30D920933D2700A7659D /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C30D820933D2700A7659D /* PickerViewController.swift */; };
+		D22C30DB20933DF300A7659D /* sample_picker_json.js in Resources */ = {isa = PBXBuildFile; fileRef = D22C30DA20933DF300A7659D /* sample_picker_json.js */; };
+		D22C30DD2093410300A7659D /* pickerJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C30DC2093410300A7659D /* pickerJson.swift */; };
 		D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */; };
 		D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */; };
 		D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D251A1642086F1DC00DFC4F6 /* Main.storyboard */; };
@@ -56,6 +59,9 @@
 		79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BubbliciousTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E57788E6C00DD652E192CE8 /* Pods_BubbliciousUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BubbliciousUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC49250A5A255F87CEB676AA /* Pods-Bubblicious.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubblicious.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious.debug.xcconfig"; sourceTree = "<group>"; };
+		D22C30D820933D2700A7659D /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		D22C30DA20933DF300A7659D /* sample_picker_json.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sample_picker_json.js; sourceTree = "<group>"; };
+		D22C30DC2093410300A7659D /* pickerJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pickerJson.swift; sourceTree = "<group>"; };
 		D251A15B2086F1DC00DFC4F6 /* Bubblicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bubblicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */,
+				D22C30DA20933DF300A7659D /* sample_picker_json.js */,
 				D261336D208F1AE100598509 /* View */,
 				D29309FF20898C8B00C6663F /* Model */,
 				D2930A0020898CA400C6663F /* Controller */,
@@ -196,6 +203,7 @@
 				D2FCC6DD2089C557001DA0B4 /* Log.swift */,
 				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
 				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
+				D22C30DC2093410300A7659D /* pickerJson.swift */,
 				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
 			);
 			path = Model;
@@ -205,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				D251A19C208881B100DFC4F6 /* SettingViewController.swift */,
+				D22C30D820933D2700A7659D /* PickerViewController.swift */,
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
@@ -346,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22C30DB20933DF300A7659D /* sample_picker_json.js in Resources */,
 				D251A16B2086F1DC00DFC4F6 /* LaunchScreen.storyboard in Resources */,
 				D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */,
 				D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */,
@@ -525,10 +535,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22C30D920933D2700A7659D /* PickerViewController.swift in Sources */,
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
 				D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */,
 				D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */,
 				D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */,
+				D22C30DD2093410300A7659D /* pickerJson.swift in Sources */,
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
 				D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
