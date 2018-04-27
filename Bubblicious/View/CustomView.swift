@@ -27,10 +27,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     private let dataList = ["hogehoge", "fugafuga", "fobar"]
     
-    private var keyboardRect: CGRect!
-    private var overlapKeyboardFrame: CGFloat = 0
-    private let navigationBarHeight: CGFloat = 64.0
-    
     weak var delegate: CustomViewDelegate?
     
     override init(frame: CGRect) {
@@ -80,17 +76,12 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
 
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
-        
-        if let _ = self.keyboardRect {
-            self.shiftDownIfKeyboardOverlapped()
-        }
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField2.resignFirstResponder()
-        self.shiftDownIfKeyboardOverlapped()
         return true
     }
     
@@ -123,7 +114,6 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
         textField1.resignFirstResponder()
-        self.shiftDownIfKeyboardOverlapped()
     }
     
     @objc func switchControlTapped(_ sender: UISwitch) {
@@ -217,43 +207,5 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         textField2.enablesReturnKeyAutomatically = true
         textField2.autocapitalizationType = .none
         textField2.autocorrectionType = .no
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.keyboardWillShow(notification:)),
-            name: NSNotification.Name.UIKeyboardWillShow, object: nil
-        )
-
-    }
-    
-    @objc func keyboardWillShow(notification:NSNotification) {
-        
-        if let userInfo = notification.userInfo {
-            if let keyboard = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardRect = keyboard.cgRectValue
-                self.keyboardRect = keyboardRect
-                
-                self.shiftUpIfKeyboardOverlap()
-            }
-        }
-    }
-    
-    private func shiftUpIfKeyboardOverlap() {
-
-        if self.frame.maxY > self.keyboardRect.minY - self.navigationBarHeight{
-            self.overlapKeyboardFrame = (self.frame.maxY - (self.keyboardRect.minY - self.navigationBarHeight))
-            UIView.animate(withDuration: 0.3,
-                           animations: {self.frame.origin.y -= self.overlapKeyboardFrame},
-                           completion: nil)
-        }
-    }
-    
-    private func shiftDownIfKeyboardOverlapped() {
-        
-        if self.frame.maxY == self.keyboardRect.minY - self.navigationBarHeight {
-            UIView.animate(withDuration: 0.3,
-                           animations: {self.frame.origin.y += self.overlapKeyboardFrame},
-                           completion: nil)
-        }
     }
 }

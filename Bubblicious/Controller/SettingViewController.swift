@@ -43,6 +43,13 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.addAnimationCustomView()
     }
     
+    // MARK: - Touch Event
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
+    }
+    
     // MARK: - CustomViewDelegate
     func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
         
@@ -87,7 +94,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         animationCustomView.delegate = self
         self.animationCustomView = animationCustomView
-        self.animationCustomViewMoveDistance = (self.customBackGroundView.frame.size.height + animationCustomViewSize.height) / 2
+        self.animationCustomViewMoveDistance = (self.customBackGroundView.frame.size.height / 2) + self.animationCustomView.frame.size.height
         
         UIView.animate(withDuration: 0.3, animations: {
             self.animationCustomView.frame.origin.y -= self.animationCustomViewMoveDistance
