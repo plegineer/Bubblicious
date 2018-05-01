@@ -105,7 +105,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     // MARK: - pickerViewDelegate
     
-    func picerViewWillShowKeyboard(view: PickerView) {
+    func pickerViewWillShowKeyboard(view: PickerView) {
         if view == animationCustomView {
             self.customBackGroundView.isUserInteractionEnabled = false
         }
@@ -118,7 +118,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     }
     
     func pickerViewTappedSaveButton(_ message: String, _ view: PickerView) {
-        print("pickerViewDelegate")
         self.showAlert("保存完了", message: message)
         if view == animationPickerView {
             UIView.animate(withDuration: 0.3, animations: {

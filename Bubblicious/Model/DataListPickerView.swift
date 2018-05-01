@@ -22,29 +22,37 @@ class DataListPickerView {
     
     private func setProperties(json: JSON) {
         
-        let keys = [String]((json.dictionaryObject?.keys)!)
-        let contentsCount: Int = keys.count
-        for i in 0 ..< contentsCount {
-            let arrayValue = keys[i]
-            self.contentsDataList.append(arrayValue)
+        if let dictionary = json.dictionaryObject {
+            let keyString = [String](dictionary.keys)
+            let contentsCount: Int = keyString.count
+            for i in 0 ..< contentsCount {
+                let arrayValue = keyString[i]
+                self.contentsDataList.append(arrayValue)
+            }
         }
         
-        let content1Count: Int = (json[self.contentsDataList[0]].array?.count)!
-        for i in 0 ..< content1Count {
-            let arrayValue = json[self.contentsDataList[0]].array![i].string
-            self.content1DataList.append(arrayValue!)
+        if let content1 = json[self.contentsDataList[0]].array {
+            let content1Count = content1.count
+            for i in 0 ..< content1Count {
+                let arrayValue = content1[i].string
+                self.content1DataList.append(arrayValue!)
+            }
         }
         
-        let content2Count: Int = (json[self.contentsDataList[1]].array?.count)!
-        for i in 0 ..< content2Count {
-            let arrayValue = json[self.contentsDataList[1]].array![i].string
-            self.content2DataList.append(arrayValue!)
+        if let content2 = json[self.contentsDataList[1]].array {
+            let content2Count = content2.count
+            for i in 0 ..< content2Count {
+                let arrayValue = content2[i].string
+                self.content2DataList.append(arrayValue!)
+            }
         }
         
-        let content3Count: Int = (json[self.contentsDataList[2]].array?.count)!
-        for i in 0 ..< content3Count {
-            let arrayValue = json[self.contentsDataList[2]].array![i].string
-            self.content3DataList.append(arrayValue!)
+        if let content3 = json[self.contentsDataList[2]].array {
+            let content3Count = content3.count
+            for i in 0 ..< content3Count {
+                let arrayValue = content3[i].string
+                self.content3DataList.append(arrayValue!)
+            }
         }
     }
 }

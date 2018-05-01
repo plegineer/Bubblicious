@@ -11,7 +11,7 @@ import SwiftyJSON
 
 protocol PickerViewDelegate: class {
     func pickerViewTappedSaveButton(_ message: String, _ view: PickerView)
-    func picerViewWillShowKeyboard(view: PickerView)
+    func pickerViewWillShowKeyboard(view: PickerView)
     func pickerViewWillHideKeyboard(view: PickerView)
 }
 
@@ -19,7 +19,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     weak var delegate: PickerViewDelegate?
     
-    private(set) var dataListPickerView: DataListPickerView?
+    private(set) var dataListPickerView: DataListPickerView!
     
     private var textField1: UITextField!
     private var textField2: UITextField!
@@ -68,6 +68,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - UIPickerViewDataSource
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -81,6 +82,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - UIPickerViewDelegate
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {
             return dataList1[row]
@@ -98,6 +100,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - Action
+    
     @objc func tappedSaveButton(_ sender: UIButton) {
         print("tappedSave")
         textField1.resignFirstResponder()
@@ -116,10 +119,11 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - Private Method
+    
     private func setupItems() {
         self.backgroundColor = .white
         self.createItems()
-//        self.setupNotification()
+        self.setupNotification()
     }
     
     private func createItems() {
@@ -190,15 +194,34 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func jsonParse() {
-        let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "js")
-        do {
-            let jsonString = try String(contentsOfFile: filePath!)
-            let json: JSON = JSON(parseJSON: jsonString)
-            self.dataListPickerView = DataListPickerView(json: json)
-            self.dataList1 = (self.dataListPickerView?.contentsDataList)!
-            self.dataList2 = (self.dataListPickerView?.content1DataList)!
-        } catch {
-            // エラー処理
+        var jsonString: String!
+        if let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "s") {
+            do {
+                jsonString = try String(contentsOfFile: filePath)
+                let json: JSON = JSON(parseJSON: jsonString)
+                self.dataListPickerView = DataListPickerView(json: json)
+                self.dataList1 = self.dataListPickerView.contentsDataList
+                self.dataList2 = self.dataListPickerView.content1DataList
+            } catch {
+                Log.p("jsonファイルが見込めません")
+            }
+        } else {
+            Log.p("指定されたファイルが見つかりません")
         }
+    }
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification?) {
+        self.delegate?.pickerViewWillShowKeyboard(view: self)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification?) {
+        self.delegate?.pickerViewWillHideKeyboard(view: self)
     }
 }
