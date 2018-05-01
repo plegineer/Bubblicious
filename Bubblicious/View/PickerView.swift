@@ -22,7 +22,8 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     private var textField2: UITextField!
     
     private let dataLis = "sample_picker_json.js"
-    private let dataList = ["hogehoge", "fugafuga", "fobar"]
+    private let dataList1 = ["hogehoge", "fugafuga", "fobar"]
+    private let dataList2 = ["1-1", "1-2", "1-3"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,16 +59,28 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataList.count
+        if pickerView.tag == 1 {
+            return dataList1.count
+        } else {
+            return dataList2.count
+        }
     }
     
     // MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dataList[row]
+        if pickerView.tag == 1 {
+            return dataList1[row]
+        } else {
+            return dataList2[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,inComponent component: Int) {
-        self.textField1.text = dataList[row]
+        if pickerView.tag == 1 {
+            self.textField1.text = dataList1[row]
+        } else {
+            self.textField2.text = dataList2[row]
+        }
     }
     
     // MARK: - Private Method
@@ -86,9 +99,6 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     private func createItems() {
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        pickerView.dataSource = self
         let doneButton = UIBarButtonItem(
             title: "Done",
             style: UIBarButtonItemStyle.done,
@@ -100,17 +110,28 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         pickerToolBar.backgroundColor = .groupTableViewBackground
         pickerToolBar.setItems([doneButton], animated: false)
         
+        let pickerView1 = createPickerView()
+        pickerView1.tag = 1
+        
+        let pickerView2 = createPickerView()
+        pickerView2.tag = 2
+        
         let textField1 = createTextField("▼選択して下さい")
-        textField1.inputView = pickerView
+        textField1.inputView = pickerView1
         textField1.inputAccessoryView = pickerToolBar
         self.textField1 = textField1
         
-        let textField2 = createTextField("入力して下さい")
-        //        textField2.delegate = self
-        textField2.enablesReturnKeyAutomatically = true
-        textField2.autocapitalizationType = .none
-        textField2.autocorrectionType = .no
+        let textField2 = createTextField("▼選択して下さい")
+        textField2.inputView = pickerView2
+        textField2.inputAccessoryView = pickerToolBar
         self.textField2 = textField2
+    }
+    
+    private func createPickerView() -> UIPickerView {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        return pickerView
     }
     
     private func createTextField(_ placeHolder: String) -> UITextField {
