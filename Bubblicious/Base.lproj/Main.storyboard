@@ -192,12 +192,24 @@
                                             <action selector="pushedShowCustomViewButton:" destination="ISv-wt-TNW" eventType="touchUpInside" id="jOP-vu-ldA"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RN-bN-r7z">
+                                        <rect key="frame" x="111" y="350" width="153" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="gqD-C4-hkx"/>
+                                        </constraints>
+                                        <state key="normal" title="ピッカービューを表示"/>
+                                        <connections>
+                                            <action selector="pushedPickerViewButton:" destination="ISv-wt-TNW" eventType="touchUpInside" id="zWB-7U-oCS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Ebk-U7-AtZ" firstAttribute="centerX" secondItem="2Ad-Wh-GlW" secondAttribute="centerX" id="23F-Dm-2u4"/>
                                     <constraint firstItem="sO8-2x-Ppv" firstAttribute="centerX" secondItem="2Ad-Wh-GlW" secondAttribute="centerX" id="6nP-F8-bdZ"/>
                                     <constraint firstItem="Ebk-U7-AtZ" firstAttribute="top" secondItem="2Ad-Wh-GlW" secondAttribute="top" constant="50" id="7zL-QS-kuB"/>
+                                    <constraint firstItem="8RN-bN-r7z" firstAttribute="centerX" secondItem="2Ad-Wh-GlW" secondAttribute="centerX" id="FDu-bw-3h5"/>
+                                    <constraint firstItem="8RN-bN-r7z" firstAttribute="top" secondItem="sO8-2x-Ppv" secondAttribute="bottom" constant="20" id="Zzu-au-v8O"/>
                                     <constraint firstItem="sO8-2x-Ppv" firstAttribute="top" secondItem="Ebk-U7-AtZ" secondAttribute="bottom" constant="20" id="awE-4F-fbj"/>
                                 </constraints>
                             </view>
@@ -216,6 +228,7 @@
                         <outlet property="defaultBackGroundView" destination="2Ad-Wh-GlW" id="kSP-to-baa"/>
                         <outlet property="defaultView" destination="Ebk-U7-AtZ" id="1EI-9v-DaV"/>
                         <outlet property="showCustomViewButton" destination="sO8-2x-Ppv" id="ZL5-8T-u4c"/>
+                        <outlet property="showPickerviewButton" destination="8RN-bN-r7z" id="N5E-xH-nv1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cq1-0O-8I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
