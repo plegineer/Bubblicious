@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol PickerViewDelegate: class {
     func pickerViewTappedSaveButton(_ message: String, _ view: PickerView)
@@ -14,20 +15,24 @@ protocol PickerViewDelegate: class {
     func pickerViewWillHideKeyboard(view: PickerView)
 }
 
-class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
+class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     weak var delegate: PickerViewDelegate?
+    
+    private(set) var dataListPickerView: DataListPickerView?
     
     private var textField1: UITextField!
     private var textField2: UITextField!
     
-    private let dataLis = "sample_picker_json.js"
-    private let dataList1 = ["hogehoge", "fugafuga", "fobar"]
-    private let dataList2 = ["1-1", "1-2", "1-3"]
+    private let dataList: String = "sample_picker_json.js"
+    private var dataList1: [String] = []
+    private var dataList2: [String] = []
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupItems()
+        self.jsonParse()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +54,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        self.textFieldShouldEndEditing(textField1)
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
     }
@@ -83,6 +89,14 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.isEditing == true {
+            textField2.text = ""
+            self.settingPickerView2()
+        }
+        return true
+    }
+    
     // MARK: - Private Method
     private func setupItems() {
         self.backgroundColor = .white
@@ -99,31 +113,16 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     private func createItems() {
-        let doneButton = UIBarButtonItem(
-            title: "Done",
-            style: UIBarButtonItemStyle.done,
-            target: self,
-            action: #selector(self.tappedPickerViewButton(_:))
-        )
-        let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
-        pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        pickerToolBar.backgroundColor = .groupTableViewBackground
-        pickerToolBar.setItems([doneButton], animated: false)
         
         let pickerView1 = createPickerView()
         pickerView1.tag = 1
         
-        let pickerView2 = createPickerView()
-        pickerView2.tag = 2
-        
         let textField1 = createTextField("▼選択して下さい")
         textField1.inputView = pickerView1
-        textField1.inputAccessoryView = pickerToolBar
+        textField1.inputAccessoryView = self.createPickerViewButtonItem()
         self.textField1 = textField1
         
         let textField2 = createTextField("▼選択して下さい")
-        textField2.inputView = pickerView2
-        textField2.inputAccessoryView = pickerToolBar
         self.textField2 = textField2
     }
     
@@ -134,6 +133,35 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         return pickerView
     }
     
+    private func createPickerViewButtonItem() -> UIToolbar {
+        let doneButton = UIBarButtonItem(
+            title: "Done",
+            style: UIBarButtonItemStyle.done,
+            target: self,
+            action: #selector(self.tappedPickerViewButton(_:))
+        )
+        let pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
+        pickerToolBar.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        pickerToolBar.backgroundColor = .groupTableViewBackground
+        pickerToolBar.setItems([doneButton], animated: false)
+        return pickerToolBar
+    }
+    
+    private func settingPickerView2() {
+        let pickerView2 = createPickerView()
+        pickerView2.tag = 2
+        textField2.inputView = pickerView2
+        textField2.inputAccessoryView = self.createPickerViewButtonItem()
+        
+        if textField1.text == self.dataListPickerView?.contentsDataList[0] {
+            self.dataList2 = (self.dataListPickerView?.content1DataList)!
+        } else if textField1.text == self.dataListPickerView?.contentsDataList[1] {
+            self.dataList2 = (self.dataListPickerView?.content2DataList)!
+        } else if textField1.text == self.dataListPickerView?.contentsDataList[2] {
+            self.dataList2 = (self.dataListPickerView?.content3DataList)!
+        }
+    }
+    
     private func createTextField(_ placeHolder: String) -> UITextField {
         let textField = UITextField()
         textField.placeholder = placeHolder
@@ -142,8 +170,32 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         return textField
     }
     
-    @objc func tappedPickerViewButton(_ sender: UIButton){
-        textField1.resignFirstResponder()
+    private func jsonParse() -> JSON {
+        
+        print("jsonParse start")
+        let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "js")
+        
+        do{
+            let jsonStr = try String(contentsOfFile: filePath!)
+            let json: JSON = JSON.parse(jsonStr)
+
+            print(json)
+            
+            self.dataListPickerView = DataListPickerView(json: json)
+            
+            self.dataList1 = (self.dataListPickerView?.contentsDataList)!
+            self.dataList2 = (self.dataListPickerView?.content1DataList)!
+            
+            return json
+        } catch {
+            return nil
+        }
     }
     
+    @objc func tappedPickerViewButton(_ sender: UIButton){
+        
+        self.textFieldShouldEndEditing(textField1)
+        textField1.resignFirstResponder()
+        textField2.resignFirstResponder()
+    }
 }
