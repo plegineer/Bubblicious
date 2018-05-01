@@ -11,7 +11,7 @@ import SwiftyJSON
 
 protocol PickerViewDelegate: class {
     func pickerViewTappedSaveButton(_ message: String, _ view: PickerView)
-    func pickerViewWillShowKeyboard(view: PickerView)
+    func picerViewWillShowKeyboard(view: PickerView)
     func pickerViewWillHideKeyboard(view: PickerView)
 }
 
@@ -23,11 +23,11 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     private var textField1: UITextField!
     private var textField2: UITextField!
+    private var saveButton: UIButton!
     
     private let dataList: String = "sample_picker_json.js"
     private var dataList1: [String] = []
     private var dataList2: [String] = []
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,13 +48,21 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
         self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
         
+        let buttonSize = saveButton.sizeThatFits(self.frame.size)
+        let buttonXPoint = (self.frame.width - buttonSize.width) / 2
+        self.saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
+        
         self.addSubview(self.textField1)
         self.addSubview(self.textField2)
+        self.addSubview(self.saveButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        self.textFieldShouldEndEditing(textField1)
+        if textField1.isEditing == true {
+            textField2.text = ""
+            self.settingPickerView2()
+        }
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
     }
@@ -89,30 +97,33 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         }
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.isEditing == true {
-            textField2.text = ""
-            self.settingPickerView2()
-        }
-        return true
-    }
-    
-    // MARK: - Private Method
-    private func setupItems() {
-        self.backgroundColor = .white
-        self.createItems()
-        //        self.setupNotification()
-    }
-    
     // MARK: - Action
     @objc func tappedSaveButton(_ sender: UIButton) {
+        print("tappedSave")
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
         let message = "\(textField1.text!)\n\(textField2.text!)\n"
         self.delegate?.pickerViewTappedSaveButton(message, self)
     }
     
+    @objc func tappedPickerViewButton(_ sender: UIButton){
+        if textField1.isEditing == true {
+            textField2.text = ""
+            self.settingPickerView2()
+        }
+        textField1.resignFirstResponder()
+        textField2.resignFirstResponder()
+    }
+    
+    // MARK: - Private Method
+    private func setupItems() {
+        self.backgroundColor = .white
+        self.createItems()
+//        self.setupNotification()
+    }
+    
     private func createItems() {
+        self.saveButton = createButton("保存する")
         
         let pickerView1 = createPickerView()
         pickerView1.tag = 1
@@ -170,32 +181,24 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         return textField
     }
     
-    private func jsonParse() -> JSON {
-        
-        print("jsonParse start")
-        let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "js")
-        
-        do{
-            let jsonStr = try String(contentsOfFile: filePath!)
-            let json: JSON = JSON.parse(jsonStr)
-
-            print(json)
-            
-            self.dataListPickerView = DataListPickerView(json: json)
-            
-            self.dataList1 = (self.dataListPickerView?.contentsDataList)!
-            self.dataList2 = (self.dataListPickerView?.content1DataList)!
-            
-            return json
-        } catch {
-            return nil
-        }
+    private func createButton(_ title: String) -> UIButton {
+        let saveButton = UIButton()
+        saveButton.setTitle(title, for: UIControlState.normal)
+        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        saveButton.addTarget(self, action: #selector(tappedSaveButton(_:)), for: .touchUpInside)
+        return saveButton
     }
     
-    @objc func tappedPickerViewButton(_ sender: UIButton){
-        
-        self.textFieldShouldEndEditing(textField1)
-        textField1.resignFirstResponder()
-        textField2.resignFirstResponder()
+    private func jsonParse() {
+        let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "js")
+        do {
+            let jsonString = try String(contentsOfFile: filePath!)
+            let json: JSON = JSON(parseJSON: jsonString)
+            self.dataListPickerView = DataListPickerView(json: json)
+            self.dataList1 = (self.dataListPickerView?.contentsDataList)!
+            self.dataList2 = (self.dataListPickerView?.content1DataList)!
+        } catch {
+            // エラー処理
+        }
     }
 }
