@@ -14,7 +14,7 @@ protocol SubFunctionListViewControllerDelegate: class {
     func subFunctionListViewController(didFinished view: SubFunctionListViewController)
 }
 
-class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate {
+class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate, UploadPictureViewControllerDelegate {
     
     weak var delegate: SubFunctionListViewControllerDelegate?
     
@@ -50,7 +50,10 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
+        
+        if indexPath.row == 0 {
+            tappedCellToUploadPicture()
+        } else if indexPath.row == 1 {
             callTell()
         } else if indexPath.row == 2 {
             requestLocation()
@@ -109,9 +112,23 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         activityIndicatorView.stopAnimating()
         self.loadingLocationBackGroundView.removeFromSuperview()
     }
+    
+    // MARK: - UploadPictureViewControllerDelegate
+    
+    func UploadPictureViewController(didFinished view: UploadPictureViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     @objc func pushedCloseButton() {
         self.delegate?.subFunctionListViewController(didFinished: self)
+    }
+    
+    private func tappedCellToUploadPicture() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyBoard.instantiateViewController(withIdentifier: "uploadPicture") as! UploadPictureViewController
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        self.navigationController?.present(nav, animated: true, completion: nil)
     }
     
     // MARK: - Private Method
