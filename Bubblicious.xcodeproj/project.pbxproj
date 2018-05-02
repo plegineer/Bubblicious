@@ -192,10 +192,10 @@
 		D261336D208F1AE100598509 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6D344482099888900E95804 /* CustomBaseView.swift */,
 				D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */,
 				D261B8EC209804D400A4FBA9 /* TwoPickersCustomView.swift */,
 				D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */,
-				F6D344482099888900E95804 /* CustomBaseView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
