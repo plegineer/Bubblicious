@@ -114,7 +114,7 @@ extension OtherViewController: CustomBaseViewDelegate {
         }
     }
     
-    func customBaseViewWillShowKeyboard(view: CustomBaseView) {
+    func customBaseViewWillShowKeyboard(_ view: CustomBaseView) {
         if view == defaultView {
             self.toggleButtons(to: false)
         } else {
@@ -122,7 +122,7 @@ extension OtherViewController: CustomBaseViewDelegate {
         }
     }
     
-    func customBaseViewWillHideKeyboard(view: CustomBaseView) {
+    func customBaseViewWillHideKeyboard(_ view: CustomBaseView) {
         if view == defaultView {
             self.toggleButtons(to: true)
         } else {

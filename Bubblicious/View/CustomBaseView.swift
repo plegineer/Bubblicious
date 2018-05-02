@@ -10,8 +10,8 @@ import UIKit
 
 protocol CustomBaseViewDelegate: class {
     func customBaseViewTappedSaveButton(_ message: String , _ view: CustomBaseView)
-    func customBaseViewWillShowKeyboard(view: CustomBaseView)
-    func customBaseViewWillHideKeyboard(view: CustomBaseView)
+    func customBaseViewWillShowKeyboard(_ view: CustomBaseView)
+    func customBaseViewWillHideKeyboard(_ view: CustomBaseView)
 }
 
 class CustomBaseView: UIView {
@@ -56,11 +56,11 @@ class CustomBaseView: UIView {
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
-        self.delegate?.customBaseViewWillShowKeyboard(view: self)
+        self.delegate?.customBaseViewWillShowKeyboard(self)
     }
     
     @objc func keyboardWillHide(notification: Notification?) {
-        self.delegate?.customBaseViewWillHideKeyboard(view: self)
+        self.delegate?.customBaseViewWillHideKeyboard(self)
     }
 
 }
