@@ -18,8 +18,9 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     private var animationCustomView: CustomView!
     private var animationPickerView: PickerView!
     private var customBackGroundView: CustomBackGroundView!
-    private var activeAnimationCustomView = false
-    private var activeAnimationPickerView = false
+    
+    private var isDisplayedAnimationCutomView = false
+    private var isDisplayedAnimationPickerView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,23 +43,22 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     // MARK: - IBAction
     
     @IBAction func pushedShowCustomViewButton(_ sender: Any) {
-        let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
-        customBackGroundView.delegate = self
-        self.customBackGroundView = customBackGroundView
-        self.view.addSubview(self.customBackGroundView)
-        self.addAnimationCustomView()
-        self.activeAnimationCustomView = true
+        self.addCutomViewWithAnimation(isPicker: false)
+        
+        
+        
+        self.isDisplayedAnimationCutomView = true
         self.showCustomViewButton.isEnabled = false
         self.showPickerViewButton.isEnabled = false
     }
     
     @IBAction func pushedPickerViewButton(_ sender: Any) {
-        let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
-        customBackGroundView.delegate = self
-        self.customBackGroundView = customBackGroundView
-        self.view.addSubview(self.customBackGroundView)
-        self.addAnimationPickerView()
-        self.activeAnimationPickerView = true
+        self.addCutomViewWithAnimation(isPicker: true)
+        
+        
+        
+        
+        self.isDisplayedAnimationPickerView = true
         self.showCustomViewButton.isEnabled = false
         self.showPickerViewButton.isEnabled = false
     }
@@ -109,19 +109,11 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.view.endEditing(true)
         
         if view == self.customBackGroundView {
-            if self.activeAnimationCustomView == true {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-                }, completion: { _ in
-                    self.backToDefaultView()
-                })
-            } else if self.activeAnimationPickerView == true {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.animationPickerView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-                }, completion: { _ in
-                    self.backToDefaultView()
-                })
-            }
+            UIView.animate(withDuration: 0.3, animations: {
+                self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+            }, completion: { _ in
+                self.backToDefaultView()
+            })
         }
     }
     
@@ -158,56 +150,54 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     // MARK: - Private Method
     
+    private func addCustomBackGroundView() {
+        let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
+        customBackGroundView.delegate = self
+        self.view.addSubview(customBackGroundView)
+        self.customBackGroundView = customBackGroundView
+    }
+    
     private func addAnimationCustomView() {
-        let animationCustomViewSize = CGSize(width: 300, height: 250)
-        let animationCustomView = CustomView(frame: CGRect(
-            x:(self.view.frame.size.width - animationCustomViewSize.width)/2,
-            y: self.view.frame.maxY,
-            width: animationCustomViewSize.width,
-            height: animationCustomViewSize.height)
-        )
-        animationCustomView.layer.shadowColor = UIColor.black.cgColor
-        animationCustomView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        animationCustomView.layer.shadowOpacity = 0.5
-        animationCustomView.layer.shadowRadius = 5
-        animationCustomView.delegate = self
-        self.animationCustomView = animationCustomView
-        self.view.addSubview(self.animationCustomView)
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.animationCustomView.frame.origin.y -= (self.view.frame.maxY - self.defaultView.frame.minY)
-        }, completion: nil)
+        self.addCustomBackGroundView()
+        self.addCutomViewWithAnimation(isPicker: false)
     }
     
     private func addAnimationPickerView() {
-        let animationPickerViewSize = CGSize(width: 300, height: 250)
-        let animationPickerView = PickerView(frame: CGRect(
-            x:(self.view.frame.size.width - animationPickerViewSize.width)/2,
-            y: self.view.frame.maxY,
-            width: animationPickerViewSize.width,
-            height: animationPickerViewSize.height)
-        )
-        animationPickerView.layer.shadowColor = UIColor.black.cgColor
-        animationPickerView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        animationPickerView.layer.shadowOpacity = 0.5
-        animationPickerView.layer.shadowRadius = 5
-        animationPickerView.delegate = self
+        self.addCustomBackGroundView()
+        self.addCutomViewWithAnimation(isPicker: true)
+    }
+    
+    private func addCutomViewWithAnimation(isPicker: Bool) {
         
-        self.animationPickerView = animationPickerView
-        self.view.addSubview(self.animationPickerView)
+        self.addCustomBackGroundView()
+        
+        let size = CGSize(width: 300, height: 250)
+        let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
+        let view = isPicker ? PickerView(frame: frame) : CustomView(frame: frame)
+        
+        if let picker = view as? PickerView {
+            picker.delegate = self
+            self.animationPickerView = picker
+        }
+        if let custom = view as? CustomView {
+            custom.delegate = self
+            self.animationCustomView = custom
+        }
+        
+        self.view.addSubview(view)
         
         UIView.animate(withDuration: 0.3, animations: {
-            self.animationPickerView.frame.origin.y -= (self.view.frame.maxY - self.defaultView.frame.minY)
+            view.frame.origin.y -= (self.view.frame.maxY - self.defaultView.frame.minY)
         }, completion: nil)
     }
     
     private func backToDefaultView() {
-        if self.activeAnimationCustomView == true {
+        if self.isDisplayedAnimationCutomView == true {
             self.animationCustomView.removeFromSuperview()
-            self.activeAnimationCustomView = false
-        } else if self.activeAnimationPickerView == true {
+            self.isDisplayedAnimationCutomView = false
+        } else if self.isDisplayedAnimationPickerView == true {
             self.animationPickerView.removeFromSuperview()
-            self.activeAnimationPickerView = false
+            self.isDisplayedAnimationPickerView = false
         }
         self.customBackGroundView.removeFromSuperview()
         self.showCustomViewButton.isEnabled = true

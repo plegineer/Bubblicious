@@ -127,7 +127,12 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     // MARK: - Private Method
     private func setupItems() {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 5
         self.backgroundColor = .white
+        
         self.createItems()
         self.setupNotification()
     }
