@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class TwoPickersCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class TwoPickersCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDataSource {
     
     private var firstTextField: UITextField!
     private var firstPickerView: UIPickerView!

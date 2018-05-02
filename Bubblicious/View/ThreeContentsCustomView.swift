@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDataSource {
 
     private var topTitleLabel: UILabel!
     private var topTextField: UITextField!
@@ -17,8 +17,6 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
     private var bottomTitleLabel: UILabel!
     private var bottomSwitchControl: UISwitch!
     private var saveButton: UIButton!
-    
-    private var switchText: String!
     
     private let pickerContents = ["hogehoge", "fugafuga", "fobar"]
     
@@ -69,13 +67,6 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
         middleTextField.resignFirstResponder()
     }
 
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     // MARK: - UIPickerViewDataSource
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -100,20 +91,13 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
     @objc func tappedSaveButton(_ sender: UIButton) {
         topTextField.resignFirstResponder()
         middleTextField.resignFirstResponder()
-        let message = "\(topTitleLabel.text!):\(topTextField.text!)\n\(middleTitleLabel.text!):\(middleTextField.text!)\n\(switchText!)"
+        let switchText = self.bottomSwitchControl.isOn ? "On" : "Off"
+        let message = "\(topTitleLabel.text!): \(topTextField.text!)\n\(middleTitleLabel.text!): \(middleTextField.text!)\n \(bottomTitleLabel.text!): \(switchText)"
         self.delegate?.customBaseViewTappedSaveButton(message, self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
         topTextField.resignFirstResponder()
-    }
-    
-    @objc func tappedSwitchControl(_ sender: UISwitch) {
-        if sender.isOn {
-            switchText = "\(bottomTitleLabel.text!) is On"
-        } else {
-            switchText = "\(bottomTitleLabel.text!) is Off"
-        }
     }
     
     // MARK: - Private Method
@@ -136,7 +120,7 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
         self.middleTitleLabel = createLabel("タイトル2")
         self.bottomTitleLabel = createLabel("タイトル3")
         self.saveButton = createButton("保存する", selector: #selector(tappedSaveButton(_:)))
-        self.bottomSwitchControl = createSwitchControl(selector: #selector(self.tappedSwitchControl(_:)))
+        self.bottomSwitchControl = createSwitchControl(selector: nil)
 
         let pickerView = UIPickerView()
         pickerView.delegate = self

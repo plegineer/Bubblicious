@@ -17,7 +17,7 @@ protocol CustomBaseViewDelegate: class {
 class CustomBaseView: UIView {
     
     weak var delegate: CustomBaseViewDelegate?
-
+    
     func createLabel(_ text: String) -> UILabel {
         let titleLabel = UILabel()
         titleLabel.text = text
@@ -34,9 +34,11 @@ class CustomBaseView: UIView {
         return textField
     }
     
-    func createSwitchControl(selector: Selector) -> UISwitch {
+    func createSwitchControl(selector: Selector?) -> UISwitch {
         let bottomSwitchControl = UISwitch()
-        bottomSwitchControl.addTarget(self, action: selector, for: UIControlEvents.valueChanged)
+        if let selector = selector {
+            bottomSwitchControl.addTarget(self, action: selector, for: UIControlEvents.valueChanged)
+        }
         return bottomSwitchControl
     }
     
@@ -62,5 +64,11 @@ class CustomBaseView: UIView {
     @objc func keyboardWillHide(notification: Notification?) {
         self.delegate?.customBaseViewWillHideKeyboard(self)
     }
+}
 
+extension CustomBaseView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
