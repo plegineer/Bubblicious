@@ -22,7 +22,7 @@
 		D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */; };
 		D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1942087219400DFC4F6 /* WebApiManager.swift */; };
 		D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19A2088624B00DFC4F6 /* TabBarController.swift */; };
-		D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19C208881B100DFC4F6 /* SettingViewController.swift */; };
+		D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19C208881B100DFC4F6 /* OtherViewController.swift */; };
 		D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1A02088AB9600DFC4F6 /* Util.swift */; };
 		D261B8ED209804D400A4FBA9 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261B8EC209804D400A4FBA9 /* PickerView.swift */; };
 		D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */; };
@@ -78,7 +78,7 @@
 		D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D251A1942087219400DFC4F6 /* WebApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebApiManager.swift; sourceTree = "<group>"; };
 		D251A19A2088624B00DFC4F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D251A19C208881B100DFC4F6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		D251A19C208881B100DFC4F6 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		D251A1A02088AB9600DFC4F6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D261B8EC209804D400A4FBA9 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackGroundView.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		D2930A0020898CA400C6663F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D251A19C208881B100DFC4F6 /* SettingViewController.swift */,
+				D251A19C208881B100DFC4F6 /* OtherViewController.swift */,
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
@@ -544,7 +544,7 @@
 				D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */,
 				D22C30DD2093410300A7659D /* DataListPickerView.swift in Sources */,
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
-				D251A19D208881B100DFC4F6 /* SettingViewController.swift in Sources */,
+				D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				D261B8ED209804D400A4FBA9 /* PickerView.swift in Sources */,
 				D2835159208D780E00CEB67D /* CustomView.swift in Sources */,

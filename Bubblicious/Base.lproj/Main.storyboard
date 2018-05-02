@@ -126,11 +126,11 @@
             </objects>
             <point key="canvasLocation" x="1508" y="832"/>
         </scene>
-        <!--Setting-->
+        <!--Other-->
         <scene sceneID="s9x-wC-RA3">
             <objects>
                 <navigationController id="ejc-Aq-mYa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="first" id="tvf-9G-ykM"/>
+                    <tabBarItem key="tabBarItem" title="Other" image="first" id="tvf-9G-ykM"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="590-Cr-okS">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1508" y="1587"/>
         </scene>
-        <!--Setting View Controller-->
+        <!--その他-->
         <scene sceneID="mtI-BZ-gx4">
             <objects>
-                <viewController id="ISv-wt-TNW" customClass="SettingViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ISv-wt-TNW" customClass="OtherViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O5p-r8-Nfh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +216,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IYf-9X-CEj"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ze4-el-dIV"/>
+                    <navigationItem key="navigationItem" title="その他" id="Ze4-el-dIV"/>
                     <connections>
                         <outlet property="defaultBackGroundView" destination="2Ad-Wh-GlW" id="kSP-to-baa"/>
                         <outlet property="defaultView" destination="Ebk-U7-AtZ" id="1EI-9v-DaV"/>
