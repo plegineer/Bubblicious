@@ -22,6 +22,9 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     private var locationManager: CLLocationManager!
     private var activityIndicatorView: UIActivityIndicatorView!
     private let subFunctionListText = ["画像をアップロードする", "電話をかける", "GPSで現在位置を取得", "現在位置をMAPに表示", "メールを送る"]
+    
+    private var latitudeString: String?
+    private var longitudeString: String?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -52,6 +55,8 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         } else if indexPath.row == 2 {
             requestLocation()
             addLoadingLocationBackGroundView()
+        } else if indexPath.row == 3 {
+            openMap()
         } else if indexPath.row == 4 {
             openMail()
         }
@@ -88,7 +93,11 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let managerLocation = manager.location {
-            let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)" as String
+            
+            latitudeString = "\(managerLocation.coordinate.latitude)"
+            longitudeString = "\(managerLocation.coordinate.longitude)"
+            
+            let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
             self.showAlert("現在位置", message: locationInfomationString)
             activityIndicatorView.stopAnimating()
             self.loadingLocationBackGroundView.removeFromSuperview()
@@ -146,6 +155,7 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     
     private func addLoadingLocationBackGroundView() {
         let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.bounds)
+        loadingLocationBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.loadingLocationBackGroundView = loadingLocationBackGroundView
         
         let loadingLocationTextLabel = UILabel()
@@ -154,11 +164,24 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         loadingLocationTextLabel.frame.size = CGSize(width: 150, height: 30)
         loadingLocationTextLabel.center.x = self.view.center.x
         loadingLocationTextLabel.center.y = self.view.center.y + 30
-        loadingLocationTextLabel.textColor = UIColor.darkGray
+        loadingLocationTextLabel.textColor = UIColor.black.withAlphaComponent(0.6)
         
         self.navigationController?.view.addSubview(self.loadingLocationBackGroundView)
         self.loadingLocationBackGroundView.addSubview(loadingLocationTextLabel)
         addActivityIndicatorView()
         activityIndicatorView.startAnimating()
+    }
+    
+    private func openMap() {
+        if let latitudeString = latitudeString, let longitudeString = longitudeString {
+            let destinationAddress = latitudeString + "," + longitudeString
+            let urlString = "http://maps.apple.com/?daddr=\(destinationAddress)&dirflg=d"
+            
+            if let url = URL(string: urlString) {
+                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        } else {
+            showAlert("位置情報取得エラー", message: "先に位置情報を取得して下さい")
+        }
     }
 }
