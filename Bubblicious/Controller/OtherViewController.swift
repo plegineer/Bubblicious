@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OtherViewController: UIViewController, CustomBaseViewDelegate {
+class OtherViewController: UIViewController {
     
     @IBOutlet weak var defaultView: ThreeContentsCustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
@@ -25,10 +25,8 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate {
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
-        
         self.defaultView.delegate = self
         self.defaultBackGroundView.delegate = self
-        self.defaultBackGroundView.backgroundColor = UIColor.clear
     }
     
     @objc func logout() {
@@ -53,38 +51,6 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate {
         controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
         self.navigationController?.present(nav, animated: true, completion: nil)
-    }
-    
-    // MARK: - CustomBaseViewDelegate
-    
-    func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
-        self.showAlert("保存完了", message: message)
-        
-        if view == animationCustomView {
-            let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
-
-            UIView.animate(withDuration: 0.3, animations: {
-                targetCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
-        }
-    }
-    
-    func customBaseViewWillShowKeyboard(view: CustomBaseView) {
-        if view == defaultView {
-            self.toggleButtons(to: false)
-        } else {
-            self.customBackGroundView.isUserInteractionEnabled = false
-        }
-    }
-    
-    func customBaseViewWillHideKeyboard(view: CustomBaseView) {
-        if view == defaultView {
-            self.toggleButtons(to: true)
-        } else {
-            self.customBackGroundView.isUserInteractionEnabled = true
-        }
     }
     
     // MARK: - Private Method
@@ -130,6 +96,38 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate {
         self.showCustomViewButton.isEnabled = to
         self.showPickerViewButton.isEnabled = to
         self.jumpToSubFunctionButton.isEnabled = to
+    }
+}
+
+extension OtherViewController: CustomBaseViewDelegate {
+    func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
+        self.showAlert("保存完了", message: message)
+        
+        if view == animationCustomView {
+            let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                targetCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+            }, completion: { _ in
+                self.backToDefaultView()
+            })
+        }
+    }
+    
+    func customBaseViewWillShowKeyboard(view: CustomBaseView) {
+        if view == defaultView {
+            self.toggleButtons(to: false)
+        } else {
+            self.customBackGroundView.isUserInteractionEnabled = false
+        }
+    }
+    
+    func customBaseViewWillHideKeyboard(view: CustomBaseView) {
+        if view == defaultView {
+            self.toggleButtons(to: true)
+        } else {
+            self.customBackGroundView.isUserInteractionEnabled = true
+        }
     }
 }
 

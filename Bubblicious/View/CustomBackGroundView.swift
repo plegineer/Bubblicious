@@ -22,7 +22,7 @@ class CustomBackGroundView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.backgroundColor = UIColor.clear
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
