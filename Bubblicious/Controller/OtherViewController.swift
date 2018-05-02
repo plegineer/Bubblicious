@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OtherViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate, PickerViewDelegate, SubFunctionListViewControllerDelegate {
+class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDelegate, SubFunctionListViewControllerDelegate {
     
     @IBOutlet weak var defaultView: CustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
@@ -18,9 +18,6 @@ class OtherViewController: UIViewController, CustomViewDelegate, CustomBackGroun
     private var animationCustomView: CustomView!
     private var animationPickerView: PickerView!
     private var customBackGroundView: CustomBackGroundView!
-    
-    private var isDisplayedAnimationCutomView = false
-    private var isDisplayedAnimationPickerView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,21 +77,6 @@ class OtherViewController: UIViewController, CustomViewDelegate, CustomBackGroun
     func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
         self.showAlert("保存完了", message: message)
         if view == animationCustomView {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
-        }
-    }
-    
-    // MARK: - CustomBackGroundViewDlegate
-    
-    func customBackGroundViewTouched(_ view: CustomBackGroundView) {
-        
-        self.view.endEditing(true)
-        
-        if view == self.customBackGroundView {
             UIView.animate(withDuration: 0.3, animations: {
                 self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
             }, completion: { _ in
@@ -170,15 +152,23 @@ class OtherViewController: UIViewController, CustomViewDelegate, CustomBackGroun
     }
     
     private func backToDefaultView() {
-        if self.isDisplayedAnimationCutomView == true {
-            self.animationCustomView.removeFromSuperview()
-            self.isDisplayedAnimationCutomView = false
-        } else if self.isDisplayedAnimationPickerView == true {
-            self.animationPickerView.removeFromSuperview()
-            self.isDisplayedAnimationPickerView = false
-        }
         self.customBackGroundView.removeFromSuperview()
         self.showCustomViewButton.isEnabled = true
         self.showPickerViewButton.isEnabled = true
+    }
+}
+
+extension OtherViewController: CustomBackGroundViewDelegate {
+    func customBackGroundViewTouched(_ view: CustomBackGroundView) {
+        self.view.endEditing(true)
+        if view == self.customBackGroundView {
+            let displayingView = self.view.subviews.last is PickerView ? self.animationPickerView : self.animationCustomView
+            UIView.animate(withDuration: 0.3, animations: {
+                displayingView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+            }, completion: { _ in
+                displayingView.removeFromSuperview()
+                self.backToDefaultView()
+            })
+        }
     }
 }
