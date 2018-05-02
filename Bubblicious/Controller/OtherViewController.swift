@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewDelegate {
+class OtherViewController: UIViewController, CustomBaseViewDelegate {
     
     @IBOutlet weak var defaultView: ThreeContentsCustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
@@ -58,9 +58,12 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
     
     func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
         self.showAlert("保存完了", message: message)
+        
         if view == animationCustomView {
+            let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
+
             UIView.animate(withDuration: 0.3, animations: {
-                self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+                targetCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
             }, completion: { _ in
                 self.backToDefaultView()
             })
@@ -68,45 +71,18 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
     }
     
     func customBaseViewWillShowKeyboard(view: CustomBaseView) {
-        if view == animationCustomView {
+        if view == defaultView {
+            self.toggleButtons(to: false)
+        } else {
             self.customBackGroundView.isUserInteractionEnabled = false
-        } else if view == defaultView {
-            self.showCustomViewButton.isEnabled = false
-            self.showPickerViewButton.isEnabled = false
         }
     }
     
     func customBaseViewWillHideKeyboard(view: CustomBaseView) {
-        if view == animationCustomView {
+        if view == defaultView {
+            self.toggleButtons(to: true)
+        } else {
             self.customBackGroundView.isUserInteractionEnabled = true
-        } else if view == defaultView {
-            self.showCustomViewButton.isEnabled = true
-            self.showPickerViewButton.isEnabled = true
-        }
-    }
-    
-    // MARK: - pickerViewDelegate
-    
-    func pickerViewWillShowKeyboard(view: TwoPickersCustomView) {
-        if view == animationPickerView {
-            self.customBackGroundView.isUserInteractionEnabled = false
-        }
-    }
-
-    func pickerViewWillHideKeyboard(view: TwoPickersCustomView) {
-        if view == animationPickerView {
-            self.customBackGroundView.isUserInteractionEnabled = true
-        }
-    }
-
-    func pickerViewTappedSaveButton(_ message: String, _ view: TwoPickersCustomView) {
-        self.showAlert("保存完了", message: message)
-        if view == animationPickerView {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.animationPickerView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
         }
     }
     
@@ -121,8 +97,7 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
     
     private func addCutomViewWithAnimation(isPicker: Bool) {
         
-        self.showCustomViewButton.isEnabled = false
-        self.showPickerViewButton.isEnabled = false
+        self.toggleButtons(to: false)
         
         self.addCustomBackGroundView()
         
@@ -147,8 +122,12 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
     
     private func backToDefaultView() {
         self.customBackGroundView.removeFromSuperview()
-        self.showCustomViewButton.isEnabled = true
-        self.showPickerViewButton.isEnabled = true
+        toggleButtons(to: true)
+    }
+    
+    private func toggleButtons(to: Bool) {
+        self.showCustomViewButton.isEnabled = to
+        self.showPickerViewButton.isEnabled = to
     }
 }
 

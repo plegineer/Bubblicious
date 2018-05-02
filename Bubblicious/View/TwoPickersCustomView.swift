@@ -9,15 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-protocol PickerViewDelegate: class {
-    func pickerViewTappedSaveButton(_ message: String, _ view: TwoPickersCustomView)
-    func pickerViewWillShowKeyboard(view: TwoPickersCustomView)
-    func pickerViewWillHideKeyboard(view: TwoPickersCustomView)
-}
-
-class TwoPickersCustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
-    weak var delegate: PickerViewDelegate?
+class TwoPickersCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     private(set) var dataListPickerView: DataListPickerView!
     
@@ -110,7 +102,7 @@ class TwoPickersCustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource
             self.settingPickerView2()
         } else {
             let message = "\(textField1.text!)\n\(textField2.text!)\n"
-            self.delegate?.pickerViewTappedSaveButton(message, self)
+            self.delegate?.customBaseViewTappedSaveButton(message, self)
         }
     }
     
@@ -134,11 +126,11 @@ class TwoPickersCustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource
         self.backgroundColor = .white
         
         self.createItems()
-        self.setupNotification()
+        self.setNotifications()
     }
     
     private func createItems() {
-        saveButton = createButton("保存する")
+        saveButton = createButton("保存する", selector: #selector(tappedSaveButton(_:)))
         
         let pickerView1 = createPickerView()
         pickerView1.tag = 1
@@ -191,22 +183,6 @@ class TwoPickersCustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource
         self.listCheck = textField1.text!
     }
     
-    private func createTextField(_ placeHolder: String) -> UITextField {
-        let textField = UITextField()
-        textField.placeholder = placeHolder
-        textField.textAlignment = .center
-        textField.borderStyle = UITextBorderStyle.roundedRect
-        return textField
-    }
-    
-    private func createButton(_ title: String) -> UIButton {
-        let saveButton = UIButton()
-        saveButton.setTitle(title, for: UIControlState.normal)
-        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        saveButton.addTarget(self, action: #selector(tappedSaveButton(_:)), for: .touchUpInside)
-        return saveButton
-    }
-    
     private func jsonParse() {
         var jsonString: String!
         if let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "js") {
@@ -222,20 +198,5 @@ class TwoPickersCustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource
         } else {
             Log.p("指定されたファイルが見つかりません")
         }
-    }
-    
-    private func setupNotification() {
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: Notification?) {
-        self.delegate?.pickerViewWillShowKeyboard(view: self)
-    }
-    
-    @objc func keyboardWillHide(notification: Notification?) {
-        self.delegate?.pickerViewWillHideKeyboard(view: self)
     }
 }

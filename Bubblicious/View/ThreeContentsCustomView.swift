@@ -62,6 +62,12 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
         self.addSubview(self.bottomSwitchControl)
         self.addSubview(self.saveButton)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        topTextField.resignFirstResponder()
+        middleTextField.resignFirstResponder()
+    }
 
     // MARK: - UITextFieldDelegate
     
