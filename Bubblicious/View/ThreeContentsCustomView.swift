@@ -142,7 +142,7 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
         pickerView.delegate = self
         pickerView.dataSource = self
         let doneButton = UIBarButtonItem(
-            title: "Done",
+            title: "OK",
             style: UIBarButtonItemStyle.done,
             target: self,
             action: #selector(self.tappedPickerViewButton(_:))

@@ -103,7 +103,7 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate {
         
         let size = CGSize(width: 300, height: 250)
         let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
-        let view = isPicker ? TwoPickersCustomView(frame: frame) : ThreeContentsCustomView(frame: frame, withShadow: true)
+        let view = isPicker ? TwoPickersCustomView(frame: frame, withShadow: true) : ThreeContentsCustomView(frame: frame, withShadow: true)
         self.view.addSubview(view)
         
         if let picker = view as? TwoPickersCustomView {

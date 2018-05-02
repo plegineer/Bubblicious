@@ -31,7 +31,6 @@ class CustomBaseView: UIView {
         textField.placeholder = placeHolder
         textField.textAlignment = .center
         textField.borderStyle = UITextBorderStyle.roundedRect
-        
         return textField
     }
     
