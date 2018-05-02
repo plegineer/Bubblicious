@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate, PickerViewDelegate {
+class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGroundViewDelegate, PickerViewDelegate, SubFunctionListViewControllerDelegate {
     
     @IBOutlet weak var defaultView: CustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
@@ -64,6 +64,15 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.showPickerviewButton.isEnabled = false
     }
     
+    @IBAction func pushedToOtherFunctionsButton(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyBoard.instantiateViewController(withIdentifier: "subFunctionList") as! SubFunctionListViewController
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        self.navigationController?.present(nav, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - CustomViewDelegate
     
     func customViewWillShowKeyboard(view: CustomView) {
@@ -116,6 +125,12 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
                 })
             }
         }
+    }
+    
+    // MARK: - SubFunctionListViewControllerDlegate
+    
+    func subFunctionListViewController(didFinished view: SubFunctionListViewController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - pickerViewDelegate

@@ -32,6 +32,7 @@
 		D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */; };
 		D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E12089D951001DA0B4 /* UserModel.swift */; };
 		D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E32089F203001DA0B4 /* ViewController.swift */; };
+		F6D34447209957FE00E95804 /* SubFunctionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		D2FCC6E32089F203001DA0B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubFunctionListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
+				F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -424,7 +427,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		40766849F044B4FE4C42C353 /* [CP] Check Pods Manifest.lock */ = {
@@ -442,7 +445,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4962043273799FF04094E188 /* [CP] Copy Pods Resources */ = {
@@ -475,7 +478,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		879EE6B1D63A204347677F21 /* [CP] Embed Pods Frameworks */ = {
@@ -549,6 +552,7 @@
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
+				F6D34447209957FE00E95804 /* SubFunctionListViewController.swift in Sources */,
 				D29309FE208984DC00C6663F /* Const.swift in Sources */,
 				D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */,
 			);
