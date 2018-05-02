@@ -235,9 +235,28 @@
                     <view key="view" contentMode="scaleToFill" id="SbL-hA-gfu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ylw-KX-ee6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="C0D-7c-Ncu" id="fGQ-TB-tyf"/>
+                                    <outlet property="delegate" destination="C0D-7c-Ncu" id="a2X-JA-79j"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LMo-Y4-rH0" firstAttribute="trailing" secondItem="ylw-KX-ee6" secondAttribute="trailing" id="4kL-Lf-Rkm"/>
+                            <constraint firstItem="LMo-Y4-rH0" firstAttribute="bottom" secondItem="ylw-KX-ee6" secondAttribute="bottom" id="Bje-ii-iLM"/>
+                            <constraint firstItem="ylw-KX-ee6" firstAttribute="top" secondItem="LMo-Y4-rH0" secondAttribute="top" id="Ir4-LP-fNW"/>
+                            <constraint firstItem="ylw-KX-ee6" firstAttribute="leading" secondItem="LMo-Y4-rH0" secondAttribute="leading" id="bYb-vc-mCh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LMo-Y4-rH0"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ylw-KX-ee6" id="JOV-3M-dAG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqG-gI-zCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

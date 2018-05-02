@@ -12,36 +12,46 @@ protocol SubFunctionListViewControllerDelegate: class {
     func subFunctionListViewController(didFinished view: SubFunctionListViewController)
 }
 
-class SubFunctionListViewController: UIViewController {
+class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     weak var delegate: SubFunctionListViewControllerDelegate?
+    private let subFunctionListText = ["画像をアップロードする", "電話をかける", "GPSで現在位置を取得", "現在位置をMAPに表示", "メールを送る"]
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "その他機能"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.pushedCloseButton))
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return subFunctionListText.count
     }
-    */
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.textLabel?.text = subFunctionListText[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            callTell()
+            return
+        }
+    }
+
     @objc func pushedCloseButton() {
         self.delegate?.subFunctionListViewController(didFinished: self)
     }
-
+    
+    func callTell() {
+        UIApplication.shared.open(URL(string: "telprompt://0000000000")!, options: [:], completionHandler: { _ in
+            if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+                self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+            }
+        })
+    }
 }
