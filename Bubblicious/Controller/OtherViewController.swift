@@ -14,6 +14,7 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate {
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
     @IBOutlet weak var showCustomViewButton: UIButton!
     @IBOutlet weak var showPickerViewButton: UIButton!
+    @IBOutlet weak var jumpToSubFunctionButton: UIButton!
     
     private var animationCustomView: ThreeContentsCustomView!
     private var animationPickerView: TwoPickersCustomView!
@@ -128,6 +129,7 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate {
     private func toggleButtons(to: Bool) {
         self.showCustomViewButton.isEnabled = to
         self.showPickerViewButton.isEnabled = to
+        self.jumpToSubFunctionButton.isEnabled = to
     }
 }
 

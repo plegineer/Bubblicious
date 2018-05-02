@@ -220,6 +220,7 @@
                     <connections>
                         <outlet property="defaultBackGroundView" destination="2Ad-Wh-GlW" id="kSP-to-baa"/>
                         <outlet property="defaultView" destination="Ebk-U7-AtZ" id="1EI-9v-DaV"/>
+                        <outlet property="jumpToSubFunctionButton" destination="528-dA-qQc" id="59V-Th-PzQ"/>
                         <outlet property="showCustomViewButton" destination="sO8-2x-Ppv" id="ZL5-8T-u4c"/>
                         <outlet property="showPickerViewButton" destination="8RN-bN-r7z" id="v4P-Ra-xKl"/>
                     </connections>
