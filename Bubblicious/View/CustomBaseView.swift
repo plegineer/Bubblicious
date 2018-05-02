@@ -19,11 +19,11 @@ class CustomBaseView: UIView {
     weak var delegate: CustomBaseViewDelegate?
     
     func createLabel(_ text: String) -> UILabel {
-        let titleLabel = UILabel()
-        titleLabel.text = text
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
-        return titleLabel
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
     }
     
     func createTextField(_ placeHolder: String) -> UITextField {
@@ -35,19 +35,19 @@ class CustomBaseView: UIView {
     }
     
     func createSwitchControl(selector: Selector?) -> UISwitch {
-        let bottomSwitchControl = UISwitch()
+        let switchControl = UISwitch()
         if let selector = selector {
-            bottomSwitchControl.addTarget(self, action: selector, for: UIControlEvents.valueChanged)
+            switchControl.addTarget(self, action: selector, for: UIControlEvents.valueChanged)
         }
-        return bottomSwitchControl
+        return switchControl
     }
     
     func createButton(_ title: String, selector: Selector) -> UIButton {
-        let saveButton = UIButton()
-        saveButton.setTitle(title, for: UIControlState.normal)
-        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        saveButton.addTarget(self, action: selector, for: .touchUpInside)
-        return saveButton
+        let button = UIButton()
+        button.setTitle(title, for: UIControlState.normal)
+        button.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        return button
     }
     
     func setNotifications() {
