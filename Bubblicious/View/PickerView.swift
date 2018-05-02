@@ -28,6 +28,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     private let dataList: String = "sample_picker_json.js"
     private var dataList1: [String] = []
     private var dataList2: [String] = []
+    private var listCheck: String = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,21 +46,21 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         
         let textFieldSize = CGSize(width: 150, height: 30)
         let textFieldXPoint = (self.frame.size.width - textFieldSize.width) / 2
-        self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
-        self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
+        textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
+        textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
         
         let buttonSize = saveButton.sizeThatFits(self.frame.size)
         let buttonXPoint = (self.frame.width - buttonSize.width) / 2
-        self.saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
+        saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
         
-        self.addSubview(self.textField1)
-        self.addSubview(self.textField2)
-        self.addSubview(self.saveButton)
+        self.addSubview(textField1)
+        self.addSubview(textField2)
+        self.addSubview(saveButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        if textField1.isEditing == true {
+        if !(textField1.text == self.listCheck) {
             textField2.text = ""
             self.settingPickerView2()
         }
@@ -93,24 +94,29 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,inComponent component: Int) {
         if pickerView.tag == 1 {
-            self.textField1.text = dataList1[row]
+            textField1.text = dataList1[row]
         } else {
-            self.textField2.text = dataList2[row]
+            textField2.text = dataList2[row]
         }
     }
     
     // MARK: - Action
     
     @objc func tappedSaveButton(_ sender: UIButton) {
-        print("tappedSave")
         textField1.resignFirstResponder()
         textField2.resignFirstResponder()
-        let message = "\(textField1.text!)\n\(textField2.text!)\n"
-        self.delegate?.pickerViewTappedSaveButton(message, self)
+        if !(textField1.text == self.listCheck) {
+            textField2.text = ""
+            self.settingPickerView2()
+        } else {
+            let message = "\(textField1.text!)\n\(textField2.text!)\n"
+            self.delegate?.pickerViewTappedSaveButton(message, self)
+        }
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
-        if textField1.isEditing == true {
+        
+        if !(textField1.text == self.listCheck) {
             textField2.text = ""
             self.settingPickerView2()
         }
@@ -127,7 +133,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     private func createItems() {
-        self.saveButton = createButton("保存する")
+        saveButton = createButton("保存する")
         
         let pickerView1 = createPickerView()
         pickerView1.tag = 1
@@ -138,6 +144,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         self.textField1 = textField1
         
         let textField2 = createTextField("▼選択して下さい")
+        textField2.isEnabled = false
         self.textField2 = textField2
     }
     
@@ -165,16 +172,18 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     private func settingPickerView2() {
         let pickerView2 = createPickerView()
         pickerView2.tag = 2
+        textField2.isEnabled = true
         textField2.inputView = pickerView2
         textField2.inputAccessoryView = self.createPickerViewButtonItem()
         
-        if textField1.text == self.dataListPickerView?.contentsDataList[0] {
-            self.dataList2 = (self.dataListPickerView?.content1DataList)!
-        } else if textField1.text == self.dataListPickerView?.contentsDataList[1] {
-            self.dataList2 = (self.dataListPickerView?.content2DataList)!
-        } else if textField1.text == self.dataListPickerView?.contentsDataList[2] {
-            self.dataList2 = (self.dataListPickerView?.content3DataList)!
+        if textField1.text == self.dataListPickerView.contentsDataList[0] {
+            self.dataList2 = self.dataListPickerView.content1DataList
+        } else if textField1.text == self.dataListPickerView.contentsDataList[1] {
+            self.dataList2 = self.dataListPickerView.content2DataList
+        } else if textField1.text == self.dataListPickerView.contentsDataList[2] {
+            self.dataList2 = self.dataListPickerView.content3DataList
         }
+        self.listCheck = textField1.text!
     }
     
     private func createTextField(_ placeHolder: String) -> UITextField {
@@ -195,7 +204,7 @@ class PickerView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     
     private func jsonParse() {
         var jsonString: String!
-        if let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "s") {
+        if let filePath = Bundle.main.path(forResource: "sample_picker_json", ofType: "js") {
             do {
                 jsonString = try String(contentsOfFile: filePath)
                 let json: JSON = JSON(parseJSON: jsonString)

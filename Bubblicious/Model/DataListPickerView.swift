@@ -23,12 +23,14 @@ class DataListPickerView {
     private func setProperties(json: JSON) {
         
         if let dictionary = json.dictionaryObject {
-            let keyString = [String](dictionary.keys)
+            var keyString = [String](dictionary.keys)
+
             let contentsCount: Int = keyString.count
             for i in 0 ..< contentsCount {
                 let arrayValue = keyString[i]
                 self.contentsDataList.append(arrayValue)
             }
+            self.contentsDataList.sort(by: { $0 < $1 })
         }
         
         if let content1 = json[self.contentsDataList[0]].array {

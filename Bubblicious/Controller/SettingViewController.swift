@@ -18,6 +18,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     private var animationCustomView: CustomView!
     private var animationPickerView: PickerView!
     private var customBackGroundView: CustomBackGroundView!
+    private var activeAnimationCustomView = false
+    private var activeAnimationPickerView = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +48,9 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
         self.addAnimationCustomView()
+        self.activeAnimationCustomView = true
         self.showCustomViewButton.isEnabled = false
+        self.showPickerviewButton.isEnabled = false
     }
     
     @IBAction func pushedPickerViewButton(_ sender: Any) {
@@ -55,6 +59,8 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.customBackGroundView = customBackGroundView
         self.view.addSubview(self.customBackGroundView)
         self.addAnimationPickerView()
+        self.activeAnimationPickerView = true
+        self.showCustomViewButton.isEnabled = false
         self.showPickerviewButton.isEnabled = false
     }
     
@@ -63,12 +69,18 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     func customViewWillShowKeyboard(view: CustomView) {
         if view == animationCustomView {
             self.customBackGroundView.isUserInteractionEnabled = false
+        } else if view == defaultView {
+            self.showCustomViewButton.isEnabled = false
+            self.showPickerviewButton.isEnabled = false
         }
     }
     
     func customViewWillHideKeyboard(view: CustomView) {
         if view == animationCustomView {
             self.customBackGroundView.isUserInteractionEnabled = true
+        } else if view == defaultView {
+            self.showCustomViewButton.isEnabled = true
+            self.showPickerviewButton.isEnabled = true
         }
     }
     
@@ -86,33 +98,36 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     // MARK: - CustomBackGroundViewDlegate
     
     func customBackGroundViewTouched(_ view: CustomBackGroundView) {
+        
         self.view.endEditing(true)
         
-        if self.showCustomViewButton.isEnabled == false {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
-        } else if self.showPickerviewButton.isEnabled == false {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.animationPickerView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
+        if view == self.customBackGroundView {
+            if self.activeAnimationCustomView == true {
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+                }, completion: { _ in
+                    self.backToDefaultView()
+                })
+            } else if self.activeAnimationPickerView == true {
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.animationPickerView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+                }, completion: { _ in
+                    self.backToDefaultView()
+                })
+            }
         }
     }
     
     // MARK: - pickerViewDelegate
     
     func pickerViewWillShowKeyboard(view: PickerView) {
-        if view == animationCustomView {
+        if view == animationPickerView {
             self.customBackGroundView.isUserInteractionEnabled = false
         }
     }
     
     func pickerViewWillHideKeyboard(view: PickerView) {
-        if view == animationCustomView {
+        if view == animationPickerView {
             self.customBackGroundView.isUserInteractionEnabled = true
         }
     }
@@ -174,14 +189,15 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     }
     
     private func backToDefaultView() {
-        
-        if self.showCustomViewButton.isEnabled == false {
+        if self.activeAnimationCustomView == true {
             self.animationCustomView.removeFromSuperview()
-            self.showCustomViewButton.isEnabled = true
-        } else if self.showPickerviewButton.isEnabled == false {
+            self.activeAnimationCustomView = false
+        } else if self.activeAnimationPickerView == true {
             self.animationPickerView.removeFromSuperview()
-            self.showPickerviewButton.isEnabled = true
+            self.activeAnimationPickerView = false
         }
         self.customBackGroundView.removeFromSuperview()
+        self.showCustomViewButton.isEnabled = true
+        self.showPickerviewButton.isEnabled = true
     }
 }
