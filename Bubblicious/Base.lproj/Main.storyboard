@@ -262,16 +262,16 @@
             </objects>
             <point key="canvasLocation" x="3604" y="1586"/>
         </scene>
-        <!--Upload Picture View Controller-->
+        <!--Upload Image View Controller-->
         <scene sceneID="stC-oy-qni">
             <objects>
-                <viewController storyboardIdentifier="uploadPicture" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gtA-xT-scB" customClass="UploadPictureViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="uploadImage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gtA-xT-scB" customClass="UploadImageViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ocf-BQ-YlD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3S-fY-UVI">
-                                <rect key="frame" x="148.5" y="437" width="77" height="30"/>
+                                <rect key="frame" x="149" y="437" width="77" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="MJZ-7y-dOr"/>
                                 </constraints>

@@ -1,5 +1,5 @@
 //
-//  UploadPictureViewController.swift
+//  UploadImageViewController.swift
 //  Bubblicious
 //
 //  Created by 島田一輝 on 2018/05/02.
@@ -8,21 +8,19 @@
 
 import UIKit
 
-protocol UploadPictureViewControllerDelegate: class {
-    func UploadPictureViewController(didFinished view: UploadPictureViewController)
+protocol UploadImageViewControllerDelegate: class {
+    func UploadImageViewController(didFinished view: UploadImageViewController)
 }
 
-class UploadPictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    weak var delegate: UploadPictureViewControllerDelegate?
+    weak var delegate: UploadImageViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(self.pushedBackButton))
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.pushedBackButton))
         self.title = "アップロード画面"
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,19 +29,18 @@ class UploadPictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @objc func pushedBackButton() {
-        self.delegate?.UploadPictureViewController(didFinished: self)
+        self.delegate?.UploadImageViewController(didFinished: self)
     }
     
     @IBAction func pushedOpenAlbumButton(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        UIImagePickerControllerSourceType.photoLibrary
+        _ = UIImagePickerControllerSourceType.photoLibrary
         self.present(imagePickerController, animated:true, completion:nil)
     }
     
-    // 画像が選択されたときによばれます
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        // アルバム画面を閉じます
         picker.dismiss(animated: true, completion: nil);
     }
 }

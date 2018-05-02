@@ -14,7 +14,7 @@ protocol SubFunctionListViewControllerDelegate: class {
     func subFunctionListViewController(didFinished view: SubFunctionListViewController)
 }
 
-class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate, UploadPictureViewControllerDelegate {
+class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate, UploadImageViewControllerDelegate {
     
     weak var delegate: SubFunctionListViewControllerDelegate?
     
@@ -23,8 +23,19 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     private var activityIndicatorView: UIActivityIndicatorView!
     private let subFunctionListText = ["画像をアップロードする", "電話をかける", "GPSで現在位置を取得", "現在位置をMAPに表示", "メールを送る"]
     
-    private var latitudeString: String?
-    private var longitudeString: String?
+    private var latitudeString: String = ""
+    private var longitudeString: String = ""
+    
+    private enum RowIndex: Int {
+        case uploadImage
+        case openApplicationTellNumberUrl
+        case requestLocation
+        case openMap
+        case openMail
+        
+        case _count
+        static let count = Int(_count.rawValue)
+    }
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -51,18 +62,22 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
-            tappedCellToUploadPicture()
-        } else if indexPath.row == 1 {
-            callTell()
-        } else if indexPath.row == 2 {
+        switch indexPath.row {
+        case RowIndex.uploadImage.rawValue:
+            tappedCellToUploadImage()
+        case RowIndex.openApplicationTellNumberUrl.rawValue:
+            openApplicationTellNumberUrl()
+        case RowIndex.requestLocation.rawValue:
             requestLocation()
             addLoadingLocationBackGroundView()
-        } else if indexPath.row == 3 {
+        case RowIndex.openMap.rawValue:
             openMap()
-        } else if indexPath.row == 4 {
+        case RowIndex.openMail.rawValue:
             openMail()
+        default:
+            return
         }
+
         if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
         }
@@ -82,10 +97,10 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
             locationManager.requestWhenInUseAuthorization()
             break
         case .denied:
-            self.showAlert("位置情報サービスの設定が「無効」になっています", message: "設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい")
+            showAlert("位置情報サービスの設定が「無効」になっています", message: "設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい")
             break
         case .restricted:
-            self.showAlert("位置情報サービスの設定が制限されているため利用出来ません", message: "設定 > 一般 > 機能制限 で、制限を解除して下さい")
+            showAlert("位置情報サービスの設定が制限されているため利用出来ません", message: "設定 > 一般 > 機能制限 で、制限を解除して下さい")
             break
         case .authorizedAlways:
             break
@@ -101,21 +116,21 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
             longitudeString = "\(managerLocation.coordinate.longitude)"
             
             let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
-            self.showAlert("現在位置", message: locationInfomationString)
+            showAlert("現在位置", message: locationInfomationString)
             activityIndicatorView.stopAnimating()
-            self.loadingLocationBackGroundView.removeFromSuperview()
+            loadingLocationBackGroundView.removeFromSuperview()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.showAlert("エラー", message: "位置情報の取得に失敗しました")
+        showAlert("エラー", message: "位置情報の取得に失敗しました")
         activityIndicatorView.stopAnimating()
-        self.loadingLocationBackGroundView.removeFromSuperview()
+        loadingLocationBackGroundView.removeFromSuperview()
     }
     
-    // MARK: - UploadPictureViewControllerDelegate
+    // MARK: - UploadImageViewControllerDelegate
     
-    func UploadPictureViewController(didFinished view: UploadPictureViewController) {
+    func UploadImageViewController(didFinished view: UploadImageViewController) {
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -123,17 +138,16 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         self.delegate?.subFunctionListViewController(didFinished: self)
     }
     
-    private func tappedCellToUploadPicture() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyBoard.instantiateViewController(withIdentifier: "uploadPicture") as! UploadPictureViewController
-        controller.delegate = self
-        let nav = UINavigationController(rootViewController: controller)
-        self.navigationController?.present(nav, animated: true, completion: nil)
-    }
-    
     // MARK: - Private Method
     
-    private func callTell() {
+    private func tappedCellToUploadImage() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyBoard.instantiateViewController(withIdentifier: "uploadImage") as! UploadImageViewController
+        controller.delegate = self
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    private func openApplicationTellNumberUrl() {
         UIApplication.shared.open(URL(string: "telprompt://0000000000")!, options: [:], completionHandler: nil)
     }
     
@@ -160,20 +174,15 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         self.present(mailComposeViewController, animated: true, completion: nil)
     }
     
-    private func addActivityIndicatorView() {
+    private func addLoadingLocationBackGroundView() {
+        let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.bounds)
+        loadingLocationBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.frame.size = CGSize(width: 50, height: 50)
         activityIndicatorView.center = self.view.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        self.activityIndicatorView = activityIndicatorView
-        self.loadingLocationBackGroundView.addSubview(self.activityIndicatorView)
-    }
-    
-    private func addLoadingLocationBackGroundView() {
-        let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.bounds)
-        loadingLocationBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        self.loadingLocationBackGroundView = loadingLocationBackGroundView
         
         let loadingLocationTextLabel = UILabel()
         loadingLocationTextLabel.text = "位置情報取得中"
@@ -183,14 +192,18 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         loadingLocationTextLabel.center.y = self.view.center.y + 30
         loadingLocationTextLabel.textColor = UIColor.black.withAlphaComponent(0.6)
         
-        self.navigationController?.view.addSubview(self.loadingLocationBackGroundView)
-        self.loadingLocationBackGroundView.addSubview(loadingLocationTextLabel)
-        addActivityIndicatorView()
+        self.navigationController?.view.addSubview(loadingLocationBackGroundView)
+        loadingLocationBackGroundView.addSubview(loadingLocationTextLabel)
+        loadingLocationBackGroundView.addSubview(activityIndicatorView)
+        
         activityIndicatorView.startAnimating()
+        
+        self.activityIndicatorView = activityIndicatorView
+        self.loadingLocationBackGroundView = loadingLocationBackGroundView
     }
     
     private func openMap() {
-        if let latitudeString = latitudeString, let longitudeString = longitudeString {
+        if !(latitudeString.isEmpty || longitudeString.isEmpty) {
             let destinationAddress = latitudeString + "," + longitudeString
             let urlString = "http://maps.apple.com/?daddr=\(destinationAddress)&dirflg=d"
             
