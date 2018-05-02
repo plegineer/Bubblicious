@@ -17,7 +17,10 @@ protocol SubFunctionListViewControllerDelegate: class {
 class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate {
     
     weak var delegate: SubFunctionListViewControllerDelegate?
+    
+    private var loadingLocationBackGroundView: CustomBackGroundView!
     private var locationManager: CLLocationManager!
+    private var activityIndicatorView: UIActivityIndicatorView!
     private let subFunctionListText = ["画像をアップロードする", "電話をかける", "GPSで現在位置を取得", "現在位置をMAPに表示", "メールを送る"]
 
     @IBOutlet weak var tableView: UITableView!
@@ -48,7 +51,7 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
             callTell()
         } else if indexPath.row == 2 {
             requestLocation()
-            tableView.isUserInteractionEnabled = false
+            addLoadingLocationBackGroundView()
         } else if indexPath.row == 4 {
             openMail()
         }
@@ -69,15 +72,12 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
-            tableView.isUserInteractionEnabled = true
             break
         case .denied:
             self.showAlert("位置情報サービスの設定が「無効」になっています", message: "設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい")
-            tableView.isUserInteractionEnabled = true
             break
         case .restricted:
             self.showAlert("位置情報サービスの設定が制限されているため利用出来ません", message: "設定 > 一般 > 機能制限 で、制限を解除して下さい")
-            tableView.isUserInteractionEnabled = true
             break
         case .authorizedAlways:
             break
@@ -90,12 +90,15 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         if let managerLocation = manager.location {
             let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)" as String
             self.showAlert("現在位置", message: locationInfomationString)
-            tableView.isUserInteractionEnabled = true
+            activityIndicatorView.stopAnimating()
+            self.loadingLocationBackGroundView.removeFromSuperview()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.showAlert("エラー", message: "位置情報の取得に失敗しました")
+        activityIndicatorView.stopAnimating()
+        self.loadingLocationBackGroundView.removeFromSuperview()
     }
 
     @objc func pushedCloseButton() {
@@ -129,5 +132,33 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         mailComposeViewController.setSubject("--件名を入力して下さい--")
         mailComposeViewController.setMessageBody(messageBody, isHTML: false)
         self.present(mailComposeViewController, animated: true, completion: nil)
+    }
+    
+    private func addActivityIndicatorView() {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.frame.size = CGSize(width: 50, height: 50)
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self.activityIndicatorView = activityIndicatorView
+        self.loadingLocationBackGroundView.addSubview(self.activityIndicatorView)
+    }
+    
+    private func addLoadingLocationBackGroundView() {
+        let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.bounds)
+        self.loadingLocationBackGroundView = loadingLocationBackGroundView
+        
+        let loadingLocationTextLabel = UILabel()
+        loadingLocationTextLabel.text = "位置情報取得中"
+        loadingLocationTextLabel.textAlignment = .center
+        loadingLocationTextLabel.frame.size = CGSize(width: 150, height: 30)
+        loadingLocationTextLabel.center.x = self.view.center.x
+        loadingLocationTextLabel.center.y = self.view.center.y + 30
+        loadingLocationTextLabel.textColor = UIColor.darkGray
+        
+        self.navigationController?.view.addSubview(self.loadingLocationBackGroundView)
+        self.loadingLocationBackGroundView.addSubview(loadingLocationTextLabel)
+        addActivityIndicatorView()
+        activityIndicatorView.startAnimating()
     }
 }
