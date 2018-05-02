@@ -16,7 +16,7 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
     @IBOutlet weak var showPickerViewButton: UIButton!
     
     private var animationCustomView: ThreeContentsCustomView!
-    private var animationPickerView: PickerView!
+    private var animationPickerView: TwoPickersCustomView!
     private var customBackGroundView: CustomBackGroundView!
     
     override func viewDidLoad() {
@@ -87,19 +87,19 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
     
     // MARK: - pickerViewDelegate
     
-    func pickerViewWillShowKeyboard(view: PickerView) {
+    func pickerViewWillShowKeyboard(view: TwoPickersCustomView) {
         if view == animationPickerView {
             self.customBackGroundView.isUserInteractionEnabled = false
         }
     }
-    
-    func pickerViewWillHideKeyboard(view: PickerView) {
+
+    func pickerViewWillHideKeyboard(view: TwoPickersCustomView) {
         if view == animationPickerView {
             self.customBackGroundView.isUserInteractionEnabled = true
         }
     }
-    
-    func pickerViewTappedSaveButton(_ message: String, _ view: PickerView) {
+
+    func pickerViewTappedSaveButton(_ message: String, _ view: TwoPickersCustomView) {
         self.showAlert("保存完了", message: message)
         if view == animationPickerView {
             UIView.animate(withDuration: 0.3, animations: {
@@ -128,10 +128,10 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
         
         let size = CGSize(width: 300, height: 250)
         let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
-        let view = isPicker ? PickerView(frame: frame) : ThreeContentsCustomView(frame: frame, withShadow: true)
+        let view = isPicker ? TwoPickersCustomView(frame: frame) : ThreeContentsCustomView(frame: frame, withShadow: true)
         self.view.addSubview(view)
         
-        if let picker = view as? PickerView {
+        if let picker = view as? TwoPickersCustomView {
             picker.delegate = self
             self.animationPickerView = picker
         }
@@ -156,7 +156,7 @@ extension OtherViewController: CustomBackGroundViewDelegate {
     func customBackGroundViewTouched(_ view: CustomBackGroundView) {
         self.view.endEditing(true)
         if view == self.customBackGroundView {
-            let displayingView = self.view.subviews.last is PickerView ? self.animationPickerView : self.animationCustomView
+            let displayingView = self.view.subviews.last is TwoPickersCustomView ? self.animationPickerView : self.animationCustomView
             UIView.animate(withDuration: 0.3, animations: {
                 displayingView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
             }, completion: { _ in

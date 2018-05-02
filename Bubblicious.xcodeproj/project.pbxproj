@@ -24,7 +24,7 @@
 		D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19A2088624B00DFC4F6 /* TabBarController.swift */; };
 		D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A19C208881B100DFC4F6 /* OtherViewController.swift */; };
 		D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1A02088AB9600DFC4F6 /* Util.swift */; };
-		D261B8ED209804D400A4FBA9 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261B8EC209804D400A4FBA9 /* PickerView.swift */; };
+		D261B8ED209804D400A4FBA9 /* TwoPickersCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261B8EC209804D400A4FBA9 /* TwoPickersCustomView.swift */; };
 		D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */; };
 		D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */; };
 		D29309FE208984DC00C6663F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29309FD208984DB00C6663F /* Const.swift */; };
@@ -81,7 +81,7 @@
 		D251A19A2088624B00DFC4F6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D251A19C208881B100DFC4F6 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		D251A1A02088AB9600DFC4F6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		D261B8EC209804D400A4FBA9 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		D261B8EC209804D400A4FBA9 /* TwoPickersCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoPickersCustomView.swift; sourceTree = "<group>"; };
 		D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackGroundView.swift; sourceTree = "<group>"; };
 		D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeContentsCustomView.swift; sourceTree = "<group>"; };
 		D29309FD208984DB00C6663F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */,
-				D261B8EC209804D400A4FBA9 /* PickerView.swift */,
+				D261B8EC209804D400A4FBA9 /* TwoPickersCustomView.swift */,
 				D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */,
 				F6D344482099888900E95804 /* CustomBaseView.swift */,
 			);
@@ -550,7 +550,7 @@
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
 				D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
-				D261B8ED209804D400A4FBA9 /* PickerView.swift in Sources */,
+				D261B8ED209804D400A4FBA9 /* TwoPickersCustomView.swift in Sources */,
 				D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */,
 				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
