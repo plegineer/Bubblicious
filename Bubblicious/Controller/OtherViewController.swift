@@ -10,12 +10,12 @@ import UIKit
 
 class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewDelegate {
     
-    @IBOutlet weak var defaultView: CustomView!
+    @IBOutlet weak var defaultView: ThreeContentsCustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
     @IBOutlet weak var showCustomViewButton: UIButton!
     @IBOutlet weak var showPickerViewButton: UIButton!
     
-    private var animationCustomView: CustomView!
+    private var animationCustomView: ThreeContentsCustomView!
     private var animationPickerView: PickerView!
     private var customBackGroundView: CustomBackGroundView!
     
@@ -128,14 +128,14 @@ class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewD
         
         let size = CGSize(width: 300, height: 250)
         let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
-        let view = isPicker ? PickerView(frame: frame) : CustomView(frame: frame, withShadow: true)
+        let view = isPicker ? PickerView(frame: frame) : ThreeContentsCustomView(frame: frame, withShadow: true)
         self.view.addSubview(view)
         
         if let picker = view as? PickerView {
             picker.delegate = self
             self.animationPickerView = picker
         }
-        if let custom = view as? CustomView {
+        if let custom = view as? ThreeContentsCustomView {
             custom.delegate = self
             self.animationCustomView = custom
         }

@@ -26,7 +26,7 @@
 		D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1A02088AB9600DFC4F6 /* Util.swift */; };
 		D261B8ED209804D400A4FBA9 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261B8EC209804D400A4FBA9 /* PickerView.swift */; };
 		D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */; };
-		D2835159208D780E00CEB67D /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2835158208D780E00CEB67D /* CustomView.swift */; };
+		D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */; };
 		D29309FE208984DC00C6663F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29309FD208984DB00C6663F /* Const.swift */; };
 		D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DD2089C557001DA0B4 /* Log.swift */; };
 		D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */; };
@@ -83,7 +83,7 @@
 		D251A1A02088AB9600DFC4F6 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D261B8EC209804D400A4FBA9 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackGroundView.swift; sourceTree = "<group>"; };
-		D2835158208D780E00CEB67D /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeContentsCustomView.swift; sourceTree = "<group>"; };
 		D29309FD208984DB00C6663F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		D2FCC6DD2089C557001DA0B4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 		D261336D208F1AE100598509 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D2835158208D780E00CEB67D /* CustomView.swift */,
+				D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */,
 				D261B8EC209804D400A4FBA9 /* PickerView.swift */,
 				D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */,
 				F6D344482099888900E95804 /* CustomBaseView.swift */,
@@ -551,7 +551,7 @@
 				D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				D261B8ED209804D400A4FBA9 /* PickerView.swift in Sources */,
-				D2835159208D780E00CEB67D /* CustomView.swift in Sources */,
+				D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */,
 				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,

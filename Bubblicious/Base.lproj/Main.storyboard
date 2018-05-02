@@ -155,7 +155,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ad-Wh-GlW" customClass="CustomBackGroundView" customModule="Bubblicious" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebk-U7-AtZ" customClass="CustomView" customModule="Bubblicious" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebk-U7-AtZ" customClass="ThreeContentsCustomView" customModule="Bubblicious" customModuleProvider="target">
                                         <rect key="frame" x="37.5" y="50" width="300" height="230"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
