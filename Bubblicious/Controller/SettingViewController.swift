@@ -13,7 +13,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     @IBOutlet weak var defaultView: CustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
     @IBOutlet weak var showCustomViewButton: UIButton!
-    @IBOutlet weak var showPickerviewButton: UIButton!
+    @IBOutlet weak var showPickerViewButton: UIButton!
     
     private var animationCustomView: CustomView!
     private var animationPickerView: PickerView!
@@ -26,8 +26,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         
         self.title = "Setting"
         self.navigationController?.navigationBar.isTranslucent = false
-        let rightButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
-        self.navigationItem.rightBarButtonItem = rightButton
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         
         self.defaultView.delegate = self
         self.defaultBackGroundView.delegate = self
@@ -40,7 +39,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
-    // MARK: - Action
+    // MARK: - IBAction
     
     @IBAction func pushedShowCustomViewButton(_ sender: Any) {
         let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
@@ -50,7 +49,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.addAnimationCustomView()
         self.activeAnimationCustomView = true
         self.showCustomViewButton.isEnabled = false
-        self.showPickerviewButton.isEnabled = false
+        self.showPickerViewButton.isEnabled = false
     }
     
     @IBAction func pushedPickerViewButton(_ sender: Any) {
@@ -61,7 +60,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.addAnimationPickerView()
         self.activeAnimationPickerView = true
         self.showCustomViewButton.isEnabled = false
-        self.showPickerviewButton.isEnabled = false
+        self.showPickerViewButton.isEnabled = false
     }
     
     @IBAction func pushedToOtherFunctionsButton(_ sender: Any) {
@@ -72,7 +71,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.navigationController?.present(nav, animated: true, completion: nil)
     }
     
-    
     // MARK: - CustomViewDelegate
     
     func customViewWillShowKeyboard(view: CustomView) {
@@ -80,7 +78,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
             self.customBackGroundView.isUserInteractionEnabled = false
         } else if view == defaultView {
             self.showCustomViewButton.isEnabled = false
-            self.showPickerviewButton.isEnabled = false
+            self.showPickerViewButton.isEnabled = false
         }
     }
     
@@ -89,7 +87,7 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
             self.customBackGroundView.isUserInteractionEnabled = true
         } else if view == defaultView {
             self.showCustomViewButton.isEnabled = true
-            self.showPickerviewButton.isEnabled = true
+            self.showPickerViewButton.isEnabled = true
         }
     }
     
@@ -213,6 +211,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         }
         self.customBackGroundView.removeFromSuperview()
         self.showCustomViewButton.isEnabled = true
-        self.showPickerviewButton.isEnabled = true
+        self.showPickerViewButton.isEnabled = true
     }
 }

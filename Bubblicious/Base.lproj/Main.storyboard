@@ -221,7 +221,7 @@
                         <outlet property="defaultBackGroundView" destination="2Ad-Wh-GlW" id="kSP-to-baa"/>
                         <outlet property="defaultView" destination="Ebk-U7-AtZ" id="1EI-9v-DaV"/>
                         <outlet property="showCustomViewButton" destination="sO8-2x-Ppv" id="ZL5-8T-u4c"/>
-                        <outlet property="showPickerviewButton" destination="8RN-bN-r7z" id="N5E-xH-nv1"/>
+                        <outlet property="showPickerViewButton" destination="8RN-bN-r7z" id="v4P-Ra-xKl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cq1-0O-8I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
