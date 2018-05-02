@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDelegate {
+class OtherViewController: UIViewController, CustomBaseViewDelegate, PickerViewDelegate {
     
     @IBOutlet weak var defaultView: CustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
@@ -54,9 +54,20 @@ class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDeleg
         self.navigationController?.present(nav, animated: true, completion: nil)
     }
     
-    // MARK: - CustomViewDelegate
+    // MARK: - CustomBaseViewDelegate
     
-    func customViewWillShowKeyboard(view: CustomView) {
+    func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
+        self.showAlert("保存完了", message: message)
+        if view == animationCustomView {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+            }, completion: { _ in
+                self.backToDefaultView()
+            })
+        }
+    }
+    
+    func customBaseViewWillShowKeyboard(view: CustomBaseView) {
         if view == animationCustomView {
             self.customBackGroundView.isUserInteractionEnabled = false
         } else if view == defaultView {
@@ -65,23 +76,12 @@ class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDeleg
         }
     }
     
-    func customViewWillHideKeyboard(view: CustomView) {
+    func customBaseViewWillHideKeyboard(view: CustomBaseView) {
         if view == animationCustomView {
             self.customBackGroundView.isUserInteractionEnabled = true
         } else if view == defaultView {
             self.showCustomViewButton.isEnabled = true
             self.showPickerViewButton.isEnabled = true
-        }
-    }
-    
-    func customViewTappedSaveButton(_ message: String, _ view: CustomView) {
-        self.showAlert("保存完了", message: message)
-        if view == animationCustomView {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.animationCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
         }
     }
     
@@ -128,7 +128,7 @@ class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDeleg
         
         let size = CGSize(width: 300, height: 250)
         let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
-        let view = isPicker ? PickerView(frame: frame) : CustomView(frame: frame)
+        let view = isPicker ? PickerView(frame: frame) : CustomView(frame: frame, withShadow: true)
         self.view.addSubview(view)
         
         if let picker = view as? PickerView {

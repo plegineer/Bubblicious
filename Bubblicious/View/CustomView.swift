@@ -8,40 +8,23 @@
 
 import UIKit
 
-protocol CustomViewDelegate: class {
-    func customViewTappedSaveButton(_ message: String , _ view: CustomView)
-    func customViewWillShowKeyboard(view: CustomView)
-    func customViewWillHideKeyboard(view: CustomView)
-}
-
-class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-
-    weak var delegate: CustomViewDelegate?
+class CustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     private var topTitleLabel: UILabel!
     private var topTextField: UITextField!
-    
     private var middleTitleLabel: UILabel!
     private var middleTextField: UITextField!
-    
     private var bottomTitleLabel: UILabel!
     private var bottomSwitchControl: UISwitch!
-    
     private var saveButton: UIButton!
+    
     private var switchText: String!
     
     private let pickerContents = ["hogehoge", "fugafuga", "fobar"]
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, withShadow: Bool) {
         super.init(frame: frame)
-        
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 5
-        self.backgroundColor = .white
-
-        self.setupItems()
+        self.setupItems(withShadow: withShadow)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -112,7 +95,7 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         topTextField.resignFirstResponder()
         middleTextField.resignFirstResponder()
         let message = "\(topTitleLabel.text!):\(topTextField.text!)\n\(middleTitleLabel.text!):\(middleTextField.text!)\n\(switchText!)"
-        self.delegate?.customViewTappedSaveButton(message, self)
+        self.delegate?.customBaseViewTappedSaveButton(message, self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
@@ -128,17 +111,26 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     // MARK: - Private Method
-    private func setupItems() {
-        self.createItems()
+    private func setupItems(withShadow: Bool = false) {
+        self.backgroundColor = .white
         self.setNotifications()
+
+        if withShadow {
+            self.layer.shadowColor = UIColor.black.cgColor
+            self.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+            self.layer.shadowOpacity = 0.5
+            self.layer.shadowRadius = 5
+        }
+        
+        self.createItems()
     }
     
     private func createItems() {
         self.topTitleLabel = createLabel("タイトル1")
         self.middleTitleLabel = createLabel("タイトル2")
         self.bottomTitleLabel = createLabel("タイトル3")
-        self.saveButton = createButton("保存する")
-        self.bottomSwitchControl = createSwitchControl()
+        self.saveButton = createButton("保存する", selector: #selector(tappedSaveButton(_:)))
+        self.bottomSwitchControl = createSwitchControl(selector: #selector(self.tappedSwitchControl(_:)))
 
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -165,52 +157,5 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         middleTextField.autocapitalizationType = .none
         middleTextField.autocorrectionType = .no
         self.middleTextField = middleTextField
-    }
-    
-    private func createLabel(_ text: String) -> UILabel {
-        let titleLabel = UILabel()
-        titleLabel.text = text
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
-        return titleLabel
-    }
-    
-    private func createTextField(_ placeHolder: String) -> UITextField {
-        let textField = UITextField()
-        textField.placeholder = placeHolder
-        textField.textAlignment = .center
-        textField.borderStyle = UITextBorderStyle.roundedRect
-        
-        return textField
-    }
-    
-    private func createSwitchControl() -> UISwitch {
-        let bottomSwitchControl = UISwitch()
-        bottomSwitchControl.addTarget(self, action: #selector(self.tappedSwitchControl(_:)), for: UIControlEvents.valueChanged)
-        return bottomSwitchControl
-    }
-    
-    private func createButton(_ title: String) -> UIButton {
-        let saveButton = UIButton()
-        saveButton.setTitle(title, for: UIControlState.normal)
-        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
-        saveButton.addTarget(self, action: #selector(tappedSaveButton(_:)), for: .touchUpInside)
-        self.switchText = "\(bottomTitleLabel.text!) is Off"
-        return saveButton
-    }
-    
-    private func setNotifications() {
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: Notification?) {
-        self.delegate?.customViewWillShowKeyboard(view: self)
-    }
-    
-    @objc func keyboardWillHide(notification: Notification?) {
-        self.delegate?.customViewWillHideKeyboard(view: self)
     }
 }
