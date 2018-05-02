@@ -18,21 +18,29 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
 
     weak var delegate: CustomViewDelegate?
 
-    private var titleLabel1: UILabel!
-    private var titleLabel2: UILabel!
-    private var titleLabel3: UILabel!
+    private var topTitleLabel: UILabel!
+    private var topTextField: UITextField!
     
-    private var textField1: UITextField!
-    private var textField2: UITextField!
+    private var middleTitleLabel: UILabel!
+    private var middleTextField: UITextField!
     
-    private var switchControl: UISwitch!
+    private var bottomTitleLabel: UILabel!
+    private var bottomSwitchControl: UISwitch!
+    
     private var saveButton: UIButton!
     private var switchText: String!
     
-    private let dataList = ["hogehoge", "fugafuga", "fobar"]
+    private let pickerContents = ["hogehoge", "fugafuga", "fobar"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 5
+        self.backgroundColor = .white
+
         self.setupItems()
     }
     
@@ -46,42 +54,36 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         
         let labelSize = CGSize(width: 75, height: 30)
         let labelXPoint = CGFloat(15)
-        self.titleLabel1.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
-        self.titleLabel2.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize)
-        self.titleLabel3.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize)
+        self.topTitleLabel.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 30), size: labelSize)
+        self.middleTitleLabel.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 80), size: labelSize)
+        self.bottomTitleLabel.frame = CGRect(origin: CGPoint(x: labelXPoint, y: 130), size: labelSize)
         
         let textFieldSize = CGSize(width: 150, height: 30)
         let textFieldXPoint = self.frame.size.width - textFieldSize.width - labelXPoint
-        self.textField1.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
-        self.textField2.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
+        self.topTextField.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 30), size: textFieldSize)
+        self.middleTextField.frame = CGRect(origin: CGPoint(x: textFieldXPoint, y: 80), size: textFieldSize)
         
-        let switchControlSize = switchControl.sizeThatFits(self.frame.size)
+        let switchControlSize = bottomSwitchControl.sizeThatFits(self.frame.size)
         let switchControlXPoint = textFieldXPoint + (textFieldSize.width / 2) - (switchControlSize.width / 2)
-        self.switchControl.frame = CGRect(origin: CGPoint(x: switchControlXPoint, y: 130), size: switchControlSize)
+        self.bottomSwitchControl.frame = CGRect(origin: CGPoint(x: switchControlXPoint, y: 130), size: switchControlSize)
         
         let buttonSize = saveButton.sizeThatFits(self.frame.size)
         let buttonXPoint = (self.frame.width - buttonSize.width) / 2
         self.saveButton.frame = CGRect(origin: CGPoint(x: buttonXPoint, y: 180), size: buttonSize)
         
-        self.addSubview(self.titleLabel1)
-        self.addSubview(self.titleLabel2)
-        self.addSubview(self.titleLabel3)
-        self.addSubview(self.textField1)
-        self.addSubview(self.textField2)
-        self.addSubview(self.switchControl)
+        self.addSubview(self.topTitleLabel)
+        self.addSubview(self.middleTitleLabel)
+        self.addSubview(self.bottomTitleLabel)
+        self.addSubview(self.topTextField)
+        self.addSubview(self.middleTextField)
+        self.addSubview(self.bottomSwitchControl)
         self.addSubview(self.saveButton)
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        textField1.resignFirstResponder()
-        textField2.resignFirstResponder()
-    }
-    
     // MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField2.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
     
@@ -92,57 +94,51 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataList.count
+        return pickerContents.count
     }
     
     // MARK: - UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dataList[row]
+        return pickerContents[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,inComponent component: Int) {
-        self.textField1.text = dataList[row]
+        self.topTextField.text = pickerContents[row]
     }
     
     // MARK: - Action
     @objc func tappedSaveButton(_ sender: UIButton) {
-        textField1.resignFirstResponder()
-        textField2.resignFirstResponder()
-        let message = "\(titleLabel1.text!):\(textField1.text!)\n\(titleLabel2.text!):\(textField2.text!)\n\(switchText!)"
+        topTextField.resignFirstResponder()
+        middleTextField.resignFirstResponder()
+        let message = "\(topTitleLabel.text!):\(topTextField.text!)\n\(middleTitleLabel.text!):\(middleTextField.text!)\n\(switchText!)"
         self.delegate?.customViewTappedSaveButton(message, self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
-        textField1.resignFirstResponder()
+        topTextField.resignFirstResponder()
     }
     
     @objc func tappedSwitchControl(_ sender: UISwitch) {
         if sender.isOn {
-            switchText = "\(titleLabel3.text!) is On"
+            switchText = "\(bottomTitleLabel.text!) is On"
         } else {
-            switchText = "\(titleLabel3.text!) is Off"
+            switchText = "\(bottomTitleLabel.text!) is Off"
         }
     }
     
     // MARK: - Private Method
     private func setupItems() {
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 5
-        self.backgroundColor = .white
-        
         self.createItems()
-        self.setupNotification()
+        self.setNotifications()
     }
     
     private func createItems() {
-        self.titleLabel1 = createLabel("タイトル1")
-        self.titleLabel2 = createLabel("タイトル2")
-        self.titleLabel3 = createLabel("タイトル3")
+        self.topTitleLabel = createLabel("タイトル1")
+        self.middleTitleLabel = createLabel("タイトル2")
+        self.bottomTitleLabel = createLabel("タイトル3")
         self.saveButton = createButton("保存する")
-        self.switchControl = createSwitchControl()
+        self.bottomSwitchControl = createSwitchControl()
 
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -158,17 +154,17 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         pickerToolBar.backgroundColor = .groupTableViewBackground
         pickerToolBar.setItems([doneButton], animated: false)
         
-        let textField1 = createTextField("▼選択して下さい")
-        textField1.inputView = pickerView
-        textField1.inputAccessoryView = pickerToolBar
-        self.textField1 = textField1
+        let topTextField = createTextField("▼選択して下さい")
+        topTextField.inputView = pickerView
+        topTextField.inputAccessoryView = pickerToolBar
+        self.topTextField = topTextField
         
-        let textField2 = createTextField("入力して下さい")
-        textField2.delegate = self
-        textField2.enablesReturnKeyAutomatically = true
-        textField2.autocapitalizationType = .none
-        textField2.autocorrectionType = .no
-        self.textField2 = textField2
+        let middleTextField = createTextField("入力して下さい")
+        middleTextField.delegate = self
+        middleTextField.enablesReturnKeyAutomatically = true
+        middleTextField.autocapitalizationType = .none
+        middleTextField.autocorrectionType = .no
+        self.middleTextField = middleTextField
     }
     
     private func createLabel(_ text: String) -> UILabel {
@@ -184,13 +180,14 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         textField.placeholder = placeHolder
         textField.textAlignment = .center
         textField.borderStyle = UITextBorderStyle.roundedRect
+        
         return textField
     }
     
     private func createSwitchControl() -> UISwitch {
-        let switchControl = UISwitch()
-        switchControl.addTarget(self, action: #selector(self.tappedSwitchControl(_:)), for: UIControlEvents.valueChanged)
-        return switchControl
+        let bottomSwitchControl = UISwitch()
+        bottomSwitchControl.addTarget(self, action: #selector(self.tappedSwitchControl(_:)), for: UIControlEvents.valueChanged)
+        return bottomSwitchControl
     }
     
     private func createButton(_ title: String) -> UIButton {
@@ -198,11 +195,11 @@ class CustomView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFi
         saveButton.setTitle(title, for: UIControlState.normal)
         saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
         saveButton.addTarget(self, action: #selector(tappedSaveButton(_:)), for: .touchUpInside)
-        self.switchText = "\(titleLabel3.text!) is Off"
+        self.switchText = "\(bottomTitleLabel.text!) is Off"
         return saveButton
     }
     
-    private func setupNotification() {
+    private func setNotifications() {
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(
