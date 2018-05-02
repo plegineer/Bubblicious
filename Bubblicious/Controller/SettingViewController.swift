@@ -44,23 +44,10 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
     
     @IBAction func pushedShowCustomViewButton(_ sender: Any) {
         self.addCutomViewWithAnimation(isPicker: false)
-        
-        
-        
-        self.isDisplayedAnimationCutomView = true
-        self.showCustomViewButton.isEnabled = false
-        self.showPickerViewButton.isEnabled = false
     }
     
     @IBAction func pushedPickerViewButton(_ sender: Any) {
         self.addCutomViewWithAnimation(isPicker: true)
-        
-        
-        
-        
-        self.isDisplayedAnimationPickerView = true
-        self.showCustomViewButton.isEnabled = false
-        self.showPickerViewButton.isEnabled = false
     }
     
     @IBAction func pushedToOtherFunctionsButton(_ sender: Any) {
@@ -157,23 +144,17 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
         self.customBackGroundView = customBackGroundView
     }
     
-    private func addAnimationCustomView() {
-        self.addCustomBackGroundView()
-        self.addCutomViewWithAnimation(isPicker: false)
-    }
-    
-    private func addAnimationPickerView() {
-        self.addCustomBackGroundView()
-        self.addCutomViewWithAnimation(isPicker: true)
-    }
-    
     private func addCutomViewWithAnimation(isPicker: Bool) {
+        
+        self.showCustomViewButton.isEnabled = false
+        self.showPickerViewButton.isEnabled = false
         
         self.addCustomBackGroundView()
         
         let size = CGSize(width: 300, height: 250)
         let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
         let view = isPicker ? PickerView(frame: frame) : CustomView(frame: frame)
+        self.view.addSubview(view)
         
         if let picker = view as? PickerView {
             picker.delegate = self
@@ -183,8 +164,6 @@ class SettingViewController: UIViewController, CustomViewDelegate, CustomBackGro
             custom.delegate = self
             self.animationCustomView = custom
         }
-        
-        self.view.addSubview(view)
         
         UIView.animate(withDuration: 0.3, animations: {
             view.frame.origin.y -= (self.view.frame.maxY - self.defaultView.frame.minY)
