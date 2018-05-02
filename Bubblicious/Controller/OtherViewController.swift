@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDelegate, SubFunctionListViewControllerDelegate {
+class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDelegate {
     
     @IBOutlet weak var defaultView: CustomView!
     @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
@@ -83,12 +83,6 @@ class OtherViewController: UIViewController, CustomViewDelegate, PickerViewDeleg
                 self.backToDefaultView()
             })
         }
-    }
-    
-    // MARK: - SubFunctionListViewControllerDlegate
-    
-    func subFunctionListViewController(didFinished view: SubFunctionListViewController) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - pickerViewDelegate
@@ -170,5 +164,11 @@ extension OtherViewController: CustomBackGroundViewDelegate {
                 self.backToDefaultView()
             })
         }
+    }
+}
+
+extension OtherViewController: SubFunctionListViewControllerDelegate {
+    func subFunctionListViewController(didFinished view: SubFunctionListViewController) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
