@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zJQ-6i-Lzn">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Other-->
+        <scene sceneID="ODE-9H-a3C">
+            <objects>
+                <viewController id="CW6-Zm-1vl" customClass="OtherViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nby-m4-z5j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkX-XH-FD6" customClass="CustomBackGroundView" customModule="Bubblicious" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7P9-Yo-qWm" customClass="ThreeContentsCustomView" customModule="Bubblicious" customModuleProvider="target">
+                                        <rect key="frame" x="37.5" y="50" width="300" height="230"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="7PA-qQ-3xY"/>
+                                            <constraint firstAttribute="height" constant="230" id="f2f-8o-sPp"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0IU-XW-PgM">
+                                        <rect key="frame" x="111" y="300" width="153" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="qrt-vH-6zB"/>
+                                        </constraints>
+                                        <state key="normal" title="カスタムビューを表示"/>
+                                        <connections>
+                                            <action selector="pushedShowCustomViewButton:" destination="CW6-Zm-1vl" eventType="touchUpInside" id="su6-MR-cch"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-lA-llA">
+                                        <rect key="frame" x="111" y="350" width="153" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="xik-B2-lPS"/>
+                                        </constraints>
+                                        <state key="normal" title="ピッカービューを表示"/>
+                                        <connections>
+                                            <action selector="pushedPickerViewButton:" destination="CW6-Zm-1vl" eventType="touchUpInside" id="XJv-JB-bkA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB6-x9-xET">
+                                        <rect key="frame" x="141" y="400" width="92" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="FjU-sm-npc"/>
+                                        </constraints>
+                                        <state key="normal" title="その他機能へ"/>
+                                        <connections>
+                                            <action selector="pushedToOtherFunctionsButton:" destination="CW6-Zm-1vl" eventType="touchUpInside" id="Zuc-dZ-TrQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="GaK-lA-llA" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="1LY-aE-FPe"/>
+                                    <constraint firstItem="7P9-Yo-qWm" firstAttribute="top" secondItem="wkX-XH-FD6" secondAttribute="top" constant="50" id="7qT-rM-aup"/>
+                                    <constraint firstItem="GaK-lA-llA" firstAttribute="top" secondItem="0IU-XW-PgM" secondAttribute="bottom" constant="20" id="MXx-6N-U8t"/>
+                                    <constraint firstItem="jB6-x9-xET" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="UEw-cj-rHY"/>
+                                    <constraint firstItem="jB6-x9-xET" firstAttribute="top" secondItem="GaK-lA-llA" secondAttribute="bottom" constant="20" id="WRK-Oc-pyL"/>
+                                    <constraint firstItem="0IU-XW-PgM" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="hbE-A3-Ekz"/>
+                                    <constraint firstItem="0IU-XW-PgM" firstAttribute="top" secondItem="7P9-Yo-qWm" secondAttribute="bottom" constant="20" id="qhc-cX-cve"/>
+                                    <constraint firstItem="7P9-Yo-qWm" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="skM-fR-me7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wkX-XH-FD6" firstAttribute="leading" secondItem="ItO-QA-eOG" secondAttribute="leading" id="0ci-Gd-vNI"/>
+                            <constraint firstItem="ItO-QA-eOG" firstAttribute="bottom" secondItem="wkX-XH-FD6" secondAttribute="bottom" id="G8G-Ne-tyR"/>
+                            <constraint firstItem="wkX-XH-FD6" firstAttribute="top" secondItem="ItO-QA-eOG" secondAttribute="top" id="Sxu-xt-ftv"/>
+                            <constraint firstItem="ItO-QA-eOG" firstAttribute="trailing" secondItem="wkX-XH-FD6" secondAttribute="trailing" id="nq3-vS-Odn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ItO-QA-eOG"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Other" id="uaW-mh-hK3"/>
+                    <connections>
+                        <outlet property="defaultBackGroundView" destination="wkX-XH-FD6" id="wZP-0G-OpV"/>
+                        <outlet property="defaultView" destination="7P9-Yo-qWm" id="E2k-pc-sLb"/>
+                        <outlet property="jumpToSubFunctionButton" destination="jB6-x9-xET" id="dHK-Ud-Adv"/>
+                        <outlet property="showCustomViewButton" destination="0IU-XW-PgM" id="Sjp-0Y-s4q"/>
+                        <outlet property="showPickerViewButton" destination="GaK-lA-llA" id="HFm-4p-Qdv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="srG-WG-SPz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3608.8000000000002" y="1585.4572713643179"/>
+        </scene>
+        <!--Sub Function List View Controller-->
+        <scene sceneID="nYK-GJ-tDw">
+            <objects>
+                <viewController storyboardIdentifier="subFunctionList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JYB-eN-J95" customClass="SubFunctionListViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s8l-jl-qKO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Pjj-zn-ASj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="os7-EN-waS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4446" y="1585"/>
+        </scene>
+        <!--Other-->
+        <scene sceneID="53F-Ty-n1e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zJQ-6i-Lzn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Other" image="second" id="hph-pI-8l0"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kfb-L7-r1t">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CW6-Zm-1vl" kind="relationship" relationship="rootViewController" id="WDf-sA-So6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ka8-xK-1EA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2669.5999999999999" y="1585.4572713643179"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>

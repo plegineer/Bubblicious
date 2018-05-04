@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GGj-nS-P26">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Table-->
+        <scene sceneID="f0z-zR-bqB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Table" id="F7X-eS-qLW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Table" id="tPH-02-gWn"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hw4-zN-W2r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="-314"/>
+        </scene>
+        <!--Expand-->
+        <scene sceneID="gI6-sh-YQF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Expand" id="Yce-fk-k8C" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Expand" id="lEX-CA-UnN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Ug-Fr-Lxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="-136"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="g75-zY-RWY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="4Lq-bY-GOI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calendar" id="eQb-3V-APl"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="liG-mg-scf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="793" y="-1"/>
+        </scene>
+        <!--Form-->
+        <scene sceneID="qYB-zF-giD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Form" id="owj-1z-t4B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Form" id="kYs-4E-L5q"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZU-LA-l1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="147"/>
+        </scene>
+        <!--Other-->
+        <scene sceneID="aFr-B4-47r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Other" id="2VS-2y-j0i" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Other" id="XWS-hW-tmN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JEE-Z4-GG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="774" y="287"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LPL-CN-BjQ">
+            <objects>
+                <navigationController storyboardIdentifier="login" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="GGj-nS-P26" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v5J-iN-yA3">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jNb-Vp-gQ7" kind="relationship" relationship="rootViewController" id="Kzm-MR-EaG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fL7-FQ-khE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2018" y="0.0"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="0xY-nN-190">
+            <objects>
+                <viewController id="jNb-Vp-gQ7" customClass="LoginViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rz0-W0-AuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: hoge@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P30-G1-U3h">
+                                <rect key="frame" x="20" y="100" width="335" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Cin-o5-fak"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pass: hoge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keJ-E9-iNd">
+                                <rect key="frame" x="20" y="140" width="335" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="uxj-Zj-N6L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oaI-En-Ovs">
+                                <rect key="frame" x="20" y="220" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xot-dC-5WS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wsb-VF-8kv">
+                                <rect key="frame" x="20" y="268" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SPI-dq-og0"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fr-eM-zVw">
+                                <rect key="frame" x="156.5" y="328" width="62" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SEL-vI-pZu"/>
+                                </constraints>
+                                <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <action selector="pushedLoginButton:" destination="jNb-Vp-gQ7" eventType="touchUpInside" id="Pam-cC-4ZY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="keJ-E9-iNd" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="0xp-66-IhX"/>
+                            <constraint firstItem="wsb-VF-8kv" firstAttribute="top" secondItem="oaI-En-Ovs" secondAttribute="bottom" constant="8" id="41r-eZ-aXx"/>
+                            <constraint firstItem="P30-G1-U3h" firstAttribute="top" secondItem="PoC-gz-HNM" secondAttribute="top" constant="80" id="9F2-oa-38b"/>
+                            <constraint firstItem="keJ-E9-iNd" firstAttribute="top" secondItem="P30-G1-U3h" secondAttribute="bottom" constant="20" id="HZS-E9-yW4"/>
+                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="keJ-E9-iNd" secondAttribute="trailing" constant="20" id="JPZ-JI-Oe1"/>
+                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="oaI-En-Ovs" secondAttribute="trailing" constant="20" id="ZCM-2O-9lS"/>
+                            <constraint firstItem="wsb-VF-8kv" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="aN6-oI-Xgr"/>
+                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="wsb-VF-8kv" secondAttribute="trailing" constant="20" id="aej-n0-QRw"/>
+                            <constraint firstItem="oaI-En-Ovs" firstAttribute="top" secondItem="PoC-gz-HNM" secondAttribute="top" constant="200" id="dJc-Vu-9cl"/>
+                            <constraint firstItem="P30-G1-U3h" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="fLm-03-Tyo"/>
+                            <constraint firstItem="8fr-eM-zVw" firstAttribute="centerX" secondItem="Rz0-W0-AuZ" secondAttribute="centerX" id="fQH-Nq-yRt"/>
+                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="P30-G1-U3h" secondAttribute="trailing" constant="20" id="fUz-H6-Mad"/>
+                            <constraint firstItem="oaI-En-Ovs" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="u8o-f9-Ca6"/>
+                            <constraint firstItem="8fr-eM-zVw" firstAttribute="top" secondItem="wsb-VF-8kv" secondAttribute="bottom" constant="20" id="wod-4e-v2a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PoC-gz-HNM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NWf-Hs-L3q"/>
+                    <connections>
+                        <outlet property="loginButton" destination="8fr-eM-zVw" id="Lps-nf-bMZ"/>
+                        <outlet property="mailTextField" destination="oaI-En-Ovs" id="0YF-Ne-KT4"/>
+                        <outlet property="passwordTextField" destination="wsb-VF-8kv" id="emI-rI-7vz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xar-ml-Ecy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1198" y="0.0"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController storyboardIdentifier="tab" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" customClass="TabBarController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="F7X-eS-qLW" kind="relationship" relationship="viewControllers" id="rtb-81-e7p"/>
+                        <segue destination="Yce-fk-k8C" kind="relationship" relationship="viewControllers" id="X6s-z8-Lys"/>
+                        <segue destination="4Lq-bY-GOI" kind="relationship" relationship="viewControllers" id="27S-Vt-jbU"/>
+                        <segue destination="owj-1z-t4B" kind="relationship" relationship="viewControllers" id="s8r-Sx-PFd"/>
+                        <segue destination="2VS-2y-j0i" kind="relationship" relationship="viewControllers" id="vdK-BJ-qvf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>
