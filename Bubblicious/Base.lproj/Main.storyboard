@@ -267,6 +267,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: hoge@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P30-G1-U3h">
+                                <rect key="frame" x="20" y="100" width="335" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Cin-o5-fak"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pass: hoge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keJ-E9-iNd">
+                                <rect key="frame" x="20" y="140" width="335" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="uxj-Zj-N6L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oaI-En-Ovs">
                                 <rect key="frame" x="20" y="220" width="335" height="40"/>
                                 <constraints>
@@ -298,12 +316,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="keJ-E9-iNd" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="0xp-66-IhX"/>
                             <constraint firstItem="wsb-VF-8kv" firstAttribute="top" secondItem="oaI-En-Ovs" secondAttribute="bottom" constant="8" id="41r-eZ-aXx"/>
+                            <constraint firstItem="P30-G1-U3h" firstAttribute="top" secondItem="PoC-gz-HNM" secondAttribute="top" constant="80" id="9F2-oa-38b"/>
+                            <constraint firstItem="keJ-E9-iNd" firstAttribute="top" secondItem="P30-G1-U3h" secondAttribute="bottom" constant="20" id="HZS-E9-yW4"/>
+                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="keJ-E9-iNd" secondAttribute="trailing" constant="20" id="JPZ-JI-Oe1"/>
                             <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="oaI-En-Ovs" secondAttribute="trailing" constant="20" id="ZCM-2O-9lS"/>
                             <constraint firstItem="wsb-VF-8kv" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="aN6-oI-Xgr"/>
                             <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="wsb-VF-8kv" secondAttribute="trailing" constant="20" id="aej-n0-QRw"/>
                             <constraint firstItem="oaI-En-Ovs" firstAttribute="top" secondItem="PoC-gz-HNM" secondAttribute="top" constant="200" id="dJc-Vu-9cl"/>
+                            <constraint firstItem="P30-G1-U3h" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="fLm-03-Tyo"/>
                             <constraint firstItem="8fr-eM-zVw" firstAttribute="centerX" secondItem="Rz0-W0-AuZ" secondAttribute="centerX" id="fQH-Nq-yRt"/>
+                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="P30-G1-U3h" secondAttribute="trailing" constant="20" id="fUz-H6-Mad"/>
                             <constraint firstItem="oaI-En-Ovs" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="u8o-f9-Ca6"/>
                             <constraint firstItem="8fr-eM-zVw" firstAttribute="top" secondItem="wsb-VF-8kv" secondAttribute="bottom" constant="20" id="wod-4e-v2a"/>
                         </constraints>
