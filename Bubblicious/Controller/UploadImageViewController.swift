@@ -33,14 +33,48 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func pushedOpenAlbumButton(_ sender: Any) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        _ = UIImagePickerControllerSourceType.photoLibrary
-        self.present(imagePickerController, animated:true, completion:nil)
+        
+        let actionSheet = UIAlertController(title: "画像を開く", message: "選択してください", preferredStyle: .actionSheet)
+        
+        let saveTo1 = UIAlertAction(title: "ライブラリから選択", style: .default, handler: actionSheetChoose(sender:))
+        let saveTo2 = UIAlertAction(title: "写真を撮る", style: .default, handler: actionSheetChoose(sender:))
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: {
+            (action: UIAlertAction) -> Void in
+            print("キャンセルしました")
+        })
+        
+        actionSheet.addAction(saveTo1)
+        actionSheet.addAction(saveTo2)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
+
     }
     
-
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        picker.dismiss(animated: true, completion: nil);
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, Info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        let image = Info[UIImagePickerControllerOriginalImage] as! UIImage
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    }
+    
+    func actionSheetChoose(sender: UIAlertAction) {
+        
+        switch sender.title {
+        case "ライブラリから選択":
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            _ = UIImagePickerControllerSourceType.photoLibrary
+            self.present(imagePickerController, animated:true, completion:nil)
+        case "写真を撮る":
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .camera
+            self.present(imagePickerController, animated:true, completion:nil)
+        case "キャンセル":
+            print("キャンセルしました")
+        default:
+            return
+        }
+        print("\(sender.title!)に保存しました")
     }
 }

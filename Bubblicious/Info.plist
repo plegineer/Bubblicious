@@ -6,6 +6,10 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>このアプリは、現在位置を地図上に表示するために、位置情報を取得します。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>このアプリは、カメラで撮影した写真を表示及びアップロードを行います。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>このアプリは、アルバムから選択した写真を表示及びアップロードを行います。</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
