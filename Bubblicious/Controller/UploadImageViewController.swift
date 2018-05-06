@@ -15,7 +15,8 @@ protocol UploadImageViewControllerDelegate: class {
 class UploadImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     weak var delegate: UploadImageViewControllerDelegate?
-
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,10 +52,12 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
 
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, Info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        let image = Info[UIImagePickerControllerOriginalImage] as! UIImage
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    func imagePickerController(_ imagePicker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = pickedImage
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
     func actionSheetChoose(sender: UIAlertAction) {

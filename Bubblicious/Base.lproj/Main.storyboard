@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -280,19 +281,28 @@
                                     <action selector="pushedOpenAlbumButton:" destination="gtA-xT-scB" eventType="touchUpInside" id="B0X-i1-4Wc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gjK-nX-bai">
-                                <rect key="frame" x="67" y="255" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gjK-nX-bai">
+                                <rect key="frame" x="10" y="227.5" width="355" height="199.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gjK-nX-bai" secondAttribute="height" multiplier="16:9" id="yUy-Fn-gya"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration" identifier="Up"/>
                         <constraints>
+                            <constraint firstItem="gjK-nX-bai" firstAttribute="centerX" secondItem="Ocf-BQ-YlD" secondAttribute="centerX" id="OUA-dT-nBw"/>
+                            <constraint firstItem="3EP-Ta-x8E" firstAttribute="trailing" secondItem="gjK-nX-bai" secondAttribute="trailing" constant="10" id="Ocs-sz-YGV"/>
                             <constraint firstItem="Y3S-fY-UVI" firstAttribute="centerX" secondItem="Ocf-BQ-YlD" secondAttribute="centerX" id="Yue-lg-Ts3"/>
+                            <constraint firstItem="Y3S-fY-UVI" firstAttribute="top" secondItem="gjK-nX-bai" secondAttribute="bottom" constant="10" id="fu1-Cn-A6e"/>
                             <constraint firstItem="3EP-Ta-x8E" firstAttribute="bottom" secondItem="Y3S-fY-UVI" secondAttribute="bottom" constant="200" id="haf-bd-MJP"/>
+                            <constraint firstItem="gjK-nX-bai" firstAttribute="leading" secondItem="3EP-Ta-x8E" secondAttribute="leading" constant="10" id="wVj-Du-q9V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3EP-Ta-x8E"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="gjK-nX-bai" id="SRe-em-tRS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9C-vV-Rtd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
