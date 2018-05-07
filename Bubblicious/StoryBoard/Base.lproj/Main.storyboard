@@ -30,11 +30,11 @@
             </objects>
             <point key="canvasLocation" x="782" y="-136"/>
         </scene>
-        <!--Calendar-->
+        <!--Schedule-->
         <scene sceneID="g75-zY-RWY">
             <objects>
-                <viewControllerPlaceholder storyboardName="Calendar" id="4Lq-bY-GOI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" id="eQb-3V-APl"/>
+                <viewControllerPlaceholder storyboardName="Schedule" id="4Lq-bY-GOI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" id="eQb-3V-APl"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liG-mg-scf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

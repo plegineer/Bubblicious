@@ -32,9 +32,11 @@
 		D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */; };
 		D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E12089D951001DA0B4 /* UserModel.swift */; };
 		D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E32089F203001DA0B4 /* ViewController.swift */; };
+		F6135C7D209FF1840092D400 /* CalandarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C7C209FF1840092D400 /* CalandarViewController.swift */; };
+		F6135C7F20A007610092D400 /* DateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C7E20A007610092D400 /* DateScheduleViewController.swift */; };
 		F61BE59E209BF31F004480C2 /* Table.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59D209BF31F004480C2 /* Table.storyboard */; };
 		F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59F209BF330004480C2 /* Expand.storyboard */; };
-		F61BE5A2209BF33E004480C2 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A1209BF33E004480C2 /* Calendar.storyboard */; };
+		F61BE5A2209BF33E004480C2 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A1209BF33E004480C2 /* Schedule.storyboard */; };
 		F61BE5A4209BF346004480C2 /* Form.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A3209BF346004480C2 /* Form.storyboard */; };
 		F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A5209BF351004480C2 /* Other.storyboard */; };
 		F6D34447209957FE00E95804 /* SubFunctionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */; };
@@ -97,9 +99,11 @@
 		D2FCC6E32089F203001DA0B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6135C7C209FF1840092D400 /* CalandarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarViewController.swift; sourceTree = "<group>"; };
+		F6135C7E20A007610092D400 /* DateScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScheduleViewController.swift; sourceTree = "<group>"; };
 		F61BE59D209BF31F004480C2 /* Table.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Table.storyboard; sourceTree = "<group>"; };
 		F61BE59F209BF330004480C2 /* Expand.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Expand.storyboard; sourceTree = "<group>"; };
-		F61BE5A1209BF33E004480C2 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		F61BE5A1209BF33E004480C2 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		F61BE5A3209BF346004480C2 /* Form.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Form.storyboard; sourceTree = "<group>"; };
 		F61BE5A5209BF351004480C2 /* Other.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Other.storyboard; sourceTree = "<group>"; };
 		F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubFunctionListViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
 				F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */,
+				F6135C7C209FF1840092D400 /* CalandarViewController.swift */,
+				F6135C7E20A007610092D400 /* DateScheduleViewController.swift */,
 				D272A5972099C0C300DA20CC /* UploadImageViewController.swift */,
 			);
 			path = Controller;
@@ -254,7 +260,7 @@
 				D251A1642086F1DC00DFC4F6 /* Main.storyboard */,
 				F61BE59D209BF31F004480C2 /* Table.storyboard */,
 				F61BE59F209BF330004480C2 /* Expand.storyboard */,
-				F61BE5A1209BF33E004480C2 /* Calendar.storyboard */,
+				F61BE5A1209BF33E004480C2 /* Schedule.storyboard */,
 				F61BE5A3209BF346004480C2 /* Form.storyboard */,
 				F61BE5A5209BF351004480C2 /* Other.storyboard */,
 			);
@@ -403,7 +409,7 @@
 				D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */,
 				F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */,
 				D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */,
-				F61BE5A2209BF33E004480C2 /* Calendar.storyboard in Resources */,
+				F61BE5A2209BF33E004480C2 /* Schedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +475,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		40766849F044B4FE4C42C353 /* [CP] Check Pods Manifest.lock */ = {
@@ -487,7 +493,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4962043273799FF04094E188 /* [CP] Copy Pods Resources */ = {
@@ -520,7 +526,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		879EE6B1D63A204347677F21 /* [CP] Embed Pods Frameworks */ = {
@@ -546,11 +552,15 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalculateCalendarLogic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +601,7 @@
 				D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				D261B8ED209804D400A4FBA9 /* TwoPickersCustomView.swift in Sources */,
+				F6135C7D209FF1840092D400 /* CalandarViewController.swift in Sources */,
 				D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */,
 				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
@@ -598,6 +609,7 @@
 				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
 				F6D34447209957FE00E95804 /* SubFunctionListViewController.swift in Sources */,
 				D29309FE208984DC00C6663F /* Const.swift in Sources */,
+				F6135C7F20A007610092D400 /* DateScheduleViewController.swift in Sources */,
 				D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

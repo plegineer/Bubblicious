@@ -7,6 +7,8 @@ target 'Bubblicious' do
 
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'FSCalendar'
+  pod 'CalculateCalendarLogic'
 
   # Pods for Bubblicious
 
