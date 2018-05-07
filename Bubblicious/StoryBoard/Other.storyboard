@@ -138,10 +138,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rr-1e-12I">
-                                <rect key="frame" x="133" y="320" width="108" height="30"/>
-                                <state key="normal" title="画像を選択する"/>
+                                <rect key="frame" x="149" y="320" width="77" height="30"/>
+                                <state key="normal" title="画像を開く"/>
                                 <connections>
-                                    <action selector="pushedOpenAlbumButton:" destination="ocQ-Hp-450" eventType="touchUpInside" id="OBR-wM-FTG"/>
+                                    <action selector="pushedOpenImageButton:" destination="ocQ-Hp-450" eventType="touchUpInside" id="OBR-wM-FTG"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="68W-fM-YeH">
