@@ -89,8 +89,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx月00日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-vr-ZQB">
-                                        <rect key="frame" x="151" y="14" width="72.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="132.5" y="10" width="111.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -121,10 +121,13 @@
                                 <rect key="frame" x="0.0" y="50" width="375" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-lU-Ycl">
-                                <rect key="frame" x="248" y="545" width="117" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Calendar"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-lU-Ycl">
+                                <rect key="frame" x="285" y="513" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="CUR-W9-1YE"/>
+                                    <constraint firstAttribute="width" constant="80" id="nhR-Ub-HGh"/>
+                                </constraints>
+                                <state key="normal" title="Calendar" image="ic_calendar"/>
                                 <connections>
                                     <action selector="pushedCalendarButton:" destination="QWi-jL-BH3" eventType="touchUpInside" id="atz-Mo-SJb"/>
                                 </connections>
@@ -156,6 +159,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_calendar" width="80" height="80"/>
         <image name="left_arrow" width="32" height="32"/>
         <image name="right_arrow" width="32" height="32"/>
         <image name="second" width="30" height="30"/>
