@@ -58,8 +58,8 @@ class CalandarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     // MARK: - Private Method
     
     private func weekDayIndex(_ date: Date) -> Int {
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        return tmpCalendar.component(.weekday, from: date)
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.component(.weekday, from: date)
     }
     
     private func isHoliday(_ date : Date) -> Bool {

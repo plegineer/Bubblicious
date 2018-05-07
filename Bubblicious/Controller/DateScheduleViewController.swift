@@ -10,18 +10,22 @@ import UIKit
 
 class DateScheduleViewController: UIViewController {
     
+    var displayDate: Date = Date()
+    
     @IBOutlet weak var displayCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var displayDate: Date?
-
+    let fmt = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addSwipeGestureRecognizer()
+        self.fmt.dateFormat = "MM月dd日"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupComponents()
+        self.dateLabel.text = fmt.string(from: displayDate)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,18 +39,33 @@ class DateScheduleViewController: UIViewController {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func setupComponents() {
-        let fmt = DateFormatter()
-        fmt.dateFormat = "MM月dd日"
-        
-        if let date = self.displayDate {
-            // カレンダーの日付をタップした場合
-            self.dateLabel.text = fmt.string(from: date)
-        } else {
-            // 初期表示時
-            let date = Date()
-            self.displayDate = date
-            self.dateLabel.text = fmt.string(from: date)
+    @objc func swiped(sender:UISwipeGestureRecognizer) {
+        switch(sender.direction){
+        case .right:
+            self.updateDate(isNext: false)
+        case .left:
+            self.updateDate(isNext: true)
+        default:
+            Log.d("Error: Unset recognizer direction!!")
+        }
+    }
+    
+    private func addSwipeGestureRecognizer() {
+        let directionList:[UISwipeGestureRecognizerDirection] = [.right, .left]
+        for direction in directionList {
+            // 左右2方向のスワイプリコグナイザーを登録
+            let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(sender:)))
+            swipeRecognizer.direction = direction
+            self.view.addGestureRecognizer(swipeRecognizer)
+        }
+    }
+    
+    private func updateDate(isNext: Bool) {
+        let calendar = Calendar(identifier: .gregorian)
+        let value = isNext ? 1 : -1
+        if let newDate = calendar.date(byAdding: .day, value: value, to: calendar.startOfDay(for: displayDate)) {
+            self.dateLabel.text = fmt.string(from: newDate)
+            self.displayDate = newDate
         }
     }
     
