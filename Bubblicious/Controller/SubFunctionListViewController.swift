@@ -14,7 +14,7 @@ protocol SubFunctionListViewControllerDelegate: class {
     func subFunctionListViewController(didFinished view: SubFunctionListViewController)
 }
 
-class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate, UploadImageViewControllerDelegate {
+class SubFunctionListViewController: UITableViewController, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate, UploadImageViewControllerDelegate {
     
     weak var delegate: SubFunctionListViewControllerDelegate?
     
@@ -37,50 +37,34 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         static let count = Int(_count.rawValue)
     }
 
-    @IBOutlet weak var tableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "その他機能"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.pushedCloseButton))
+        self.tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    // MARK: - UITableViewDataSource
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subFunctionListText.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = subFunctionListText[indexPath.row]
-        return cell
-    }
-    
-    // MARK: - UITableViewDelegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                switch indexPath.row {
+                case RowIndex.uploadImage.rawValue:
+                    tappedCellToUploadImage()
+                case RowIndex.openApplicationTellNumberUrl.rawValue:
+                    openTelephone()
+                case RowIndex.requestLocation.rawValue:
+                    requestLocation()
+                    addLoadingLocationBackGroundView()
+                case RowIndex.openMap.rawValue:
+                    openMap()
+                case RowIndex.openMail.rawValue:
+                    openMail()
+                default:
+                    return
+                }
         
-        switch indexPath.row {
-        case RowIndex.uploadImage.rawValue:
-            tappedCellToUploadImage()
-        case RowIndex.openApplicationTellNumberUrl.rawValue:
-            openApplicationTellNumberUrl()
-        case RowIndex.requestLocation.rawValue:
-            requestLocation()
-            addLoadingLocationBackGroundView()
-        case RowIndex.openMap.rawValue:
-            openMap()
-        case RowIndex.openMail.rawValue:
-            openMail()
-        default:
-            return
-        }
-
-        if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
-            self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
-        }
+                if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+                    self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+                }
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
@@ -147,7 +131,7 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func openApplicationTellNumberUrl() {
+    private func openTelephone() {
         UIApplication.shared.open(URL(string: "telprompt://0000000000")!, options: [:], completionHandler: nil)
     }
     
@@ -175,7 +159,7 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     private func addLoadingLocationBackGroundView() {
-        let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.bounds)
+        let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.frame)
         loadingLocationBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         let activityIndicatorView = UIActivityIndicatorView()
@@ -197,7 +181,6 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
         loadingLocationBackGroundView.addSubview(activityIndicatorView)
         
         activityIndicatorView.startAnimating()
-        
         self.activityIndicatorView = activityIndicatorView
         self.loadingLocationBackGroundView = loadingLocationBackGroundView
     }
