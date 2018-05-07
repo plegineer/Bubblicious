@@ -141,7 +141,7 @@ class SubFunctionListViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: - Private Method
     
     private func tappedCellToUploadImage() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Other", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: "uploadImage") as! UploadImageViewController
         controller.delegate = self
         self.navigationController?.pushViewController(controller, animated: true)

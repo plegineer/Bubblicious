@@ -46,7 +46,7 @@ class OtherViewController: UIViewController {
     }
     
     @IBAction func pushedToOtherFunctionsButton(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Other", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: "subFunctionList") as! SubFunctionListViewController
         controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
