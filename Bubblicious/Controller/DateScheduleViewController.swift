@@ -10,26 +10,40 @@ import UIKit
 
 class DateScheduleViewController: UIViewController {
     
-    var displayDate: Date = Date()
-    
     @IBOutlet weak var displayCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    let fmt = DateFormatter()
+    let fmt: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM月dd日"
+        return formatter
+    }()
+    
+    private var displayingDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addSwipeGestureRecognizer()
-        self.fmt.dateFormat = "MM月dd日"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.dateLabel.text = fmt.string(from: displayDate)
+        
+        // 画面切り替え後は一律、当日の日付を表示させる
+        self.dateLabel.text = fmt.string(from: Date())
+        self.displayingDate = Date()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func pushedBeforeDateButton(_ sender: Any) {
+        self.updateDateLabel(isNext: false)
+    }
+    
+    @IBAction func pushedNextDateButton(_ sender: Any) {
+        self.updateDateLabel(isNext: true)
     }
     
     @IBAction func pushedCalendarButton(_ sender: Any) {
@@ -42,9 +56,9 @@ class DateScheduleViewController: UIViewController {
     @objc func swiped(sender:UISwipeGestureRecognizer) {
         switch(sender.direction){
         case .right:
-            self.updateDate(isNext: false)
+            self.updateDateLabel(isNext: false)
         case .left:
-            self.updateDate(isNext: true)
+            self.updateDateLabel(isNext: true)
         default:
             Log.d("Error: Unset recognizer direction!!")
         }
@@ -60,12 +74,12 @@ class DateScheduleViewController: UIViewController {
         }
     }
     
-    private func updateDate(isNext: Bool) {
+    private func updateDateLabel(isNext: Bool) {
         let calendar = Calendar(identifier: .gregorian)
         let value = isNext ? 1 : -1
-        if let newDate = calendar.date(byAdding: .day, value: value, to: calendar.startOfDay(for: displayDate)) {
+        if let newDate = calendar.date(byAdding: .day, value: value, to: calendar.startOfDay(for: displayingDate)) {
             self.dateLabel.text = fmt.string(from: newDate)
-            self.displayDate = newDate
+            self.displayingDate = newDate
         }
     }
     

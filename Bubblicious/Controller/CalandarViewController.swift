@@ -46,15 +46,6 @@ class CalandarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         return nil
     }
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
-        
-    }
-    
-    // MARK: - FSCalendarDelegate
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        jumpToDateSchedule(date: date)
-    }
-    
     // MARK: - Private Method
     
     private func weekDayIndex(_ date: Date) -> Int {
@@ -75,12 +66,5 @@ class CalandarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let holiday = CalculateCalendarLogic()
         
         return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
-    }
-    
-    private func jumpToDateSchedule(date: Date) {
-        if let dateScheduleVC = self.navigationController?.viewControllers.first as? DateScheduleViewController {
-            dateScheduleVC.displayDate = date
-        }
-        self.navigationController?.popToRootViewController(animated: true)
     }
 }

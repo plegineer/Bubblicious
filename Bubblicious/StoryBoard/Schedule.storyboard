@@ -77,9 +77,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tru-h9-CEX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGZ-Qd-SDZ">
-                                        <rect key="frame" x="10" y="10" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGZ-Qd-SDZ">
+                                        <rect key="frame" x="10" y="9" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="CBW-yp-TNs"/>
+                                            <constraint firstAttribute="height" constant="32" id="HW7-77-BYJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="left_arrow"/>
+                                        <connections>
+                                            <action selector="pushedBeforeDateButton:" destination="QWi-jL-BH3" eventType="touchUpInside" id="mUV-t1-K2P"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx月00日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-vr-ZQB">
                                         <rect key="frame" x="151" y="14" width="72.5" height="21"/>
@@ -87,9 +94,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEn-Ou-LcF">
-                                        <rect key="frame" x="319" y="10" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEn-Ou-LcF">
+                                        <rect key="frame" x="333" y="9" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="Ofe-ck-u26"/>
+                                            <constraint firstAttribute="height" constant="32" id="noV-1N-gGg"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="right_arrow"/>
+                                        <connections>
+                                            <action selector="pushedNextDateButton:" destination="QWi-jL-BH3" eventType="touchUpInside" id="gYY-lU-CLe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -102,6 +116,10 @@
                                     <constraint firstItem="fSS-vr-ZQB" firstAttribute="centerX" secondItem="Tru-h9-CEX" secondAttribute="centerX" id="fYG-Er-H9B"/>
                                     <constraint firstItem="dEn-Ou-LcF" firstAttribute="centerY" secondItem="Tru-h9-CEX" secondAttribute="centerY" id="idV-bo-1yl"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZ9-8m-3t9">
+                                <rect key="frame" x="0.0" y="50" width="375" height="553"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-lU-Ycl">
                                 <rect key="frame" x="248" y="545" width="117" height="48"/>
@@ -116,9 +134,13 @@
                         <constraints>
                             <constraint firstItem="iZJ-9A-6nz" firstAttribute="trailing" secondItem="Tru-h9-CEX" secondAttribute="trailing" id="4AW-86-RvI"/>
                             <constraint firstItem="Tru-h9-CEX" firstAttribute="leading" secondItem="iZJ-9A-6nz" secondAttribute="leading" id="BK0-JD-eAh"/>
-                            <constraint firstItem="iZJ-9A-6nz" firstAttribute="bottom" secondItem="3lR-lU-Ycl" secondAttribute="bottom" constant="10" id="TAe-dZ-sBK"/>
+                            <constraint firstItem="iZJ-9A-6nz" firstAttribute="bottom" secondItem="3lR-lU-Ycl" secondAttribute="bottom" constant="10" id="HcW-eS-6FU"/>
+                            <constraint firstItem="iZJ-9A-6nz" firstAttribute="trailing" secondItem="iZ9-8m-3t9" secondAttribute="trailing" id="Ic9-xE-CVV"/>
+                            <constraint firstItem="iZJ-9A-6nz" firstAttribute="bottom" secondItem="iZ9-8m-3t9" secondAttribute="bottom" id="ZQj-6T-HzM"/>
+                            <constraint firstItem="iZJ-9A-6nz" firstAttribute="trailing" secondItem="3lR-lU-Ycl" secondAttribute="trailing" constant="10" id="ZqR-DD-6JN"/>
+                            <constraint firstItem="iZ9-8m-3t9" firstAttribute="top" secondItem="Tru-h9-CEX" secondAttribute="bottom" id="aYf-tf-3XZ"/>
+                            <constraint firstItem="iZ9-8m-3t9" firstAttribute="leading" secondItem="iZJ-9A-6nz" secondAttribute="leading" id="cKS-ZM-x19"/>
                             <constraint firstItem="Tru-h9-CEX" firstAttribute="top" secondItem="iZJ-9A-6nz" secondAttribute="top" id="tGQ-cL-6uz"/>
-                            <constraint firstItem="iZJ-9A-6nz" firstAttribute="trailing" secondItem="3lR-lU-Ycl" secondAttribute="trailing" constant="10" id="viy-Gi-gLy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iZJ-9A-6nz"/>
                     </view>
@@ -134,6 +156,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="left_arrow" width="32" height="32"/>
+        <image name="right_arrow" width="32" height="32"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>
