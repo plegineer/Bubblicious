@@ -35,7 +35,7 @@
 		F6135C7F20A007610092D400 /* DateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C7E20A007610092D400 /* DateScheduleViewController.swift */; };
 		F61BE59E209BF31F004480C2 /* Table.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59D209BF31F004480C2 /* Table.storyboard */; };
 		F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59F209BF330004480C2 /* Expand.storyboard */; };
-		F61BE5A2209BF33E004480C2 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A1209BF33E004480C2 /* Calendar.storyboard */; };
+		F61BE5A2209BF33E004480C2 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A1209BF33E004480C2 /* Schedule.storyboard */; };
 		F61BE5A4209BF346004480C2 /* Form.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A3209BF346004480C2 /* Form.storyboard */; };
 		F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A5209BF351004480C2 /* Other.storyboard */; };
 		F6D34447209957FE00E95804 /* SubFunctionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */; };
@@ -101,7 +101,7 @@
 		F6135C7E20A007610092D400 /* DateScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScheduleViewController.swift; sourceTree = "<group>"; };
 		F61BE59D209BF31F004480C2 /* Table.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Table.storyboard; sourceTree = "<group>"; };
 		F61BE59F209BF330004480C2 /* Expand.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Expand.storyboard; sourceTree = "<group>"; };
-		F61BE5A1209BF33E004480C2 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		F61BE5A1209BF33E004480C2 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		F61BE5A3209BF346004480C2 /* Form.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Form.storyboard; sourceTree = "<group>"; };
 		F61BE5A5209BF351004480C2 /* Other.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Other.storyboard; sourceTree = "<group>"; };
 		F6D34446209957FE00E95804 /* SubFunctionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubFunctionListViewController.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				D251A1642086F1DC00DFC4F6 /* Main.storyboard */,
 				F61BE59D209BF31F004480C2 /* Table.storyboard */,
 				F61BE59F209BF330004480C2 /* Expand.storyboard */,
-				F61BE5A1209BF33E004480C2 /* Calendar.storyboard */,
+				F61BE5A1209BF33E004480C2 /* Schedule.storyboard */,
 				F61BE5A3209BF346004480C2 /* Form.storyboard */,
 				F61BE5A5209BF351004480C2 /* Other.storyboard */,
 			);
@@ -406,7 +406,7 @@
 				D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */,
 				F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */,
 				D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */,
-				F61BE5A2209BF33E004480C2 /* Calendar.storyboard in Resources */,
+				F61BE5A2209BF33E004480C2 /* Schedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

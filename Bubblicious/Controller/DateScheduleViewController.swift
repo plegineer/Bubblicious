@@ -29,7 +29,7 @@ class DateScheduleViewController: UIViewController {
     }
     
     @IBAction func pushedCalendarButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: "Schedule", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "calendar") as! CalandarViewController
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
