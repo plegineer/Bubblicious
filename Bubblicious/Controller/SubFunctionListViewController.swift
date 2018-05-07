@@ -14,7 +14,7 @@ protocol SubFunctionListViewControllerDelegate: class {
     func subFunctionListViewController(didFinished view: SubFunctionListViewController)
 }
 
-class SubFunctionListViewController: UITableViewController, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate, UploadImageViewControllerDelegate {
+class SubFunctionListViewController: UITableViewController, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate {
     
     weak var delegate: SubFunctionListViewControllerDelegate?
     
@@ -44,7 +44,7 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case RowIndex.uploadImage.rawValue:
-            tappedCellToUploadImage()
+            jumpToUploadImage()
         case RowIndex.openApplicationTellNumberUrl.rawValue:
             openTelephone()
         case RowIndex.requestLocation.rawValue:
@@ -120,10 +120,9 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     
     // MARK: - Private Method
     
-    private func tappedCellToUploadImage() {
+    private func jumpToUploadImage() {
         let storyBoard = UIStoryboard(name: "Other", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: "uploadImage") as! UploadImageViewController
-        controller.delegate = self
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -139,19 +138,18 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     }
     
     private func openMail() {
-        if MFMailComposeViewController.canSendMail() == false {
-            return
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposeViewController = MFMailComposeViewController()
+            let toRecipents = ["hogehoge@email.com"]
+            var messageBody = "------------------\n"
+            messageBody.append("本文を入力して下さい")
+            
+            mailComposeViewController.mailComposeDelegate = self
+            mailComposeViewController.setToRecipients(toRecipents)
+            mailComposeViewController.setSubject("--件名を入力して下さい--")
+            mailComposeViewController.setMessageBody(messageBody, isHTML: false)
+            self.present(mailComposeViewController, animated: true, completion: nil)
         }
-        let mailComposeViewController = MFMailComposeViewController()
-        let toRecipents = ["hogehoge@email.com"]
-        var messageBody = "------------------\n"
-        messageBody.append("本文を入力して下さい")
-        
-        mailComposeViewController.mailComposeDelegate = self
-        mailComposeViewController.setToRecipients(toRecipents)
-        mailComposeViewController.setSubject("--件名を入力して下さい--")
-        mailComposeViewController.setMessageBody(messageBody, isHTML: false)
-        self.present(mailComposeViewController, animated: true, completion: nil)
     }
     
     private func addLoadingLocationBackGroundView() {
@@ -182,7 +180,7 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     }
     
     private func openMap() {
-        if !(latitudeString.isEmpty || longitudeString.isEmpty) {
+        if !latitudeString.isEmpty && !longitudeString.isEmpty {
             let destinationAddress = latitudeString + "," + longitudeString
             let urlString = Const.Map.BaseUrlFirst + destinationAddress + Const.Map.BaseUrlSecond
             

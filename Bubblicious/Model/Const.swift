@@ -10,9 +10,9 @@ import Foundation
 
 struct Const {
     
-    static let apiBaseUrl = "http://xxxxx" // 例
-    static let urlSuccess = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
-    static let urlError   = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
+    static let apiBaseUrl      = "http://xxxxx" // 例
+    static let urlSuccess      = "https://dl.dropboxusercontent.com/s/7vi69591lzb88pb/login_response_success.json"
+    static let urlError        = "https://dl.dropboxusercontent.com/s/78s2tqd8cwem1gr/response_error.json"
     static let telephoneNumber = "telprompt://0000000000"
     
     struct Api {
@@ -37,7 +37,7 @@ struct Const {
     }
     
     struct Map {
-        static let BaseUrlFirst = "http://maps.apple.com/?daddr="
+        static let BaseUrlFirst  = "http://maps.apple.com/?daddr="
         static let BaseUrlSecond = "&dirflg=d"
     }
 }

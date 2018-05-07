@@ -9,24 +9,14 @@
 import UIKit
 import Photos
 
-protocol UploadImageViewControllerDelegate: class {
-    func UploadImageViewController(didFinished view: UploadImageViewController)
-}
-
 class UploadImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    weak var delegate: UploadImageViewControllerDelegate?
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.pushedBackButton))
         self.title = "アップロード画面"
-    }
-    
-    @objc func pushedBackButton() {
-        self.delegate?.UploadImageViewController(didFinished: self)
     }
     
     // MARK: - IBAction
