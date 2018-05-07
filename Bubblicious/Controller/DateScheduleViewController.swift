@@ -31,8 +31,10 @@ class DateScheduleViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // 画面切り替え後は一律、当日の日付を表示させる
-        self.dateLabel.text = fmt.string(from: Date())
-        self.displayingDate = Date()
+        let today = Date()
+        self.dateLabel.text = fmt.string(from: today)
+        self.dateLabel.textColor = Util.calendarColor(today)
+        self.displayingDate = today
     }
 
     override func didReceiveMemoryWarning() {
