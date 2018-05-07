@@ -21,7 +21,6 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     private var loadingLocationBackGroundView: CustomBackGroundView!
     private var locationManager: CLLocationManager!
     private var activityIndicatorView: UIActivityIndicatorView!
-    private let subFunctionListText = ["画像をアップロードする", "電話をかける", "GPSで現在位置を取得", "現在位置をMAPに表示", "メールを送る"]
     
     private var latitudeString: String = ""
     private var longitudeString: String = ""
@@ -32,9 +31,6 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
         case requestLocation
         case openMap
         case openMail
-        
-        case _count
-        static let count = Int(_count.rawValue)
     }
 
     override func viewDidLoad() {
@@ -46,25 +42,25 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                switch indexPath.row {
-                case RowIndex.uploadImage.rawValue:
-                    tappedCellToUploadImage()
-                case RowIndex.openApplicationTellNumberUrl.rawValue:
-                    openTelephone()
-                case RowIndex.requestLocation.rawValue:
-                    requestLocation()
-                    addLoadingLocationBackGroundView()
-                case RowIndex.openMap.rawValue:
-                    openMap()
-                case RowIndex.openMail.rawValue:
-                    openMail()
-                default:
-                    return
-                }
-        
-                if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
-                    self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
-                }
+        switch indexPath.row {
+        case RowIndex.uploadImage.rawValue:
+            tappedCellToUploadImage()
+        case RowIndex.openApplicationTellNumberUrl.rawValue:
+            openTelephone()
+        case RowIndex.requestLocation.rawValue:
+            requestLocation()
+            addLoadingLocationBackGroundView()
+        case RowIndex.openMap.rawValue:
+            openMap()
+        case RowIndex.openMail.rawValue:
+            openMail()
+        default:
+            return
+        }
+
+        if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
@@ -81,10 +77,10 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
             locationManager.requestWhenInUseAuthorization()
             break
         case .denied:
-            showAlert("位置情報サービスの設定が「無効」になっています", message: "設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい")
+            showAlert(Const.Alert.locationManagerDeniedTitle, message: Const.Alert.locationManagerDeniedMessage)
             break
         case .restricted:
-            showAlert("位置情報サービスの設定が制限されているため利用出来ません", message: "設定 > 一般 > 機能制限 で、制限を解除して下さい")
+            showAlert(Const.Alert.locationManagerRestrictedTitle, message: Const.Alert.locationManagerDidFailMessage)
             break
         case .authorizedAlways:
             break
@@ -100,14 +96,14 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
             longitudeString = "\(managerLocation.coordinate.longitude)"
             
             let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
-            showAlert("現在位置", message: locationInfomationString)
+            showAlert(Const.Alert.locationManagerDidUpdateTitle, message: locationInfomationString)
             activityIndicatorView.stopAnimating()
             loadingLocationBackGroundView.removeFromSuperview()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showAlert("エラー", message: "位置情報の取得に失敗しました")
+        showAlert(Const.Alert.errorTitle, message: Const.Alert.locationManagerDidFailMessage)
         activityIndicatorView.stopAnimating()
         loadingLocationBackGroundView.removeFromSuperview()
     }
@@ -132,7 +128,7 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     }
     
     private func openTelephone() {
-        UIApplication.shared.open(URL(string: "telprompt://0000000000")!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: Const.telephoneNumber)!, options: [:], completionHandler: nil)
     }
     
     private func requestLocation() {
@@ -188,13 +184,13 @@ class SubFunctionListViewController: UITableViewController, MFMailComposeViewCon
     private func openMap() {
         if !(latitudeString.isEmpty || longitudeString.isEmpty) {
             let destinationAddress = latitudeString + "," + longitudeString
-            let urlString = "http://maps.apple.com/?daddr=\(destinationAddress)&dirflg=d"
+            let urlString = Const.Map.BaseUrlFirst + destinationAddress + Const.Map.BaseUrlSecond
             
             if let url = URL(string: urlString) {
                  UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         } else {
-            showAlert("位置情報取得エラー", message: "先に位置情報を取得して下さい")
+            showAlert(Const.Alert.errorTitle, message: Const.Alert.openMapLocationErrorMessage)
         }
     }
 }
