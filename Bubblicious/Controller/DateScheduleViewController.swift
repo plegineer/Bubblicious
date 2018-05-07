@@ -15,7 +15,8 @@ class DateScheduleViewController: UIViewController {
     
     let fmt: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.dateFormat = "MM月dd日(EEE)"
         return formatter
     }()
     
@@ -79,6 +80,7 @@ class DateScheduleViewController: UIViewController {
         let value = isNext ? 1 : -1
         if let newDate = calendar.date(byAdding: .day, value: value, to: calendar.startOfDay(for: displayingDate)) {
             self.dateLabel.text = fmt.string(from: newDate)
+            self.dateLabel.textColor = Util.calendarColor(newDate)
             self.displayingDate = newDate
         }
     }

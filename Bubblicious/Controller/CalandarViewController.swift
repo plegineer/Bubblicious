@@ -30,41 +30,6 @@ class CalandarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     // MARK: - FSCalendarDelegateAppearance
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        // 祝日は赤色で表示
-        if self.isHoliday(date){
-            return UIColor.red
-        }
-        
-        // 土曜日は青色、日曜日は赤色で表示
-        let weekday = self.weekDayIndex(date)
-        if weekday == 1 {
-            return UIColor.red
-        } else if weekday == 7 {
-            return UIColor.blue
-        }
-        
-        return nil
-    }
-    
-    // MARK: - Private Method
-    
-    private func weekDayIndex(_ date: Date) -> Int {
-        let calendar = Calendar(identifier: .gregorian)
-        return calendar.component(.weekday, from: date)
-    }
-    
-    private func isHoliday(_ date : Date) -> Bool {
-        
-        let calendar = Calendar(identifier: .gregorian)
-        
-        // 祝日判定を行う日にちの年、月、日を取得
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
-        
-        // CalculateCalendarLogic()：祝日判定のインスタンスの生成
-        let holiday = CalculateCalendarLogic()
-        
-        return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
+        return Util.calendarColor(date)
     }
 }
