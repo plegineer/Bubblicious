@@ -59,14 +59,6 @@ class EditProfileViewController: FormViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    // MARK: - UITableViewDelegate
-    
-//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
-//        view.backgroundColor = UIColor.clear
-//        return view
-//    }
-    
     // MARK: - TableView
     
     private func setupTableView() {
@@ -145,10 +137,6 @@ class EditProfileViewController: FormViewController {
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo?.postalCode = $0.value
-//                if let sameAsHomeAdderss = self?.sameAsHomeAdderss, sameAsHomeAdderss {
-//                    self?.userInfo?.shippingPostalCode = $0.value
-//                }
-//                self?.updateShipAddressSection()
             }
             
             <<< PushRow<String>() {
@@ -167,10 +155,6 @@ class EditProfileViewController: FormViewController {
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "",Helper.toPrefCode(from: $0.value) ?? 0)
                 self?.userInfo?.prefecture = Helper.toPrefCode(from: $0.value)
-//                if let sameAsHomeAdderss = self?.sameAsHomeAdderss, sameAsHomeAdderss {
-//                    self?.userInfo?.shippingPrefecture = Helper.toPrefCode(from: $0.value)
-//                }
-//                self?.updateShipAddressSection()
             }
             
             <<< TextRow() {
@@ -181,10 +165,6 @@ class EditProfileViewController: FormViewController {
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo?.address1 = $0.value
-//                if let sameAsHomeAdderss = self?.sameAsHomeAdderss, sameAsHomeAdderss {
-//                    self?.userInfo?.shippingAddress1 = $0.value
-//                }
-//                self?.updateShipAddressSection()
             }
             
             <<< TextRow() {
@@ -195,10 +175,6 @@ class EditProfileViewController: FormViewController {
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo?.address2 = $0.value
-//                if let sameAsHomeAdderss = self?.sameAsHomeAdderss, sameAsHomeAdderss {
-//                    self?.userInfo?.shippingAddress2 = $0.value
-//                }
-//                self?.updateShipAddressSection()
             }
         
             <<< TextRow() {
@@ -228,7 +204,6 @@ class EditProfileViewController: FormViewController {
                 }.onChange { [weak self] in
                     print("Changed:", $0.value ?? "")
                     self?.userInfo?.telMain = $0.value
-//                    self?.updateAddressSection()
             }
             
             <<< TextRow () {
@@ -263,7 +238,7 @@ class EditProfileViewController: FormViewController {
             }
         
             <<< ActionSheetRow<String>() {
-                $0.title = "性別(必須)"
+                $0.title = "性別"
                 $0.selectorTitle = "性別を選択してください"
                 $0.options = ["男","女"]
                 if let gender = userInfo?.gender {
@@ -272,15 +247,29 @@ class EditProfileViewController: FormViewController {
                     $0.value = "性別を選択"
                 }
                 $0.tag = "gender"
-                
-                
-//                var footer = HeaderFooterView<RegistrationHeaderNib>(.nibFile(name: "", bundle: nil))
-                
             }.onPresent { from, to in
                 to.popoverPresentationController?.permittedArrowDirections = .up
             }.onChange{ [weak self] in
                 print("Changed:", $0.value ?? "", Helper.toGenderParam(from: $0.value) ?? "")
-                self?.userInfo?.gender = Helper.toGenderParam(from: $0.value)
+                self?.userInfo.gender = Helper.toGenderParam(from: $0.value)
+            }
+        
+            <<< PushRow<String>() {
+                $0.title = "血液型"
+                $0.options = ["A", "B", "O", "AB", "不明"]
+                if let bloodType = userInfo?.bloodType {
+                    $0.value = bloodType
+                } else {
+                    $0.value = "血液型を選択"
+                }
+                $0.selectorTitle = "血液型を選択してください"
+                $0.tag = "bloodType"
+                }.onPresent { from, to in
+                    to.dismissOnSelection = false
+                    to.dismissOnChange = false
+            }.onChange { [weak self] in
+                print("Changed:", $0.value ?? "")
+                self?.userInfo.bloodType = $0.value
             }
         
 //        var header = HeaderFooterView<RegistrationHeaderNib>(.nibFile(name: "RegistrationHeader", bundle: nil))

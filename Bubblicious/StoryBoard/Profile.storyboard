@@ -34,7 +34,7 @@
                         <viewLayoutGuide key="safeArea" id="rsc-cr-ypF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="mND-cb-j9u">
-                        <barButtonItem key="rightBarButtonItem" image="ic_edit" style="plain" id="2oU-UD-qwU">
+                        <barButtonItem key="rightBarButtonItem" image="ic_edit" id="2oU-UD-qwU">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="pushedEditButton:" destination="GpK-3i-6x2" id="tML-tM-763"/>
