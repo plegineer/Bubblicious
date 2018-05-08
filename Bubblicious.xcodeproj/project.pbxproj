@@ -12,8 +12,7 @@
 		910460E81CE19C6741261481 /* Pods_BubbliciousTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */; };
 		D22C30DB20933DF300A7659D /* sample_picker_json.js in Resources */ = {isa = PBXBuildFile; fileRef = D22C30DA20933DF300A7659D /* sample_picker_json.js */; };
 		D241558B20A13A1D00536E06 /* ExpandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D241558A20A13A1D00536E06 /* ExpandViewController.swift */; };
-		D241558F20A13D8400536E06 /* ExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D241558E20A13D8400536E06 /* ExpandableCell.swift */; };
-		D241559420A13E6800536E06 /* NormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D241559120A13E6700536E06 /* NormalCell.xib */; };
+		D241558F20A13D8400536E06 /* ExpandableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D241558E20A13D8400536E06 /* ExpandableCells.swift */; };
 		D241559520A13E6800536E06 /* ExpandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D241559220A13E6700536E06 /* ExpandCell.xib */; };
 		D241559620A13E6800536E06 /* ExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D241559320A13E6700536E06 /* ExpandedCell.xib */; };
 		D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */; };
@@ -76,8 +75,7 @@
 		CC49250A5A255F87CEB676AA /* Pods-Bubblicious.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bubblicious.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bubblicious/Pods-Bubblicious.debug.xcconfig"; sourceTree = "<group>"; };
 		D22C30DA20933DF300A7659D /* sample_picker_json.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sample_picker_json.js; sourceTree = "<group>"; };
 		D241558A20A13A1D00536E06 /* ExpandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandViewController.swift; sourceTree = "<group>"; };
-		D241558E20A13D8400536E06 /* ExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCell.swift; sourceTree = "<group>"; };
-		D241559120A13E6700536E06 /* NormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NormalCell.xib; sourceTree = "<group>"; };
+		D241558E20A13D8400536E06 /* ExpandableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCells.swift; sourceTree = "<group>"; };
 		D241559220A13E6700536E06 /* ExpandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandCell.xib; sourceTree = "<group>"; };
 		D241559320A13E6700536E06 /* ExpandedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedCell.xib; sourceTree = "<group>"; };
 		D251A15B2086F1DC00DFC4F6 /* Bubblicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bubblicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,10 +160,9 @@
 		D241559020A13E3200536E06 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D241558E20A13D8400536E06 /* ExpandableCell.swift */,
+				D241558E20A13D8400536E06 /* ExpandableCells.swift */,
 				D241559220A13E6700536E06 /* ExpandCell.xib */,
 				D241559320A13E6700536E06 /* ExpandedCell.xib */,
-				D241559120A13E6700536E06 /* NormalCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -429,7 +426,6 @@
 				D251A16B2086F1DC00DFC4F6 /* LaunchScreen.storyboard in Resources */,
 				F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */,
 				F61BE5A4209BF346004480C2 /* Form.storyboard in Resources */,
-				D241559420A13E6800536E06 /* NormalCell.xib in Resources */,
 				D241559620A13E6800536E06 /* ExpandedCell.xib in Resources */,
 				F61BE59E209BF31F004480C2 /* Table.storyboard in Resources */,
 				D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */,
@@ -622,7 +618,7 @@
 				D272A5982099C0C300DA20CC /* UploadImageViewController.swift in Sources */,
 				F6D344492099888900E95804 /* CustomBaseView.swift in Sources */,
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
-				D241558F20A13D8400536E06 /* ExpandableCell.swift in Sources */,
+				D241558F20A13D8400536E06 /* ExpandableCells.swift in Sources */,
 				D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */,
 				D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */,
 				D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */,

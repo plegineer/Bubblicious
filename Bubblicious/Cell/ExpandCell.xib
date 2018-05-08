@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parent Cell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6x-gc-5Zj">
-                        <rect key="frame" x="15" y="22.5" width="83" height="21"/>
+                        <rect key="frame" x="62" y="22.5" width="83" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -27,10 +27,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Y6x-gc-5Zj" firstAttribute="centerY" secondItem="0E9-wZ-z0c" secondAttribute="centerY" id="GJs-st-69M"/>
-                    <constraint firstItem="Y6x-gc-5Zj" firstAttribute="leading" secondItem="0E9-wZ-z0c" secondAttribute="leading" constant="15" id="WWy-L4-hKr"/>
+                    <constraint firstItem="Y6x-gc-5Zj" firstAttribute="leading" secondItem="0E9-wZ-z0c" secondAttribute="leading" constant="62" id="WWy-L4-hKr"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.5725490196078431" green="0.6588235294117647" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="expandTitleLabel" destination="Y6x-gc-5Zj" id="xeS-Lt-rUM"/>
+            </connections>
             <point key="canvasLocation" x="58.5" y="-10"/>
         </tableViewCell>
     </objects>
