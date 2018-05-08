@@ -10,7 +10,8 @@ import UIKit
 import Eureka
 
 protocol EditProfileViewControllerDelegate: class {
-    func editProfileViewController(didFinished view: EditProfileViewController)
+    func editProfileViewControllerPushedCloseButton(_ view: EditProfileViewController)
+    func editProfileViewControllerPushedSaveButton(_ view: EditProfileViewController)
 }
 
 class EditProfileViewController: FormViewController {
@@ -21,7 +22,7 @@ class EditProfileViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Edit Profile"
+        self.title = "プロフィール編集"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.pushedCloseButton))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(self.pushedSaveButton))
         
@@ -33,10 +34,11 @@ class EditProfileViewController: FormViewController {
     }
     
     @objc func pushedCloseButton() {
-        let alertController = UIAlertController(title: "編集画面を閉じますか？", message: "編集した内容は保存されていません", preferredStyle: .alert)
+        // TODO: この生成処理は共通化!
+        let alertController = UIAlertController(title: "編集画面を閉じますか？", message: "編集した内容は保存されません", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "編集を続ける", style: .default, handler: nil)
-        let destructiveAction = UIAlertAction(title: "編集を辞める", style: .destructive, handler: { _ in
-            self.delegate?.editProfileViewController(didFinished: self)
+        let destructiveAction = UIAlertAction(title: "閉じる", style: .destructive, handler: { _ in
+            self.delegate?.editProfileViewControllerPushedCloseButton(self)
         })
         alertController.addAction(defaultAction)
         alertController.addAction(destructiveAction)
@@ -44,14 +46,13 @@ class EditProfileViewController: FormViewController {
     }
     
     @objc func pushedSaveButton() {
+        // TODO: この生成処理は共通化!
         let alertController = UIAlertController(title: "編集した内容で保存しますか？", message: "", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "保存", style: .default, handler: { _ in
             
-            // TODO: APIなりでの更新処理実行
+            // API(例: ユーザー情報更新API)での更新処理実行
             
-            
-            
-            self.delegate?.editProfileViewController(didFinished: self)
+            self.delegate?.editProfileViewControllerPushedSaveButton(self)
         })
         let destructiveAction = UIAlertAction(title: "キャンセル", style: .destructive, handler: nil)
         alertController.addAction(defaultAction)
@@ -62,7 +63,7 @@ class EditProfileViewController: FormViewController {
     // MARK: - TableView
     
     private func setupTableView() {
-        
+        // TODO: 各々のフォームでのvalidation(最大文字数制限等)の処理を追加する
         form
             //************************
             // MARK: 氏名・生年月日
@@ -234,7 +235,6 @@ class EditProfileViewController: FormViewController {
             // MARK: 性別・血液型
             +++ Section(){
                 $0.tag = "genderBloodTypeSection"
-                
             }
         
             <<< ActionSheetRow<String>() {
@@ -272,30 +272,6 @@ class EditProfileViewController: FormViewController {
                 self?.userInfo.bloodType = $0.value
             }
         
-//        var header = HeaderFooterView<RegistrationHeaderNib>(.nibFile(name: "RegistrationHeader", bundle: nil))
-//        header.onSetupView = { (view, section) in
-//            view.editMode = self.editMode
-//        }
-//        if self.editMode {
-//            header.height = {40}
-//        }
-
-        
-            //************************
-            // MARK: ボタン
-//            +++ Section("ボタン") {
-//                $0.tag = "buttonSection"
-//            }
-//
-//            <<< ButtonRow(){
-//                $0.title = "Save"
-//                $0.baseCell.height = {200}
-//                $0.baseCell.selectionStyle = .none
-//
-//            }.onCellSelection{ [weak self] cell, row in
-//
-//            }
-
     }
 }
 

@@ -31,10 +31,4 @@ struct UserInfo {
         // init時にUserDefaultからUserIdを読み込んで自分に設定する
         self.userId = 0
     }
-    
-    func description(message: String) {
-        print()
-    }
-
-    
 }
