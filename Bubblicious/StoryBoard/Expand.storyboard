@@ -18,16 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WsU-Uz-UWj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WsU-Uz-UWj" customClass="ExpandableTableView" customModule="ExpandableCell">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="bottom" secondItem="ZoA-Q4-QhX" secondAttribute="bottom" id="Ywh-rs-svm"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="leading" secondItem="ZoA-Q4-QhX" secondAttribute="leading" id="dzh-UM-YAf"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="top" secondItem="Kcu-sf-7k2" secondAttribute="top" id="huJ-1n-D0w"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="trailing" secondItem="ZoA-Q4-QhX" secondAttribute="trailing" id="iNa-ZE-baO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZoA-Q4-QhX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Expand" id="avC-cI-o4v"/>
+                    <connections>
+                        <outlet property="tableView" destination="WsU-Uz-UWj" id="XyJ-gC-MpS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXq-Sr-TPV" sceneMemberID="firstResponder"/>
             </objects>
