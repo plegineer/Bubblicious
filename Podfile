@@ -9,6 +9,7 @@ target 'Bubblicious' do
   pod 'SwiftyJSON'
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic'
+  pod 'Eureka'
 
   # Pods for Bubblicious
 
