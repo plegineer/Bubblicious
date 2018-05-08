@@ -13,8 +13,18 @@ class ExpandViewController: UIViewController {
     
     @IBOutlet weak var tableView: ExpandableTableView!
     
-    var cell: UITableViewCell {
+    private let expandCellHeight: CGFloat = 66
+    private let expandedCellHeight: CGFloat = 44
+    private let numberOfSections: Int = 1
+    private let numberOfRows: Int = 2
+    
+    private var cell: UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID)!
+    }
+    
+    private enum RowIndex: Int {
+        case parentFirst
+        case parentSecond
     }
     
     override func viewDidLoad() {
@@ -28,30 +38,19 @@ class ExpandViewController: UIViewController {
         
         tableView.closeAll()
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.reloadData()
     }
 }
 
 extension ExpandViewController: ExpandableDelegate {
     
+    // MARK: - ExpandableDelegate
+    
     func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCellsForRowAt indexPath: IndexPath) -> [UITableViewCell]? {
             switch indexPath.row {
-            case 0:
-                let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-                cellFirst.expandedTitleLabel.text = "First Child Cell"
-                let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-                cellSecond.expandedTitleLabel.text = "Second Child Cell"
-                let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-                cellThird.expandedTitleLabel.text = "Third Child Cell"
-                return [cellFirst, cellSecond, cellThird]
-            case 1:
-                let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-                cellFirst.expandedTitleLabel.text = "First Child Cell - 2"
-                let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-                cellSecond.expandedTitleLabel.text = "Second Child Cell - 2"
-                let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-                cellThird.expandedTitleLabel.text = "Third Child Cell - 2"
-                return [cellFirst, cellSecond, cellThird]
+            case RowIndex.parentFirst.rawValue:
+                return setLabelTextToExpandedCell(textFirst: "First Child Cell", textSecond: "Second Child Cell", textThird: "Third Child Cell")
+            case RowIndex.parentSecond.rawValue:
+                return setLabelTextToExpandedCell(textFirst: "First Child Cell - 2", textSecond: "Second Child Cell - 2", textThird: "Third Child Cell - 2")
             default:
                 break
             }
@@ -60,8 +59,8 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, heightsForExpandedRowAt indexPath: IndexPath) -> [CGFloat]? {
             switch indexPath.row {
-            case 0,1:
-                return [44, 44, 44]
+            case RowIndex.parentFirst.rawValue, RowIndex.parentSecond.rawValue:
+                return [expandCellHeight, expandCellHeight, expandCellHeight]
             default:
                 break
             }
@@ -69,29 +68,20 @@ extension ExpandViewController: ExpandableDelegate {
     }
     
     func numberOfSections(in tableView: ExpandableTableView) -> Int {
-        return 1
+        return numberOfSections
     }
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func expandableTableView(_ expandableTableView: ExpandableTableView, didSelectRowAt indexPath: IndexPath) {
-    }
-    
-    func expandableTableView(_ expandableTableView: ExpandableTableView, didSelectExpandedRowAt indexPath: IndexPath) {
-    }
-    
-    func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCell: UITableViewCell, didSelectExpandedRowAt indexPath: IndexPath) {
+        return numberOfRows
     }
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             switch indexPath.row {
-            case 0:
+            case RowIndex.parentFirst.rawValue:
                 let cell = expandableTableView.dequeueReusableCell(withIdentifier: ExpandCell.ID) as! ExpandCell
                 cell.expandTitleLabel.text = "Parent - 1"
                 return cell
-            case 1:
+            case RowIndex.parentSecond.rawValue:
                 let cell = expandableTableView.dequeueReusableCell(withIdentifier: ExpandCell.ID) as! ExpandCell
                 cell.expandTitleLabel.text = "Parent - 2"
                 return cell
@@ -103,16 +93,27 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             switch indexPath.row {
-            case 0,1:
-                return 66
+            case RowIndex.parentFirst.rawValue,RowIndex.parentSecond.rawValue:
+                return expandCellHeight
             default:
                 break
             }
-        return 44
+        return expandedCellHeight
     }
     
     func expandableTableView(_ expandableTableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    // MARK: - Private Method
+    
+    private func setLabelTextToExpandedCell(textFirst: String ,textSecond: String, textThird: String) -> [UITableViewCell]? {
+        let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellFirst.expandedTitleLabel.text = textFirst
+        let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellSecond.expandedTitleLabel.text = textSecond
+        let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellThird.expandedTitleLabel.text = textThird
+        return [cellFirst, cellSecond, cellThird]
+    }
 }
-
