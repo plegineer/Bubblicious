@@ -37,6 +37,7 @@
 		F6135C8120A13FEE0092D400 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8020A13FEE0092D400 /* ProfileViewController.swift */; };
 		F6135C8320A140230092D400 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8220A140230092D400 /* EditProfileViewController.swift */; };
 		F6135C8520A16CBC0092D400 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8420A16CBC0092D400 /* Date+Extension.swift */; };
+		F6135C8A20A170250092D400 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8920A170250092D400 /* UserInfo.swift */; };
 		F61BE59E209BF31F004480C2 /* Table.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59D209BF31F004480C2 /* Table.storyboard */; };
 		F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59F209BF330004480C2 /* Expand.storyboard */; };
 		F61BE5A2209BF33E004480C2 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A1209BF33E004480C2 /* Schedule.storyboard */; };
@@ -107,6 +108,7 @@
 		F6135C8020A13FEE0092D400 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F6135C8220A140230092D400 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F6135C8420A16CBC0092D400 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		F6135C8920A170250092D400 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		F61BE59D209BF31F004480C2 /* Table.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Table.storyboard; sourceTree = "<group>"; };
 		F61BE59F209BF330004480C2 /* Expand.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Expand.storyboard; sourceTree = "<group>"; };
 		F61BE5A1209BF33E004480C2 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			children = (
 				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
 				F6D3444A20999F1400E95804 /* PickerData.swift */,
+				F6135C8920A170250092D400 /* UserInfo.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				D272A5982099C0C300DA20CC /* UploadImageViewController.swift in Sources */,
 				F6D344492099888900E95804 /* CustomBaseView.swift in Sources */,
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
+				F6135C8A20A170250092D400 /* UserInfo.swift in Sources */,
 				D251A1A12088AB9600DFC4F6 /* Util.swift in Sources */,
 				D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */,
 				F6135C8520A16CBC0092D400 /* Date+Extension.swift in Sources */,
