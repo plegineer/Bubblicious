@@ -31,7 +31,7 @@ class ExpandViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.expandableDelegate = self
-        tableView.animation = .automatic
+        tableView.animation = .fade
         
         tableView.register(UINib(nibName: "ExpandCell", bundle: nil), forCellReuseIdentifier: ExpandCell.ID)
         tableView.register(UINib(nibName: "ExpandedCell", bundle: nil), forCellReuseIdentifier: ExpandedCell.ID)
@@ -48,7 +48,7 @@ extension ExpandViewController: ExpandableDelegate {
     func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCellsForRowAt indexPath: IndexPath) -> [UITableViewCell]? {
             switch indexPath.row {
             case RowIndex.parentFirst.rawValue:
-                return setLabelTextToExpandedCell(textFirst: "First Child Cell", textSecond: "Second Child Cell", textThird: "Third Child Cell")
+                return setLabelTextToExpandedCell(textFirst: "First Child Cell - 1", textSecond: "Second Child Cell - 1", textThird: "Third Child Cell - 1")
             case RowIndex.parentSecond.rawValue:
                 return setLabelTextToExpandedCell(textFirst: "First Child Cell - 2", textSecond: "Second Child Cell - 2", textThird: "Third Child Cell - 2")
             default:
@@ -60,7 +60,7 @@ extension ExpandViewController: ExpandableDelegate {
     func expandableTableView(_ expandableTableView: ExpandableTableView, heightsForExpandedRowAt indexPath: IndexPath) -> [CGFloat]? {
             switch indexPath.row {
             case RowIndex.parentFirst.rawValue, RowIndex.parentSecond.rawValue:
-                return [expandCellHeight, expandCellHeight, expandCellHeight]
+                return [expandedCellHeight, expandedCellHeight, expandedCellHeight]
             default:
                 break
             }

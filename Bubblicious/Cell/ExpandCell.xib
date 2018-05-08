@@ -31,6 +31,7 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="expandTitleLabel" destination="Y6x-gc-5Zj" id="xeS-Lt-rUM"/>
             </connections>
