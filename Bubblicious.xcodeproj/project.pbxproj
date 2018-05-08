@@ -225,14 +225,10 @@
 		D29309FF20898C8B00C6663F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F6135C8620A16F620092D400 /* Common */,
+				F6135C8820A16F8B0092D400 /* DataModel */,
+				F6135C8720A16F6B0092D400 /* Entity */,
 				D2FCC6E5208A1834001DA0B4 /* Extention */,
-				D251A1A02088AB9600DFC4F6 /* Util.swift */,
-				D29309FD208984DB00C6663F /* Const.swift */,
-				D2FCC6DD2089C557001DA0B4 /* Log.swift */,
-				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
-				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
-				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
-				F6D3444A20999F1400E95804 /* PickerData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +257,34 @@
 				F6135C8420A16CBC0092D400 /* Date+Extension.swift */,
 			);
 			path = Extention;
+			sourceTree = "<group>";
+		};
+		F6135C8620A16F620092D400 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D251A1942087219400DFC4F6 /* WebApiManager.swift */,
+				D251A1A02088AB9600DFC4F6 /* Util.swift */,
+				D29309FD208984DB00C6663F /* Const.swift */,
+				D2FCC6DD2089C557001DA0B4 /* Log.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F6135C8720A16F6B0092D400 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
+				F6D3444A20999F1400E95804 /* PickerData.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		F6135C8820A16F8B0092D400 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		F61BE59C209BF2F4004480C2 /* StoryBoard */ = {
