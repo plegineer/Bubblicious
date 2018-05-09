@@ -241,16 +241,16 @@
 		D2930A0020898CA400C6663F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D251A19C208881B100DFC4F6 /* ShowCustomViewController.swift */,
-				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
-				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
-				F6D34446209957FE00E95804 /* OtherViewController.swift */,
-				F6135C7C209FF1840092D400 /* CalandarViewController.swift */,
+				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
+				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				F6135C7E20A007610092D400 /* DateScheduleViewController.swift */,
-				D272A5972099C0C300DA20CC /* UploadImageViewController.swift */,
+				F6135C7C209FF1840092D400 /* CalandarViewController.swift */,
 				F6135C8020A13FEE0092D400 /* ProfileViewController.swift */,
 				F6135C8220A140230092D400 /* EditProfileViewController.swift */,
+				F6D34446209957FE00E95804 /* OtherViewController.swift */,
+				D251A19C208881B100DFC4F6 /* ShowCustomViewController.swift */,
+				D272A5972099C0C300DA20CC /* UploadImageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
