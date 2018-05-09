@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 import CoreLocation
 
-class OtherController: UITableViewController, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate {
+class OtherController: UITableViewController {
     
     @IBOutlet var loadingView: CustomBackGroundView!
     private var activityIndicatorView: UIActivityIndicatorView!
@@ -63,57 +63,6 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
         Util.clearAllSavedData()
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
-    }
-    
-    // MARK: - MFMailComposeViewControllerDelegate
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - CLLocationManagerDelegate
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            break
-        case .denied:
-            showAlert(Const.Alert.locationManagerDeniedTitle, message: Const.Alert.locationManagerDeniedMessage)
-            break
-        case .restricted:
-            showAlert(Const.Alert.locationManagerRestrictedTitle, message: Const.Alert.locationManagerDidFailMessage)
-            break
-        case .authorizedAlways:
-            break
-        case .authorizedWhenInUse:
-            break
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let managerLocation = manager.location {
-            
-            latitudeString = "\(managerLocation.coordinate.latitude)"
-            longitudeString = "\(managerLocation.coordinate.longitude)"
-            
-            let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
-            showAlert(Const.Alert.locationManagerDidUpdateTitle, message: locationInfomationString)
-            
-            self.stopLoading()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showAlert(Const.Alert.errorTitle, message: Const.Alert.locationManagerDidFailMessage)
-        
-        self.stopLoading()
-    }
-    
-    // MARK: - UploadImageViewControllerDelegate
-    
-    func UploadImageViewController(didFinished view: UploadImageViewController) {
-        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Private Method
@@ -205,5 +154,51 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
     private func stopLoading() {
         self.activityIndicatorView.stopAnimating()
         self.loadingView.isHidden = true
+    }
+}
+
+// MARK: - Extension
+extension OtherController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension OtherController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .denied:
+            showAlert(Const.Alert.locationManagerDeniedTitle, message: Const.Alert.locationManagerDeniedMessage)
+            break
+        case .restricted:
+            showAlert(Const.Alert.locationManagerRestrictedTitle, message: Const.Alert.locationManagerDidFailMessage)
+            break
+        case .authorizedAlways:
+            break
+        case .authorizedWhenInUse:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let managerLocation = manager.location {
+            
+            latitudeString = "\(managerLocation.coordinate.latitude)"
+            longitudeString = "\(managerLocation.coordinate.longitude)"
+            
+            let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
+            showAlert(Const.Alert.locationManagerDidUpdateTitle, message: locationInfomationString)
+            
+            self.stopLoading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showAlert(Const.Alert.errorTitle, message: Const.Alert.locationManagerDidFailMessage)
+        
+        self.stopLoading()
     }
 }
