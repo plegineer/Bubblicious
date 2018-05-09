@@ -10,13 +10,13 @@ import UIKit
 
 protocol CustomBaseViewDelegate: class {
     func customBaseViewTappedSaveButton(_ message: String , _ view: CustomBaseView)
-    func customBaseViewWillShowKeyboard(_ view: CustomBaseView)
-    func customBaseViewWillHideKeyboard(_ view: CustomBaseView)
 }
 
 class CustomBaseView: UIView {
     
     weak var delegate: CustomBaseViewDelegate?
+    
+    var isKeyBoardOpen: Bool = false
     
     func createLabel(_ text: String) -> UILabel {
         let label = UILabel()
@@ -54,15 +54,15 @@ class CustomBaseView: UIView {
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(
-            self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+            self, selector: #selector(keyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
-        self.delegate?.customBaseViewWillShowKeyboard(self)
+        self.isKeyBoardOpen = true
     }
     
-    @objc func keyboardWillHide(notification: Notification?) {
-        self.delegate?.customBaseViewWillHideKeyboard(self)
+    @objc func keyboardDidHide(notification: Notification?) {
+        self.isKeyBoardOpen = false
     }
 }
 

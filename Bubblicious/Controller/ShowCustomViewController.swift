@@ -10,8 +10,6 @@ import UIKit
 
 class ShowCustomViewController: UIViewController {
     
-    @IBOutlet weak var defaultView: ThreeContentsCustomView!
-    @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
     @IBOutlet weak var showCustomViewButton: UIButton!
     @IBOutlet weak var showPickerViewButton: UIButton!
     
@@ -19,12 +17,13 @@ class ShowCustomViewController: UIViewController {
     private var animationPickerView: TwoPickersCustomView!
     private var customBackGroundView: CustomBackGroundView!
     
+    private let animationTopMargin: CGFloat = 30
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.isTranslucent = false
-        self.defaultView.delegate = self
-        self.defaultBackGroundView.delegate = self
+        
+        self.setupCustomBackGroundView()
     }
     
     // MARK: - IBAction
@@ -39,19 +38,18 @@ class ShowCustomViewController: UIViewController {
     
     // MARK: - Private Method
     
-    private func addCustomBackGroundView() {
+    private func setupCustomBackGroundView() {
         let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
         customBackGroundView.delegate = self
+        customBackGroundView.isHidden = true
         self.view.addSubview(customBackGroundView)
         self.customBackGroundView = customBackGroundView
     }
     
     private func addCutomViewWithAnimation(isPicker: Bool) {
         
-        self.toggleButtons(to: false)
-        
-        self.addCustomBackGroundView()
-        
+        self.hideBackGroundView(to: false)
+
         let size = CGSize(width: 300, height: 250)
         let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
         let view = isPicker ? TwoPickersCustomView(frame: frame, withShadow: true) : ThreeContentsCustomView(frame: frame, withShadow: true)
@@ -67,16 +65,12 @@ class ShowCustomViewController: UIViewController {
         }
         
         UIView.animate(withDuration: 0.3, animations: {
-            view.frame.origin.y -= (self.view.frame.maxY - self.defaultView.frame.minY)
+            view.center.y -= (self.view.frame.maxY - self.animationTopMargin)
         }, completion: nil)
     }
     
-    private func backToDefaultView() {
-        self.customBackGroundView.removeFromSuperview()
-        toggleButtons(to: true)
-    }
-    
-    private func toggleButtons(to: Bool) {
+    private func hideBackGroundView(to: Bool) {
+        self.customBackGroundView.isHidden = to
         self.showCustomViewButton.isEnabled = to
         self.showPickerViewButton.isEnabled = to
     }
@@ -86,45 +80,26 @@ extension ShowCustomViewController: CustomBaseViewDelegate {
     func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
         self.showAlert("保存完了", message: message)
         
-        if view == animationCustomView {
-            let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
-            
-            UIView.animate(withDuration: 0.3, animations: {
-                targetCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
-        }
-    }
-    
-    func customBaseViewWillShowKeyboard(_ view: CustomBaseView) {
-        if view == defaultView {
-            self.toggleButtons(to: false)
-        } else {
-            self.customBackGroundView.isUserInteractionEnabled = false
-        }
-    }
-    
-    func customBaseViewWillHideKeyboard(_ view: CustomBaseView) {
-        if view == defaultView {
-            self.toggleButtons(to: true)
-        } else {
-            self.customBackGroundView.isUserInteractionEnabled = true
-        }
+        let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
+        UIView.animate(withDuration: 0.3, animations: {
+            targetCustomView.center.y += (self.view.frame.maxY - targetCustomView.frame.origin.y)
+        }, completion: { _ in
+            self.hideBackGroundView(to: true)
+        })
     }
 }
 
 extension ShowCustomViewController: CustomBackGroundViewDelegate {
     func customBackGroundViewTouched(_ view: CustomBackGroundView) {
-        self.view.endEditing(true)
-        if view == self.customBackGroundView {
-            let displayingView = self.view.subviews.last is TwoPickersCustomView ? self.animationPickerView : self.animationCustomView
+        let displayingView = self.view.subviews.last is TwoPickersCustomView ? self.animationPickerView : self.animationCustomView
+        if !displayingView.isKeyBoardOpen {
             UIView.animate(withDuration: 0.3, animations: {
-                displayingView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
+                displayingView.center.y += (self.view.frame.maxY - displayingView.frame.origin.y)
             }, completion: { _ in
                 displayingView.removeFromSuperview()
-                self.backToDefaultView()
+                self.hideBackGroundView(to: true)
             })
         }
+        self.view.endEditing(true)
     }
 }
