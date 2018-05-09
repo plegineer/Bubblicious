@@ -13,7 +13,7 @@ class DateScheduleViewController: UIViewController {
     @IBOutlet weak var displayCalendarButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     
-    let fmt: DateFormatter = {
+    private let fmt: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ja_JP")
         formatter.dateFormat = "MM月dd日(EEE)"
