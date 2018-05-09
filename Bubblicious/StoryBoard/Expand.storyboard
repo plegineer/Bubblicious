@@ -13,27 +13,30 @@
         <!--Expand-->
         <scene sceneID="VyI-zt-K9e">
             <objects>
-                <viewController id="46R-Tr-FDJ" sceneMemberID="viewController">
+                <viewController id="46R-Tr-FDJ" customClass="ExpandViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kcu-sf-7k2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1fV-Hq-2ni">
-                                <rect key="frame" x="87" y="312" width="201.5" height="43"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WsU-Uz-UWj" customClass="ExpandableTableView" customModule="ExpandableCell">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="1fV-Hq-2ni" secondAttribute="centerY" id="hcR-gT-J8y"/>
-                            <constraint firstAttribute="centerX" secondItem="1fV-Hq-2ni" secondAttribute="centerX" id="sT3-Nj-OqO"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="bottom" secondItem="ZoA-Q4-QhX" secondAttribute="bottom" id="Ywh-rs-svm"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="leading" secondItem="ZoA-Q4-QhX" secondAttribute="leading" id="dzh-UM-YAf"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="top" secondItem="Kcu-sf-7k2" secondAttribute="top" id="huJ-1n-D0w"/>
+                            <constraint firstItem="WsU-Uz-UWj" firstAttribute="trailing" secondItem="ZoA-Q4-QhX" secondAttribute="trailing" id="iNa-ZE-baO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZoA-Q4-QhX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Expand" id="avC-cI-o4v"/>
+                    <connections>
+                        <outlet property="tableView" destination="WsU-Uz-UWj" id="XyJ-gC-MpS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXq-Sr-TPV" sceneMemberID="firstResponder"/>
             </objects>

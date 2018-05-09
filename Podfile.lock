@@ -1,21 +1,24 @@
 PODS:
   - Alamofire (4.7.2)
   - CalculateCalendarLogic (0.1.6)
+  - ExpandableCell (1.2.2)
   - FSCalendar (2.7.9)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - CalculateCalendarLogic
+  - ExpandableCell
   - FSCalendar
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   CalculateCalendarLogic: 81b16c24e2b7273fffb03fc29d0c8d1800fd3c9e
+  ExpandableCell: f2d99f9ae03a8c393e268adddaeb7f6d2525a76e
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 3ee5dde820077446d285d6ede8a95ec059a584a4
+PODFILE CHECKSUM: e15611d3a53e47e0011ecc0b862c9e191f028bc6
 
 COCOAPODS: 1.4.0

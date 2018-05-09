@@ -9,6 +9,7 @@ target 'Bubblicious' do
   pod 'SwiftyJSON'
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic'
+  pod 'ExpandableCell'
 
   # Pods for Bubblicious
 
