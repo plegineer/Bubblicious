@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--プロフィール-->
         <scene sceneID="tg5-7u-LE0">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcL-gm-y9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -78,7 +78,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rsc-cr-ypF"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="mND-cb-j9u">
+                    <navigationItem key="navigationItem" title="プロフィール" id="mND-cb-j9u">
                         <barButtonItem key="rightBarButtonItem" image="ic_edit" id="2oU-UD-qwU">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>

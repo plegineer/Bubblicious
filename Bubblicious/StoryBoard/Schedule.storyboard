@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="1508" y="-0.44977511244377816"/>
         </scene>
-        <!--Schedule-->
+        <!--スケジュール-->
         <scene sceneID="0hT-wW-Ew9">
             <objects>
                 <viewController storyboardIdentifier="dateSchedule" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QWi-jL-BH3" customClass="DateScheduleViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,7 +147,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iZJ-9A-6nz"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Schedule" id="TaD-aE-V6Z"/>
+                    <navigationItem key="navigationItem" title="スケジュール" id="TaD-aE-V6Z"/>
                     <connections>
                         <outlet property="dateLabel" destination="fSS-vr-ZQB" id="1sy-lW-guJ"/>
                         <outlet property="displayCalendarButton" destination="3lR-lU-Ycl" id="c48-ff-eMb"/>

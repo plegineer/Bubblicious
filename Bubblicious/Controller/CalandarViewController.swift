@@ -20,6 +20,7 @@ class CalandarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         super.viewDidLoad()
         self.calendar.dataSource = self
         self.calendar.delegate = self
+        self.title = "カレンダー"
     }
     
     override func didReceiveMemoryWarning() {
