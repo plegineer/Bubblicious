@@ -32,12 +32,23 @@ class ExpandViewController: UIViewController {
         
         tableView.expandableDelegate = self
         tableView.animation = .fade
-        
         tableView.register(UINib(nibName: "ExpandCell", bundle: nil), forCellReuseIdentifier: ExpandCell.ID)
         tableView.register(UINib(nibName: "ExpandedCell", bundle: nil), forCellReuseIdentifier: ExpandedCell.ID)
         
         tableView.closeAll()
         tableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    // MARK: - Private Method
+    
+    private func setLabelTextToExpandedCell(textFirst: String ,textSecond: String, textThird: String) -> [UITableViewCell]? {
+        let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellFirst.expandedTitleLabel.text = textFirst
+        let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellSecond.expandedTitleLabel.text = textSecond
+        let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellThird.expandedTitleLabel.text = textThird
+        return [cellFirst, cellSecond, cellThird]
     }
 }
 
@@ -105,15 +116,9 @@ extension ExpandViewController: ExpandableDelegate {
         return true
     }
     
-    // MARK: - Private Method
-    
-    private func setLabelTextToExpandedCell(textFirst: String ,textSecond: String, textThird: String) -> [UITableViewCell]? {
-        let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-        cellFirst.expandedTitleLabel.text = textFirst
-        let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-        cellSecond.expandedTitleLabel.text = textSecond
-        let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-        cellThird.expandedTitleLabel.text = textThird
-        return [cellFirst, cellSecond, cellThird]
+    func expandableTableView(_ expandableTableView: ExpandableTableView, didSelectRowAt indexPath: IndexPath) {
+//        let angle = CGFloat(Double.pi / 2)
+//        let transRotate = CGAffineTransform(rotationAngle: CGFloat(angle))
+//        ExpandedCell.arrowImageView.transform = transRotate
     }
 }

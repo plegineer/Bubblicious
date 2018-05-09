@@ -15,6 +15,7 @@
 		D241558F20A13D8400536E06 /* ExpandableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D241558E20A13D8400536E06 /* ExpandableCells.swift */; };
 		D241559520A13E6800536E06 /* ExpandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D241559220A13E6700536E06 /* ExpandCell.xib */; };
 		D241559620A13E6800536E06 /* ExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D241559320A13E6700536E06 /* ExpandedCell.xib */; };
+		D241559820A2969D00536E06 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D241559720A2969D00536E06 /* CheckBoxButton.swift */; };
 		D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */; };
 		D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */; };
 		D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D251A1642086F1DC00DFC4F6 /* Main.storyboard */; };
@@ -78,6 +79,7 @@
 		D241558E20A13D8400536E06 /* ExpandableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCells.swift; sourceTree = "<group>"; };
 		D241559220A13E6700536E06 /* ExpandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandCell.xib; sourceTree = "<group>"; };
 		D241559320A13E6700536E06 /* ExpandedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedCell.xib; sourceTree = "<group>"; };
+		D241559720A2969D00536E06 /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		D251A15B2086F1DC00DFC4F6 /* Bubblicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bubblicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				D251A19C208881B100DFC4F6 /* OtherViewController.swift */,
+				D241559720A2969D00536E06 /* CheckBoxButton.swift */,
 				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
@@ -624,6 +627,7 @@
 				D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */,
 				F6D3444B20999F1400E95804 /* PickerData.swift in Sources */,
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
+				D241559820A2969D00536E06 /* CheckBoxButton.swift in Sources */,
 				D251A19D208881B100DFC4F6 /* OtherViewController.swift in Sources */,
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				D261B8ED209804D400A4FBA9 /* TwoPickersCustomView.swift in Sources */,

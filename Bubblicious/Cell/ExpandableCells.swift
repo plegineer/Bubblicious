@@ -11,12 +11,20 @@ import ExpandableCell
 
 class ExpandCell: ChangeArrowImageExpandableCell {
     static let ID = "ExpandCell"
+
     @IBOutlet weak var expandTitleLabel: UILabel!
+    @IBAction func expandButtonTap(_ sender: CheckBoxButton) {
+        print("pushed")
+    }
 }
 
 class ExpandedCell: UITableViewCell {
     static let ID = "ExpandedCell"
     @IBOutlet weak var expandedTitleLabel: UILabel!
+    @IBAction func expandedButtonTap(_ sender: CheckBoxButton) {
+        print("pushed")
+    }
+    
 }
 
 class ChangeArrowImageExpandableCell: ExpandableCell {
@@ -38,16 +46,10 @@ class ChangeArrowImageExpandableCell: ExpandableCell {
 
         let arrowImageWidth: CGFloat = 11
         let arrowImageHeight: CGFloat = 22
-        let arrowImageXPoint: CGFloat = 20
+//        let arrowImageXPoint: CGFloat = 20
+        let arrowImageXPoint: CGFloat = 200
         let arrowImageYPoint:CGFloat = (self.bounds.height - arrowImageHeight) / 2
 
         arrowImageView.frame = CGRect(x: arrowImageXPoint, y: arrowImageYPoint, width: arrowImageWidth, height: arrowImageHeight)
     }
-    
-//    override func open() {
-//        self.isOpen = true
-//        UIView.animate(withDuration: 0.3) {
-//            self.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.5, 0.0, 0.0)
-//        }
-//    }
 }
