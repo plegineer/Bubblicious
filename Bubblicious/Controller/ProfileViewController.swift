@@ -10,11 +10,30 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var profileTableView: UITableView!
+    
     private var userInfo: UserInfo!
-
+    
+    private enum ProfileTableViewIndex: Int {
+        case name
+        case kanaName
+        case birthday
+        case gender
+        case bloodType
+        case postalCode
+        case address
+        case telMain
+        case telSub
+        case fax
+        
+        case _count
+        static let count = Int(_count.rawValue)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.requestToGetUserInfo()
+        self.profileTableView.tableFooterView = UIView(frame: .zero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +79,65 @@ class ProfileViewController: UIViewController {
         userInfo.gender = "male"
         userInfo.bloodType = "A"
         return userInfo
+    }
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ProfileTableViewIndex.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let profileCell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier) as! ProfileTableViewCell
+        let userInfoParams = self.userInfo.displayParams()
+        
+        switch indexPath.row {
+            case ProfileTableViewIndex.name.rawValue:
+                profileCell.titleLabel.text = "名前"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.name]
+            case ProfileTableViewIndex.kanaName.rawValue:
+                profileCell.titleLabel.text = "カナ"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.kanaName]
+            case ProfileTableViewIndex.birthday.rawValue:
+                profileCell.titleLabel.text = "誕生日"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.birthday]
+            case ProfileTableViewIndex.gender.rawValue:
+                profileCell.titleLabel.text = "性別"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.gender]
+            case ProfileTableViewIndex.bloodType.rawValue:
+                profileCell.titleLabel.text = "血液型"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.bloodType]
+            case ProfileTableViewIndex.postalCode.rawValue:
+                profileCell.titleLabel.text = "郵便番号"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.postalCode]
+            case ProfileTableViewIndex.address.rawValue:
+                profileCell.titleLabel.text = "住所"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.address]
+            case ProfileTableViewIndex.telMain.rawValue:
+                profileCell.titleLabel.text = "電話番号"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.telMain]
+            case ProfileTableViewIndex.telSub.rawValue:
+                profileCell.titleLabel.text = "電話番号2"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.telSub]
+            case ProfileTableViewIndex.fax.rawValue:
+                profileCell.titleLabel.text = "FAX番号"
+                profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.fax]
+            default:
+                break
+        }
+
+        return profileCell
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }
 
