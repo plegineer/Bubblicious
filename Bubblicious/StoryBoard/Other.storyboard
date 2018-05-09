@@ -199,8 +199,17 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="その他" id="CIi-L5-qV5"/>
+                    <connections>
+                        <outlet property="loadingView" destination="Vnu-03-7Qt" id="zU5-tz-SEs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUR-vW-OYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view hidden="YES" contentMode="scaleToFill" id="Vnu-03-7Qt" customClass="CustomBackGroundView" customModule="Bubblicious" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="6Dr-te-eSs"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="3184" y="1585"/>
         </scene>

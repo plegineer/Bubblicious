@@ -12,10 +12,10 @@ import CoreLocation
 
 class OtherController: UITableViewController, MFMailComposeViewControllerDelegate, CLLocationManagerDelegate {
     
-    private var loadingLocationBackGroundView: CustomBackGroundView!
-    private var locationManager: CLLocationManager!
+    @IBOutlet var loadingView: CustomBackGroundView!
     private var activityIndicatorView: UIActivityIndicatorView!
-    
+
+    private var locationManager: CLLocationManager!
     private var latitudeString: String = ""
     private var longitudeString: String = ""
     
@@ -31,25 +31,27 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+        self.setupLoadingView()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         switch indexPath.row {
-        case RowIndex.uploadImage.rawValue:
-            jumpToUploadImage()
-        case RowIndex.openApplicationTellNumberUrl.rawValue:
-            openTelephone()
-        case RowIndex.requestLocation.rawValue:
-            requestLocation()
-            addLoadingLocationBackGroundView()
-        case RowIndex.openMap.rawValue:
-            openMap()
-        case RowIndex.openMail.rawValue:
-            openMail()
-        case RowIndex.showCustomView.rawValue:
-            jumpToShowCustomView()
-        default:
-            return
+            case RowIndex.uploadImage.rawValue:
+                jumpToUploadImage()
+            case RowIndex.openApplicationTellNumberUrl.rawValue:
+                openTelephone()
+            case RowIndex.requestLocation.rawValue:
+                requestLocation()
+                self.startLoading()
+            case RowIndex.openMap.rawValue:
+                openMap()
+            case RowIndex.openMail.rawValue:
+                openMail()
+            case RowIndex.showCustomView.rawValue:
+                jumpToShowCustomView()
+            default:
+                return
         }
 
         if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
@@ -97,15 +99,15 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
             
             let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
             showAlert(Const.Alert.locationManagerDidUpdateTitle, message: locationInfomationString)
-            activityIndicatorView.stopAnimating()
-            loadingLocationBackGroundView.removeFromSuperview()
+            
+            self.stopLoading()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         showAlert(Const.Alert.errorTitle, message: Const.Alert.locationManagerDidFailMessage)
-        activityIndicatorView.stopAnimating()
-        loadingLocationBackGroundView.removeFromSuperview()
+        
+        self.stopLoading()
     }
     
     // MARK: - UploadImageViewControllerDelegate
@@ -114,11 +116,35 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
 
-//    @objc func pushedCloseButton() {
-//        self.delegate?.subFunctionListViewController(didFinished: self)
-//    }
-    
     // MARK: - Private Method
+    
+    private func setupLoadingView() {
+        var height = self.view.frame.height
+        if let tabBar = self.tabBarController?.tabBar {
+            height += tabBar.frame.size.height
+        }
+        self.loadingView.frame = CGRect(origin: .zero, size: CGSize(width: self.view.frame.size.width, height: height))
+        self.loadingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        let indicator = UIActivityIndicatorView()
+        indicator.frame.size = CGSize(width: 20, height: 20)
+        indicator.center = self.loadingView.center
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = .gray
+        self.loadingView.addSubview(indicator)
+        self.activityIndicatorView = indicator
+        
+        let label = UILabel()
+        label.text = "位置情報取得中..."
+        label.textColor = UIColor.black.withAlphaComponent(0.8)
+        label.textAlignment = .center
+        label.frame.size = CGSize(width: 150, height: 30)
+        label.center.x = indicator.center.x
+        label.center.y = indicator.frame.maxY + label.frame.size.height/2
+        self.loadingView.addSubview(label)
+        
+        self.tabBarController?.view.addSubview(self.loadingView)
+    }
     
     private func jumpToUploadImage() {
         let storyBoard = UIStoryboard(name: "Other", bundle: nil)
@@ -152,33 +178,6 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
         }
     }
     
-    private func addLoadingLocationBackGroundView() {
-        let loadingLocationBackGroundView = CustomBackGroundView(frame: self.view.frame)
-        loadingLocationBackGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        
-        let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.frame.size = CGSize(width: 50, height: 50)
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        
-        let loadingLocationTextLabel = UILabel()
-        loadingLocationTextLabel.text = "位置情報取得中"
-        loadingLocationTextLabel.textAlignment = .center
-        loadingLocationTextLabel.frame.size = CGSize(width: 150, height: 30)
-        loadingLocationTextLabel.center.x = self.view.center.x
-        loadingLocationTextLabel.center.y = self.view.center.y + 30
-        loadingLocationTextLabel.textColor = UIColor.black.withAlphaComponent(0.6)
-        
-        self.navigationController?.view.addSubview(loadingLocationBackGroundView)
-        loadingLocationBackGroundView.addSubview(loadingLocationTextLabel)
-        loadingLocationBackGroundView.addSubview(activityIndicatorView)
-        
-        activityIndicatorView.startAnimating()
-        self.activityIndicatorView = activityIndicatorView
-        self.loadingLocationBackGroundView = loadingLocationBackGroundView
-    }
-    
     private func openMap() {
         if !latitudeString.isEmpty && !longitudeString.isEmpty {
             let destinationAddress = latitudeString + "," + longitudeString
@@ -196,5 +195,15 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
         let storyBoard = UIStoryboard(name: "Other", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: "showCustomView") as! ShowCustomViewController
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    private func startLoading() {
+        self.activityIndicatorView.startAnimating()
+        self.loadingView.isHidden = false
+    }
+    
+    private func stopLoading() {
+        self.activityIndicatorView.stopAnimating()
+        self.loadingView.isHidden = true
     }
 }
