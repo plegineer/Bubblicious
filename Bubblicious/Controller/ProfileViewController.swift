@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     
     private var userInfo: UserInfo!
     
-    private enum ProfileTableViewIndex: Int {
+    private enum RowIndex: Int {
         case name
         case kanaName
         case birthday
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ProfileTableViewIndex.count
+        return RowIndex.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,34 +88,34 @@ extension ProfileViewController: UITableViewDataSource {
         let userInfoParams = self.userInfo.displayParams()
         
         switch indexPath.row {
-            case ProfileTableViewIndex.name.rawValue:
+            case RowIndex.name.rawValue:
                 profileCell.titleLabel.text = "名前"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.name]
-            case ProfileTableViewIndex.kanaName.rawValue:
+            case RowIndex.kanaName.rawValue:
                 profileCell.titleLabel.text = "カナ"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.kanaName]
-            case ProfileTableViewIndex.birthday.rawValue:
+            case RowIndex.birthday.rawValue:
                 profileCell.titleLabel.text = "誕生日"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.birthday]
-            case ProfileTableViewIndex.gender.rawValue:
+            case RowIndex.gender.rawValue:
                 profileCell.titleLabel.text = "性別"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.gender]
-            case ProfileTableViewIndex.bloodType.rawValue:
+            case RowIndex.bloodType.rawValue:
                 profileCell.titleLabel.text = "血液型"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.bloodType]
-            case ProfileTableViewIndex.postalCode.rawValue:
+            case RowIndex.postalCode.rawValue:
                 profileCell.titleLabel.text = "郵便番号"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.postalCode]
-            case ProfileTableViewIndex.address.rawValue:
+            case RowIndex.address.rawValue:
                 profileCell.titleLabel.text = "住所"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.address]
-            case ProfileTableViewIndex.telMain.rawValue:
+            case RowIndex.telMain.rawValue:
                 profileCell.titleLabel.text = "電話番号"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.telMain]
-            case ProfileTableViewIndex.telSub.rawValue:
+            case RowIndex.telSub.rawValue:
                 profileCell.titleLabel.text = "電話番号2"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.telSub]
-            case ProfileTableViewIndex.fax.rawValue:
+            case RowIndex.fax.rawValue:
                 profileCell.titleLabel.text = "FAX番号"
                 profileCell.valueLabel.text = userInfoParams[UserInfo.ParamKey.fax]
             default:
