@@ -145,6 +145,7 @@ extension ProfileViewController: EditProfileViewControllerDelegate {
             // 本来であれば、再度リクエスト処理(例: ユーザー情報取得API)を投げる
             // APIがないので、EditProfileViewControllerで保持している変更済のuserInfoで上書きする
             self.userInfo = view.userInfo
+            self.profileTableView.reloadData()
         })
         
     }

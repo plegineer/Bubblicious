@@ -34,29 +34,29 @@ class EditProfileViewController: FormViewController {
     }
     
     @objc func pushedCloseButton() {
-        // TODO: この生成処理は共通化!
         let alertController = UIAlertController(title: "編集画面を閉じますか？", message: "編集した内容は保存されません", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "編集を続ける", style: .default, handler: nil)
         let destructiveAction = UIAlertAction(title: "閉じる", style: .destructive, handler: { _ in
             self.delegate?.editProfileViewControllerPushedCloseButton(self)
         })
-        alertController.addAction(defaultAction)
+        let defaultAction = UIAlertAction(title: "編集を続ける", style: .default, handler: nil)
+        
         alertController.addAction(destructiveAction)
+        alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func pushedSaveButton() {
-        // TODO: この生成処理は共通化!
         let alertController = UIAlertController(title: "編集した内容で保存しますか？", message: "", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "保存", style: .default, handler: { _ in
+        let saveAction = UIAlertAction(title: "保存する", style: .default, handler: { _ in
             
             // API(例: ユーザー情報更新API)での更新処理実行
             
             self.delegate?.editProfileViewControllerPushedSaveButton(self)
         })
-        let destructiveAction = UIAlertAction(title: "キャンセル", style: .destructive, handler: nil)
-        alertController.addAction(defaultAction)
-        alertController.addAction(destructiveAction)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -73,7 +73,7 @@ class EditProfileViewController: FormViewController {
             
             <<< TextRow () {
                 $0.title = "姓"
-                $0.placeholder = userInfo.familyName ?? nil
+                $0.value = userInfo.familyName ?? nil
             }.onChange{ [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo.familyName = $0.value
@@ -81,7 +81,7 @@ class EditProfileViewController: FormViewController {
             
             <<< TextRow () {
                 $0.title = "名"
-                $0.placeholder = userInfo.firstName ?? nil
+                $0.value = userInfo.firstName ?? nil
             }.onChange{ [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo.firstName = $0.value
@@ -89,7 +89,7 @@ class EditProfileViewController: FormViewController {
         
             <<< TextRow () {
                 $0.title = "性(カナ)"
-                $0.placeholder = userInfo.familyNameKana ?? nil
+                $0.value = userInfo.familyNameKana ?? nil
             }.onChange{ [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo.familyNameKana = $0.value
@@ -97,7 +97,7 @@ class EditProfileViewController: FormViewController {
         
             <<< TextRow () {
                 $0.title = "名(カナ)"
-                $0.placeholder = userInfo.firstNameKana ?? nil
+                $0.value = userInfo.firstNameKana ?? nil
             }.onChange{ [weak self] in
                 print("Changed:", $0.value ?? "")
                 self?.userInfo.firstNameKana = $0.value
