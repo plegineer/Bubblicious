@@ -50,15 +50,9 @@ class ProfileViewController: UIViewController {
     }
     
     private func requestToGetUserInfo() {
-        // フロー整理
-        //  本来であれば、会員IDを元に、ユーザーの情報を取得する(=> ユーザー情報が取得できない場合、編集画面にも遷移できないような制御が必要)
-        //  APIがないので、初期値固定ユーザーを生成
+        // 本来であれば、会員IDを元に、ユーザーの情報を取得する(=> ユーザー情報が取得できない場合、編集画面にも遷移できないような制御が必要)
+        // 今回はAPIがないので、初期値固定のユーザーを生成
         self.userInfo = self.createTempUser()
-        
-        
-        // TODO: --残--
-        //  ・UILabel - UILabel のセットのviewなりを用意
-        //  ・うまくUserInfoの各値を組み合わせて、用意した枠組みに表示する
     }
     
     private func createTempUser() -> UserInfo {
@@ -147,15 +141,10 @@ extension ProfileViewController: EditProfileViewControllerDelegate {
     }
     
     func editProfileViewControllerPushedSaveButton(_ view: EditProfileViewController) {
-        
         self.dismiss(animated: true, completion: {
-            
             // 本来であれば、再度リクエスト処理(例: ユーザー情報取得API)を投げる
-            // APIがないので、EditProfileViewControllerで保持している変更済のuserInfoをそのまま参照して、画面に反映させる
-            
-            
-
-            
+            // APIがないので、EditProfileViewControllerで保持している変更済のuserInfoで上書きする
+            self.userInfo = view.userInfo
         })
         
     }

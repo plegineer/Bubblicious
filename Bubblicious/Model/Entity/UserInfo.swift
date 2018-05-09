@@ -43,7 +43,8 @@ struct UserInfo {
     
     init() {
         // Login時にUserDefaultにUserIdを保存しておく
-        // init時にUserDefaultからUserIdを読み込んで自分に設定する
+        // init時にUserDefaultからUserIdを読み込んで、値を保持させる
+        // API接続はないので、今回は任意の値を設定
         self.userId = 0
     }
     
@@ -88,7 +89,6 @@ struct UserInfo {
     }
     
     private func birthdayParam() -> String {
-        // TODO: format確認！
         let formatter = DateFormatter()
         formatter.timeZone = NSTimeZone.system
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -119,7 +119,6 @@ struct UserInfo {
     }
     
     private func postalCodeParam() -> String {
-        // TODO: "-"つける?
         var param = ""
         if let postalCode = self.postalCode {
             param += postalCode
