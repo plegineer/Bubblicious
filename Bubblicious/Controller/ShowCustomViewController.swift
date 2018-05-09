@@ -23,15 +23,8 @@ class ShowCustomViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         self.defaultView.delegate = self
         self.defaultBackGroundView.delegate = self
-    }
-    
-    @objc func logout() {
-        Util.clearAllSavedData()
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
     // MARK: - IBAction
@@ -43,14 +36,6 @@ class ShowCustomViewController: UIViewController {
     @IBAction func pushedPickerViewButton(_ sender: Any) {
         self.addCutomViewWithAnimation(isPicker: true)
     }
-    
-//    @IBAction func pushedToOtherFunctionsButton(_ sender: Any) {
-//        let storyBoard = UIStoryboard(name: "Other", bundle: nil)
-//        let controller = storyBoard.instantiateViewController(withIdentifier: "subFunctionList") as! OtherViewController
-//        controller.delegate = self
-//        let nav = UINavigationController(rootViewController: controller)
-//        self.navigationController?.present(nav, animated: true, completion: nil)
-//    }
     
     // MARK: - Private Method
     
@@ -143,9 +128,3 @@ extension ShowCustomViewController: CustomBackGroundViewDelegate {
         }
     }
 }
-
-//extension ShowCustomViewController: OtherViewControllerDelegate {
-//    func subFunctionListViewController(didFinished view: OtherViewController) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//}

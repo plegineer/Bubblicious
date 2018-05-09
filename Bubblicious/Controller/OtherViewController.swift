@@ -30,6 +30,7 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -54,6 +55,12 @@ class OtherController: UITableViewController, MFMailComposeViewControllerDelegat
         if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
         }
+    }
+    
+    @objc func logout() {
+        Util.clearAllSavedData()
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
