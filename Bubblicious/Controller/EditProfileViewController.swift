@@ -120,7 +120,7 @@ class EditProfileViewController: FormViewController {
                 $0.tag = "birthday"
             }.onChange{ [weak self] in
                 print("Changed:", $0.value ?? "", Helper.toBirthdayParam(from: $0.value) ?? "")
-                self?.userInfo?.birthday = $0.value
+                self?.userInfo.birthday = $0.value
             }
         
             //************************
@@ -138,7 +138,7 @@ class EditProfileViewController: FormViewController {
                 cell.textField.keyboardType = .numberPad
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
-                self?.userInfo?.postalCode = $0.value
+                self?.userInfo.postalCode = $0.value
             }
             
             <<< PushRow<String>() {
@@ -156,7 +156,7 @@ class EditProfileViewController: FormViewController {
                 to.dismissOnChange = false
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "",Helper.toPrefCode(from: $0.value) ?? 0)
-                self?.userInfo?.prefecture = Helper.toPrefCode(from: $0.value)
+                self?.userInfo.prefecture = Helper.toPrefCode(from: $0.value)
             }
             
             <<< TextRow() {
@@ -166,7 +166,7 @@ class EditProfileViewController: FormViewController {
                 $0.tag = "address1"
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
-                self?.userInfo?.address1 = $0.value
+                self?.userInfo.address1 = $0.value
             }
             
             <<< TextRow() {
@@ -176,18 +176,18 @@ class EditProfileViewController: FormViewController {
                 $0.tag = "address2"
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
-                self?.userInfo?.address2 = $0.value
+                self?.userInfo.address2 = $0.value
             }
         
             <<< TextRow() {
                 $0.title = "マンション・アパート名"
                 $0.baseCell.textLabel?.font = UIFont.systemFont(ofSize: 12)
                 $0.placeholder = "住所3"
-                $0.value = userInfo?.address3 ?? nil
+                $0.value = userInfo.address3 ?? nil
                 $0.tag = "address3"
             }.onChange { [weak self] in
                 print("Changed:", $0.value ?? "")
-                self?.userInfo?.address3 = $0.value
+                self?.userInfo.address3 = $0.value
             }
         
             //************************
@@ -199,13 +199,13 @@ class EditProfileViewController: FormViewController {
             <<< TextRow () {
                 $0.title = "電話番号"
                 $0.placeholder = "09012345678"
-                $0.value = userInfo?.telMain ?? nil
+                $0.value = userInfo.telMain ?? nil
                 $0.tag = "tellMain"
                 }.cellSetup { cell, _  in
                     cell.textField.keyboardType = .numberPad
                 }.onChange { [weak self] in
                     print("Changed:", $0.value ?? "")
-                    self?.userInfo?.telMain = $0.value
+                    self?.userInfo.telMain = $0.value
             }
             
             <<< TextRow () {
@@ -242,7 +242,7 @@ class EditProfileViewController: FormViewController {
                 $0.title = "性別"
                 $0.selectorTitle = "性別を選択してください"
                 $0.options = ["男","女"]
-                if let gender = userInfo?.gender {
+                if let gender = userInfo.gender {
                     $0.value = Helper.toGenderPreview(from: gender)
                 } else {
                     $0.value = "性別を選択"
@@ -258,7 +258,7 @@ class EditProfileViewController: FormViewController {
             <<< PushRow<String>() {
                 $0.title = "血液型"
                 $0.options = ["A", "B", "O", "AB", "不明"]
-                if let bloodType = userInfo?.bloodType {
+                if let bloodType = userInfo.bloodType {
                     $0.value = bloodType
                 } else {
                     $0.value = "血液型を選択"
