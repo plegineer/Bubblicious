@@ -143,7 +143,7 @@ class EditProfileViewController: FormViewController {
             
             <<< PushRow<String>() {
                 $0.title = "都道府県"
-                $0.options = RegistrationConst.prefectures
+                $0.options = EditProfileConst.prefectures
                 if let prefecture = userInfo.prefecture {
                     $0.value = Helper.toPrefName(from: prefecture)
                 } else {
@@ -316,7 +316,7 @@ class Helper {
         guard let prefName = prefName else {
             return nil
         }
-        for (i, pref) in RegistrationConst.prefectures.enumerated() {
+        for (i, pref) in EditProfileConst.prefectures.enumerated() {
             if pref == prefName {
                 return String(i+1)
             }
@@ -328,7 +328,7 @@ class Helper {
         guard let prefCodeInt = Int(prefCode) else {
             return nil
         }
-        return RegistrationConst.prefectures[prefCodeInt-1]
+        return EditProfileConst.prefectures[prefCodeInt-1]
     }
     
     
@@ -336,7 +336,7 @@ class Helper {
 
 // MARK: - Const Class
 
-struct RegistrationConst {
+struct EditProfileConst {
     static let prefectures = ["北海道",
                               "青森県",
                               "岩手県",
