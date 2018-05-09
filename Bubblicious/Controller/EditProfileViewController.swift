@@ -49,7 +49,7 @@ class EditProfileViewController: FormViewController {
         let alertController = UIAlertController(title: "編集した内容で保存しますか？", message: "", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "保存する", style: .default, handler: { _ in
             
-            // API(例: ユーザー情報更新API)での更新処理実行
+            // Comment: API(例: ユーザー情報更新API)での更新処理実行
             
             self.delegate?.editProfileViewControllerPushedSaveButton(self)
         })
@@ -63,7 +63,8 @@ class EditProfileViewController: FormViewController {
     // MARK: - TableView
     
     private func setupTableView() {
-        // TODO: 各々のフォームでのvalidation(最大文字数制限等)の処理を追加する
+        // Comment: validationについて: https://github.com/xmartlabs/Eureka#validations
+        //  今回は未実装
         form
             //************************
             // MARK: 氏名・生年月日
