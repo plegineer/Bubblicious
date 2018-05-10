@@ -2,31 +2,61 @@
 //  OtherViewController.swift
 //  Bubblicious
 //
-//  Created by 島田一輝 on 2018/04/19.
+//  Created by Yoshiki Agatsuma on 2018/05/02.
 //  Copyright © 2018年 Plegineer Inc. All rights reserved.
 //
 
 import UIKit
+import MessageUI
+import CoreLocation
 
-class OtherViewController: UIViewController {
+class OtherController: UITableViewController {
     
-    @IBOutlet weak var defaultView: ThreeContentsCustomView!
-    @IBOutlet weak var defaultBackGroundView: CustomBackGroundView!
-    @IBOutlet weak var showCustomViewButton: UIButton!
-    @IBOutlet weak var showPickerViewButton: UIButton!
-    @IBOutlet weak var jumpToSubFunctionButton: UIButton!
+    @IBOutlet var loadingView: CustomBackGroundView!
+    private var activityIndicatorView: UIActivityIndicatorView!
+
+    private var locationManager: CLLocationManager!
+    private var latitudeString: String = ""
+    private var longitudeString: String = ""
     
-    private var animationCustomView: ThreeContentsCustomView!
-    private var animationPickerView: TwoPickersCustomView!
-    private var customBackGroundView: CustomBackGroundView!
-    
+    private enum RowIndex: Int {
+        case uploadImage
+        case openApplicationTellNumberUrl
+        case requestLocation
+        case openMap
+        case openMail
+        case showCustomView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
-        self.defaultView.delegate = self
-        self.defaultBackGroundView.delegate = self
+        self.setupLoadingView()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+            case RowIndex.uploadImage.rawValue:
+                jumpToUploadImage()
+            case RowIndex.openApplicationTellNumberUrl.rawValue:
+                openTelephone()
+            case RowIndex.requestLocation.rawValue:
+                requestLocation()
+                self.startLoading()
+            case RowIndex.openMap.rawValue:
+                openMap()
+            case RowIndex.openMail.rawValue:
+                openMail()
+            case RowIndex.showCustomView.rawValue:
+                jumpToShowCustomView()
+            default:
+                return
+        }
+
+        if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
     }
     
     @objc func logout() {
@@ -34,120 +64,141 @@ class OtherViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login") as! UINavigationController
     }
-    
-    // MARK: - IBAction
-    
-    @IBAction func pushedShowCustomViewButton(_ sender: Any) {
-        self.addCutomViewWithAnimation(isPicker: false)
-    }
-    
-    @IBAction func pushedPickerViewButton(_ sender: Any) {
-        self.addCutomViewWithAnimation(isPicker: true)
-    }
-    
-    @IBAction func pushedToOtherFunctionsButton(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "Other", bundle: nil)
-        let controller = storyBoard.instantiateViewController(withIdentifier: "subFunctionList") as! SubFunctionListViewController
-        controller.delegate = self
-        let nav = UINavigationController(rootViewController: controller)
-        self.navigationController?.present(nav, animated: true, completion: nil)
-    }
-    
+
     // MARK: - Private Method
     
-    private func addCustomBackGroundView() {
-        let customBackGroundView = CustomBackGroundView(frame: self.view.bounds)
-        customBackGroundView.delegate = self
-        self.view.addSubview(customBackGroundView)
-        self.customBackGroundView = customBackGroundView
-    }
-    
-    private func addCutomViewWithAnimation(isPicker: Bool) {
-        
-        self.toggleButtons(to: false)
-        
-        self.addCustomBackGroundView()
-        
-        let size = CGSize(width: 300, height: 250)
-        let frame = CGRect(origin: CGPoint(x: (self.view.frame.size.width - size.width)/2, y: self.view.frame.maxY), size: size)
-        let view = isPicker ? TwoPickersCustomView(frame: frame, withShadow: true) : ThreeContentsCustomView(frame: frame, withShadow: true)
-        self.view.addSubview(view)
-        
-        if let picker = view as? TwoPickersCustomView {
-            picker.delegate = self
-            self.animationPickerView = picker
+    private func setupLoadingView() {
+        var height = self.view.frame.height
+        if let tabBar = self.tabBarController?.tabBar {
+            height += tabBar.frame.size.height
         }
-        if let custom = view as? ThreeContentsCustomView {
-            custom.delegate = self
-            self.animationCustomView = custom
-        }
+        self.loadingView.frame = CGRect(origin: .zero, size: CGSize(width: self.view.frame.size.width, height: height))
+        self.loadingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        UIView.animate(withDuration: 0.3, animations: {
-            view.frame.origin.y -= (self.view.frame.maxY - self.defaultView.frame.minY)
-        }, completion: nil)
+        let indicator = UIActivityIndicatorView()
+        indicator.frame.size = CGSize(width: 20, height: 20)
+        indicator.center = self.loadingView.center
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = .gray
+        self.loadingView.addSubview(indicator)
+        self.activityIndicatorView = indicator
+        
+        let label = UILabel()
+        label.text = "位置情報取得中..."
+        label.textColor = UIColor.black.withAlphaComponent(0.8)
+        label.textAlignment = .center
+        label.frame.size = CGSize(width: 150, height: 30)
+        label.center.x = indicator.center.x
+        label.center.y = indicator.frame.maxY + label.frame.size.height/2
+        self.loadingView.addSubview(label)
+        
+        self.tabBarController?.view.addSubview(self.loadingView)
     }
     
-    private func backToDefaultView() {
-        self.customBackGroundView.removeFromSuperview()
-        toggleButtons(to: true)
+    private func jumpToUploadImage() {
+        let storyBoard = UIStoryboard(name: "Other", bundle: nil)
+        let controller = storyBoard.instantiateViewController(withIdentifier: "uploadImage") as! UploadImageViewController
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func toggleButtons(to: Bool) {
-        self.showCustomViewButton.isEnabled = to
-        self.showPickerViewButton.isEnabled = to
-        self.jumpToSubFunctionButton.isEnabled = to
+    private func openTelephone() {
+        UIApplication.shared.open(URL(string: Const.telephoneNumber)!, options: [:], completionHandler: nil)
     }
-}
-
-extension OtherViewController: CustomBaseViewDelegate {
-    func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
-        self.showAlert("保存完了", message: message)
-        
-        if view == animationCustomView {
-            let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
+    
+    private func requestLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestLocation()
+    }
+    
+    private func openMail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposeViewController = MFMailComposeViewController()
+            let toRecipents = ["hogehoge@email.com"]
+            var messageBody = "------------------\n"
+            messageBody.append("本文を入力して下さい")
             
-            UIView.animate(withDuration: 0.3, animations: {
-                targetCustomView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                self.backToDefaultView()
-            })
+            mailComposeViewController.mailComposeDelegate = self
+            mailComposeViewController.setToRecipients(toRecipents)
+            mailComposeViewController.setSubject("--件名を入力して下さい--")
+            mailComposeViewController.setMessageBody(messageBody, isHTML: false)
+            self.present(mailComposeViewController, animated: true, completion: nil)
         }
     }
     
-    func customBaseViewWillShowKeyboard(_ view: CustomBaseView) {
-        if view == defaultView {
-            self.toggleButtons(to: false)
+    private func openMap() {
+        if !latitudeString.isEmpty && !longitudeString.isEmpty {
+            let destinationAddress = latitudeString + "," + longitudeString
+            let urlString = Const.Map.BaseUrlFirst + destinationAddress + Const.Map.BaseUrlSecond
+            
+            if let url = URL(string: urlString) {
+                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         } else {
-            self.customBackGroundView.isUserInteractionEnabled = false
+            showAlert(Const.Alert.errorTitle, message: Const.Alert.openMapLocationErrorMessage)
         }
     }
     
-    func customBaseViewWillHideKeyboard(_ view: CustomBaseView) {
-        if view == defaultView {
-            self.toggleButtons(to: true)
-        } else {
-            self.customBackGroundView.isUserInteractionEnabled = true
-        }
+    private func jumpToShowCustomView() {
+        let storyBoard = UIStoryboard(name: "Other", bundle: nil)
+        let controller = storyBoard.instantiateViewController(withIdentifier: "showCustomView") as! ShowCustomViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    private func startLoading() {
+        self.activityIndicatorView.startAnimating()
+        self.loadingView.isHidden = false
+    }
+    
+    private func stopLoading() {
+        self.activityIndicatorView.stopAnimating()
+        self.loadingView.isHidden = true
     }
 }
 
-extension OtherViewController: CustomBackGroundViewDelegate {
-    func customBackGroundViewTouched(_ view: CustomBackGroundView) {
-        self.view.endEditing(true)
-        if view == self.customBackGroundView {
-            let displayingView = self.view.subviews.last is TwoPickersCustomView ? self.animationPickerView : self.animationCustomView
-            UIView.animate(withDuration: 0.3, animations: {
-                displayingView.center.y += (self.view.frame.maxY - self.defaultView.frame.minY)
-            }, completion: { _ in
-                displayingView.removeFromSuperview()
-                self.backToDefaultView()
-            })
-        }
+// MARK: - Extension
+extension OtherController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
-extension OtherViewController: SubFunctionListViewControllerDelegate {
-    func subFunctionListViewController(didFinished view: SubFunctionListViewController) {
-        self.dismiss(animated: true, completion: nil)
+extension OtherController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .denied:
+            showAlert(Const.Alert.locationManagerDeniedTitle, message: Const.Alert.locationManagerDeniedMessage)
+            break
+        case .restricted:
+            showAlert(Const.Alert.locationManagerRestrictedTitle, message: Const.Alert.locationManagerDidFailMessage)
+            break
+        case .authorizedAlways:
+            break
+        case .authorizedWhenInUse:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let managerLocation = manager.location {
+            
+            latitudeString = "\(managerLocation.coordinate.latitude)"
+            longitudeString = "\(managerLocation.coordinate.longitude)"
+            
+            let locationInfomationString = "緯度:\(managerLocation.coordinate.latitude)\n経度:\(managerLocation.coordinate.longitude)"
+            showAlert(Const.Alert.locationManagerDidUpdateTitle, message: locationInfomationString)
+            
+            self.stopLoading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showAlert(Const.Alert.errorTitle, message: Const.Alert.locationManagerDidFailMessage)
+        
+        self.stopLoading()
     }
 }

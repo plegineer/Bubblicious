@@ -10,27 +10,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Other-->
+        <!--Show Custom View Controller-->
         <scene sceneID="ODE-9H-a3C">
             <objects>
-                <viewController id="CW6-Zm-1vl" customClass="OtherViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showCustomView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CW6-Zm-1vl" customClass="ShowCustomViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nby-m4-z5j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkX-XH-FD6" customClass="CustomBackGroundView" customModule="Bubblicious" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFb-Hd-Zpb">
+                                <rect key="frame" x="110.5" y="293" width="153" height="80"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7P9-Yo-qWm" customClass="ThreeContentsCustomView" customModule="Bubblicious" customModuleProvider="target">
-                                        <rect key="frame" x="37.5" y="50" width="300" height="230"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="7PA-qQ-3xY"/>
-                                            <constraint firstAttribute="height" constant="230" id="f2f-8o-sPp"/>
-                                        </constraints>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0IU-XW-PgM">
-                                        <rect key="frame" x="111" y="300" width="153" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="153" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="qrt-vH-6zB"/>
                                         </constraints>
@@ -40,7 +32,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-lA-llA">
-                                        <rect key="frame" x="111" y="350" width="153" height="30"/>
+                                        <rect key="frame" x="0.0" y="50" width="153" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xik-B2-lPS"/>
                                         </constraints>
@@ -49,56 +41,39 @@
                                             <action selector="pushedPickerViewButton:" destination="CW6-Zm-1vl" eventType="touchUpInside" id="XJv-JB-bkA"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB6-x9-xET">
-                                        <rect key="frame" x="141" y="400" width="92" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="FjU-sm-npc"/>
-                                        </constraints>
-                                        <state key="normal" title="その他機能へ"/>
-                                        <connections>
-                                            <action selector="pushedToOtherFunctionsButton:" destination="CW6-Zm-1vl" eventType="touchUpInside" id="Zuc-dZ-TrQ"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="GaK-lA-llA" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="1LY-aE-FPe"/>
-                                    <constraint firstItem="7P9-Yo-qWm" firstAttribute="top" secondItem="wkX-XH-FD6" secondAttribute="top" constant="50" id="7qT-rM-aup"/>
-                                    <constraint firstItem="GaK-lA-llA" firstAttribute="top" secondItem="0IU-XW-PgM" secondAttribute="bottom" constant="20" id="MXx-6N-U8t"/>
-                                    <constraint firstItem="jB6-x9-xET" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="UEw-cj-rHY"/>
-                                    <constraint firstItem="jB6-x9-xET" firstAttribute="top" secondItem="GaK-lA-llA" secondAttribute="bottom" constant="20" id="WRK-Oc-pyL"/>
-                                    <constraint firstItem="0IU-XW-PgM" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="hbE-A3-Ekz"/>
-                                    <constraint firstItem="0IU-XW-PgM" firstAttribute="top" secondItem="7P9-Yo-qWm" secondAttribute="bottom" constant="20" id="qhc-cX-cve"/>
-                                    <constraint firstItem="7P9-Yo-qWm" firstAttribute="centerX" secondItem="wkX-XH-FD6" secondAttribute="centerX" id="skM-fR-me7"/>
+                                    <constraint firstItem="GaK-lA-llA" firstAttribute="top" secondItem="0IU-XW-PgM" secondAttribute="bottom" constant="20" id="0g6-cT-zJl"/>
+                                    <constraint firstAttribute="trailing" secondItem="0IU-XW-PgM" secondAttribute="trailing" id="5Wo-ml-lEb"/>
+                                    <constraint firstAttribute="trailing" secondItem="GaK-lA-llA" secondAttribute="trailing" id="Kw0-6W-R9Q"/>
+                                    <constraint firstItem="0IU-XW-PgM" firstAttribute="top" secondItem="pFb-Hd-Zpb" secondAttribute="top" id="dZw-Pq-ScU"/>
+                                    <constraint firstItem="GaK-lA-llA" firstAttribute="leading" secondItem="pFb-Hd-Zpb" secondAttribute="leading" id="iYQ-wZ-6xw"/>
+                                    <constraint firstItem="0IU-XW-PgM" firstAttribute="leading" secondItem="pFb-Hd-Zpb" secondAttribute="leading" id="n55-yf-p4F"/>
+                                    <constraint firstAttribute="bottom" secondItem="GaK-lA-llA" secondAttribute="bottom" id="y2e-72-eCO"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wkX-XH-FD6" firstAttribute="leading" secondItem="ItO-QA-eOG" secondAttribute="leading" id="0ci-Gd-vNI"/>
-                            <constraint firstItem="ItO-QA-eOG" firstAttribute="bottom" secondItem="wkX-XH-FD6" secondAttribute="bottom" id="G8G-Ne-tyR"/>
-                            <constraint firstItem="wkX-XH-FD6" firstAttribute="top" secondItem="ItO-QA-eOG" secondAttribute="top" id="Sxu-xt-ftv"/>
-                            <constraint firstItem="ItO-QA-eOG" firstAttribute="trailing" secondItem="wkX-XH-FD6" secondAttribute="trailing" id="nq3-vS-Odn"/>
+                            <constraint firstItem="pFb-Hd-Zpb" firstAttribute="centerX" secondItem="Nby-m4-z5j" secondAttribute="centerX" id="7gY-y5-8Qe"/>
+                            <constraint firstItem="pFb-Hd-Zpb" firstAttribute="centerY" secondItem="Nby-m4-z5j" secondAttribute="centerY" id="Poe-bP-iwz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ItO-QA-eOG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Other" id="uaW-mh-hK3"/>
                     <connections>
-                        <outlet property="defaultBackGroundView" destination="wkX-XH-FD6" id="wZP-0G-OpV"/>
-                        <outlet property="defaultView" destination="7P9-Yo-qWm" id="E2k-pc-sLb"/>
-                        <outlet property="jumpToSubFunctionButton" destination="jB6-x9-xET" id="dHK-Ud-Adv"/>
                         <outlet property="showCustomViewButton" destination="0IU-XW-PgM" id="Sjp-0Y-s4q"/>
                         <outlet property="showPickerViewButton" destination="GaK-lA-llA" id="HFm-4p-Qdv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="srG-WG-SPz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3608.8000000000002" y="1585.4572713643179"/>
+            <point key="canvasLocation" x="3913" y="1941"/>
         </scene>
-        <!--Sub Function List View Controller-->
+        <!--その他-->
         <scene sceneID="TJp-io-RG7">
             <objects>
-                <tableViewController storyboardIdentifier="subFunctionList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HPh-42-BkD" customClass="SubFunctionListViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="other" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HPh-42-BkD" customClass="OtherController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="h94-zQ-inX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,19 +166,46 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showCustomViewCell" id="WNo-5t-P5X">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WNo-5t-P5X" id="hga-dO-Ray">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="カスタムビューの確認" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-wn-1uM">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="その他" id="CIi-L5-qV5"/>
+                    <connections>
+                        <outlet property="loadingView" destination="Vnu-03-7Qt" id="zU5-tz-SEs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUR-vW-OYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view hidden="YES" contentMode="scaleToFill" id="Vnu-03-7Qt" customClass="CustomBackGroundView" customModule="Bubblicious" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="6Dr-te-eSs"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="4448.8000000000002" y="1584.5577211394304"/>
+            <point key="canvasLocation" x="3184" y="1585"/>
         </scene>
         <!--Upload Image View Controller-->
         <scene sceneID="M5H-vo-Xwt">
             <objects>
-                <viewController storyboardIdentifier="uploadImage" id="ocQ-Hp-450" customClass="UploadImageViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="uploadImage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ocQ-Hp-450" customClass="UploadImageViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7jc-i2-jUj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEW-F6-owd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5329" y="1585"/>
+            <point key="canvasLocation" x="3913" y="1267"/>
         </scene>
         <!--Other-->
         <scene sceneID="53F-Ty-n1e">
@@ -252,12 +254,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="CW6-Zm-1vl" kind="relationship" relationship="rootViewController" id="WDf-sA-So6"/>
+                        <segue destination="HPh-42-BkD" kind="relationship" relationship="rootViewController" id="8bb-wL-7EN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka8-xK-1EA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.5999999999999" y="1585.4572713643179"/>
+            <point key="canvasLocation" x="2450" y="1585"/>
         </scene>
     </scenes>
     <resources>

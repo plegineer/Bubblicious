@@ -16,7 +16,7 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "アップロード画面"
+        self.title = "画像選択画面"
     }
     
     // MARK: - IBAction
@@ -32,7 +32,7 @@ class UploadImageViewController: UIViewController, UIImagePickerControllerDelega
             // do nothing
         })
         
-        let controller = UIAlertController(title: "画像を開く", message: "選択してください", preferredStyle: .actionSheet)
+        let controller = UIAlertController(title: "画像を選択", message: "選択してください", preferredStyle: .actionSheet)
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             controller.addAction(actionLibrary)
         }
