@@ -23,6 +23,9 @@ class ShowCustomViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
         
+        self.showCustomViewButton.isExclusiveTouch = true
+        self.showPickerViewButton.isExclusiveTouch = true
+        
         self.setupCustomBackGroundView()
     }
     
@@ -83,8 +86,10 @@ extension ShowCustomViewController: CustomBaseViewDelegate {
         let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
         UIView.animate(withDuration: 0.3, animations: {
             targetCustomView.center.y += (self.view.frame.maxY - targetCustomView.frame.origin.y)
+            self.customBackGroundView.alpha = self.customBackGroundView.minAlpha
         }, completion: { _ in
             self.hideBackGroundView(to: true)
+            self.customBackGroundView.alpha = self.customBackGroundView.maxAlpha
         })
     }
 }
@@ -95,9 +100,11 @@ extension ShowCustomViewController: CustomBackGroundViewDelegate {
         if !displayingView.isKeyBoardOpen {
             UIView.animate(withDuration: 0.3, animations: {
                 displayingView.center.y += (self.view.frame.maxY - displayingView.frame.origin.y)
+                self.customBackGroundView.alpha = self.customBackGroundView.minAlpha
             }, completion: { _ in
                 displayingView.removeFromSuperview()
                 self.hideBackGroundView(to: true)
+                self.customBackGroundView.alpha = self.customBackGroundView.maxAlpha
             })
         }
         self.view.endEditing(true)

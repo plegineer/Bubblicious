@@ -15,9 +15,12 @@ protocol CustomBackGroundViewDelegate: class {
 class CustomBackGroundView: UIView {
     weak var delegate: CustomBackGroundViewDelegate?
     
+    let minAlpha: CGFloat = 0
+    let maxAlpha: CGFloat = 0.6
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.backgroundColor = UIColor.black.withAlphaComponent(maxAlpha)
     }
     
     required init?(coder aDecoder: NSCoder) {
