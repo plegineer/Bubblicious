@@ -46,6 +46,7 @@
 		F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A5209BF351004480C2 /* Other.storyboard */; };
 		F656160020A4119F004DA474 /* ContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65615FF20A4119F004DA474 /* ContentData.swift */; };
 		F656160220A41AE6004DA474 /* ContentCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */; };
+		F656160420A433A0004DA474 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160320A433A0004DA474 /* ContentDetailViewController.swift */; };
 		F6D34447209957FE00E95804 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* OtherViewController.swift */; };
 		F6D344492099888900E95804 /* CustomBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D344482099888900E95804 /* CustomBaseView.swift */; };
 		F6D3444B20999F1400E95804 /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3444A20999F1400E95804 /* PickerData.swift */; };
@@ -120,6 +121,7 @@
 		F61BE5A5209BF351004480C2 /* Other.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Other.storyboard; sourceTree = "<group>"; };
 		F65615FF20A4119F004DA474 /* ContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentData.swift; sourceTree = "<group>"; };
 		F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCustomTableViewCell.swift; sourceTree = "<group>"; };
+		F656160320A433A0004DA474 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 		F6D34446209957FE00E95804 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		F6D344482099888900E95804 /* CustomBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBaseView.swift; sourceTree = "<group>"; };
 		F6D3444A20999F1400E95804 /* PickerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
 				D251A1602086F1DC00DFC4F6 /* ContentListViewController.swift */,
+				F656160320A433A0004DA474 /* ContentDetailViewController.swift */,
 				F6135C7E20A007610092D400 /* DateScheduleViewController.swift */,
 				F6135C7C209FF1840092D400 /* CalandarViewController.swift */,
 				F6135C8020A13FEE0092D400 /* ProfileViewController.swift */,
@@ -654,6 +657,7 @@
 				F6135C8520A16CBC0092D400 /* Date+Extension.swift in Sources */,
 				D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */,
 				F656160220A41AE6004DA474 /* ContentCustomTableViewCell.swift in Sources */,
+				F656160420A433A0004DA474 /* ContentDetailViewController.swift in Sources */,
 				F6D3444B20999F1400E95804 /* PickerData.swift in Sources */,
 				F6135C8D20A28EE60092D400 /* ProfileTableViewCell.swift in Sources */,
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,

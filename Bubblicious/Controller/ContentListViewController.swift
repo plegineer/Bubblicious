@@ -151,7 +151,13 @@ extension ContentListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("")
+        let storyboard: UIStoryboard = UIStoryboard(name: "ContentList", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "contentDetail") as! ContentDetailViewController
+        controller.selectedCellIndex = indexPath.row
+        let backItem = UIBarButtonItem()
+        backItem.title = "一覧"
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 
