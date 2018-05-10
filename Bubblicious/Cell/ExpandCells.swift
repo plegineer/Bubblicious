@@ -21,6 +21,8 @@ class ExpandedCell: UITableViewCell {
 
 class ChangeArrowImageExpandableCell: ExpandableCell {
     
+    var expandArrowImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -28,19 +30,20 @@ class ChangeArrowImageExpandableCell: ExpandableCell {
     }
 
     func initArrowImageView() {
-        arrowImageView = UIImageView()
-        arrowImageView.image = UIImage(named: "expandCell_arrow")
-        self.contentView.addSubview(arrowImageView)
+        expandArrowImageView = UIImageView()
+        expandArrowImageView.image = UIImage(named: "expand_right_arrow")
+        self.contentView.addSubview(expandArrowImageView)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let arrowImageWidth: CGFloat = 11
-        let arrowImageHeight: CGFloat = 22
-        let arrowImageXPoint: CGFloat = 20
-        let arrowImageYPoint:CGFloat = (self.bounds.height - arrowImageHeight) / 2
+        let expandArrowImageWidth: CGFloat = 15
+        let expandArrowImageHeight: CGFloat = 15
+        let expandArrowImageXPoint: CGFloat = 20
+        let expandArrowImageYPoint:CGFloat = (self.bounds.height - expandArrowImageHeight) / 2
 
-        arrowImageView.frame = CGRect(x: arrowImageXPoint, y: arrowImageYPoint, width: arrowImageWidth, height: arrowImageHeight)
+        expandArrowImageView.frame = CGRect(x: expandArrowImageXPoint, y: expandArrowImageYPoint, width: expandArrowImageWidth, height: expandArrowImageHeight)
+        arrowImageView.frame = .zero
     }
 }

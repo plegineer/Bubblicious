@@ -22,9 +22,13 @@ class ExpandViewController: UIViewController {
         return tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID)!
     }
     
+    private var firstParentCell = ExpandCell()
+    private var secondParentCell = ExpandCell()
+    
     private enum RowIndex: Int {
-        case parentFirst
-        case parentSecond
+        case firstParent
+        case secondParent
+        case secondParentOpenAll = 4
     }
     
     override func viewDidLoad() {
@@ -59,9 +63,9 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, expandedCellsForRowAt indexPath: IndexPath) -> [UITableViewCell]? {
             switch indexPath.row {
-            case RowIndex.parentFirst.rawValue:
+            case RowIndex.firstParent.rawValue:
                 return setLabelTextToExpandedCell(textFirst: "First Child Cell - 1", textSecond: "Second Child Cell - 1", textThird: "Third Child Cell - 1")
-            case RowIndex.parentSecond.rawValue:
+            case RowIndex.secondParent.rawValue:
                 return setLabelTextToExpandedCell(textFirst: "First Child Cell - 2", textSecond: "Second Child Cell - 2", textThird: "Third Child Cell - 2")
             default:
                 break
@@ -71,7 +75,7 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, heightsForExpandedRowAt indexPath: IndexPath) -> [CGFloat]? {
             switch indexPath.row {
-            case RowIndex.parentFirst.rawValue, RowIndex.parentSecond.rawValue:
+            case RowIndex.firstParent.rawValue, RowIndex.secondParent.rawValue:
                 return [expandedCellHeight, expandedCellHeight, expandedCellHeight]
             default:
                 break
@@ -89,13 +93,15 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             switch indexPath.row {
-            case RowIndex.parentFirst.rawValue:
+            case RowIndex.firstParent.rawValue:
                 let cell = expandableTableView.dequeueReusableCell(withIdentifier: ExpandCell.ID) as! ExpandCell
                 cell.expandTitleLabel.text = "Parent - 1"
+                self.firstParentCell = cell
                 return cell
-            case RowIndex.parentSecond.rawValue:
+            case RowIndex.secondParent.rawValue:
                 let cell = expandableTableView.dequeueReusableCell(withIdentifier: ExpandCell.ID) as! ExpandCell
                 cell.expandTitleLabel.text = "Parent - 2"
+                self.secondParentCell = cell
                 return cell
             default:
                 break
@@ -105,7 +111,7 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: ExpandableTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             switch indexPath.row {
-            case RowIndex.parentFirst.rawValue,RowIndex.parentSecond.rawValue:
+            case RowIndex.firstParent.rawValue,RowIndex.secondParent.rawValue:
                 return expandCellHeight
             default:
                 break
@@ -115,5 +121,28 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func expandableTableView(_ expandableTableView: ExpandableTableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let arrowImage = UIImage(named: "expand_right_arrow")
+        let downArrowImage = UIImage(named: "expand_down_arrow")
+        
+        switch indexPath.row {
+        case RowIndex.firstParent.rawValue:
+            if self.firstParentCell.isExpanded() {
+                firstParentCell.expandArrowImageView.image = arrowImage
+            } else {
+                firstParentCell.expandArrowImageView.image = downArrowImage
+            }
+        case RowIndex.secondParent.rawValue, RowIndex.secondParentOpenAll.rawValue:
+            if self.secondParentCell.isExpanded() {
+                secondParentCell.expandArrowImageView.image = arrowImage
+            } else {
+                secondParentCell.expandArrowImageView.image = downArrowImage
+            }
+        default:
+            break
+        }
     }
 }
