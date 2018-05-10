@@ -2,7 +2,7 @@
 //  ContentListController.swift
 //  Bubblicious
 //
-//  Created by 島田一輝 on 2018/04/18.
+//  Created by Yoshiki Agatsuma on 2018/04/18.
 //  Copyright © 2018年 Plegineer Inc. All rights reserved.
 //
 
@@ -15,6 +15,9 @@ class ContentListController: UIViewController {
     
     private var contents: [ContentData] = []
     private var extraContents: [ContentData] = []
+    private var isAppendedExtra: Bool = false
+    
+    private var footerIndicatorView: UIActivityIndicatorView!
     
     struct Identifier {
         static let basicCell = "basicCell"
@@ -23,14 +26,22 @@ class ContentListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTempContents()
+        self.setRefreshController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.requestToGetContents()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func setupTempContents() {
+    private func requestToGetContents() {
+        // 本来であれば、APIを叩き、表示するデータを取得する
+        // 今回は、固定のデータを利用し、プログラム内で配列を2つに分け、表示を出し分けしている
+        
         let tempData: [[String]] = [
             ["https://xxxx/yyyy/hoge.png", "タイトル1", ""],
             ["https://xxxx/yyyy/hoge.png", "タイトル2", ""],
@@ -49,6 +60,9 @@ class ContentListController: UIViewController {
             ["https://xxxx/yyyy/hoge.png", "(追加読み込み分)タイトル15", ""]
         ]
         
+        self.contents.removeAll()
+        self.extraContents.removeAll()
+        
         for (index, datum) in tempData.enumerated() {
             let param = self.createTempContentParam(imageUrl: datum[0], title: datum[1], description: datum[2])
             if index < 10 {
@@ -59,6 +73,9 @@ class ContentListController: UIViewController {
                 self.extraContents.append(ContentData(data: param))
             }
         }
+        
+        self.isAppendedExtra = false
+        self.tableView.reloadData()
     }
     
     private func createTempContentParam(imageUrl: String, title: String, description: String) -> [String: String] {
@@ -69,11 +86,25 @@ class ContentListController: UIViewController {
         return param
     }
     
+    private func setRefreshController() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.doRefresh), for: UIControlEvents.valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+    
+    @objc func doRefresh() {
+        self.requestToGetContents()
+        
+        // 視覚的にわかりやすいよう、故意に1秒待つ処理を入れている
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+    
 }
 
 extension ContentListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("")
         return self.contents.count
     }
     
@@ -110,6 +141,11 @@ extension ContentListController: UITableViewDataSource {
 }
 
 extension ContentListController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        footerIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        return footerIndicatorView
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -121,13 +157,24 @@ extension ContentListController: UITableViewDelegate {
 
 extension ContentListController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if tableView.contentOffset.y <= 0 {
-            print("通りましった！")
-            return
-        }
         
+        // 最下部までスクロールしたかどうか
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height {
-            print("こっち通りましった！")
+            
+            // 本来であれば、フラグで管理するのではなく、追加で取得出来る件数があるか、などの判定式を利用する
+            // 今回は、追加分の配列(extraContents)を1度だけ、表示させる配列(contents)に追加する
+            if !isAppendedExtra {
+                self.footerIndicatorView.isHidden = false
+                self.footerIndicatorView?.startAnimating()
+                self.isAppendedExtra = true
+                
+                // 視覚的にわかりやすいよう、故意に1秒待つ処理を入れている
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.contents.append(contentsOf: self.extraContents)
+                    self.tableView.reloadData()
+                    self.footerIndicatorView.stopAnimating()
+                }
+            }
         }
     }
 }
