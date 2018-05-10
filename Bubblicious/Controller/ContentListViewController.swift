@@ -19,18 +19,21 @@ class ContentListController: UIViewController {
     private var footerIndicatorView: UIActivityIndicatorView!
     
     // APIの呼び出しタイミング
-    //  ・viewWillAppear()
+    //  ・viewDidLoad()
     //  ・pullToRefresh
     //  ・一番下までスクロール時
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setRefreshController()
+        self.requestToGetContents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.requestToGetContents()
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
