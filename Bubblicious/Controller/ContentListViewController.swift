@@ -49,14 +49,13 @@ class ContentListController: UIViewController {
                 self.tableView.refreshControl?.endRefreshing()
             }
             
-            self.contentModel.isAppendedExtra = false
             self.tableView.reloadData()
         }
     }
     
     private func setRefreshController() {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.doRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.doRefresh), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
     }
     
@@ -129,7 +128,6 @@ extension ContentListController: UIScrollViewDelegate {
         if tableView.contentOffset.y + tableView.frame.size.height > tableView.contentSize.height {
             // 追加アイテムの取得は1度のみ
             if !self.contentModel.isAppendedExtra {
-                self.contentModel.isAppendedExtra = true
                 self.footerIndicatorView?.startAnimating()
                 
                 // APIリクエスト処理(追加アイテム取得)
