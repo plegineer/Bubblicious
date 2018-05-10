@@ -10,30 +10,48 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table-->
+        <!--コンテンツ一覧-->
         <scene sceneID="JrT-Vd-IGo">
             <objects>
-                <viewController id="W0y-bj-j3K" customClass="FirstViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="W0y-bj-j3K" customClass="ContentListController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPV-aU-TUw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="First View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ye6-xP-WKN">
-                                <rect key="frame" x="112.5" y="312" width="150.5" height="43"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yGT-On-MA5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="lyz-kZ-hPx" style="IBUITableViewCellStyleDefault" id="L2u-V4-FDj">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L2u-V4-FDj" id="fHt-XM-zoR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lyz-kZ-hPx">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="ye6-xP-WKN" secondAttribute="centerY" id="52F-04-FiJ"/>
-                            <constraint firstAttribute="centerX" secondItem="ye6-xP-WKN" secondAttribute="centerX" id="U3X-YW-fkB"/>
+                            <constraint firstItem="yGT-On-MA5" firstAttribute="top" secondItem="xPe-zv-Nvg" secondAttribute="top" id="JoQ-Vz-z3L"/>
+                            <constraint firstItem="xPe-zv-Nvg" firstAttribute="trailing" secondItem="yGT-On-MA5" secondAttribute="trailing" id="eGz-0o-3UP"/>
+                            <constraint firstItem="yGT-On-MA5" firstAttribute="leading" secondItem="xPe-zv-Nvg" secondAttribute="leading" id="p1O-bv-0st"/>
+                            <constraint firstItem="xPe-zv-Nvg" firstAttribute="bottom" secondItem="yGT-On-MA5" secondAttribute="bottom" id="xc1-5y-VU1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xPe-zv-Nvg"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Table" id="sNJ-TN-jWm"/>
+                    <navigationItem key="navigationItem" title="コンテンツ一覧" id="sNJ-TN-jWm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RXs-S5-RW6" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,7 +69,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="W0y-bj-j3K" kind="relationship" relationship="rootViewController" id="zaN-1d-Ebg"/>
+                        <segue destination="W0y-bj-j3K" kind="relationship" relationship="rootViewController" id="e4f-IV-Zre"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wK-2j-D9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
