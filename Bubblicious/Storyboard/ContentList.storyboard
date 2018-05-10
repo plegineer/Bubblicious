@@ -57,11 +57,11 @@
             </objects>
             <point key="canvasLocation" x="2447.1999999999998" y="-1476.6116941529237"/>
         </scene>
-        <!--Table-->
+        <!--List-->
         <scene sceneID="laL-1S-eXg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tha-VV-pMZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Table" image="second" id="fCh-yt-EOq"/>
+                    <tabBarItem key="tabBarItem" title="List" image="second" id="fCh-yt-EOq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mPf-1r-cFV">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
