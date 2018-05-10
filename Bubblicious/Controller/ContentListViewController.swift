@@ -85,8 +85,8 @@ extension ContentListController: UITableViewDataSource {
                 // 画像ありベーシックセルの設定
                 cell.textLabel?.text = content.title
                 
-                // 本来ならば、imageUrlを(String->URL)に変換して、画像を取得し、取得した画像を表示させる(画像取得の際のエラーハンドリングは別途必要)
-                // 今回は、imageUrlが入っていた場合、一律デフォルトの画像を表示
+                // 本来: imageUrlを(String->URL)に変換して、画像を取得し、取得した画像を表示させる(画像取得の際のエラーハンドリングは別途必要)
+                // 今回: imageUrlが入っていた場合、一律デフォルトの画像を表示
                 cell.imageView?.image = UIImage(named: "top_appicon")
             }
             

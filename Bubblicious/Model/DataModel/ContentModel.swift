@@ -15,8 +15,8 @@ class ContentModel {
     var isAppendedExtra: Bool = false
     
     func getContents(_ params:[String: Int], callback: @escaping (_ error: Error?) -> Void) {
-        // 本来であれば、APIを叩き、表示するデータを取得する
-        // 今回は、固定のデータ30件を利用し、プログラム内で配列を2つに分け、表示を出し分けしている
+        // 本来: APIを叩き、表示するデータを取得する
+        // 今回: 固定のデータ30件を利用し、プログラム内で配列を2つに分け、表示を出し分けしている
         
         let tempData: [[String]] = [
             ["https://xxxx/yyyy/hoge.png", "タイトル", ""],
@@ -73,8 +73,8 @@ class ContentModel {
     }
     
     func getMoreContents(_ params:[String: Int], callback: @escaping (_ error: Error?) -> Void) {
-        // 本来であれば、APIを叩き、追加の情報を取得する
-        // 今回は、あらかじめ分けておいた配列を合わせる処理のみを実行
+        // 本来: APIを叩き、追加の情報を取得する
+        // 今回: あらかじめ分けておいた配列を合わせる処理のみを実行
 
         // 視覚的にわかりやすいよう、故意に1秒待つ処理を入れている
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
