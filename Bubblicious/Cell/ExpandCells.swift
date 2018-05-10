@@ -1,5 +1,5 @@
 //
-//  ExpandableCells.swift
+//  ExpandCells.swift
 //  Bubblicious
 //
 //  Created by 島田一輝 on 2018/05/08.
@@ -43,11 +43,4 @@ class ChangeArrowImageExpandableCell: ExpandableCell {
 
         arrowImageView.frame = CGRect(x: arrowImageXPoint, y: arrowImageYPoint, width: arrowImageWidth, height: arrowImageHeight)
     }
-    
-//    override func open() {
-//        self.isOpen = true
-//        UIView.animate(withDuration: 0.3) {
-//            self.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.5, 0.0, 0.0)
-//        }
-//    }
 }

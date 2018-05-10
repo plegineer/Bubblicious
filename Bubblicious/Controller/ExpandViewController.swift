@@ -39,6 +39,18 @@ class ExpandViewController: UIViewController {
         tableView.closeAll()
         tableView.tableFooterView = UIView(frame: .zero)
     }
+    
+    // MARK: - Private Method
+    
+    private func setLabelTextToExpandedCell(textFirst: String ,textSecond: String, textThird: String) -> [UITableViewCell]? {
+        let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellFirst.expandedTitleLabel.text = textFirst
+        let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellSecond.expandedTitleLabel.text = textSecond
+        let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
+        cellThird.expandedTitleLabel.text = textThird
+        return [cellFirst, cellSecond, cellThird]
+    }
 }
 
 extension ExpandViewController: ExpandableDelegate {
@@ -103,17 +115,5 @@ extension ExpandViewController: ExpandableDelegate {
     
     func expandableTableView(_ expandableTableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    // MARK: - Private Method
-    
-    private func setLabelTextToExpandedCell(textFirst: String ,textSecond: String, textThird: String) -> [UITableViewCell]? {
-        let cellFirst = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-        cellFirst.expandedTitleLabel.text = textFirst
-        let cellSecond = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-        cellSecond.expandedTitleLabel.text = textSecond
-        let cellThird = tableView.dequeueReusableCell(withIdentifier: ExpandedCell.ID) as! ExpandedCell
-        cellThird.expandedTitleLabel.text = textThird
-        return [cellFirst, cellSecond, cellThird]
     }
 }
