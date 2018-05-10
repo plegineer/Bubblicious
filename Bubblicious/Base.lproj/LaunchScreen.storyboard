@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,13 +18,70 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_yellow" translatesAutoresizingMaskIntoConstraints="NO" id="tQ4-va-Ezy">
+                                <rect key="frame" x="16" y="140" width="238" height="238"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="238" id="gtq-u6-nQv"/>
+                                    <constraint firstAttribute="width" secondItem="tQ4-va-Ezy" secondAttribute="height" multiplier="1:1" id="rCw-Ac-YWd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_blue" translatesAutoresizingMaskIntoConstraints="NO" id="UT0-Os-hwT">
+                                <rect key="frame" x="196" y="58" width="151" height="151"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UT0-Os-hwT" secondAttribute="height" multiplier="1:1" id="6AV-8G-M2I"/>
+                                    <constraint firstAttribute="width" constant="151" id="Opt-mf-bbL"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_green" translatesAutoresizingMaskIntoConstraints="NO" id="G7c-Dj-pL3">
+                                <rect key="frame" x="30" y="457" width="142" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="GDy-hS-yC2"/>
+                                    <constraint firstAttribute="width" secondItem="G7c-Dj-pL3" secondAttribute="height" multiplier="1:1" id="i6V-Sn-PKV"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pink" translatesAutoresizingMaskIntoConstraints="NO" id="Cep-SV-7r3">
+                                <rect key="frame" x="135.5" y="341" width="104" height="104"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cep-SV-7r3" secondAttribute="height" multiplier="1:1" id="3EH-Qr-5c8"/>
+                                    <constraint firstAttribute="width" constant="104" id="7Us-bb-U9S"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="ic_orange" translatesAutoresizingMaskIntoConstraints="NO" id="LR2-WF-x3n">
+                                <rect key="frame" x="249" y="410" width="91" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="SZx-AB-u6E"/>
+                                    <constraint firstAttribute="width" secondItem="LR2-WF-x3n" secondAttribute="height" multiplier="1:1" id="iFs-Qb-exH"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Cep-SV-7r3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0Z9-o9-dOR"/>
+                            <constraint firstItem="G7c-Dj-pL3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="7ag-wi-l8M"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LR2-WF-x3n" secondAttribute="bottom" constant="166" id="9Ld-0z-X9F"/>
+                            <constraint firstItem="tQ4-va-Ezy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="Apw-mi-7uW"/>
+                            <constraint firstItem="UT0-Os-hwT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="38" id="R9o-qK-1rZ"/>
+                            <constraint firstItem="tQ4-va-Ezy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="VRt-ap-98a"/>
+                            <constraint firstItem="LR2-WF-x3n" firstAttribute="width" secondItem="LR2-WF-x3n" secondAttribute="height" multiplier="1:1" id="YPr-4P-Mij"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="G7c-Dj-pL3" secondAttribute="bottom" constant="68" id="eGK-nY-y9b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LR2-WF-x3n" secondAttribute="trailing" constant="35" id="n4h-nx-cah"/>
+                            <constraint firstItem="Cep-SV-7r3" firstAttribute="top" secondItem="UT0-Os-hwT" secondAttribute="bottom" constant="132" id="rPw-s9-XaF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UT0-Os-hwT" secondAttribute="trailing" constant="28" id="vRm-QG-mYC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_blue" width="151" height="151"/>
+        <image name="ic_green" width="142" height="142"/>
+        <image name="ic_orange" width="91" height="91"/>
+        <image name="ic_pink" width="104" height="104"/>
+        <image name="ic_yellow" width="238" height="238"/>
+    </resources>
 </document>
