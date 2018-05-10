@@ -47,6 +47,7 @@
 		F656160020A4119F004DA474 /* ContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65615FF20A4119F004DA474 /* ContentData.swift */; };
 		F656160220A41AE6004DA474 /* ContentCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */; };
 		F656160420A433A0004DA474 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160320A433A0004DA474 /* ContentDetailViewController.swift */; };
+		F656160620A43D91004DA474 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160520A43D91004DA474 /* ContentModel.swift */; };
 		F6D34447209957FE00E95804 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* OtherViewController.swift */; };
 		F6D344492099888900E95804 /* CustomBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D344482099888900E95804 /* CustomBaseView.swift */; };
 		F6D3444B20999F1400E95804 /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3444A20999F1400E95804 /* PickerData.swift */; };
@@ -122,6 +123,7 @@
 		F65615FF20A4119F004DA474 /* ContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentData.swift; sourceTree = "<group>"; };
 		F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCustomTableViewCell.swift; sourceTree = "<group>"; };
 		F656160320A433A0004DA474 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
+		F656160520A43D91004DA474 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		F6D34446209957FE00E95804 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		F6D344482099888900E95804 /* CustomBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBaseView.swift; sourceTree = "<group>"; };
 		F6D3444A20999F1400E95804 /* PickerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
+				F656160520A43D91004DA474 /* ContentModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				F6135C8120A13FEE0092D400 /* ProfileViewController.swift in Sources */,
 				D261B8ED209804D400A4FBA9 /* TwoPickersCustomView.swift in Sources */,
+				F656160620A43D91004DA474 /* ContentModel.swift in Sources */,
 				F6135C7D209FF1840092D400 /* CalandarViewController.swift in Sources */,
 				D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */,
 				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
