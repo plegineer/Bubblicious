@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 // リスト(UITableView)系のサンプルコントローラークラス
 class ContentListController: UIViewController {
@@ -32,7 +33,6 @@ class ContentListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addHeaderSearchView()
-        self.setRefreshController()
         self.requestToGetContents()
     }
     
@@ -56,21 +56,11 @@ class ContentListController: UIViewController {
             }
             
             if isFromRefresh {
-                self.tableView.refreshControl?.endRefreshing()
+                SVProgressHUD.dismiss()
             }
             
             self.tableView.reloadData()
         }
-    }
-    
-    private func setRefreshController() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.doRefresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
-    }
-    
-    @objc func doRefresh() {
-        self.requestToGetContents(isFromRefresh: true)
     }
     
     private func addHeaderSearchView() {
@@ -159,6 +149,12 @@ extension ContentListController: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if scrollView.contentOffset.y < 0 && scrollView.contentOffset.y < self.scrollStartOffset.y {
+            SVProgressHUD.show()
+            self.requestToGetContents(isFromRefresh: true)
+        }
+        
         if self.isHeaderHidden && !scrollView.isDecelerating {
             self.animateHeader(isToHide: false)
         }
