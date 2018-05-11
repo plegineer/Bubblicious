@@ -25,6 +25,7 @@ class ContentListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addHeaderSearchView()
         self.setRefreshController()
         self.requestToGetContents()
     }
@@ -64,6 +65,11 @@ class ContentListController: UIViewController {
     
     @objc func doRefresh() {
         self.requestToGetContents(isFromRefresh: true)
+    }
+    
+    private func addHeaderSearchView() {
+        let size = CGSize(width: self.view.frame.size.width, height: 100)
+        self.tableView.addSubview(ContentListHeaderView(frame: CGRect(origin: .zero, size: size)))
     }
 }
 

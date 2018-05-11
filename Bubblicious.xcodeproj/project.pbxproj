@@ -48,6 +48,8 @@
 		F656160220A41AE6004DA474 /* ContentCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */; };
 		F656160420A433A0004DA474 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160320A433A0004DA474 /* ContentDetailViewController.swift */; };
 		F656160620A43D91004DA474 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160520A43D91004DA474 /* ContentModel.swift */; };
+		F6B7B4D220A5295F003B7CDE /* ContentListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B7B4D120A5295F003B7CDE /* ContentListHeaderView.xib */; };
+		F6B7B4D420A52F47003B7CDE /* ContentListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7B4D320A52F47003B7CDE /* ContentListHeaderView.swift */; };
 		F6D34447209957FE00E95804 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* OtherViewController.swift */; };
 		F6D344492099888900E95804 /* CustomBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D344482099888900E95804 /* CustomBaseView.swift */; };
 		F6D3444B20999F1400E95804 /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3444A20999F1400E95804 /* PickerData.swift */; };
@@ -124,6 +126,8 @@
 		F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCustomTableViewCell.swift; sourceTree = "<group>"; };
 		F656160320A433A0004DA474 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 		F656160520A43D91004DA474 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		F6B7B4D120A5295F003B7CDE /* ContentListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentListHeaderView.xib; sourceTree = "<group>"; };
+		F6B7B4D320A52F47003B7CDE /* ContentListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListHeaderView.swift; sourceTree = "<group>"; };
 		F6D34446209957FE00E95804 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		F6D344482099888900E95804 /* CustomBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBaseView.swift; sourceTree = "<group>"; };
 		F6D3444A20999F1400E95804 /* PickerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
@@ -226,11 +230,13 @@
 		D261336D208F1AE100598509 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6B7B4D020A52917003B7CDE /* xib */,
 				F6135C8B20A28EB80092D400 /* cell */,
 				F6D344482099888900E95804 /* CustomBaseView.swift */,
 				D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */,
 				D261B8EC209804D400A4FBA9 /* TwoPickersCustomView.swift */,
 				D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */,
+				F6B7B4D320A52F47003B7CDE /* ContentListHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +330,14 @@
 				F61BE5A5209BF351004480C2 /* Other.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		F6B7B4D020A52917003B7CDE /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				F6B7B4D120A5295F003B7CDE /* ContentListHeaderView.xib */,
+			);
+			path = xib;
 			sourceTree = "<group>";
 		};
 		F6D3444C2099C1A400E95804 /* Resources */ = {
@@ -463,6 +477,7 @@
 				D22C30DB20933DF300A7659D /* sample_picker_json.js in Resources */,
 				D251A16B2086F1DC00DFC4F6 /* LaunchScreen.storyboard in Resources */,
 				F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */,
+				F6B7B4D220A5295F003B7CDE /* ContentListHeaderView.xib in Resources */,
 				F61BE5A4209BF346004480C2 /* Profile.storyboard in Resources */,
 				F61BE59E209BF31F004480C2 /* ContentList.storyboard in Resources */,
 				D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */,
@@ -681,6 +696,7 @@
 				F6135C7F20A007610092D400 /* DateScheduleViewController.swift in Sources */,
 				D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */,
 				F656160020A4119F004DA474 /* ContentData.swift in Sources */,
+				F6B7B4D420A52F47003B7CDE /* ContentListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
