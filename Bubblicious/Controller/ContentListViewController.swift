@@ -34,6 +34,10 @@ class ContentListController: UIViewController {
         super.viewDidLoad()
         self.addHeaderSearchView()
         self.requestToGetContents()
+        
+        let switchControl = UISwitch(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        switchControl.addTarget(self, action: #selector(switchTapped(sender:)), for: .valueChanged)
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem.init(customView: switchControl)]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +49,14 @@ class ContentListController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func switchTapped(sender: UISwitch) {
+        if sender.isOn {
+            self.animateTabBar(isToHide: true)
+        } else {
+            self.animateTabBar(isToHide: false)
+        }
     }
     
     private func requestToGetContents(isFromRefresh: Bool = false) {
@@ -69,6 +81,20 @@ class ContentListController: UIViewController {
         let contentListHeaderView = ContentListHeaderView(frame: CGRect(origin: origin, size: size))
         self.view.addSubview(contentListHeaderView)
         self.headerSearchView = contentListHeaderView
+    }
+    
+    private func animateTabBar(isToHide: Bool) {
+        if let tabBar = self.tabBarController?.tabBar {
+            UIView.animate(withDuration: 0.3) {
+                if isToHide {
+                    tabBar.frame.origin.y += tabBar.frame.size.height
+                    self.tableView.frame.size.height += tabBar.frame.size.height
+                } else {
+                    tabBar.frame.origin.y -= tabBar.frame.size.height
+                    self.tableView.frame.size.height -= tabBar.frame.size.height
+                }
+            }
+        }
     }
 }
 
