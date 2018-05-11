@@ -10,24 +10,76 @@ import UIKit
 
 class ContentListHeaderView: UIView {
     
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var searchWordTextField: UITextField!
-    @IBOutlet weak var searchButton: UIButton!
+    private(set) var topView: UIView!
+    private(set) var textField: UITextField!
+    private(set) var searchButton: UIButton!
+    private(set) var bottomView: UIView!
+    private(set) var bottomLabel: UILabel!
+    
+    let space: CGFloat = 10
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.loadNib()
+        self.backgroundColor = UIColor.white
+        self.addComponents()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.loadNib()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private func loadNib() {
-        if let view = Bundle.main.loadNibNamed("ContentListHeaderView", owner: self, options: nil)?.first as? UIView {
-            view.frame = self.frame
-            self.addSubview(view)
-        }
+    private func addComponents() {
+        let topViewSize = CGSize(width: self.frame.size.width, height: self.frame.size.height/4*3)
+        let bottomViewSize = CGSize(width: self.frame.size.width, height: self.frame.size.height/4)
+        
+        // top
+        topView = UIView(frame: CGRect(origin: .zero, size: topViewSize))
+        textField = self.createTextField()
+        searchButton = self.createButton()
+        topView.addSubview(textField)
+        topView.addSubview(searchButton)
+        
+        // bottom
+        bottomView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: topView.frame.maxY), size: bottomViewSize))
+        bottomView.backgroundColor = UIColor.orange
+        bottomLabel = self.createLabel()
+        bottomView.addSubview(bottomLabel)
+
+        self.addSubview(topView)
+        self.addSubview(bottomView)
+    }
+    
+    private func createTextField() -> UITextField {
+        let textFieldSize = CGSize(width: self.frame.size.width/3*2-space*2, height: topView.frame.size.height-space*2)
+        let textFieldOrigin = CGPoint(x: space, y: space)
+        let textField = UITextField(frame: CGRect(origin: textFieldOrigin, size: textFieldSize))
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 2
+        textField.delegate = self
+        return textField
+    }
+    
+    private func createButton() -> UIButton {
+        let buttonSize = CGSize(width: 120, height: topView.frame.size.height-space*2)
+        let buttonOrigin = CGPoint(x: textField.frame.maxX + space, y: space)
+        let button = UIButton(frame: CGRect(origin: buttonOrigin, size: buttonSize))
+        button.setTitle("絞り込み", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
+    }
+    
+    private func createLabel() -> UILabel {
+        let label = UILabel(frame: CGRect(origin: .zero, size: bottomView.frame.size))
+        label.text = "スクロール時に隠れない領域"
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        return label
+    }
+}
+
+extension ContentListHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
