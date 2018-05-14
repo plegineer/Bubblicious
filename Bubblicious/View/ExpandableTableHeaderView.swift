@@ -47,7 +47,7 @@ class ExpandableTableHeaderView: UITableViewHeaderFooterView {
     }
     
     private func loadNib() {
-        if let view = Bundle.main.loadNibNamed("ExpandableTableViewHeaderView", owner: self, options: nil)?.first as? UIView {
+        if let view = Bundle.main.loadNibNamed("ExpandableTableHeaderView", owner: self, options: nil)?.first as? UIView {
             view.frame = self.frame
             self.addSubview(view)
             addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapHeader(_:))))

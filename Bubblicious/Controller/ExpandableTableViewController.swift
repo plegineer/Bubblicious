@@ -56,6 +56,7 @@ class ExpandableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        cell.selectionStyle = .none
         cell.textLabel?.text = sections[indexPath.section].items[indexPath.row]
         return cell
     }
