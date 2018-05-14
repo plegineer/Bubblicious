@@ -15,8 +15,6 @@ class ContentCustomTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.descriptionLabel.textColor = UIColor.red
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
