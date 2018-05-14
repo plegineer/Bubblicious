@@ -10,6 +10,8 @@ import UIKit
 
 class ExpandableTableViewController: UITableViewController {
     
+    // 参考URL: https://github.com/jeantimex/ios-swift-collapsible-table-section
+    
     struct Section {
         var name: String
         var items: [String]
