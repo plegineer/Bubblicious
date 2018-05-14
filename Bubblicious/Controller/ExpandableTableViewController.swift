@@ -21,31 +21,21 @@ class ExpandableTableViewController: UITableViewController {
             self.collapsed = collapsed
         }
     }
-    
-    var sections: [Section] = []
+    private var sections: [Section] = []
  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sections = [
-            Section(name: "Mac", items: ["MacBook", "MacBook Air"]),
-            Section(name: "iPad", items: ["iPad Pro", "iPad Air 2"]),
-            Section(name: "iPhone", items: ["iPhone 7", "iPhone 6"])
-        ]
-        
         self.tableView.estimatedRowHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
         self.tableView.tableFooterView = UIView(frame: .zero)
         
-        print(self.tableView.numberOfSections)
+        self.setupSections()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -56,34 +46,39 @@ class ExpandableTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? ExpandableTableViewHeaderView ?? ExpandableTableViewHeaderView(reuseIdentifier: "header")
-        
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? ExpandableTableHeaderView ?? ExpandableTableHeaderView(reuseIdentifier: "header")
         header.titleLabel.text = sections[section].name
         header.setCollapsed(sections[section].collapsed)
-        
         header.section = section
         header.delegate = self
-        
         return header
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
+        let cell = UITableViewCell()
         cell.textLabel?.text = sections[indexPath.section].items[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ExpandableTableViewHeaderView.height
+        return ExpandableTableHeaderView.height
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    private func setupSections() {
+        sections = [
+            Section(name: "Parent1", items: ["Child1-1", "Child1-2"]),
+            Section(name: "Parent2", items: ["Child2-1", "Child2-2"]),
+            Section(name: "Parent3", items: ["Child3-1", "Child3-2"])
+        ]
+    }
 }
 
-extension ExpandableTableViewController: ExpandableTableViewHeaderViewDelegate {
-    func toggleSection(_ header: ExpandableTableViewHeaderView, section: Int) {
+extension ExpandableTableViewController: ExpandableTableHeaderViewDelegate {
+    func toggleSection(_ header: ExpandableTableHeaderView, section: Int) {
         let collapsed = !sections[section].collapsed
         sections[section].collapsed = collapsed
         header.setCollapsed(collapsed)

@@ -1,5 +1,5 @@
 //
-//  ExpandableTableViewHeaderView.swift
+//  ExpandableTableHeaderView.swift
 //  Bubblicious
 //
 //  Created by Yoshiki Agatsuma on 2018/05/14.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-protocol ExpandableTableViewHeaderViewDelegate {
-    func toggleSection(_ header: ExpandableTableViewHeaderView, section: Int)
+protocol ExpandableTableHeaderViewDelegate {
+    func toggleSection(_ header: ExpandableTableHeaderView, section: Int)
 }
 
-class ExpandableTableViewHeaderView: UITableViewHeaderFooterView {
+class ExpandableTableHeaderView: UITableViewHeaderFooterView {
     
     static let height: CGFloat = 50
     
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    var delegate: ExpandableTableViewHeaderViewDelegate?
+    var delegate: ExpandableTableHeaderViewDelegate?
     var section: Int = 0
     
     override init(reuseIdentifier: String?) {
@@ -33,7 +33,7 @@ class ExpandableTableViewHeaderView: UITableViewHeaderFooterView {
     }
     
     @objc func tapHeader(_ gestureRecognizer: UITapGestureRecognizer) {
-        if let cell = gestureRecognizer.view as? ExpandableTableViewHeaderView {
+        if let cell = gestureRecognizer.view as? ExpandableTableHeaderView {
             self.delegate?.toggleSection(self, section: cell.section)
         }
     }
