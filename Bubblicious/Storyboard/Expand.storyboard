@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Expandable Table View Controller-->
+        <!--拡張セル一覧-->
         <scene sceneID="EZe-yw-WYa">
             <objects>
                 <tableViewController id="fGB-aK-RCs" customClass="ExpandableTableViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                             <outlet property="delegate" destination="fGB-aK-RCs" id="ab1-9S-FFM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="DRv-25-glc"/>
+                    <navigationItem key="navigationItem" title="拡張セル一覧" id="DRv-25-glc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYy-Vx-7d8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

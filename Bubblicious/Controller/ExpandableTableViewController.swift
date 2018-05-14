@@ -65,9 +65,8 @@ class ExpandableTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showAlert("Tapped!", message: self.sections[indexPath.section].items[indexPath.row]) { _ in
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.showAlert("Tapped!", message: self.sections[indexPath.section].items[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
