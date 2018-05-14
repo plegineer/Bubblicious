@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table-->
+        <!--ContentList-->
         <scene sceneID="f0z-zR-bqB">
             <objects>
-                <viewControllerPlaceholder storyboardName="Table" id="F7X-eS-qLW" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="ContentList" id="F7X-eS-qLW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Table" id="tPH-02-gWn"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hw4-zN-W2r" userLabel="First Responder" sceneMemberID="firstResponder"/>

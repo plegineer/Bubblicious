@@ -10,6 +10,7 @@ target 'Bubblicious' do
   pod 'FSCalendar'
   pod 'CalculateCalendarLogic'
   pod 'Eureka'
+  pod 'SVProgressHUD'
 
   # Pods for Bubblicious
 

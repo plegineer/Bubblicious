@@ -12,7 +12,7 @@
 		910460E81CE19C6741261481 /* Pods_BubbliciousTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FBEB5EA4DC5418F73287D4 /* Pods_BubbliciousTests.framework */; };
 		D22C30DB20933DF300A7659D /* sample_picker_json.js in Resources */ = {isa = PBXBuildFile; fileRef = D22C30DA20933DF300A7659D /* sample_picker_json.js */; };
 		D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */; };
-		D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */; };
+		D251A1612086F1DC00DFC4F6 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A1602086F1DC00DFC4F6 /* ContentListViewController.swift */; };
 		D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D251A1642086F1DC00DFC4F6 /* Main.storyboard */; };
 		D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D251A1672086F1DC00DFC4F6 /* Assets.xcassets */; };
 		D251A16B2086F1DC00DFC4F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D251A1692086F1DC00DFC4F6 /* LaunchScreen.storyboard */; };
@@ -39,11 +39,17 @@
 		F6135C8520A16CBC0092D400 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8420A16CBC0092D400 /* Date+Extension.swift */; };
 		F6135C8A20A170250092D400 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8920A170250092D400 /* UserInfo.swift */; };
 		F6135C8D20A28EE60092D400 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8C20A28EE60092D400 /* ProfileTableViewCell.swift */; };
-		F61BE59E209BF31F004480C2 /* Table.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59D209BF31F004480C2 /* Table.storyboard */; };
+		F61BE59E209BF31F004480C2 /* ContentList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59D209BF31F004480C2 /* ContentList.storyboard */; };
 		F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE59F209BF330004480C2 /* Expand.storyboard */; };
 		F61BE5A2209BF33E004480C2 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A1209BF33E004480C2 /* Schedule.storyboard */; };
 		F61BE5A4209BF346004480C2 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A3209BF346004480C2 /* Profile.storyboard */; };
 		F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61BE5A5209BF351004480C2 /* Other.storyboard */; };
+		F656160020A4119F004DA474 /* ContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65615FF20A4119F004DA474 /* ContentData.swift */; };
+		F656160220A41AE6004DA474 /* ContentCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */; };
+		F656160420A433A0004DA474 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160320A433A0004DA474 /* ContentDetailViewController.swift */; };
+		F656160620A43D91004DA474 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F656160520A43D91004DA474 /* ContentModel.swift */; };
+		F6B7B4D420A52F47003B7CDE /* ContentListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7B4D320A52F47003B7CDE /* ContentListHeaderView.swift */; };
+		F6B7B4D620A5448E003B7CDE /* ScrollDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7B4D520A5448E003B7CDE /* ScrollDirection.swift */; };
 		F6D34447209957FE00E95804 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D34446209957FE00E95804 /* OtherViewController.swift */; };
 		F6D344492099888900E95804 /* CustomBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D344482099888900E95804 /* CustomBaseView.swift */; };
 		F6D3444B20999F1400E95804 /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3444A20999F1400E95804 /* PickerData.swift */; };
@@ -77,7 +83,7 @@
 		D22C30DA20933DF300A7659D /* sample_picker_json.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sample_picker_json.js; sourceTree = "<group>"; };
 		D251A15B2086F1DC00DFC4F6 /* Bubblicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bubblicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D251A15E2086F1DC00DFC4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		D251A1602086F1DC00DFC4F6 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		D251A1652086F1DC00DFC4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D251A1672086F1DC00DFC4F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D251A16A2086F1DC00DFC4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -111,11 +117,17 @@
 		F6135C8420A16CBC0092D400 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		F6135C8920A170250092D400 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		F6135C8C20A28EE60092D400 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
-		F61BE59D209BF31F004480C2 /* Table.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Table.storyboard; sourceTree = "<group>"; };
+		F61BE59D209BF31F004480C2 /* ContentList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentList.storyboard; sourceTree = "<group>"; };
 		F61BE59F209BF330004480C2 /* Expand.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Expand.storyboard; sourceTree = "<group>"; };
 		F61BE5A1209BF33E004480C2 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		F61BE5A3209BF346004480C2 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F61BE5A5209BF351004480C2 /* Other.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Other.storyboard; sourceTree = "<group>"; };
+		F65615FF20A4119F004DA474 /* ContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentData.swift; sourceTree = "<group>"; };
+		F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCustomTableViewCell.swift; sourceTree = "<group>"; };
+		F656160320A433A0004DA474 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
+		F656160520A43D91004DA474 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		F6B7B4D320A52F47003B7CDE /* ContentListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListHeaderView.swift; sourceTree = "<group>"; };
+		F6B7B4D520A5448E003B7CDE /* ScrollDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDirection.swift; sourceTree = "<group>"; };
 		F6D34446209957FE00E95804 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		F6D344482099888900E95804 /* CustomBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBaseView.swift; sourceTree = "<group>"; };
 		F6D3444A20999F1400E95804 /* PickerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
@@ -223,6 +235,7 @@
 				D2835158208D780E00CEB67D /* ThreeContentsCustomView.swift */,
 				D261B8EC209804D400A4FBA9 /* TwoPickersCustomView.swift */,
 				D2815A6F20907134002D14F5 /* CustomBackGroundView.swift */,
+				F6B7B4D320A52F47003B7CDE /* ContentListHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,7 +256,8 @@
 			children = (
 				D251A1902086FEBD00DFC4F6 /* LoginViewController.swift */,
 				D251A19A2088624B00DFC4F6 /* TabBarController.swift */,
-				D251A1602086F1DC00DFC4F6 /* FirstViewController.swift */,
+				D251A1602086F1DC00DFC4F6 /* ContentListViewController.swift */,
+				F656160320A433A0004DA474 /* ContentDetailViewController.swift */,
 				F6135C7E20A007610092D400 /* DateScheduleViewController.swift */,
 				F6135C7C209FF1840092D400 /* CalandarViewController.swift */,
 				F6135C8020A13FEE0092D400 /* ProfileViewController.swift */,
@@ -281,6 +295,8 @@
 				D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */,
 				F6D3444A20999F1400E95804 /* PickerData.swift */,
 				F6135C8920A170250092D400 /* UserInfo.swift */,
+				F65615FF20A4119F004DA474 /* ContentData.swift */,
+				F6B7B4D520A5448E003B7CDE /* ScrollDirection.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -289,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				D2FCC6E12089D951001DA0B4 /* UserModel.swift */,
+				F656160520A43D91004DA474 /* ContentModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -297,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				F6135C8C20A28EE60092D400 /* ProfileTableViewCell.swift */,
+				F656160120A41AE6004DA474 /* ContentCustomTableViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -305,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				D251A1642086F1DC00DFC4F6 /* Main.storyboard */,
-				F61BE59D209BF31F004480C2 /* Table.storyboard */,
+				F61BE59D209BF31F004480C2 /* ContentList.storyboard */,
 				F61BE59F209BF330004480C2 /* Expand.storyboard */,
 				F61BE5A1209BF33E004480C2 /* Schedule.storyboard */,
 				F61BE5A3209BF346004480C2 /* Profile.storyboard */,
@@ -452,7 +470,7 @@
 				D251A16B2086F1DC00DFC4F6 /* LaunchScreen.storyboard in Resources */,
 				F61BE5A6209BF351004480C2 /* Other.storyboard in Resources */,
 				F61BE5A4209BF346004480C2 /* Profile.storyboard in Resources */,
-				F61BE59E209BF31F004480C2 /* Table.storyboard in Resources */,
+				F61BE59E209BF31F004480C2 /* ContentList.storyboard in Resources */,
 				D251A1682086F1DC00DFC4F6 /* Assets.xcassets in Resources */,
 				F61BE5A0209BF330004480C2 /* Expand.storyboard in Resources */,
 				D251A1662086F1DC00DFC4F6 /* Main.storyboard in Resources */,
@@ -602,6 +620,7 @@
 				"${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -610,6 +629,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalculateCalendarLogic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B7B4D620A5448E003B7CDE /* ScrollDirection.swift in Sources */,
 				D272A5982099C0C300DA20CC /* UploadImageViewController.swift in Sources */,
 				F6D344492099888900E95804 /* CustomBaseView.swift in Sources */,
 				D251A1912086FEBD00DFC4F6 /* LoginViewController.swift in Sources */,
@@ -647,6 +668,8 @@
 				D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */,
 				F6135C8520A16CBC0092D400 /* Date+Extension.swift in Sources */,
 				D2815A7020907134002D14F5 /* CustomBackGroundView.swift in Sources */,
+				F656160220A41AE6004DA474 /* ContentCustomTableViewCell.swift in Sources */,
+				F656160420A433A0004DA474 /* ContentDetailViewController.swift in Sources */,
 				F6D3444B20999F1400E95804 /* PickerData.swift in Sources */,
 				F6135C8D20A28EE60092D400 /* ProfileTableViewCell.swift in Sources */,
 				D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */,
@@ -654,17 +677,20 @@
 				D251A15F2086F1DC00DFC4F6 /* AppDelegate.swift in Sources */,
 				F6135C8120A13FEE0092D400 /* ProfileViewController.swift in Sources */,
 				D261B8ED209804D400A4FBA9 /* TwoPickersCustomView.swift in Sources */,
+				F656160620A43D91004DA474 /* ContentModel.swift in Sources */,
 				F6135C7D209FF1840092D400 /* CalandarViewController.swift in Sources */,
 				D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */,
 				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
-				D251A1612086F1DC00DFC4F6 /* FirstViewController.swift in Sources */,
+				D251A1612086F1DC00DFC4F6 /* ContentListViewController.swift in Sources */,
 				F6135C8320A140230092D400 /* EditProfileViewController.swift in Sources */,
 				F6D34447209957FE00E95804 /* OtherViewController.swift in Sources */,
 				D29309FE208984DC00C6663F /* Const.swift in Sources */,
 				F6135C7F20A007610092D400 /* DateScheduleViewController.swift in Sources */,
 				D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */,
+				F656160020A4119F004DA474 /* ContentData.swift in Sources */,
+				F6B7B4D420A52F47003B7CDE /* ContentListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,10 +867,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = Bubblicious/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.Bubblicious;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -860,10 +883,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = Bubblicious/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.Bubblicious;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -880,11 +900,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -902,11 +918,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -923,11 +935,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -944,11 +952,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2HWH57LQ87;
 				INFOPLIST_FILE = BubbliciousUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plegineer.BubbliciousUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

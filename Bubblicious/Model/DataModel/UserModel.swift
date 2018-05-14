@@ -2,7 +2,7 @@
 //  UserModel.swift
 //  Bubblicious
 //
-//  Created by 島田一輝 on 2018/04/20.
+//  Created by Yoshiki Agatsuma on 2018/04/20.
 //  Copyright © 2018年 Plegineer Inc. All rights reserved.
 //
 
@@ -23,7 +23,8 @@ class UserModel {
         let answerEmail = "hoge@email.com"
         let answerPassword = "hoge"
         
-        // 本来はログイン判定はサーバ側で行うが、サーバー側の実装はないため、アプリ側で行う
+        // 本来: ログイン判定はサーバ側で行う
+        // 今回: サーバー側の実装はないため、アプリ側でログインチェック(文字列が一致しているか)を行う
         let isLogined = email == answerEmail && password == answerPassword
         let urlString = isLogined ? Const.urlSuccess : Const.urlError
         let url = URL(string: urlString)

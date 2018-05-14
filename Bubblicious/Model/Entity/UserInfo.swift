@@ -42,9 +42,10 @@ struct UserInfo {
     }
     
     init() {
-        // Comment:
-        //  Login成功時に、UserDefaultにuserIdを保存しておく
-        //  init時にUserDefaultからuserIdを読み込んで、値を保持
+        // 本来:
+        //  ・Login成功時に、UserDefaultにuserIdを保存しておく
+        //  ・init時にUserDefaultからuserIdを読み込んで、値を保持
+        // 今回:
         //  API接続はない(=userIdは使用しない)ので、今回は任意の値を設定
         self.userId = 0
     }
