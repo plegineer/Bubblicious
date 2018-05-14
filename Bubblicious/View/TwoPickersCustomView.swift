@@ -2,7 +2,7 @@
 //  TwoPickersCustomView.swift
 //  Bubblicious
 //
-//  Created by 島田一輝 on 2018/05/01.
+//  Created by Yoshiki Agatsuma on 2018/05/01.
 //  Copyright © 2018年 Plegineer Inc. All rights reserved.
 //
 
