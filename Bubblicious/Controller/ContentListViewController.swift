@@ -13,8 +13,9 @@ import SVProgressHUD
 class ContentListController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
     private var headerSearchView: ContentListHeaderView!
-    private var isHideHeaderSearchView: Bool = false
+    private var footerIndicatorView: UIActivityIndicatorView!
     
     private var scrollStartOffset: CGPoint = .zero
     private var isAnimating: Bool = false
@@ -22,8 +23,6 @@ class ContentListController: UIViewController {
     
     private let contentModel = ContentModel()
     private let tempRequestParam: [String: Int] = ["temp": 1]
-    
-    private var footerIndicatorView: UIActivityIndicatorView!
     
     // APIの呼び出しタイミング
     //  ・viewDidLoad()
@@ -140,7 +139,7 @@ extension ContentListController: UITableViewDataSource {
             }
             
         } else {
-            // 画像なしカスタムセルの設定
+            // カスタムセルの設定
             let customCell = tableView.dequeueReusableCell(withIdentifier: "contentCustomCell") as! ContentCustomTableViewCell
             customCell.titleLabel.text = content.title
             customCell.descriptionLabel.text = content.description
