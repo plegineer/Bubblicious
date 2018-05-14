@@ -96,6 +96,22 @@ class ContentListController: UIViewController {
             }
         }
     }
+    
+    private func animateHeader(isToHide: Bool) {
+        if !self.isAnimating {
+            self.isAnimating = true
+            UIView.animate(withDuration: 0.3, animations: {
+                if isToHide {
+                    self.headerSearchView.frame.origin.y -= self.headerSearchView.topView.frame.size.height
+                } else {
+                    self.headerSearchView.frame.origin.y += self.headerSearchView.topView.frame.size.height
+                }
+            }, completion: { _ in
+                self.isAnimating = false
+                self.isHeaderHidden = isToHide
+            })
+        }
+    }
 }
 
 extension ContentListController: UITableViewDataSource {
@@ -168,12 +184,13 @@ extension ContentListController: UITableViewDelegate {
 }
 
 extension ContentListController: UIScrollViewDelegate {
-    // スクロール開始のタイミング
+    // 画面をタッチして、指をドラッグしたタイミング
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
         self.scrollStartOffset = scrollView.contentOffset
     }
     
+    // 指をドラッグして、画面から離したタイミング
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         if scrollView.contentOffset.y < 0 && scrollView.contentOffset.y < self.scrollStartOffset.y {
@@ -223,22 +240,6 @@ extension ContentListController: UIScrollViewDelegate {
                     self.footerIndicatorView.stopAnimating()
                 }
             }
-        }
-    }
-    
-    private func animateHeader(isToHide: Bool) {
-        if !self.isAnimating {
-            self.isAnimating = true
-            UIView.animate(withDuration: 0.3, animations: {
-                if isToHide {
-                    self.headerSearchView.frame.origin.y -= self.headerSearchView.topView.frame.size.height
-                } else {
-                    self.headerSearchView.frame.origin.y += self.headerSearchView.topView.frame.size.height
-                }
-            }, completion: { _ in
-                self.isAnimating = false
-                self.isHeaderHidden = isToHide
-            })
         }
     }
 }
