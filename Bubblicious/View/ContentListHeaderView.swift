@@ -8,11 +8,18 @@
 
 import UIKit
 
+protocol ContentListHeaderViewDelegate {
+    func contentListHeaderView( _ view: ContentListHeaderView, didPushed saveButton: UIButton)
+}
+
 class ContentListHeaderView: UIView {
+    
+    var delegate: ContentListHeaderViewDelegate?
     
     private(set) var topView: UIView!
     private(set) var textField: UITextField!
     private(set) var searchButton: UIButton!
+    
     private(set) var bottomView: UIView!
     private(set) var bottomLabel: UILabel!
     
@@ -26,6 +33,10 @@ class ContentListHeaderView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func pushedSearchButton(sender: UIButton) {
+        self.delegate?.contentListHeaderView(self, didPushed: sender)
     }
     
     private func addComponents() {
@@ -54,8 +65,9 @@ class ContentListHeaderView: UIView {
         let textFieldOrigin = CGPoint(x: space, y: space)
         let textField = UITextField(frame: CGRect(origin: textFieldOrigin, size: textFieldSize))
         textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.borderWidth = 2
+        textField.layer.borderWidth = 0.5
         textField.delegate = self
+        textField.placeholder = "フリーワード"
         return textField
     }
     
@@ -65,6 +77,7 @@ class ContentListHeaderView: UIView {
         let button = UIButton(frame: CGRect(origin: buttonOrigin, size: buttonSize))
         button.setTitle("絞り込み", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action: #selector(self.pushedSearchButton(sender:)), for: .touchUpInside)
         return button
     }
     

@@ -1,5 +1,5 @@
 //
-//  ContentListController.swift
+//  ContentListViewController.swift
 //  Bubblicious
 //
 //  Created by Yoshiki Agatsuma on 2018/04/18.
@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 
 // リスト(UITableView)系のサンプルコントローラークラス
-class ContentListController: UIViewController {
+class ContentListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -78,6 +78,7 @@ class ContentListController: UIViewController {
         let origin = self.tableView.frame.origin
         let size = CGSize(width: self.view.frame.size.width, height: 80)
         let contentListHeaderView = ContentListHeaderView(frame: CGRect(origin: origin, size: size))
+        contentListHeaderView.delegate = self
         self.view.addSubview(contentListHeaderView)
         self.headerSearchView = contentListHeaderView
     }
@@ -113,7 +114,17 @@ class ContentListController: UIViewController {
     }
 }
 
-extension ContentListController: UITableViewDataSource {
+extension ContentListViewController: ContentListHeaderViewDelegate {
+    func contentListHeaderView(_ view: ContentListHeaderView, didPushed saveButton: UIButton) {
+        if let text = view.textField.text, !text.isEmpty {
+            self.showAlert("絞り込みワード", message: text)
+        } else {
+            self.showAlert("絞り込みワード", message: "未設定")
+        }
+    }
+}
+
+extension ContentListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.contentModel.contents.count
     }
@@ -150,7 +161,7 @@ extension ContentListController: UITableViewDataSource {
     }
 }
 
-extension ContentListController: UITableViewDelegate {
+extension ContentListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return self.headerSearchView.frame.size.height
     }
@@ -182,7 +193,7 @@ extension ContentListController: UITableViewDelegate {
     }
 }
 
-extension ContentListController: UIScrollViewDelegate {
+extension ContentListViewController: UIScrollViewDelegate {
     // 画面をタッチして、指をドラッグしたタイミング
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
