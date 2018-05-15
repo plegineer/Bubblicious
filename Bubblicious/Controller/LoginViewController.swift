@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -25,33 +26,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Touch Event
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        if mailTextField.isFirstResponder || passwordTextField.isFirstResponder {
-            mailTextField.resignFirstResponder()
-            passwordTextField.resignFirstResponder()
-        }
+        self.view.endEditing(true)
     }
     
-    // MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.isEqual(mailTextField) {
-            passwordTextField.becomeFirstResponder()
-        } else if textField.isEqual(passwordTextField) {
-            attemptLogin()
-            passwordTextField.resignFirstResponder()
-        }
-        return true
-    }
-    
-    // MARK: - Action
     @IBAction func pushedLoginButton(_ sender: UIButton) {
         attemptLogin()
         sender.isEnabled = false
     }
     
     // MARK: - Private Method
+    
     private func attemptLogin() {
         
         let params = [
@@ -61,7 +47,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let path = "login"
         
+        SVProgressHUD.show()
         self.userModel.login(params, path, callback: {(error) in
+            SVProgressHUD.dismiss()
             self.loginButton.isEnabled = true
             
             if let error = error {
@@ -105,8 +93,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.enablesReturnKeyAutomatically = true
         passwordTextField.autocapitalizationType = .none
         passwordTextField.autocorrectionType = .no
-        
-        mailTextField.text = ""
-        passwordTextField.text = ""
+    }
+}
+
+// MARK: - Extension
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.isEqual(mailTextField) {
+            passwordTextField.becomeFirstResponder()
+        } else if textField.isEqual(passwordTextField) {
+            passwordTextField.resignFirstResponder()
+            attemptLogin()
+        }
+        return true
     }
 }
