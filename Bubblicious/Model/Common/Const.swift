@@ -34,10 +34,5 @@ struct Const {
         static let locationManagerRestrictedTitle   = "位置情報サービスの設定が制限されているため利用出来ません"
         static let locationManagerRestrictedMessage = "設定 > 一般 > 機能制限 で、制限を解除して下さい"
         static let openMapLocationErrorMessage      = "先に位置情報を取得して下さい"
-    }
-    
-    struct Map {
-        static let BaseUrlFirst  = "http://maps.apple.com/?daddr="
-        static let BaseUrlSecond = "&dirflg=d"
-    }
+    }    
 }
