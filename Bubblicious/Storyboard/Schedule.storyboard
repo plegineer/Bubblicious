@@ -47,11 +47,11 @@
             </objects>
             <point key="canvasLocation" x="3084" y="0.0"/>
         </scene>
-        <!--Schedule-->
+        <!--スケジュール-->
         <scene sceneID="VHk-Uc-UCX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LeR-k1-7pH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Schedule" image="second" id="Xds-jS-EYJ"/>
+                    <tabBarItem key="tabBarItem" title="スケジュール" image="tab_calendar" selectedImage="tab_calendar_filled" id="Xds-jS-EYJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tt1-hL-p9M">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -162,6 +162,7 @@
         <image name="ic_calendar" width="80" height="80"/>
         <image name="left_arrow" width="32" height="32"/>
         <image name="right_arrow" width="32" height="32"/>
-        <image name="second" width="30" height="30"/>
+        <image name="tab_calendar" width="25" height="25"/>
+        <image name="tab_calendar_filled" width="25" height="25"/>
     </resources>
 </document>

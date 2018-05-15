@@ -34,7 +34,7 @@
         <scene sceneID="g75-zY-RWY">
             <objects>
                 <viewControllerPlaceholder storyboardName="Schedule" id="4Lq-bY-GOI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Schedule" id="eQb-3V-APl"/>
+                    <tabBarItem key="tabBarItem" title="スケジュール" image="tab_calendar" selectedImage="tab_calendar_filled" id="eQb-3V-APl"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liG-mg-scf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -194,6 +194,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="tab_calendar" width="25" height="25"/>
+        <image name="tab_calendar_filled" width="25" height="25"/>
         <image name="top_appicon" width="90" height="90"/>
     </resources>
 </document>
