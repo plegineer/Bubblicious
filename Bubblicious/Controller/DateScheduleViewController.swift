@@ -16,7 +16,7 @@ class DateScheduleViewController: UIViewController {
     private let fmt: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateFormat = "MM月dd日(EEE)"
+        formatter.dateFormat = "M月d日(EEE)"
         return formatter
     }()
     

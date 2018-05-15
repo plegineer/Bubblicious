@@ -26,6 +26,12 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -89,8 +95,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx月00日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSS-vr-ZQB">
-                                        <rect key="frame" x="132.5" y="10" width="111.5" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <rect key="frame" x="134.5" y="10" width="106" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -122,10 +128,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lR-lU-Ycl">
-                                <rect key="frame" x="285" y="513" width="80" height="80"/>
+                                <rect key="frame" x="315" y="543" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="CUR-W9-1YE"/>
-                                    <constraint firstAttribute="width" constant="80" id="nhR-Ub-HGh"/>
+                                    <constraint firstAttribute="height" constant="50" id="CUR-W9-1YE"/>
+                                    <constraint firstAttribute="width" constant="50" id="nhR-Ub-HGh"/>
                                 </constraints>
                                 <state key="normal" title="Calendar" image="ic_calendar"/>
                                 <connections>
@@ -159,7 +165,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_calendar" width="80" height="80"/>
+        <image name="ic_calendar" width="50" height="50"/>
         <image name="left_arrow" width="32" height="32"/>
         <image name="right_arrow" width="32" height="32"/>
         <image name="tab_calendar" width="25" height="25"/>
