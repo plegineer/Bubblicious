@@ -9,7 +9,6 @@
 import UIKit
 import SVProgressHUD
 
-// リスト(UITableView)系のサンプルコントローラークラス
 class ContentListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!

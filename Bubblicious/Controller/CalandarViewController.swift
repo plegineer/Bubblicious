@@ -11,7 +11,7 @@ import FSCalendar
 
 class CalandarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
 
-    // TODO: 参考
+    // 参考URL:
     // https://qiita.com/Koutya/items/f5c7c12ab1458b6addcd
     
     @IBOutlet weak var calendar: FSCalendar!
