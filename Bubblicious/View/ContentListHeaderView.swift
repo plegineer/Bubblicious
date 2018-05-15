@@ -23,7 +23,7 @@ class ContentListHeaderView: UIView {
     private(set) var bottomView: UIView!
     private(set) var bottomLabel: UILabel!
     
-    let space: CGFloat = 10
+    let space: CGFloat = 5
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,8 +40,8 @@ class ContentListHeaderView: UIView {
     }
     
     private func addComponents() {
-        let topViewSize = CGSize(width: self.frame.size.width, height: self.frame.size.height/4*3)
-        let bottomViewSize = CGSize(width: self.frame.size.width, height: self.frame.size.height/4)
+        let topViewSize = CGSize(width: self.frame.size.width, height: self.frame.size.height/3*2)
+        let bottomViewSize = CGSize(width: self.frame.size.width, height: self.frame.size.height/3)
         
         // top
         topView = UIView(frame: CGRect(origin: .zero, size: topViewSize))
@@ -61,19 +61,20 @@ class ContentListHeaderView: UIView {
     }
     
     private func createTextField() -> UITextField {
-        let textFieldSize = CGSize(width: self.frame.size.width/3*2-space*2, height: topView.frame.size.height-space*2)
-        let textFieldOrigin = CGPoint(x: space, y: space)
+        let textFieldSize = CGSize(width: self.frame.size.width/2-space*2, height: topView.frame.size.height-space*2)
+        let textFieldOrigin = CGPoint(x: space*2, y: space)
         let textField = UITextField(frame: CGRect(origin: textFieldOrigin, size: textFieldSize))
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 0.5
         textField.delegate = self
         textField.placeholder = "フリーワード"
+        textField.font = UIFont.systemFont(ofSize: 15)
         return textField
     }
     
     private func createButton() -> UIButton {
         let buttonSize = CGSize(width: 120, height: topView.frame.size.height-space*2)
-        let buttonOrigin = CGPoint(x: textField.frame.maxX + space, y: space)
+        let buttonOrigin = CGPoint(x: topView.frame.size.width/4*3 - buttonSize.width/2, y: space)
         let button = UIButton(frame: CGRect(origin: buttonOrigin, size: buttonSize))
         button.setTitle("絞り込み", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)

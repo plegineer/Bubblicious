@@ -74,12 +74,14 @@ class ContentListViewController: UIViewController {
     }
     
     private func addHeaderSearchView() {
-        let origin = self.tableView.frame.origin
-        let size = CGSize(width: self.view.frame.size.width, height: 80)
-        let contentListHeaderView = ContentListHeaderView(frame: CGRect(origin: origin, size: size))
-        contentListHeaderView.delegate = self
-        self.view.addSubview(contentListHeaderView)
-        self.headerSearchView = contentListHeaderView
+        if let navigationBar = self.navigationController?.navigationBar {
+            let origin = CGPoint(x: 0, y: navigationBar.frame.maxY)
+            let size = CGSize(width: self.view.frame.size.width, height: 66)
+            let contentListHeaderView = ContentListHeaderView(frame: CGRect(origin: origin, size: size))
+            contentListHeaderView.delegate = self
+            self.view.addSubview(contentListHeaderView)
+            self.headerSearchView = contentListHeaderView
+        }
     }
     
     private func animateTabBar(isToHide: Bool) {
