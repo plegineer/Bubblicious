@@ -120,7 +120,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fr-eM-zVw">
-                                <rect key="frame" x="28" y="328" width="319" height="44"/>
+                                <rect key="frame" x="146.5" y="328" width="82" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="SEL-vI-pZu"/>
                                 </constraints>
@@ -153,9 +153,8 @@
                             <constraint firstItem="oaI-En-Ovs" firstAttribute="top" secondItem="PoC-gz-HNM" secondAttribute="top" constant="200" id="dJc-Vu-9cl"/>
                             <constraint firstItem="P30-G1-U3h" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="fLm-03-Tyo"/>
                             <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="P30-G1-U3h" secondAttribute="trailing" constant="20" id="fUz-H6-Mad"/>
-                            <constraint firstItem="8fr-eM-zVw" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="28" id="nYN-vH-TzU"/>
+                            <constraint firstItem="8fr-eM-zVw" firstAttribute="centerX" secondItem="Rz0-W0-AuZ" secondAttribute="centerX" id="lRM-qH-Z8B"/>
                             <constraint firstItem="oaI-En-Ovs" firstAttribute="leading" secondItem="PoC-gz-HNM" secondAttribute="leading" constant="20" id="u8o-f9-Ca6"/>
-                            <constraint firstItem="PoC-gz-HNM" firstAttribute="trailing" secondItem="8fr-eM-zVw" secondAttribute="trailing" constant="28" id="uFz-uB-NQs"/>
                             <constraint firstItem="8fr-eM-zVw" firstAttribute="top" secondItem="wsb-VF-8kv" secondAttribute="bottom" constant="20" id="wod-4e-v2a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PoC-gz-HNM"/>
@@ -196,14 +195,14 @@
     <resources>
         <image name="tab_calendar" width="25" height="25"/>
         <image name="tab_calendar_filled" width="25" height="25"/>
-        <image name="tab_content_list" width="25" height="25"/>
-        <image name="tab_content_list_filled" width="25" height="25"/>
-        <image name="tab_expand" width="25" height="25"/>
-        <image name="tab_expand_filled" width="25" height="25"/>
-        <image name="tab_profile" width="25" height="25"/>
-        <image name="tab_profile_filled" width="25" height="25"/>
-        <image name="tab_setting" width="25" height="25"/>
-        <image name="tab_setting_filled" width="25" height="25"/>
+        <image name="tab_content_list" width="30" height="30"/>
+        <image name="tab_content_list_filled" width="30" height="30"/>
+        <image name="tab_expand" width="30" height="30"/>
+        <image name="tab_expand_filled" width="30" height="30"/>
+        <image name="tab_profile" width="30" height="30"/>
+        <image name="tab_profile_filled" width="30" height="30"/>
+        <image name="tab_setting" width="30" height="30"/>
+        <image name="tab_setting_filled" width="30" height="30"/>
         <image name="top_appicon" width="90" height="90"/>
     </resources>
 </document>
