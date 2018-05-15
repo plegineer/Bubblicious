@@ -227,9 +227,9 @@ extension ContentListViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y > 0 && !isHeaderHidden {
             switch ScrollDirection(old: self.scrollStartOffset, new: scrollView.contentOffset).directionY {
                 case .toTop:
-                    self.animateHeader(isToHide: true)
-                case .toBottom:
                     break
+                case .toBottom:
+                    self.animateHeader(isToHide: true)
                 case .none:
                     break
             }
