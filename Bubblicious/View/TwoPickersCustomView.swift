@@ -93,8 +93,8 @@ class TwoPickersCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDa
     @objc func tappedSaveButton(_ sender: UIButton) {
         firstTextField.resignFirstResponder()
         secondTextField.resignFirstResponder()
-        let message = "\(firstTextField.text!)\n\(secondTextField.text!)\n"
-        self.delegate?.customBaseViewTappedSaveButton(message, self)
+        
+        self.delegate?.customBaseViewTappedSaveButton(createSaveAlertMessage(), self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
@@ -156,5 +156,15 @@ class TwoPickersCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDa
         pickerToolBar.backgroundColor = .groupTableViewBackground
         pickerToolBar.setItems([doneButton], animated: false)
         return pickerToolBar
+    }
+    
+    private func createSaveAlertMessage() -> String {
+        var message: String = ""
+        if let firstText = firstTextField.text, let secondText = secondTextField.text {
+            let firstMessage = firstText.isEmpty ? "未選択" : firstText
+            let secondMessage = secondText.isEmpty ? "未選択" : secondText
+            message = "Picker1: \(firstMessage)\n Picker2: \(secondMessage)\n"
+        }
+        return message.isEmpty ? "Error: 各アイテムが取得できませんでした。" : message
     }
 }

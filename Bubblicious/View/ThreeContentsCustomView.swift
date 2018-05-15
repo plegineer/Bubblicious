@@ -91,9 +91,8 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
     @objc func tappedSaveButton(_ sender: UIButton) {
         topTextField.resignFirstResponder()
         middleTextField.resignFirstResponder()
-        let switchText = self.bottomSwitchControl.isOn ? "On" : "Off"
-        let message = "\(topTitleLabel.text!): \(topTextField.text!)\n\(middleTitleLabel.text!): \(middleTextField.text!)\n \(bottomTitleLabel.text!): \(switchText)"
-        self.delegate?.customBaseViewTappedSaveButton(message, self)
+        
+        self.delegate?.customBaseViewTappedSaveButton(createSaveAlertMessage(), self)
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){
@@ -147,5 +146,18 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
         middleTextField.autocapitalizationType = .none
         middleTextField.autocorrectionType = .no
         self.middleTextField = middleTextField
+    }
+    
+    private func createSaveAlertMessage() -> String {
+        var message = ""
+        if let topText = topTextField.text, let middleText = middleTextField.text {
+            let topValueText = topText.isEmpty ? "未選択" : topText
+            let middleValueText = middleText.isEmpty ? "未入力" : middleText
+            let switchText = self.bottomSwitchControl.isOn ? "On" : "Off"
+            message = "Picker: \(topValueText)\n Text: \(middleValueText)\n Switch: \(switchText)"
+        } else {
+            message = "Error: 各アイテムが取得できませんでした。"
+        }
+        return message
     }
 }
