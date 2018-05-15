@@ -18,7 +18,7 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
     private var bottomSwitchControl: UISwitch!
     private var saveButton: UIButton!
     
-    private let pickerContents = ["hogehoge", "fugafuga", "fobar"]
+    private let pickerContents = ["hogehoge", "fugafuga", "foobar"]
     
     init(frame: CGRect, withShadow: Bool) {
         super.init(frame: frame)
