@@ -28,11 +28,11 @@
             </objects>
             <point key="canvasLocation" x="2492" y="-733"/>
         </scene>
-        <!--Expand-->
+        <!--拡張セル-->
         <scene sceneID="DJV-8D-NaO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="twk-EX-BIM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Expand" image="second" id="QV1-Cc-Wc8"/>
+                    <tabBarItem key="tabBarItem" title="拡張セル" image="tab_expand" selectedImage="tab_expand_filled" id="QV1-Cc-Wc8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rN3-GI-dHx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -49,6 +49,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="tab_expand" width="25" height="25"/>
+        <image name="tab_expand_filled" width="25" height="25"/>
     </resources>
 </document>

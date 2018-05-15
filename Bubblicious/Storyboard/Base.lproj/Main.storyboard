@@ -14,7 +14,7 @@
         <scene sceneID="f0z-zR-bqB">
             <objects>
                 <viewControllerPlaceholder storyboardName="ContentList" id="F7X-eS-qLW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Table" id="tPH-02-gWn"/>
+                    <tabBarItem key="tabBarItem" title="コンテンツ一覧" image="tab_content_list_filled" selectedImage="tab_content_list" id="tPH-02-gWn"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hw4-zN-W2r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -24,7 +24,7 @@
         <scene sceneID="gI6-sh-YQF">
             <objects>
                 <viewControllerPlaceholder storyboardName="Expand" id="Yce-fk-k8C" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Expand" id="lEX-CA-UnN"/>
+                    <tabBarItem key="tabBarItem" title="拡張セル" image="tab_expand" selectedImage="tab_expand_filled" id="lEX-CA-UnN"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ug-Fr-Lxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +44,7 @@
         <scene sceneID="qYB-zF-giD">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="owj-1z-t4B" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="kYs-4E-L5q"/>
+                    <tabBarItem key="tabBarItem" title="プロフィール" image="tab_profile" selectedImage="tab_profile_filled" id="kYs-4E-L5q"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZU-LA-l1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +54,7 @@
         <scene sceneID="aFr-B4-47r">
             <objects>
                 <viewControllerPlaceholder storyboardName="Other" id="2VS-2y-j0i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Other" id="XWS-hW-tmN"/>
+                    <tabBarItem key="tabBarItem" title="その他" image="tab_setting" selectedImage="tab_setting_filled" id="XWS-hW-tmN"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEE-Z4-GG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -196,6 +196,14 @@
     <resources>
         <image name="tab_calendar" width="25" height="25"/>
         <image name="tab_calendar_filled" width="25" height="25"/>
+        <image name="tab_content_list" width="25" height="25"/>
+        <image name="tab_content_list_filled" width="25" height="25"/>
+        <image name="tab_expand" width="25" height="25"/>
+        <image name="tab_expand_filled" width="25" height="25"/>
+        <image name="tab_profile" width="25" height="25"/>
+        <image name="tab_profile_filled" width="25" height="25"/>
+        <image name="tab_setting" width="25" height="25"/>
+        <image name="tab_setting_filled" width="25" height="25"/>
         <image name="top_appicon" width="90" height="90"/>
     </resources>
 </document>

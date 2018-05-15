@@ -14,7 +14,6 @@
         <!--プロフィール-->
         <scene sceneID="tg5-7u-LE0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XcL-gm-y9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="GpK-3i-6x2" customClass="ProfileViewController" customModule="Bubblicious" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vkd-kF-8Cc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -90,6 +89,7 @@
                         <outlet property="profileTableView" destination="zGG-cW-uWW" id="yEV-fA-IBK"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XcL-gm-y9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2447.1999999999998" y="831.63418290854577"/>
         </scene>
@@ -123,11 +123,11 @@
             </objects>
             <point key="canvasLocation" x="3260" y="836.13193403298362"/>
         </scene>
-        <!--Profile-->
+        <!--プロフィール-->
         <scene sceneID="B1S-ML-M8K">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AJM-Dh-Ooo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="second" id="tXZ-bE-tpb"/>
+                    <tabBarItem key="tabBarItem" title="プロフィール" image="tab_profile" selectedImage="tab_profile_filled" id="tXZ-bE-tpb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GF8-SA-nEB">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -145,6 +145,7 @@
     </scenes>
     <resources>
         <image name="ic_edit" width="25" height="25"/>
-        <image name="second" width="30" height="30"/>
+        <image name="tab_profile" width="25" height="25"/>
+        <image name="tab_profile_filled" width="25" height="25"/>
     </resources>
 </document>

@@ -241,11 +241,11 @@
             </objects>
             <point key="canvasLocation" x="3913" y="1267"/>
         </scene>
-        <!--Other-->
+        <!--その他-->
         <scene sceneID="53F-Ty-n1e">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zJQ-6i-Lzn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Other" image="second" id="hph-pI-8l0"/>
+                    <tabBarItem key="tabBarItem" title="その他" image="tab_setting" selectedImage="tab_setting_filled" id="hph-pI-8l0"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kfb-L7-r1t">
@@ -263,6 +263,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="tab_setting" width="25" height="25"/>
+        <image name="tab_setting_filled" width="25" height="25"/>
     </resources>
 </document>
