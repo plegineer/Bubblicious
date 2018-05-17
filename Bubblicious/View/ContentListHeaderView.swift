@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ContentListHeaderViewDelegate {
-    func contentListHeaderView( _ view: ContentListHeaderView, didPushed saveButton: UIButton)
+    func contentListHeaderView(view: ContentListHeaderView, didPush saveButton: UIButton)
 }
 
 class ContentListHeaderView: UIView {
@@ -36,7 +36,7 @@ class ContentListHeaderView: UIView {
     }
     
     @objc func pushedSearchButton(sender: UIButton) {
-        self.delegate?.contentListHeaderView(self, didPushed: sender)
+        self.delegate?.contentListHeaderView(view: self, didPush: sender)
     }
     
     private func addComponents() {

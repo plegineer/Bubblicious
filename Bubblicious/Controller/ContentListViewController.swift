@@ -117,7 +117,7 @@ class ContentListViewController: UIViewController {
 
 extension ContentListViewController: ContentListHeaderViewDelegate {
     
-    func contentListHeaderView(_ view: ContentListHeaderView, didPushed saveButton: UIButton) {
+    func contentListHeaderView(view: ContentListHeaderView, didPush saveButton: UIButton) {
         if let text = view.textField.text, !text.isEmpty {
             self.showAlert("絞り込みワード", message: text)
         } else {
