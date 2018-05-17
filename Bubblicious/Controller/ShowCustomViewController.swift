@@ -80,6 +80,7 @@ class ShowCustomViewController: UIViewController {
 }
 
 extension ShowCustomViewController: CustomBaseViewDelegate {
+    
     func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
         self.showAlert("保存完了", message: message)
         
@@ -95,6 +96,7 @@ extension ShowCustomViewController: CustomBaseViewDelegate {
 }
 
 extension ShowCustomViewController: CustomBackGroundViewDelegate {
+    
     func customBackGroundViewTouched(_ view: CustomBackGroundView) {
         let displayingView = self.view.subviews.last is TwoPickersCustomView ? self.animationPickerView : self.animationCustomView
         if !displayingView.isKeyBoardOpen {

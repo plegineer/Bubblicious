@@ -197,12 +197,14 @@ class OtherController: UITableViewController {
 
 // MARK: - Extension
 extension OtherController: MFMailComposeViewControllerDelegate {
+    
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
 }
 
 extension OtherController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:

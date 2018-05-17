@@ -99,6 +99,7 @@ class LoginViewController: UIViewController {
 // MARK: - Extension
 
 extension LoginViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.isEqual(mailTextField) {
             passwordTextField.becomeFirstResponder()

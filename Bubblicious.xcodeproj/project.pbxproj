@@ -31,7 +31,7 @@
 		D2FCC6DE2089C557001DA0B4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DD2089C557001DA0B4 /* Log.swift */; };
 		D2FCC6E02089C92D001DA0B4 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */; };
 		D2FCC6E22089D951001DA0B4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E12089D951001DA0B4 /* UserModel.swift */; };
-		D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E32089F203001DA0B4 /* ViewController.swift */; };
+		D2FCC6E42089F203001DA0B4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FCC6E32089F203001DA0B4 /* UIViewController+Extension.swift */; };
 		F6135C7D209FF1840092D400 /* CalandarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C7C209FF1840092D400 /* CalandarViewController.swift */; };
 		F6135C7F20A007610092D400 /* DateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C7E20A007610092D400 /* DateScheduleViewController.swift */; };
 		F6135C8120A13FEE0092D400 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6135C8020A13FEE0092D400 /* ProfileViewController.swift */; };
@@ -111,7 +111,7 @@
 		D2FCC6DD2089C557001DA0B4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D2FCC6DF2089C92D001DA0B4 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		D2FCC6E12089D951001DA0B4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		D2FCC6E32089F203001DA0B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2FCC6E32089F203001DA0B4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D3AAE1FDDFC7C5546F1C40AB /* Pods-BubbliciousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubbliciousUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BubbliciousUITests/Pods-BubbliciousUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F54734968AAE7DD831BBF678 /* Pods_Bubblicious.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bubblicious.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6135C7C209FF1840092D400 /* CalandarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalandarViewController.swift; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 		D2FCC6E5208A1834001DA0B4 /* Extention */ = {
 			isa = PBXGroup;
 			children = (
-				D2FCC6E32089F203001DA0B4 /* ViewController.swift */,
+				D2FCC6E32089F203001DA0B4 /* UIViewController+Extension.swift */,
 				F6135C8420A16CBC0092D400 /* Date+Extension.swift */,
 				F6B7B4DB20A9348A003B7CDE /* UIColor+Extension.swift */,
 			);
@@ -706,7 +706,7 @@
 				F656160620A43D91004DA474 /* ContentModel.swift in Sources */,
 				F6135C7D209FF1840092D400 /* CalandarViewController.swift in Sources */,
 				D2835159208D780E00CEB67D /* ThreeContentsCustomView.swift in Sources */,
-				D2FCC6E42089F203001DA0B4 /* ViewController.swift in Sources */,
+				D2FCC6E42089F203001DA0B4 /* UIViewController+Extension.swift in Sources */,
 				D251A19B2088624B00DFC4F6 /* TabBarController.swift in Sources */,
 				D251A1952087219400DFC4F6 /* WebApiManager.swift in Sources */,
 				D251A1612086F1DC00DFC4F6 /* ContentListViewController.swift in Sources */,

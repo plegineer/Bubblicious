@@ -92,6 +92,7 @@ class ContentListHeaderView: UIView {
 }
 
 extension ContentListHeaderView: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

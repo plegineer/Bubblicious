@@ -38,6 +38,8 @@ class ExpandableTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -92,6 +94,7 @@ class ExpandableTableViewController: UITableViewController {
 }
 
 extension ExpandableTableViewController: ExpandableTableHeaderViewDelegate {
+    
     func toggleSection(_ header: ExpandableTableHeaderView, section: Int) {
         let collapsed = !sections[section].collapsed
         sections[section].collapsed = collapsed

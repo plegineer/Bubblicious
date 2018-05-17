@@ -77,6 +77,7 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RowIndex.count
     }
@@ -126,6 +127,7 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 extension ProfileViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -136,6 +138,7 @@ extension ProfileViewController: UITableViewDelegate {
 }
 
 extension ProfileViewController: EditProfileViewControllerDelegate {
+    
     func editProfileViewControllerPushedCloseButton(_ view: EditProfileViewController) {
         self.dismiss(animated: true, completion: nil)
     }

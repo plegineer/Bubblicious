@@ -88,6 +88,7 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
     }
     
     // MARK: - Action
+    
     @objc func tappedSaveButton(_ sender: UIButton) {
         topTextField.resignFirstResponder()
         middleTextField.resignFirstResponder()
@@ -100,6 +101,7 @@ class ThreeContentsCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerVie
     }
     
     // MARK: - Private Method
+    
     private func setupItems(withShadow: Bool = false) {
         self.backgroundColor = .white
         self.setNotifications()

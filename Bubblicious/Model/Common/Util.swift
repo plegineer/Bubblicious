@@ -11,7 +11,7 @@ import CalculateCalendarLogic
 
 class Util {
     
-    class func saveObject(_ obj:Any?, forKey key: String){
+    class func saveObject(_ obj:Any?, forKey key: String) {
         UserDefaults.standard.set(obj, forKey: key)
         UserDefaults.standard.synchronize()
     }
@@ -20,7 +20,7 @@ class Util {
         return UserDefaults.standard.object(forKey: key)
     }
     
-    class func saveBool(_ val:Bool, forKey key:String){
+    class func saveBool(_ val:Bool, forKey key:String) {
         UserDefaults.standard.set(val, forKey: key)
         UserDefaults.standard.synchronize()
     }

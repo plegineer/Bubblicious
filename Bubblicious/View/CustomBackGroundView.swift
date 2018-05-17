@@ -13,6 +13,7 @@ protocol CustomBackGroundViewDelegate: class {
 }
 
 class CustomBackGroundView: UIView {
+    
     weak var delegate: CustomBackGroundViewDelegate?
     
     let minAlpha: CGFloat = 0

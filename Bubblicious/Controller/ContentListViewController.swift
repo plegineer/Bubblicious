@@ -116,6 +116,7 @@ class ContentListViewController: UIViewController {
 }
 
 extension ContentListViewController: ContentListHeaderViewDelegate {
+    
     func contentListHeaderView(_ view: ContentListHeaderView, didPushed saveButton: UIButton) {
         if let text = view.textField.text, !text.isEmpty {
             self.showAlert("絞り込みワード", message: text)
@@ -126,6 +127,7 @@ extension ContentListViewController: ContentListHeaderViewDelegate {
 }
 
 extension ContentListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.contentModel.contents.count
     }
@@ -163,6 +165,7 @@ extension ContentListViewController: UITableViewDataSource {
 }
 
 extension ContentListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return self.headerSearchView.frame.size.height
     }
@@ -195,6 +198,7 @@ extension ContentListViewController: UITableViewDelegate {
 }
 
 extension ContentListViewController: UIScrollViewDelegate {
+    
     // 画面をタッチして、指をドラッグしたタイミング
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)

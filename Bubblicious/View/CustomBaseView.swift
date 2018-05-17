@@ -67,6 +67,7 @@ class CustomBaseView: UIView {
 }
 
 extension CustomBaseView: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
