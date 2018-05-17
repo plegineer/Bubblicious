@@ -94,7 +94,7 @@ class TwoPickersCustomView: CustomBaseView, UIPickerViewDelegate, UIPickerViewDa
         firstTextField.resignFirstResponder()
         secondTextField.resignFirstResponder()
         
-        self.delegate?.customBaseViewTappedSaveButton(createSaveAlertMessage(), self)
+        self.delegate?.customBaseView(view: self, didPushSaveButton: createSaveAlertMessage())
     }
     
     @objc func tappedPickerViewButton(_ sender: UIButton){

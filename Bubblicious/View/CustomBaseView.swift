@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomBaseViewDelegate: class {
-    func customBaseViewTappedSaveButton(_ message: String , _ view: CustomBaseView)
+    func customBaseView(view: CustomBaseView, didPushSaveButton message: String)
 }
 
 class CustomBaseView: UIView {

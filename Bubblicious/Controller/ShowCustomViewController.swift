@@ -81,7 +81,7 @@ class ShowCustomViewController: UIViewController {
 
 extension ShowCustomViewController: CustomBaseViewDelegate {
     
-    func customBaseViewTappedSaveButton(_ message: String, _ view: CustomBaseView) {
+    func customBaseView(view: CustomBaseView, didPushSaveButton message: String) {
         self.showAlert("保存完了", message: message)
         
         let targetCustomView = view == animationCustomView ? self.animationCustomView : self.animationPickerView
