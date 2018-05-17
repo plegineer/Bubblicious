@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.7.2)
+  - CalculateCalendarLogic (0.1.6)
+  - Eureka (4.1.1)
+  - FSCalendar (2.7.9)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - CalculateCalendarLogic
+  - Eureka
+  - FSCalendar
+  - SVProgressHUD
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  CalculateCalendarLogic: 81b16c24e2b7273fffb03fc29d0c8d1800fd3c9e
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: 7c4401bd965b26a180188e70a63f09a4fe7ee03a
+
+COCOAPODS: 1.4.0

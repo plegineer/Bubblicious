@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "ログイン"; ObjectID = "8fr-eM-zVw"; */
+"8fr-eM-zVw.normalTitle" = "ログイン";
+
+/* Class = "UILabel"; text = "Email: hoge@email.com"; ObjectID = "P30-G1-U3h"; */
+"P30-G1-U3h.text" = "Email: hoge@email.com";
+
+/* Class = "UITabBarItem"; title = "Other"; ObjectID = "XWS-hW-tmN"; */
+"XWS-hW-tmN.title" = "Other";
+
+/* Class = "UITabBarItem"; title = "Schedule"; ObjectID = "eQb-3V-APl"; */
+"eQb-3V-APl.title" = "Schedule";
+
+/* Class = "UITabBarItem"; title = "Profile"; ObjectID = "kYs-4E-L5q"; */
+"kYs-4E-L5q.title" = "Profile";
+
+/* Class = "UILabel"; text = "Pass: hoge"; ObjectID = "keJ-E9-iNd"; */
+"keJ-E9-iNd.text" = "Pass: hoge";
+
+/* Class = "UITabBarItem"; title = "Expand"; ObjectID = "lEX-CA-UnN"; */
+"lEX-CA-UnN.title" = "Expand";
+
+/* Class = "UITextField"; placeholder = "メールアドレス"; ObjectID = "oaI-En-Ovs"; */
+"oaI-En-Ovs.placeholder" = "メールアドレス";
+
+/* Class = "UITabBarItem"; title = "Table"; ObjectID = "tPH-02-gWn"; */
+"tPH-02-gWn.title" = "Table";
+
+/* Class = "UITextField"; placeholder = "パスワード"; ObjectID = "wsb-VF-8kv"; */
+"wsb-VF-8kv.placeholder" = "パスワード";
