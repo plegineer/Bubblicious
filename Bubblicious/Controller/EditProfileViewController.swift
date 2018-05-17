@@ -60,7 +60,7 @@ class EditProfileViewController: FormViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    // MARK: - TableView
+    // MARK: TableView
     
     private func setupTableView() {
         // 本来: 各フォームに正しいvalidationを設定する

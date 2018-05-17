@@ -79,6 +79,8 @@ class ShowCustomViewController: UIViewController {
     }
 }
 
+// MARK: - CustomBaseViewDelegate
+
 extension ShowCustomViewController: CustomBaseViewDelegate {
     
     func customBaseView(view: CustomBaseView, didPushSaveButton message: String) {
@@ -94,6 +96,8 @@ extension ShowCustomViewController: CustomBaseViewDelegate {
         })
     }
 }
+
+// MARK: - CustomBackGroundViewDelegate
 
 extension ShowCustomViewController: CustomBackGroundViewDelegate {
     

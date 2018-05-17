@@ -86,5 +86,4 @@ class DateScheduleViewController: UIViewController {
             self.displayingDate = newDate
         }
     }
-    
 }

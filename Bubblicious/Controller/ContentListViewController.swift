@@ -115,6 +115,8 @@ class ContentListViewController: UIViewController {
     }
 }
 
+// MARK: - ContentListHeaderViewDelegate
+
 extension ContentListViewController: ContentListHeaderViewDelegate {
     
     func contentListHeaderView(view: ContentListHeaderView, didPush saveButton: UIButton) {
@@ -125,6 +127,8 @@ extension ContentListViewController: ContentListHeaderViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension ContentListViewController: UITableViewDataSource {
     
@@ -164,6 +168,8 @@ extension ContentListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension ContentListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -196,6 +202,8 @@ extension ContentListViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension ContentListViewController: UIScrollViewDelegate {
     

@@ -76,6 +76,8 @@ class ProfileViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,6 +128,8 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -136,6 +140,8 @@ extension ProfileViewController: UITableViewDelegate {
         return UITableViewAutomaticDimension
     }
 }
+
+// MARK: - EditProfileViewControllerDelegate
 
 extension ProfileViewController: EditProfileViewControllerDelegate {
     

@@ -39,6 +39,21 @@ class ExpandableTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    private func setupSections() {
+        sections = [
+            Section(name: "Parent1", items: ["Child1-1"]),
+            Section(name: "Parent2", items: ["Child2-1", "Child2-2"]),
+            Section(name: "Parent3", items: ["Child3-1", "Child3-2", "Child3-3"]),
+            Section(name: "Parent4", items: ["Child4-1", "Child4-2", "Child4-3", "Child4-4"]),
+            Section(name: "Parent5", items: ["Child5-1", "Child5-2"]),
+            Section(name: "Parent6", items: ["Child6-1", "Child6-2"]),
+            Section(name: "Parent7", items: ["Child7-1", "Child7-2", "Child7-3", "Child7-4", "Child7-5", "Child7-6", "Child7-7"]),
+            Section(name: "Parent8", items: ["Child8-1", "Child8-2"]),
+            Section(name: "Parent9", items: ["Child9-1", "Child9-2"]),
+            Section(name: "Parent10", items: ["Child10-1", "Child10-2"]),
+        ]
+    }
+    
     // MARK: - UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,22 +91,9 @@ class ExpandableTableViewController: UITableViewController {
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
-    private func setupSections() {
-        sections = [
-            Section(name: "Parent1", items: ["Child1-1"]),
-            Section(name: "Parent2", items: ["Child2-1", "Child2-2"]),
-            Section(name: "Parent3", items: ["Child3-1", "Child3-2", "Child3-3"]),
-            Section(name: "Parent4", items: ["Child4-1", "Child4-2", "Child4-3", "Child4-4"]),
-            Section(name: "Parent5", items: ["Child5-1", "Child5-2"]),
-            Section(name: "Parent6", items: ["Child6-1", "Child6-2"]),
-            Section(name: "Parent7", items: ["Child7-1", "Child7-2", "Child7-3", "Child7-4", "Child7-5", "Child7-6", "Child7-7"]),
-            Section(name: "Parent8", items: ["Child8-1", "Child8-2"]),
-            Section(name: "Parent9", items: ["Child9-1", "Child9-2"]),
-            Section(name: "Parent10", items: ["Child10-1", "Child10-2"]),
-        ]
-    }
 }
+
+// MARK: - ExpandableTableHeaderViewDelegate
 
 extension ExpandableTableViewController: ExpandableTableHeaderViewDelegate {
     
